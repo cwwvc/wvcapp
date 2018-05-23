@@ -31,13 +31,13 @@
 <style>
 .responsiveCal {
  
-position: relative; padding-bottom: 75%; height: 0; overflow: hidden;
+position: relative; padding-bottom: 75%; height: 0; overflow: shown;
  
 }
  
 .responsiveCal iframe {
  
-position: absolute; top:0; left: 0; width: 100%; height: 100%;
+position: absolute; top:0; left: 0; width: 100%; height: 230%;
  
 }
 </style>
@@ -47,6 +47,8 @@ position: absolute; top:0; left: 0; width: 100%; height: 100%;
 
 <!-- Start of dirty code 2 -->
 
+<body onload="scrollFunction()">
+
 <button onclick="goBack()" id="myBtn" title="Go to top">Back</button>
 
 <script>
@@ -54,9 +56,8 @@ position: absolute; top:0; left: 0; width: 100%; height: 100%;
 window.onscroll = function() {scrollFunction()};
 
 function scrollFunction() {
-    if (document.body.scrollTop > -1 || document.documentElement.scrollTop > -1) 
     
-{     document.getElementById("myBtn").style.display = "block";
+{    document.getElementById("myBtn").style.display = "block";
     } 
 }
 
@@ -71,7 +72,7 @@ function goBack() {
 
 <div class="responsiveCal">
 
-<iframe src="https://calendar.google.com/calendar/embed?title=WVC%20Calendar%20Example&amp;showPrint=0&amp;showTabs=0&amp;height=1000&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=whaleyc%40my.iecc.edu&amp;color=%231B887A&amp;src=nba_2_Boston%2BCeltics%23sports%40group.v.calendar.google.com&amp;color=%236B3304&amp;src=mlb_16_Chicago%2BCubs%23sports%40group.v.calendar.google.com&amp;color=%23691426&amp;src=mlb_19_Los%2BAngeles%2BDodgers%23sports%40group.v.calendar.google.com&amp;color=%232952A3&amp;src=ht3jlfaac5lfd6263ulfh4tql8%40group.calendar.google.com&amp;color=%23691426&amp;src=nfl_21_Philadelphia%2BEagles%23sports%40group.v.calendar.google.com&amp;color=%230F4B38&amp;src=mlb_24_St.%2BLouis%2BCardinals%23sports%40group.v.calendar.google.com&amp;color=%2342104A&amp;ctz=America%2FChicago" style="border-width:0" width="950" height="1000" frameborder="0" scrolling="no"></iframe>
+<iframe src="https://calendar.google.com/calendar/embed?title=WVC%20Calendar%20Example&amp;showNav=0&amp;showPrint=0&amp;height=800&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=whaleyc%40my.iecc.edu&amp;color=%231B887A&amp;src=tcml6iunpacja196sr4ifug16o%40group.calendar.google.com&amp;color=%23691426&amp;src=vbq2navsjj8fpj6v9cepvgdtpo%40group.calendar.google.com&amp;color=%236B3304&amp;ctz=America%2FChicago" style="border-width:0" width="600" height="800" frameborder="0" scrolling="no"></iframe>
 
 </div>
 

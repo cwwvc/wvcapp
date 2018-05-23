@@ -4,7 +4,7 @@
 
 <!-- Start of dirty code 1 -->
 
-  <style>
+<style>
 #myBtn {
   display: none;
   position: fixed;
@@ -57,6 +57,8 @@
 
 <!-- Start of dirty code 2 -->
 
+<body onload="scrollFunction()">
+
 <button onclick="goBack()" id="myBtn" title="Go to top">Back</button>
 
 <script>
@@ -64,9 +66,8 @@
 window.onscroll = function() {scrollFunction()};
 
 function scrollFunction() {
-    if (document.body.scrollTop > -1 || document.documentElement.scrollTop > -1) 
     
-{     document.getElementById("myBtn").style.display = "block";
+{    document.getElementById("myBtn").style.display = "block";
     } 
 }
 

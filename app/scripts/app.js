@@ -337,6 +337,7 @@ window.App.Module.config
   function ($routeProvider) {
     $routeProvider.otherwise({redirectTo: "/Main"})
     .when("/Main", {controller: "MainCtrl", templateUrl: "app/views/Main.html"})
+    .when("/Calendar", {controller: "CalendarCtrl", templateUrl: "app/views/Calendar.html"})
     .when("/FAQView", {controller: "FAQViewCtrl", templateUrl: "app/views/FAQView.html"})
     .when("/WVCSiteView", {controller: "WVCSiteViewCtrl", templateUrl: "app/views/WVCSiteView.html"})
     .when("/EnrtataSiteView", {controller: "EnrtataSiteViewCtrl", templateUrl: "app/views/EnrtataSiteView.html"});
@@ -1504,35 +1505,35 @@ angular.element(document.querySelector("body")).addClass($rootScope.App.Theme.to
 $scope.Image8Click = function($event) {
 $rootScope.Image8.Event = $event;
 
-$scope.messageBox("Work in Progress", "This function is not avaible yet. When it is, you\x27ll be able to view the calendar for various events, as well as add your own custom events!", "Sounds Cool!", "primary", (("".length > 0) && angular.isFunction($scope[""])) ? $scope[""] : null);
+$scope.openWindow("app/files/Calendars/index.html", "", "_self");
 
 };
 
 $scope.Image6Click = function($event) {
 $rootScope.Image6.Event = $event;
 
-$scope.messageBox("Work in Progress", "This function is not avaible yet. When it is, you\x27ll be able to view the menu as well as make orders right from within the app!", "Sounds Cool!", "primary", (("".length > 0) && angular.isFunction($scope[""])) ? $scope[""] : null);
+$scope.openWindow("app/files/MenuDemo/index.html", "", "_self");
 
 };
 
 $scope.Image4Click = function($event) {
 $rootScope.Image4.Event = $event;
 
-$scope.showView("EnrtataSiteView");
+$rootScope.Entrata = $scope.openWindow("https://www.iecc.edu/e4/", "true", "_system");
 
 };
 
 $scope.Image12Click = function($event) {
 $rootScope.Image12.Event = $event;
 
-$scope.showView("WVCSiteView");
+$rootScope.WVC_Website = $scope.openWindow("https://www.iecc.edu/page.php?page=WVCH", "true", "_system");
 
 };
 
 $scope.FAQImageClick = function($event) {
 $rootScope.FAQImage.Event = $event;
 
-$scope.showView("FAQView");
+$scope.openWindow("app/files/FAQ/index.html", "", "_self");
 
 };
 
@@ -1542,6 +1543,18 @@ $rootScope.Image2.Event = $event;
 $scope.messageBox("Work in Progress", "This function is not avaible yet. When it is, you\x27ll be able to view the map of Campus and do other cool stuff!", "Sounds Cool!", "primary", (("".length > 0) && angular.isFunction($scope[""])) ? $scope[""] : null);
 
 };
+
+}]);
+
+window.App.Ctrls.controller("CalendarCtrl", ["$scope", "$rootScope", "$sce", "$timeout", "$interval", "$http", "$uibPosition", "blockUI",
+
+function($scope, $rootScope, $sce, $timeout, $interval, $http, $position, blockUI) {
+
+$rootScope.Calendar = {};
+$rootScope.Calendar.ABView = true;
+
+window.App.Calendar = {};
+window.App.Calendar.Scope = $scope;
 
 }]);
 

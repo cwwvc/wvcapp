@@ -1,4 +1,10 @@
-﻿
+﻿/*!
+ * This file is part of App Builder
+ *
+ * ©2018 App Builder - https://www.davidesperalta.com
+ */
+
+/* App auto generated CSS */
 
 html, body { width: 320px; height: 480px; }
 
@@ -17,8 +23,6 @@ html, body { width: 320px; height: 480px; }
 #FAQImage { position: absolute; top: 28.33%; left: 5.00%; width: 27.50%; height: 20.00%; }
 
 #Image2 { position: absolute; top: 28.33%; left: 70.00%; width: 26.25%; height: 20.00%; }
-
-#Button10 { position: absolute; top: 68.33%; left: 22.50%; width: 62.50%; height: 8.33%; }
 
 #FAQiFrame { position: absolute; top: 0.00%; left: 0.00%; width: 100.00%; height: 90.00%; }
 

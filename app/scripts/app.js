@@ -1,4 +1,8 @@
-﻿
+﻿/*!
+ * This file is part of App Builder
+ * For licenses information see App Builder help
+ * ©2018 App Builder - https://www.davidesperalta.com
+ */
 
 window.App = {};
 
@@ -722,23 +726,6 @@ $rootScope.Image2.PopoverText = "";
 $rootScope.Image2.PopoverEvent = "mouseenter";
 $rootScope.Image2.PopoverTitle = "";
 $rootScope.Image2.PopoverPos = "top";
-
-$rootScope.Button10 = {};
-$rootScope.Button10.ABRole = 2001;
-$rootScope.Button10.Hidden = "";
-$rootScope.Button10.Title = "";
-$rootScope.Button10.TabIndex = -1;
-$rootScope.Button10.TooltipText = "";
-$rootScope.Button10.TooltipPos = "top";
-$rootScope.Button10.PopoverText = "";
-$rootScope.Button10.PopoverTitle = "";
-$rootScope.Button10.PopoverEvent = "mouseenter";
-$rootScope.Button10.PopoverPos = "top";
-$rootScope.Button10.Badge = "";
-$rootScope.Button10.Icon = "";
-$rootScope.Button10.Text = "Button10";
-$rootScope.Button10.Class = "btn btn-primary btn-md ";
-$rootScope.Button10.Disabled = "";
 
 $rootScope.FAQiFrame = {};
 $rootScope.FAQiFrame.ABRole = 4001;
@@ -1571,13 +1558,6 @@ $scope.Image2Click = function($event) {
 $rootScope.Image2.Event = $event;
 
 $scope.messageBox("Work in Progress", "This function is not avaible yet. When it is, you\x27ll be able to view the map of Campus and do other cool stuff!", "Sounds Cool!", "primary", (("".length > 0) && angular.isFunction($scope[""])) ? $scope[""] : null);
-
-};
-
-$scope.Button10Click = function($event) {
-$rootScope.Button10.Event = $event;
-
-$scope.replaceView("Feedback");
 
 };
 

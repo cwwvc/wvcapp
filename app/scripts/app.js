@@ -340,7 +340,8 @@ window.App.Module.config
     .when("/Calendar", {controller: "CalendarCtrl", templateUrl: "app/views/Calendar.html"})
     .when("/FAQView", {controller: "FAQViewCtrl", templateUrl: "app/views/FAQView.html"})
     .when("/WVCSiteView", {controller: "WVCSiteViewCtrl", templateUrl: "app/views/WVCSiteView.html"})
-    .when("/EnrtataSiteView", {controller: "EnrtataSiteViewCtrl", templateUrl: "app/views/EnrtataSiteView.html"});
+    .when("/EnrtataSiteView", {controller: "EnrtataSiteViewCtrl", templateUrl: "app/views/EnrtataSiteView.html"})
+    .when("/Feedback", {controller: "FeedbackCtrl", templateUrl: "app/views/Feedback.html"});
   }
 ]);
 
@@ -722,6 +723,23 @@ $rootScope.Image2.PopoverEvent = "mouseenter";
 $rootScope.Image2.PopoverTitle = "";
 $rootScope.Image2.PopoverPos = "top";
 
+$rootScope.Button10 = {};
+$rootScope.Button10.ABRole = 2001;
+$rootScope.Button10.Hidden = "";
+$rootScope.Button10.Title = "";
+$rootScope.Button10.TabIndex = -1;
+$rootScope.Button10.TooltipText = "";
+$rootScope.Button10.TooltipPos = "top";
+$rootScope.Button10.PopoverText = "";
+$rootScope.Button10.PopoverTitle = "";
+$rootScope.Button10.PopoverEvent = "mouseenter";
+$rootScope.Button10.PopoverPos = "top";
+$rootScope.Button10.Badge = "";
+$rootScope.Button10.Icon = "";
+$rootScope.Button10.Text = "Button10";
+$rootScope.Button10.Class = "btn btn-primary btn-md ";
+$rootScope.Button10.Disabled = "";
+
 $rootScope.FAQiFrame = {};
 $rootScope.FAQiFrame.ABRole = 4001;
 $rootScope.FAQiFrame.Hidden = "";
@@ -892,6 +910,18 @@ $rootScope.Button3.Icon = "";
 $rootScope.Button3.Text = "Forward";
 $rootScope.Button3.Class = "btn btn-primary btn-md ";
 $rootScope.Button3.Disabled = "";
+
+$rootScope.HtmlContent1 = {};
+$rootScope.HtmlContent1.ABRole = 6001;
+$rootScope.HtmlContent1.Hidden = "";
+$rootScope.HtmlContent1.Class = "ios-inertial-scroll ";
+$rootScope.HtmlContent1.Title = "";
+$rootScope.HtmlContent1.TooltipText = "";
+$rootScope.HtmlContent1.TooltipPos = "top";
+$rootScope.HtmlContent1.PopoverText = "";
+$rootScope.HtmlContent1.PopoverEvent = "mouseenter";
+$rootScope.HtmlContent1.PopoverTitle = "";
+$rootScope.HtmlContent1.PopoverPos = "top";
     };
 
     return {
@@ -1544,6 +1574,13 @@ $scope.messageBox("Work in Progress", "This function is not avaible yet. When it
 
 };
 
+$scope.Button10Click = function($event) {
+$rootScope.Button10.Event = $event;
+
+$scope.replaceView("Feedback");
+
+};
+
 }]);
 
 window.App.Ctrls.controller("CalendarCtrl", ["$scope", "$rootScope", "$sce", "$timeout", "$interval", "$http", "$uibPosition", "blockUI",
@@ -1654,5 +1691,17 @@ $rootScope.Button3.Event = $event;
 window.history.forward();
 
 };
+
+}]);
+
+window.App.Ctrls.controller("FeedbackCtrl", ["$scope", "$rootScope", "$sce", "$timeout", "$interval", "$http", "$uibPosition", "blockUI",
+
+function($scope, $rootScope, $sce, $timeout, $interval, $http, $position, blockUI) {
+
+$rootScope.Feedback = {};
+$rootScope.Feedback.ABView = true;
+
+window.App.Feedback = {};
+window.App.Feedback.Scope = $scope;
 
 }]);

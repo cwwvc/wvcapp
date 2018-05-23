@@ -18,6 +18,8 @@ html, body { width: 320px; height: 480px; }
 
 #Image2 { position: absolute; top: 28.33%; left: 70.00%; width: 26.25%; height: 20.00%; }
 
+#Button10 { position: absolute; top: 68.33%; left: 22.50%; width: 62.50%; height: 8.33%; }
+
 #FAQiFrame { position: absolute; top: 0.00%; left: 0.00%; width: 100.00%; height: 90.00%; }
 
 #Button8 { position: absolute; top: 90.00%; left: 32.50%; width: 35.00%; height: 10.00%; }
@@ -41,3 +43,5 @@ html, body { width: 320px; height: 480px; }
 #Button1 { position: absolute; top: 90.00%; left: 0.00%; width: 35.00%; height: 10.00%; }
 
 #Button3 { position: absolute; top: 90.00%; left: 65.00%; width: 35.00%; height: 10.00%; }
+
+#HtmlContent1 { position: absolute; top: 0.00%; left: 0.00%; width: 100.00%; height: 100.00%; }

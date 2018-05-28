@@ -1,4 +1,5 @@
 ﻿
+
 window.App = {};
 
 window.App.Utils = (function () {
@@ -1517,7 +1518,7 @@ angular.element(document.querySelector("body")).addClass($rootScope.App.Theme.to
 $scope.Image8Click = function($event) {
 $rootScope.Image8.Event = $event;
 
-$scope.openWindow("app/files/Calendars/index.html", "", "_self");
+$scope.replaceView("Calendar");
 
 };
 

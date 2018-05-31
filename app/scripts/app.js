@@ -337,6 +337,7 @@ window.App.Module.config
   function ($routeProvider) {
     $routeProvider.otherwise({redirectTo: "/Main"})
     .when("/Main", {controller: "MainCtrl", templateUrl: "app/views/Main.html"})
+    .when("/SocialMedia", {controller: "SocialMediaCtrl", templateUrl: "app/views/SocialMedia.html"})
     .when("/Calendar", {controller: "CalendarCtrl", templateUrl: "app/views/Calendar.html"})
     .when("/FAQView", {controller: "FAQViewCtrl", templateUrl: "app/views/FAQView.html"})
     .when("/WVCSiteView", {controller: "WVCSiteViewCtrl", templateUrl: "app/views/WVCSiteView.html"})
@@ -598,7 +599,7 @@ $rootScope.App.IdleIsIdling = "false";
 $rootScope.App.IdleIsRunning = "false";
 $rootScope.App.ID = "com.WVCtribe";
 $rootScope.App.Name = "WVC App";
-$rootScope.App.ShortName = "New App 2";
+$rootScope.App.ShortName = "WVCtribeApp";
 $rootScope.App.Version = "1.0.0";
 $rootScope.App.Description = "WVC App for WVC services";
 $rootScope.App.AuthorName = "Cameron";
@@ -700,7 +701,7 @@ $rootScope.Image12.PopoverPos = "top";
 $rootScope.FAQImage = {};
 $rootScope.FAQImage.ABRole = 8001;
 $rootScope.FAQImage.Hidden = "";
-$rootScope.FAQImage.Image = "app/images/FAQ_icon.svg.png";
+$rootScope.FAQImage.Image = "app/images/FAQback.png";
 $rootScope.FAQImage.Class = "";
 $rootScope.FAQImage.Title = "";
 $rootScope.FAQImage.TooltipText = "";
@@ -713,7 +714,7 @@ $rootScope.FAQImage.PopoverPos = "top";
 $rootScope.Image2 = {};
 $rootScope.Image2.ABRole = 8001;
 $rootScope.Image2.Hidden = "";
-$rootScope.Image2.Image = "app/images/maps_dock_icon_by_kaboom88-d32gndf.png";
+$rootScope.Image2.Image = "app/images/map-icon1.png";
 $rootScope.Image2.Class = "";
 $rootScope.Image2.Title = "";
 $rootScope.Image2.TooltipText = "";
@@ -722,6 +723,175 @@ $rootScope.Image2.PopoverText = "";
 $rootScope.Image2.PopoverEvent = "mouseenter";
 $rootScope.Image2.PopoverTitle = "";
 $rootScope.Image2.PopoverPos = "top";
+
+$rootScope.Image14 = {};
+$rootScope.Image14.ABRole = 8001;
+$rootScope.Image14.Hidden = "";
+$rootScope.Image14.Image = "app/images/peopleback.png";
+$rootScope.Image14.Class = "";
+$rootScope.Image14.Title = "";
+$rootScope.Image14.TooltipText = "";
+$rootScope.Image14.TooltipPos = "top";
+$rootScope.Image14.PopoverText = "";
+$rootScope.Image14.PopoverEvent = "mouseenter";
+$rootScope.Image14.PopoverTitle = "";
+$rootScope.Image14.PopoverPos = "top";
+
+$rootScope.Image13 = {};
+$rootScope.Image13.ABRole = 8001;
+$rootScope.Image13.Hidden = "";
+$rootScope.Image13.Image = "app/images/bugback.png";
+$rootScope.Image13.Class = "";
+$rootScope.Image13.Title = "";
+$rootScope.Image13.TooltipText = "";
+$rootScope.Image13.TooltipPos = "top";
+$rootScope.Image13.PopoverText = "";
+$rootScope.Image13.PopoverEvent = "mouseenter";
+$rootScope.Image13.PopoverTitle = "";
+$rootScope.Image13.PopoverPos = "top";
+
+$rootScope.Image15 = {};
+$rootScope.Image15.ABRole = 8001;
+$rootScope.Image15.Hidden = "";
+$rootScope.Image15.Image = "app/images/bashback2.png";
+$rootScope.Image15.Class = "";
+$rootScope.Image15.Title = "";
+$rootScope.Image15.TooltipText = "";
+$rootScope.Image15.TooltipPos = "top";
+$rootScope.Image15.PopoverText = "";
+$rootScope.Image15.PopoverEvent = "mouseenter";
+$rootScope.Image15.PopoverTitle = "";
+$rootScope.Image15.PopoverPos = "top";
+
+$rootScope.Image16 = {};
+$rootScope.Image16.ABRole = 8001;
+$rootScope.Image16.Hidden = "";
+$rootScope.Image16.Image = "app/images/stars.jpg";
+$rootScope.Image16.Class = "";
+$rootScope.Image16.Title = "";
+$rootScope.Image16.TooltipText = "";
+$rootScope.Image16.TooltipPos = "top";
+$rootScope.Image16.PopoverText = "";
+$rootScope.Image16.PopoverEvent = "mouseenter";
+$rootScope.Image16.PopoverTitle = "";
+$rootScope.Image16.PopoverPos = "top";
+
+$rootScope.Image17 = {};
+$rootScope.Image17.ABRole = 8001;
+$rootScope.Image17.Hidden = "";
+$rootScope.Image17.Image = "app/images/Facebook.png";
+$rootScope.Image17.Class = "";
+$rootScope.Image17.Title = "";
+$rootScope.Image17.TooltipText = "";
+$rootScope.Image17.TooltipPos = "top";
+$rootScope.Image17.PopoverText = "";
+$rootScope.Image17.PopoverEvent = "mouseenter";
+$rootScope.Image17.PopoverTitle = "";
+$rootScope.Image17.PopoverPos = "top";
+
+$rootScope.Image18 = {};
+$rootScope.Image18.ABRole = 8001;
+$rootScope.Image18.Hidden = "";
+$rootScope.Image18.Image = "app/images/Instagram.png";
+$rootScope.Image18.Class = "";
+$rootScope.Image18.Title = "";
+$rootScope.Image18.TooltipText = "";
+$rootScope.Image18.TooltipPos = "top";
+$rootScope.Image18.PopoverText = "";
+$rootScope.Image18.PopoverEvent = "mouseenter";
+$rootScope.Image18.PopoverTitle = "";
+$rootScope.Image18.PopoverPos = "top";
+
+$rootScope.Image19 = {};
+$rootScope.Image19.ABRole = 8001;
+$rootScope.Image19.Hidden = "";
+$rootScope.Image19.Image = "app/images/Twitter.png";
+$rootScope.Image19.Class = "";
+$rootScope.Image19.Title = "";
+$rootScope.Image19.TooltipText = "";
+$rootScope.Image19.TooltipPos = "top";
+$rootScope.Image19.PopoverText = "";
+$rootScope.Image19.PopoverEvent = "mouseenter";
+$rootScope.Image19.PopoverTitle = "";
+$rootScope.Image19.PopoverPos = "top";
+
+$rootScope.Image1 = {};
+$rootScope.Image1.ABRole = 8001;
+$rootScope.Image1.Hidden = "";
+$rootScope.Image1.Image = "app/images/yourcalendar.png";
+$rootScope.Image1.Class = "";
+$rootScope.Image1.Title = "";
+$rootScope.Image1.TooltipText = "";
+$rootScope.Image1.TooltipPos = "top";
+$rootScope.Image1.PopoverText = "";
+$rootScope.Image1.PopoverEvent = "mouseenter";
+$rootScope.Image1.PopoverTitle = "";
+$rootScope.Image1.PopoverPos = "top";
+
+$rootScope.Image3 = {};
+$rootScope.Image3.ABRole = 8001;
+$rootScope.Image3.Hidden = "";
+$rootScope.Image3.Image = "app/images/yourcalendar.png";
+$rootScope.Image3.Class = "";
+$rootScope.Image3.Title = "";
+$rootScope.Image3.TooltipText = "";
+$rootScope.Image3.TooltipPos = "top";
+$rootScope.Image3.PopoverText = "";
+$rootScope.Image3.PopoverEvent = "mouseenter";
+$rootScope.Image3.PopoverTitle = "";
+$rootScope.Image3.PopoverPos = "top";
+
+$rootScope.Image5 = {};
+$rootScope.Image5.ABRole = 8001;
+$rootScope.Image5.Hidden = "";
+$rootScope.Image5.Image = "app/images/yourcalendar.png";
+$rootScope.Image5.Class = "";
+$rootScope.Image5.Title = "";
+$rootScope.Image5.TooltipText = "";
+$rootScope.Image5.TooltipPos = "top";
+$rootScope.Image5.PopoverText = "";
+$rootScope.Image5.PopoverEvent = "mouseenter";
+$rootScope.Image5.PopoverTitle = "";
+$rootScope.Image5.PopoverPos = "top";
+
+$rootScope.Image7 = {};
+$rootScope.Image7.ABRole = 8001;
+$rootScope.Image7.Hidden = "";
+$rootScope.Image7.Image = "app/images/yourcalendar.png";
+$rootScope.Image7.Class = "";
+$rootScope.Image7.Title = "";
+$rootScope.Image7.TooltipText = "";
+$rootScope.Image7.TooltipPos = "top";
+$rootScope.Image7.PopoverText = "";
+$rootScope.Image7.PopoverEvent = "mouseenter";
+$rootScope.Image7.PopoverTitle = "";
+$rootScope.Image7.PopoverPos = "top";
+
+$rootScope.Image9 = {};
+$rootScope.Image9.ABRole = 8001;
+$rootScope.Image9.Hidden = "";
+$rootScope.Image9.Image = "app/images/yourcalendar.png";
+$rootScope.Image9.Class = "";
+$rootScope.Image9.Title = "";
+$rootScope.Image9.TooltipText = "";
+$rootScope.Image9.TooltipPos = "top";
+$rootScope.Image9.PopoverText = "";
+$rootScope.Image9.PopoverEvent = "mouseenter";
+$rootScope.Image9.PopoverTitle = "";
+$rootScope.Image9.PopoverPos = "top";
+
+$rootScope.Image10 = {};
+$rootScope.Image10.ABRole = 8001;
+$rootScope.Image10.Hidden = "";
+$rootScope.Image10.Image = "app/images/yourcalendar.png";
+$rootScope.Image10.Class = "";
+$rootScope.Image10.Title = "";
+$rootScope.Image10.TooltipText = "";
+$rootScope.Image10.TooltipPos = "top";
+$rootScope.Image10.PopoverText = "";
+$rootScope.Image10.PopoverEvent = "mouseenter";
+$rootScope.Image10.PopoverTitle = "";
+$rootScope.Image10.PopoverPos = "top";
 
 $rootScope.FAQiFrame = {};
 $rootScope.FAQiFrame.ABRole = 4001;
@@ -1385,6 +1555,10 @@ window.App.Ctrls.controller
     };        
 
    
+$scope.BackButton = function()
+{
+};
+
 }]);
 
 window.App.Ctrls.controller
@@ -1518,7 +1692,7 @@ angular.element(document.querySelector("body")).addClass($rootScope.App.Theme.to
 $scope.Image8Click = function($event) {
 $rootScope.Image8.Event = $event;
 
-$scope.replaceView("Calendar");
+$scope.alert("Work in Progress", "Under Construction");
 
 };
 
@@ -1553,7 +1727,57 @@ $scope.openWindow("app/files/FAQ/index.html", "", "_self");
 $scope.Image2Click = function($event) {
 $rootScope.Image2.Event = $event;
 
-$scope.messageBox("Work in Progress", "This function is not avaible yet. When it is, you\x27ll be able to view the map of Campus and do other cool stuff!", "Sounds Cool!", "primary", (("".length > 0) && angular.isFunction($scope[""])) ? $scope[""] : null);
+$scope.alert("Work in Progress", "Under Construction");
+
+};
+
+$scope.Image14Click = function($event) {
+$rootScope.Image14.Event = $event;
+
+$scope.alert("Work in Progress", "The page is under construction, but you\x27re free to preview");
+
+$scope.replaceView("SocialMedia");
+
+};
+
+$scope.Image13Click = function($event) {
+$rootScope.Image13.Event = $event;
+
+$rootScope.Entrata = $scope.openWindow("https://docs.google.com/forms/d/e/1FAIpQLSdahG3-rJTnijYd_7OGyX8r-fu7yH4Hg3JruvV7sqbbILLpRw/viewform?usp=sf_link", "true", "_system");
+
+};
+
+$scope.Image15Click = function($event) {
+$rootScope.Image15.Event = $event;
+
+$rootScope.Entrata = $scope.openWindow("http://myweb.iecc.edu/wvjc/", "true", "_system");
+
+};
+
+}]);
+
+window.App.Ctrls.controller("SocialMediaCtrl", ["$scope", "$rootScope", "$sce", "$timeout", "$interval", "$http", "$uibPosition", "blockUI",
+
+function($scope, $rootScope, $sce, $timeout, $interval, $http, $position, blockUI) {
+
+$rootScope.SocialMedia = {};
+$rootScope.SocialMedia.ABView = true;
+
+window.App.SocialMedia = {};
+window.App.SocialMedia.Scope = $scope;
+
+$scope.Image17Click = function($event) {
+$rootScope.Image17.Event = $event;
+
+};
+
+$scope.Image18Click = function($event) {
+$rootScope.Image18.Event = $event;
+
+};
+
+$scope.Image19Click = function($event) {
+$rootScope.Image19.Event = $event;
 
 };
 
@@ -1568,6 +1792,48 @@ $rootScope.Calendar.ABView = true;
 
 window.App.Calendar = {};
 window.App.Calendar.Scope = $scope;
+
+$scope.Image1Click = function($event) {
+$rootScope.Image1.Event = $event;
+
+$scope.openWindow("app/files/Calendars/index.html", "", "_system");
+
+};
+
+$scope.Image3Click = function($event) {
+$rootScope.Image3.Event = $event;
+
+$scope.replaceView("Calendar");
+
+};
+
+$scope.Image5Click = function($event) {
+$rootScope.Image5.Event = $event;
+
+$scope.replaceView("Calendar");
+
+};
+
+$scope.Image7Click = function($event) {
+$rootScope.Image7.Event = $event;
+
+$scope.replaceView("Calendar");
+
+};
+
+$scope.Image9Click = function($event) {
+$rootScope.Image9.Event = $event;
+
+$scope.replaceView("Calendar");
+
+};
+
+$scope.Image10Click = function($event) {
+$rootScope.Image10.Event = $event;
+
+$scope.replaceView("Calendar");
+
+};
 
 }]);
 

@@ -1,0 +1,563 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AppBuilder Version="2018.35">
+  <App>
+    <ID>com.WVCtribe</ID>
+    <Name>WVC App</Name>
+    <ShortName>WVCtribeApp</ShortName>
+    <Version>1.0.0</Version>
+    <Icon>Images\logo_WVC.png</Icon>
+    <Width>320</Width>
+    <Height>480</Height>
+    <Scale>1</Scale>
+    <Zoom>1</Zoom>
+    <Theme>Default</Theme>
+    <Themes></Themes>
+    <Plugins></Plugins>
+    <Description>WVC App for WVC services</Description>
+    <AuthorName>Cameron</AuthorName>
+    <AuthorUrl></AuthorUrl>
+    <AuthorEmail></AuthorEmail>
+    <LanguageCode>en</LanguageCode>
+    <TextDirection>ltr</TextDirection>
+    <Created>2018-05-12T23:05:10.268</Created>
+    <Modified>2018-05-31T15:39:03.225</Modified>
+    <BuildNumber>0</BuildNumber>
+    <AutoBuildNumber>0</AutoBuildNumber>
+    <Metadata />
+    <Webapp />
+    <ProWebApp>
+      <BgColor>#ff0f00</BgColor>
+      <ThemeColor>#ff0f00</ThemeColor>
+    </ProWebApp>
+    <WebExtension />
+    <Cordova>
+      <General>
+        <CreateConfig>1</CreateConfig>
+      </General>
+      <Plugins>
+        <FilesPlugin>1</FilesPlugin>
+        <NetworkPlugin>1</NetworkPlugin>
+        <DialogsPlugin>1</DialogsPlugin>
+        <BrowserPlugin>1</BrowserPlugin>
+      </Plugins>
+      <Android />
+      <IOS>
+        <TargetDevice>handset</TargetDevice>
+        <DebugSignPackageType>development</DebugSignPackageType>
+        <ReleaseSignBuildFlags>development</ReleaseSignBuildFlags>
+      </IOS>
+      <Windows />
+      <Phonegap />
+      <Platforms>
+        <IOS>1</IOS>
+        <Browser>1</Browser>
+      </Platforms>
+      <Splash />
+      <Config />
+      <Paths />
+    </Cordova>
+  </App>
+  <Views>
+    <View>
+      <Name>Master</Name>
+      <IsMaster>1</IsMaster>
+      <Controls />
+    </View>
+    <View>
+      <Name>Main</Name>
+      <Style>background-color: #808080; </Style>
+      <Controls>
+        <Control Role="8001">
+          <Name>Image11</Name>
+          <Top>0</Top>
+          <Left>0</Left>
+          <Width>320</Width>
+          <Height>480</Height>
+          <Image>Images\stars.jpg</Image>
+        </Control>
+        <Control Role="8001">
+          <Name>Image8</Name>
+          <Top>136</Top>
+          <Left>120</Left>
+          <Width>88</Width>
+          <Height>96</Height>
+          <Image>Images\yourcalendar.png</Image>
+          <ClickEvent>
+            <![CDATA[//OpenWindow "app/files/Calendars/index.html" "" "_self" ""
+//OpenWindow "app/files/MenuDemo/index.html" "" "_self" ""
+//MessageBox "Work in Progress" "This function is not avaible yet. When it is, you\x27ll be able to view the calendar for various events, as well as add your own custom events!" "Sounds Cool!" "primary" ""
+//ReplaceView "Calendar"
+Alert "Work in Progress" "Under Construction"]]>
+          </ClickEvent>
+        </Control>
+        <Control Role="8001">
+          <Name>Image6</Name>
+          <Top>16</Top>
+          <Left>120</Left>
+          <Width>88</Width>
+          <Height>96</Height>
+          <Image>Images\WVC-RED-CAFE-BACKUP.png</Image>
+          <ClickEvent>
+            <![CDATA[OpenWindow "app/files/MenuDemo/index.html" "" "_self" ""
+//MessageBox "Work in Progress" "This function is not avaible yet. When it is, you\x27ll be able to view the menu as well as make orders right from within the app!" "Sounds Cool!" "primary" ""
+]]>
+          </ClickEvent>
+        </Control>
+        <Control Role="8001">
+          <Name>Image4</Name>
+          <Top>136</Top>
+          <Left>224</Left>
+          <Width>87</Width>
+          <Height>96</Height>
+          <Image>Images\entrata.png</Image>
+          <ClickEvent>
+            <![CDATA[OpenWindow "https://www.iecc.edu/e4/" "true" "_system" "Entrata"
+//ShowView "EnrtataSiteView"
+]]>
+          </ClickEvent>
+        </Control>
+        <Control Role="8001">
+          <Name>Image12</Name>
+          <Top>16</Top>
+          <Left>16</Left>
+          <Width>88</Width>
+          <Height>96</Height>
+          <Image>Images\logo_WVC.png</Image>
+          <ClickEvent>
+            <![CDATA[OpenWindow "https://www.iecc.edu/page.php?page=WVCH" "true" "_system" "WVC_Website"
+//ShowView "WVCSiteView"
+]]>
+          </ClickEvent>
+        </Control>
+        <Control Role="8001">
+          <Name>FAQImage</Name>
+          <Top>136</Top>
+          <Left>16</Left>
+          <Width>88</Width>
+          <Height>96</Height>
+          <Image>Images\FAQback.png</Image>
+          <ClickEvent>
+            <![CDATA[OpenWindow "app/files/FAQ/index.html" "" "_self" ""
+//OpenWindow "app/files/FAQ/index.html" "" "" ""
+//ShowView "FAQView"
+]]>
+          </ClickEvent>
+        </Control>
+        <Control Role="8001">
+          <Name>Image2</Name>
+          <Top>248</Top>
+          <Left>16</Left>
+          <Width>84</Width>
+          <Height>96</Height>
+          <Image>Images\map-icon1.png</Image>
+          <ClickEvent>
+            <![CDATA[//MessageBox "Work in Progress" "Under Construction" "OK" "primary" ""
+//MessageBox "Work in Progress" "This function is not avaible yet. When it is, you\x27ll be able to view the map of Campus and do other cool stuff!" "Sounds Cool!" "primary" ""
+Alert "Work in Progress" "Under Construction"
+]]>
+          </ClickEvent>
+        </Control>
+        <Control Role="8001">
+          <Name>Image14</Name>
+          <Top>248</Top>
+          <Left>224</Left>
+          <Width>88</Width>
+          <Height>96</Height>
+          <Image>Images\peopleback.png</Image>
+          <ClickEvent>
+            <![CDATA[Alert "Work in Progress" "The page is under construction, but you\x27re free to preview"
+ReplaceView "SocialMedia"
+]]>
+          </ClickEvent>
+        </Control>
+        <Control Role="8001">
+          <Name>Image13</Name>
+          <Top>248</Top>
+          <Left>120</Left>
+          <Width>88</Width>
+          <Height>96</Height>
+          <Image>Images\bugback.png</Image>
+          <ClickEvent>
+            <![CDATA[OpenWindow "https://docs.google.com/forms/d/e/1FAIpQLSdahG3-rJTnijYd_7OGyX8r-fu7yH4Hg3JruvV7sqbbILLpRw/viewform?usp=sf_link" "true" "_system" "Entrata"
+]]>
+          </ClickEvent>
+        </Control>
+        <Control Role="8001">
+          <Name>Image15</Name>
+          <Top>16</Top>
+          <Left>224</Left>
+          <Width>88</Width>
+          <Height>96</Height>
+          <Image>Images\inverted\bashback2.png</Image>
+          <ClickEvent>
+            <![CDATA[OpenWindow "http://myweb.iecc.edu/wvjc/" "true" "_system" "Entrata"
+]]>
+          </ClickEvent>
+        </Control>
+      </Controls>
+    </View>
+    <View>
+      <Name>SocialMedia</Name>
+      <Controls>
+        <Control Role="8001">
+          <Name>Image16</Name>
+          <Top>0</Top>
+          <Left>0</Left>
+          <Width>320</Width>
+          <Height>480</Height>
+          <Image>Images\stars.jpg</Image>
+        </Control>
+        <Control Role="8001">
+          <Name>Image17</Name>
+          <Top>16</Top>
+          <Left>16</Left>
+          <Width>88</Width>
+          <Height>96</Height>
+          <Image>Images\social\Facebook.png</Image>
+          <ClickEvent>
+            <![CDATA[//OpenWindow "http://myweb.iecc.edu/wvjc/" "true" "_system" "Entrata"]]>
+          </ClickEvent>
+        </Control>
+        <Control Role="8001">
+          <Name>Image18</Name>
+          <Top>16</Top>
+          <Left>120</Left>
+          <Width>88</Width>
+          <Height>96</Height>
+          <Image>Images\social\Instagram.png</Image>
+          <ClickEvent>
+            <![CDATA[//OpenWindow "http://myweb.iecc.edu/wvjc/" "true" "_system" "Entrata"]]>
+          </ClickEvent>
+        </Control>
+        <Control Role="8001">
+          <Name>Image19</Name>
+          <Top>16</Top>
+          <Left>224</Left>
+          <Width>88</Width>
+          <Height>96</Height>
+          <Image>Images\social\Twitter.png</Image>
+          <ClickEvent>
+            <![CDATA[//OpenWindow "http://myweb.iecc.edu/wvjc/" "true" "_system" "Entrata"]]>
+          </ClickEvent>
+        </Control>
+      </Controls>
+    </View>
+    <View>
+      <Name>Calendar</Name>
+      <Controls>
+        <Control Role="8001">
+          <Name>Image1</Name>
+          <Top>16</Top>
+          <Left>16</Left>
+          <Width>88</Width>
+          <Height>96</Height>
+          <Image>Images\yourcalendar.png</Image>
+          <ClickEvent>
+            <![CDATA[OpenWindow "app/files/Calendars/index.html" "" "_system" ""
+]]>
+          </ClickEvent>
+        </Control>
+        <Control Role="8001">
+          <Name>Image3</Name>
+          <Top>16</Top>
+          <Left>120</Left>
+          <Width>88</Width>
+          <Height>96</Height>
+          <Image>Images\yourcalendar.png</Image>
+          <ClickEvent>
+            <![CDATA[//OpenWindow "app/files/Calendars/index.html" "" "_self" ""
+//OpenWindow "app/files/MenuDemo/index.html" "" "_self" ""
+//MessageBox "Work in Progress" "This function is not avaible yet. When it is, you\x27ll be able to view the calendar for various events, as well as add your own custom events!" "Sounds Cool!" "primary" ""
+ReplaceView "Calendar"
+]]>
+          </ClickEvent>
+        </Control>
+        <Control Role="8001">
+          <Name>Image5</Name>
+          <Top>16</Top>
+          <Left>224</Left>
+          <Width>88</Width>
+          <Height>96</Height>
+          <Image>Images\yourcalendar.png</Image>
+          <ClickEvent>
+            <![CDATA[//OpenWindow "app/files/Calendars/index.html" "" "_self" ""
+//OpenWindow "app/files/MenuDemo/index.html" "" "_self" ""
+//MessageBox "Work in Progress" "This function is not avaible yet. When it is, you\x27ll be able to view the calendar for various events, as well as add your own custom events!" "Sounds Cool!" "primary" ""
+ReplaceView "Calendar"
+]]>
+          </ClickEvent>
+        </Control>
+        <Control Role="8001">
+          <Name>Image7</Name>
+          <Top>136</Top>
+          <Left>16</Left>
+          <Width>88</Width>
+          <Height>96</Height>
+          <Image>Images\yourcalendar.png</Image>
+          <ClickEvent>
+            <![CDATA[//OpenWindow "app/files/Calendars/index.html" "" "_self" ""
+//OpenWindow "app/files/MenuDemo/index.html" "" "_self" ""
+//MessageBox "Work in Progress" "This function is not avaible yet. When it is, you\x27ll be able to view the calendar for various events, as well as add your own custom events!" "Sounds Cool!" "primary" ""
+ReplaceView "Calendar"
+]]>
+          </ClickEvent>
+        </Control>
+        <Control Role="8001">
+          <Name>Image9</Name>
+          <Top>136</Top>
+          <Left>120</Left>
+          <Width>88</Width>
+          <Height>96</Height>
+          <Image>Images\yourcalendar.png</Image>
+          <ClickEvent>
+            <![CDATA[//OpenWindow "app/files/Calendars/index.html" "" "_self" ""
+//OpenWindow "app/files/MenuDemo/index.html" "" "_self" ""
+//MessageBox "Work in Progress" "This function is not avaible yet. When it is, you\x27ll be able to view the calendar for various events, as well as add your own custom events!" "Sounds Cool!" "primary" ""
+ReplaceView "Calendar"
+]]>
+          </ClickEvent>
+        </Control>
+        <Control Role="8001">
+          <Name>Image10</Name>
+          <Top>136</Top>
+          <Left>224</Left>
+          <Width>88</Width>
+          <Height>96</Height>
+          <Image>Images\yourcalendar.png</Image>
+          <ClickEvent>
+            <![CDATA[//OpenWindow "app/files/Calendars/index.html" "" "_self" ""
+//OpenWindow "app/files/MenuDemo/index.html" "" "_self" ""
+//MessageBox "Work in Progress" "This function is not avaible yet. When it is, you\x27ll be able to view the calendar for various events, as well as add your own custom events!" "Sounds Cool!" "primary" ""
+ReplaceView "Calendar"
+]]>
+          </ClickEvent>
+        </Control>
+      </Controls>
+    </View>
+    <View>
+      <Name>FAQView</Name>
+      <Controls>
+        <Control Role="4001">
+          <Name>FAQiFrame</Name>
+          <Top>0</Top>
+          <Left>0</Left>
+          <Width>320</Width>
+          <Height>432</Height>
+          <Url>app/files/FAQ/index.html</Url>
+        </Control>
+        <Control Role="2001">
+          <Name>Button8</Name>
+          <Top>432</Top>
+          <Left>104</Left>
+          <Width>112</Width>
+          <Height>48</Height>
+          <Text>
+            <![CDATA[Home]]>
+          </Text>
+          <Kind>primary</Kind>
+          <ClickEvent>
+            <![CDATA[ShowView "Main"
+]]>
+          </ClickEvent>
+        </Control>
+        <Control Role="2001">
+          <Name>Button7</Name>
+          <Top>432</Top>
+          <Left>0</Left>
+          <Width>112</Width>
+          <Height>48</Height>
+          <Text>
+            <![CDATA[Back]]>
+          </Text>
+          <Kind>primary</Kind>
+          <ClickEvent>
+            <![CDATA[HistoryBack
+]]>
+          </ClickEvent>
+        </Control>
+        <Control Role="2001">
+          <Name>Button9</Name>
+          <Top>432</Top>
+          <Left>208</Left>
+          <Width>112</Width>
+          <Height>48</Height>
+          <Text>
+            <![CDATA[Forward]]>
+          </Text>
+          <Kind>primary</Kind>
+          <ClickEvent>
+            <![CDATA[HistoryForward
+]]>
+          </ClickEvent>
+        </Control>
+      </Controls>
+    </View>
+    <View>
+      <Name>WVCSiteView</Name>
+      <Controls>
+        <Control Role="4001">
+          <Name>WVCSiteiFrame</Name>
+          <Top>0</Top>
+          <Left>0</Left>
+          <Width>320</Width>
+          <Height>432</Height>
+          <Url>https://www.iecc.edu/page.php?page=WVCH</Url>
+        </Control>
+        <Control Role="2001">
+          <Name>Button5</Name>
+          <Top>432</Top>
+          <Left>104</Left>
+          <Width>112</Width>
+          <Height>48</Height>
+          <Text>
+            <![CDATA[Home]]>
+          </Text>
+          <Kind>primary</Kind>
+          <ClickEvent>
+            <![CDATA[ShowView "Main"
+]]>
+          </ClickEvent>
+        </Control>
+        <Control Role="2001">
+          <Name>Button4</Name>
+          <Top>432</Top>
+          <Left>0</Left>
+          <Width>112</Width>
+          <Height>48</Height>
+          <Text>
+            <![CDATA[Back]]>
+          </Text>
+          <Kind>primary</Kind>
+          <ClickEvent>
+            <![CDATA[HistoryBack
+]]>
+          </ClickEvent>
+        </Control>
+        <Control Role="2001">
+          <Name>Button6</Name>
+          <Top>432</Top>
+          <Left>208</Left>
+          <Width>112</Width>
+          <Height>48</Height>
+          <Text>
+            <![CDATA[Forward]]>
+          </Text>
+          <Kind>primary</Kind>
+          <ClickEvent>
+            <![CDATA[HistoryForward
+]]>
+          </ClickEvent>
+        </Control>
+      </Controls>
+    </View>
+    <View>
+      <Name>EnrtataSiteView</Name>
+      <Controls>
+        <Control Role="4001">
+          <Name>EntrataiFrame</Name>
+          <Top>0</Top>
+          <Left>0</Left>
+          <Width>320</Width>
+          <Height>432</Height>
+          <Url>https://www.iecc.edu/e4/</Url>
+        </Control>
+        <Control Role="2001">
+          <Name>Button2</Name>
+          <Top>432</Top>
+          <Left>104</Left>
+          <Width>112</Width>
+          <Height>48</Height>
+          <Text>
+            <![CDATA[Home]]>
+          </Text>
+          <Kind>primary</Kind>
+          <ClickEvent>
+            <![CDATA[ShowView "Main"
+]]>
+          </ClickEvent>
+        </Control>
+        <Control Role="2001">
+          <Name>Button1</Name>
+          <Top>432</Top>
+          <Left>0</Left>
+          <Width>112</Width>
+          <Height>48</Height>
+          <Text>
+            <![CDATA[Back]]>
+          </Text>
+          <Kind>primary</Kind>
+          <ClickEvent>
+            <![CDATA[HistoryBack
+]]>
+          </ClickEvent>
+        </Control>
+        <Control Role="2001">
+          <Name>Button3</Name>
+          <Top>432</Top>
+          <Left>208</Left>
+          <Width>112</Width>
+          <Height>48</Height>
+          <Text>
+            <![CDATA[Forward]]>
+          </Text>
+          <Kind>primary</Kind>
+          <ClickEvent>
+            <![CDATA[HistoryForward
+]]>
+          </ClickEvent>
+        </Control>
+      </Controls>
+    </View>
+    <View>
+      <Name>Feedback</Name>
+      <Controls>
+        <Control Role="6001">
+          <Name>HtmlContent1</Name>
+          <Top>0</Top>
+          <Left>0</Left>
+          <Width>320</Width>
+          <Height>480</Height>
+          <Html>
+            <![CDATA[<form action="https://getsimpleform.com/messages?form_api_token=bfb1897e8223743815018c65154b43c3" method="post">
+  <!-- the redirect_to is optional, the form will redirect to the referrer on submission -->
+  <input type='hidden' name='redirect_to' value='<the complete return url e.g. http://fooey.com/thank-you.html>' />
+  <!-- all your input fields here.... -->
+  <input type='text' name='test' />
+  <input type='submit' value='Test form' />
+</form>]]>
+          </Html>
+        </Control>
+      </Controls>
+    </View>
+  </Views>
+  <Functions>
+    <Function>
+      <Name>BackButton</Name>
+      <Language>JScript</Language>
+      <Description></Description>
+      <Arguments />
+      <Code>
+        <![CDATA[]]>
+      </Code>
+    </Function>
+  </Functions>
+  <Files>
+    <Styles />
+    <Scripts />
+    <Folders>
+      <Path>FAQ</Path>
+      <Path>Images</Path>
+      <Path>MenuDemo</Path>
+      <Path>Calendars</Path>
+    </Folders>
+    <Images />
+    <Others />
+  </Files>
+  <Generator>
+    <Name>App Builder</Name>
+    <Version>2018.35 (1/23/2018)</Version>
+    <Email>mailto:info@davidesperalta.com</Email>
+    <Website>https://www.davidesperalta.com/</Website>
+    <Copyright>©2018 App Builder by DecSoft</Copyright>
+  </Generator>
+</AppBuilder>

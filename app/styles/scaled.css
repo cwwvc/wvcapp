@@ -6,17 +6,43 @@ html, body { width: 320px; height: 480px; }
 
 #Image11 { position: absolute; top: 0.00%; left: 0.00%; width: 100.00%; height: 100.00%; }
 
-#Image8 { position: absolute; top: 3.33%; left: 5.00%; width: 27.50%; height: 20.00%; }
+#Image8 { position: absolute; top: 28.33%; left: 37.50%; width: 27.50%; height: 20.00%; }
 
 #Image6 { position: absolute; top: 3.33%; left: 37.50%; width: 27.50%; height: 20.00%; }
 
-#Image4 { position: absolute; top: 3.33%; left: 70.00%; width: 27.19%; height: 20.00%; }
+#Image4 { position: absolute; top: 28.33%; left: 70.00%; width: 27.19%; height: 20.00%; }
 
-#Image12 { position: absolute; top: 28.33%; left: 37.50%; width: 27.50%; height: 20.00%; }
+#Image12 { position: absolute; top: 3.33%; left: 5.00%; width: 27.50%; height: 20.00%; }
 
 #FAQImage { position: absolute; top: 28.33%; left: 5.00%; width: 27.50%; height: 20.00%; }
 
-#Image2 { position: absolute; top: 28.33%; left: 70.00%; width: 26.25%; height: 20.00%; }
+#Image2 { position: absolute; top: 51.67%; left: 5.00%; width: 26.25%; height: 20.00%; }
+
+#Image14 { position: absolute; top: 51.67%; left: 70.00%; width: 27.50%; height: 20.00%; }
+
+#Image13 { position: absolute; top: 51.67%; left: 37.50%; width: 27.50%; height: 20.00%; }
+
+#Image15 { position: absolute; top: 3.33%; left: 70.00%; width: 27.50%; height: 20.00%; }
+
+#Image16 { position: absolute; top: 0.00%; left: 0.00%; width: 100.00%; height: 100.00%; }
+
+#Image17 { position: absolute; top: 3.33%; left: 5.00%; width: 27.50%; height: 20.00%; }
+
+#Image18 { position: absolute; top: 3.33%; left: 37.50%; width: 27.50%; height: 20.00%; }
+
+#Image19 { position: absolute; top: 3.33%; left: 70.00%; width: 27.50%; height: 20.00%; }
+
+#Image1 { position: absolute; top: 3.33%; left: 5.00%; width: 27.50%; height: 20.00%; }
+
+#Image3 { position: absolute; top: 3.33%; left: 37.50%; width: 27.50%; height: 20.00%; }
+
+#Image5 { position: absolute; top: 3.33%; left: 70.00%; width: 27.50%; height: 20.00%; }
+
+#Image7 { position: absolute; top: 28.33%; left: 5.00%; width: 27.50%; height: 20.00%; }
+
+#Image9 { position: absolute; top: 28.33%; left: 37.50%; width: 27.50%; height: 20.00%; }
+
+#Image10 { position: absolute; top: 28.33%; left: 70.00%; width: 27.50%; height: 20.00%; }
 
 #FAQiFrame { position: absolute; top: 0.00%; left: 0.00%; width: 100.00%; height: 90.00%; }
 

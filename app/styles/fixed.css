@@ -8,17 +8,43 @@ html, body, .appView { width: 320px; height: 480px; }
 
 #Image11 { position: absolute; top: 0px; left: 0px; width: 320px; height: 480px; }
 
-#Image8 { position: absolute; top: 16px; left: 16px; width: 88px; height: 96px; }
+#Image8 { position: absolute; top: 136px; left: 120px; width: 88px; height: 96px; }
 
 #Image6 { position: absolute; top: 16px; left: 120px; width: 88px; height: 96px; }
 
-#Image4 { position: absolute; top: 16px; left: 224px; width: 87px; height: 96px; }
+#Image4 { position: absolute; top: 136px; left: 224px; width: 87px; height: 96px; }
 
-#Image12 { position: absolute; top: 136px; left: 120px; width: 88px; height: 96px; }
+#Image12 { position: absolute; top: 16px; left: 16px; width: 88px; height: 96px; }
 
 #FAQImage { position: absolute; top: 136px; left: 16px; width: 88px; height: 96px; }
 
-#Image2 { position: absolute; top: 136px; left: 224px; width: 84px; height: 96px; }
+#Image2 { position: absolute; top: 248px; left: 16px; width: 84px; height: 96px; }
+
+#Image14 { position: absolute; top: 248px; left: 224px; width: 88px; height: 96px; }
+
+#Image13 { position: absolute; top: 248px; left: 120px; width: 88px; height: 96px; }
+
+#Image15 { position: absolute; top: 16px; left: 224px; width: 88px; height: 96px; }
+
+#Image16 { position: absolute; top: 0px; left: 0px; width: 320px; height: 480px; }
+
+#Image17 { position: absolute; top: 16px; left: 16px; width: 88px; height: 96px; }
+
+#Image18 { position: absolute; top: 16px; left: 120px; width: 88px; height: 96px; }
+
+#Image19 { position: absolute; top: 16px; left: 224px; width: 88px; height: 96px; }
+
+#Image1 { position: absolute; top: 16px; left: 16px; width: 88px; height: 96px; }
+
+#Image3 { position: absolute; top: 16px; left: 120px; width: 88px; height: 96px; }
+
+#Image5 { position: absolute; top: 16px; left: 224px; width: 88px; height: 96px; }
+
+#Image7 { position: absolute; top: 136px; left: 16px; width: 88px; height: 96px; }
+
+#Image9 { position: absolute; top: 136px; left: 120px; width: 88px; height: 96px; }
+
+#Image10 { position: absolute; top: 136px; left: 224px; width: 88px; height: 96px; }
 
 #FAQiFrame { position: absolute; top: 0px; left: 0px; width: 320px; height: 432px; }
 

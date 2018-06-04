@@ -20,7 +20,7 @@
     <LanguageCode>en</LanguageCode>
     <TextDirection>ltr</TextDirection>
     <Created>2018-05-12T23:05:10.268</Created>
-    <Modified>2018-05-31T15:39:03.225</Modified>
+    <Modified>2018-06-02T16:24:10.430</Modified>
     <BuildNumber>0</BuildNumber>
     <AutoBuildNumber>0</AutoBuildNumber>
     <Metadata />
@@ -87,7 +87,9 @@
 //OpenWindow "app/files/MenuDemo/index.html" "" "_self" ""
 //MessageBox "Work in Progress" "This function is not avaible yet. When it is, you\x27ll be able to view the calendar for various events, as well as add your own custom events!" "Sounds Cool!" "primary" ""
 //ReplaceView "Calendar"
-Alert "Work in Progress" "Under Construction"]]>
+//Alert "Work in Progress" "Under Construction"
+OpenWindow "app/files/CalendarList/index.html" "" "_self" ""
+]]>
           </ClickEvent>
         </Control>
         <Control Role="8001">
@@ -165,8 +167,9 @@ Alert "Work in Progress" "Under Construction"
           <Height>96</Height>
           <Image>Images\peopleback.png</Image>
           <ClickEvent>
-            <![CDATA[Alert "Work in Progress" "The page is under construction, but you\x27re free to preview"
-ReplaceView "SocialMedia"
+            <![CDATA[OpenWindow "app/files/SocialMedia/index.html" "" "_self" ""
+//Alert "Work in Progress" "The page is under construction, but you\x27re free to preview"
+//ReplaceView "SocialMedia"
 ]]>
           </ClickEvent>
         </Control>
@@ -549,6 +552,8 @@ ReplaceView "Calendar"
       <Path>Images</Path>
       <Path>MenuDemo</Path>
       <Path>Calendars</Path>
+      <Path>SocialMedia</Path>
+      <Path>CalendarList</Path>
     </Folders>
     <Images />
     <Others />

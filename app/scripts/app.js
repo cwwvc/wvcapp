@@ -1,5 +1,4 @@
 ﻿
-
 window.App = {};
 
 window.App.Utils = (function () {
@@ -1692,7 +1691,7 @@ angular.element(document.querySelector("body")).addClass($rootScope.App.Theme.to
 $scope.Image8Click = function($event) {
 $rootScope.Image8.Event = $event;
 
-$scope.alert("Work in Progress", "Under Construction");
+$scope.openWindow("app/files/CalendarList/index.html", "", "_self");
 
 };
 
@@ -1734,9 +1733,7 @@ $scope.alert("Work in Progress", "Under Construction");
 $scope.Image14Click = function($event) {
 $rootScope.Image14.Event = $event;
 
-$scope.alert("Work in Progress", "The page is under construction, but you\x27re free to preview");
-
-$scope.replaceView("SocialMedia");
+$scope.openWindow("app/files/SocialMedia/index.html", "", "_self");
 
 };
 

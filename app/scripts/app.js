@@ -1,4 +1,5 @@
 ﻿
+
 window.App = {};
 
 window.App.Utils = (function () {
@@ -650,7 +651,7 @@ $rootScope.Image8.ABRole = 8001;
 $rootScope.Image8.Hidden = "";
 $rootScope.Image8.Image = "app/images/yourcalendar.png";
 $rootScope.Image8.Class = "";
-$rootScope.Image8.Title = "";
+$rootScope.Image8.Title = "Calendars";
 $rootScope.Image8.TooltipText = "";
 $rootScope.Image8.TooltipPos = "top";
 $rootScope.Image8.PopoverText = "";
@@ -663,7 +664,7 @@ $rootScope.Image6.ABRole = 8001;
 $rootScope.Image6.Hidden = "";
 $rootScope.Image6.Image = "app/images/WVC-RED-CAFE-BACKUP.png";
 $rootScope.Image6.Class = "";
-$rootScope.Image6.Title = "";
+$rootScope.Image6.Title = "Red Cafe Menu";
 $rootScope.Image6.TooltipText = "";
 $rootScope.Image6.TooltipPos = "top";
 $rootScope.Image6.PopoverText = "";
@@ -676,7 +677,7 @@ $rootScope.Image4.ABRole = 8001;
 $rootScope.Image4.Hidden = "";
 $rootScope.Image4.Image = "app/images/entrata.png";
 $rootScope.Image4.Class = "";
-$rootScope.Image4.Title = "";
+$rootScope.Image4.Title = "Entrata";
 $rootScope.Image4.TooltipText = "";
 $rootScope.Image4.TooltipPos = "top";
 $rootScope.Image4.PopoverText = "";
@@ -689,7 +690,7 @@ $rootScope.Image12.ABRole = 8001;
 $rootScope.Image12.Hidden = "";
 $rootScope.Image12.Image = "app/images/logo_WVC.png";
 $rootScope.Image12.Class = "";
-$rootScope.Image12.Title = "";
+$rootScope.Image12.Title = "WVC Website";
 $rootScope.Image12.TooltipText = "";
 $rootScope.Image12.TooltipPos = "top";
 $rootScope.Image12.PopoverText = "";
@@ -702,7 +703,7 @@ $rootScope.FAQImage.ABRole = 8001;
 $rootScope.FAQImage.Hidden = "";
 $rootScope.FAQImage.Image = "app/images/FAQback.png";
 $rootScope.FAQImage.Class = "";
-$rootScope.FAQImage.Title = "";
+$rootScope.FAQImage.Title = "Frequently Asked Questons";
 $rootScope.FAQImage.TooltipText = "";
 $rootScope.FAQImage.TooltipPos = "top";
 $rootScope.FAQImage.PopoverText = "";
@@ -710,25 +711,25 @@ $rootScope.FAQImage.PopoverEvent = "mouseenter";
 $rootScope.FAQImage.PopoverTitle = "";
 $rootScope.FAQImage.PopoverPos = "top";
 
-$rootScope.Image2 = {};
-$rootScope.Image2.ABRole = 8001;
-$rootScope.Image2.Hidden = "";
-$rootScope.Image2.Image = "app/images/map-icon1.png";
-$rootScope.Image2.Class = "";
-$rootScope.Image2.Title = "";
-$rootScope.Image2.TooltipText = "";
-$rootScope.Image2.TooltipPos = "top";
-$rootScope.Image2.PopoverText = "";
-$rootScope.Image2.PopoverEvent = "mouseenter";
-$rootScope.Image2.PopoverTitle = "";
-$rootScope.Image2.PopoverPos = "top";
+$rootScope.Map = {};
+$rootScope.Map.ABRole = 8001;
+$rootScope.Map.Hidden = "";
+$rootScope.Map.Image = "app/images/map-icon1.png";
+$rootScope.Map.Class = "";
+$rootScope.Map.Title = "Campus Map";
+$rootScope.Map.TooltipText = "";
+$rootScope.Map.TooltipPos = "top";
+$rootScope.Map.PopoverText = "";
+$rootScope.Map.PopoverEvent = "mouseenter";
+$rootScope.Map.PopoverTitle = "";
+$rootScope.Map.PopoverPos = "top";
 
 $rootScope.Image14 = {};
 $rootScope.Image14.ABRole = 8001;
 $rootScope.Image14.Hidden = "";
 $rootScope.Image14.Image = "app/images/peopleback.png";
 $rootScope.Image14.Class = "";
-$rootScope.Image14.Title = "";
+$rootScope.Image14.Title = "Social Media";
 $rootScope.Image14.TooltipText = "";
 $rootScope.Image14.TooltipPos = "top";
 $rootScope.Image14.PopoverText = "";
@@ -741,7 +742,7 @@ $rootScope.Image13.ABRole = 8001;
 $rootScope.Image13.Hidden = "";
 $rootScope.Image13.Image = "app/images/bugback.png";
 $rootScope.Image13.Class = "";
-$rootScope.Image13.Title = "";
+$rootScope.Image13.Title = "Submit Feedback";
 $rootScope.Image13.TooltipText = "";
 $rootScope.Image13.TooltipPos = "top";
 $rootScope.Image13.PopoverText = "";
@@ -754,7 +755,7 @@ $rootScope.Image15.ABRole = 8001;
 $rootScope.Image15.Hidden = "";
 $rootScope.Image15.Image = "app/images/bashback2.png";
 $rootScope.Image15.Class = "";
-$rootScope.Image15.Title = "";
+$rootScope.Image15.Title = "89.1 The Bash";
 $rootScope.Image15.TooltipText = "";
 $rootScope.Image15.TooltipPos = "top";
 $rootScope.Image15.PopoverText = "";
@@ -1723,8 +1724,8 @@ $scope.openWindow("app/files/FAQ/index.html", "", "_self");
 
 };
 
-$scope.Image2Click = function($event) {
-$rootScope.Image2.Event = $event;
+$scope.MapClick = function($event) {
+$rootScope.Map.Event = $event;
 
 $scope.alert("Work in Progress", "Under Construction");
 

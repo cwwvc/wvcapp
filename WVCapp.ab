@@ -20,7 +20,7 @@
     <LanguageCode>en</LanguageCode>
     <TextDirection>ltr</TextDirection>
     <Created>2018-05-12T23:05:10.268</Created>
-    <Modified>2018-06-02T16:24:10.430</Modified>
+    <Modified>2018-06-06T00:46:49.664</Modified>
     <BuildNumber>0</BuildNumber>
     <AutoBuildNumber>0</AutoBuildNumber>
     <Metadata />
@@ -82,6 +82,7 @@
           <Width>88</Width>
           <Height>96</Height>
           <Image>Images\yourcalendar.png</Image>
+          <Title>Calendars</Title>
           <ClickEvent>
             <![CDATA[//OpenWindow "app/files/Calendars/index.html" "" "_self" ""
 //OpenWindow "app/files/MenuDemo/index.html" "" "_self" ""
@@ -99,6 +100,7 @@ OpenWindow "app/files/CalendarList/index.html" "" "_self" ""
           <Width>88</Width>
           <Height>96</Height>
           <Image>Images\WVC-RED-CAFE-BACKUP.png</Image>
+          <Title>Red Cafe Menu</Title>
           <ClickEvent>
             <![CDATA[OpenWindow "app/files/MenuDemo/index.html" "" "_self" ""
 //MessageBox "Work in Progress" "This function is not avaible yet. When it is, you\x27ll be able to view the menu as well as make orders right from within the app!" "Sounds Cool!" "primary" ""
@@ -112,6 +114,7 @@ OpenWindow "app/files/CalendarList/index.html" "" "_self" ""
           <Width>87</Width>
           <Height>96</Height>
           <Image>Images\entrata.png</Image>
+          <Title>Entrata</Title>
           <ClickEvent>
             <![CDATA[OpenWindow "https://www.iecc.edu/e4/" "true" "_system" "Entrata"
 //ShowView "EnrtataSiteView"
@@ -125,6 +128,7 @@ OpenWindow "app/files/CalendarList/index.html" "" "_self" ""
           <Width>88</Width>
           <Height>96</Height>
           <Image>Images\logo_WVC.png</Image>
+          <Title>WVC Website</Title>
           <ClickEvent>
             <![CDATA[OpenWindow "https://www.iecc.edu/page.php?page=WVCH" "true" "_system" "WVC_Website"
 //ShowView "WVCSiteView"
@@ -138,6 +142,7 @@ OpenWindow "app/files/CalendarList/index.html" "" "_self" ""
           <Width>88</Width>
           <Height>96</Height>
           <Image>Images\FAQback.png</Image>
+          <Title>Frequently Asked Questons</Title>
           <ClickEvent>
             <![CDATA[OpenWindow "app/files/FAQ/index.html" "" "_self" ""
 //OpenWindow "app/files/FAQ/index.html" "" "" ""
@@ -146,12 +151,13 @@ OpenWindow "app/files/CalendarList/index.html" "" "_self" ""
           </ClickEvent>
         </Control>
         <Control Role="8001">
-          <Name>Image2</Name>
+          <Name>Map</Name>
           <Top>248</Top>
           <Left>16</Left>
           <Width>84</Width>
           <Height>96</Height>
           <Image>Images\map-icon1.png</Image>
+          <Title>Campus Map</Title>
           <ClickEvent>
             <![CDATA[//MessageBox "Work in Progress" "Under Construction" "OK" "primary" ""
 //MessageBox "Work in Progress" "This function is not avaible yet. When it is, you\x27ll be able to view the map of Campus and do other cool stuff!" "Sounds Cool!" "primary" ""
@@ -166,6 +172,7 @@ Alert "Work in Progress" "Under Construction"
           <Width>88</Width>
           <Height>96</Height>
           <Image>Images\peopleback.png</Image>
+          <Title>Social Media</Title>
           <ClickEvent>
             <![CDATA[OpenWindow "app/files/SocialMedia/index.html" "" "_self" ""
 //Alert "Work in Progress" "The page is under construction, but you\x27re free to preview"
@@ -180,6 +187,7 @@ Alert "Work in Progress" "Under Construction"
           <Width>88</Width>
           <Height>96</Height>
           <Image>Images\bugback.png</Image>
+          <Title>Submit Feedback</Title>
           <ClickEvent>
             <![CDATA[OpenWindow "https://docs.google.com/forms/d/e/1FAIpQLSdahG3-rJTnijYd_7OGyX8r-fu7yH4Hg3JruvV7sqbbILLpRw/viewform?usp=sf_link" "true" "_system" "Entrata"
 ]]>
@@ -192,6 +200,7 @@ Alert "Work in Progress" "Under Construction"
           <Width>88</Width>
           <Height>96</Height>
           <Image>Images\inverted\bashback2.png</Image>
+          <Title>89.1 The Bash</Title>
           <ClickEvent>
             <![CDATA[OpenWindow "http://myweb.iecc.edu/wvjc/" "true" "_system" "Entrata"
 ]]>

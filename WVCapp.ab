@@ -20,9 +20,13 @@
     <LanguageCode>en</LanguageCode>
     <TextDirection>ltr</TextDirection>
     <Created>2018-05-12T23:05:10.268</Created>
-    <Modified>2018-06-06T00:46:49.664</Modified>
+    <Modified>2018-06-22T03:28:59.394</Modified>
     <BuildNumber>0</BuildNumber>
     <AutoBuildNumber>0</AutoBuildNumber>
+    <ReadyEvent>
+      <![CDATA[
+]]>
+    </ReadyEvent>
     <Metadata />
     <Webapp />
     <ProWebApp>
@@ -162,6 +166,7 @@ OpenWindow "app/files/CalendarList/index.html" "" "_self" ""
             <![CDATA[//MessageBox "Work in Progress" "Under Construction" "OK" "primary" ""
 //MessageBox "Work in Progress" "This function is not avaible yet. When it is, you\x27ll be able to view the map of Campus and do other cool stuff!" "Sounds Cool!" "primary" ""
 Alert "Work in Progress" "Under Construction"
+//ReplaceView "CampusMap"
 ]]>
           </ClickEvent>
         </Control>
@@ -203,6 +208,68 @@ Alert "Work in Progress" "Under Construction"
           <Title>89.1 The Bash</Title>
           <ClickEvent>
             <![CDATA[OpenWindow "http://myweb.iecc.edu/wvjc/" "true" "_system" "Entrata"
+]]>
+          </ClickEvent>
+        </Control>
+      </Controls>
+    </View>
+    <View>
+      <Name>CampusMap</Name>
+      <ShowEvent>
+        <![CDATA[OrientationLock "portrait-primary"
+]]>
+      </ShowEvent>
+      <Controls>
+        <Control Role="8001">
+          <Name>Image20</Name>
+          <Top>0</Top>
+          <Left>0</Left>
+          <Width>320</Width>
+          <Height>312</Height>
+          <Image>Images\CMap.png</Image>
+        </Control>
+        <Control Role="2001">
+          <Name>Button10</Name>
+          <Top>336</Top>
+          <Left>8</Left>
+          <Width>72</Width>
+          <Height>56</Height>
+          <Text>
+            <![CDATA[Button10]]>
+          </Text>
+          <Kind>primary</Kind>
+          <ClickEvent>
+            <![CDATA[OrientationLock "portrait"
+]]>
+          </ClickEvent>
+        </Control>
+        <Control Role="2001">
+          <Name>Button11</Name>
+          <Top>336</Top>
+          <Left>184</Left>
+          <Width>112</Width>
+          <Height>120</Height>
+          <Text>
+            <![CDATA[Button11]]>
+          </Text>
+          <Kind>primary</Kind>
+          <ClickEvent>
+            <![CDATA[OrientationUnlock
+]]>
+          </ClickEvent>
+        </Control>
+        <Control Role="2001">
+          <Name>Button12</Name>
+          <Top>336</Top>
+          <Left>104</Left>
+          <Width>64</Width>
+          <Height>56</Height>
+          <Text>
+            <![CDATA[Button12]]>
+          </Text>
+          <Kind>primary</Kind>
+          <ClickEvent>
+            <![CDATA[OrientationLock "landscape"
 ]]>
           </ClickEvent>
         </Control>

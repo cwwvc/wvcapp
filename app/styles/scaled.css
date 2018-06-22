@@ -24,6 +24,14 @@ html, body { width: 320px; height: 480px; }
 
 #Image15 { position: absolute; top: 3.33%; left: 70.00%; width: 27.50%; height: 20.00%; }
 
+#Image20 { position: absolute; top: 0.00%; left: 0.00%; width: 100.00%; height: 65.00%; }
+
+#Button10 { position: absolute; top: 70.00%; left: 2.50%; width: 22.50%; height: 11.67%; }
+
+#Button11 { position: absolute; top: 70.00%; left: 57.50%; width: 35.00%; height: 25.00%; }
+
+#Button12 { position: absolute; top: 70.00%; left: 32.50%; width: 20.00%; height: 11.67%; }
+
 #Image16 { position: absolute; top: 0.00%; left: 0.00%; width: 100.00%; height: 100.00%; }
 
 #Image17 { position: absolute; top: 3.33%; left: 5.00%; width: 27.50%; height: 20.00%; }

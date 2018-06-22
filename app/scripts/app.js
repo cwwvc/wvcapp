@@ -1,5 +1,4 @@
 ﻿
-
 window.App = {};
 
 window.App.Utils = (function () {
@@ -337,6 +336,7 @@ window.App.Module.config
   function ($routeProvider) {
     $routeProvider.otherwise({redirectTo: "/Main"})
     .when("/Main", {controller: "MainCtrl", templateUrl: "app/views/Main.html"})
+    .when("/CampusMap", {controller: "CampusMapCtrl", templateUrl: "app/views/CampusMap.html"})
     .when("/SocialMedia", {controller: "SocialMediaCtrl", templateUrl: "app/views/SocialMedia.html"})
     .when("/Calendar", {controller: "CalendarCtrl", templateUrl: "app/views/Calendar.html"})
     .when("/FAQView", {controller: "FAQViewCtrl", templateUrl: "app/views/FAQView.html"})
@@ -762,6 +762,70 @@ $rootScope.Image15.PopoverText = "";
 $rootScope.Image15.PopoverEvent = "mouseenter";
 $rootScope.Image15.PopoverTitle = "";
 $rootScope.Image15.PopoverPos = "top";
+
+$rootScope.Image20 = {};
+$rootScope.Image20.ABRole = 8001;
+$rootScope.Image20.Hidden = "";
+$rootScope.Image20.Image = "app/images/CMap.png";
+$rootScope.Image20.Class = "";
+$rootScope.Image20.Title = "";
+$rootScope.Image20.TooltipText = "";
+$rootScope.Image20.TooltipPos = "top";
+$rootScope.Image20.PopoverText = "";
+$rootScope.Image20.PopoverEvent = "mouseenter";
+$rootScope.Image20.PopoverTitle = "";
+$rootScope.Image20.PopoverPos = "top";
+
+$rootScope.Button10 = {};
+$rootScope.Button10.ABRole = 2001;
+$rootScope.Button10.Hidden = "";
+$rootScope.Button10.Title = "";
+$rootScope.Button10.TabIndex = -1;
+$rootScope.Button10.TooltipText = "";
+$rootScope.Button10.TooltipPos = "top";
+$rootScope.Button10.PopoverText = "";
+$rootScope.Button10.PopoverTitle = "";
+$rootScope.Button10.PopoverEvent = "mouseenter";
+$rootScope.Button10.PopoverPos = "top";
+$rootScope.Button10.Badge = "";
+$rootScope.Button10.Icon = "";
+$rootScope.Button10.Text = "Button10";
+$rootScope.Button10.Class = "btn btn-primary btn-md ";
+$rootScope.Button10.Disabled = "";
+
+$rootScope.Button11 = {};
+$rootScope.Button11.ABRole = 2001;
+$rootScope.Button11.Hidden = "";
+$rootScope.Button11.Title = "";
+$rootScope.Button11.TabIndex = -1;
+$rootScope.Button11.TooltipText = "";
+$rootScope.Button11.TooltipPos = "top";
+$rootScope.Button11.PopoverText = "";
+$rootScope.Button11.PopoverTitle = "";
+$rootScope.Button11.PopoverEvent = "mouseenter";
+$rootScope.Button11.PopoverPos = "top";
+$rootScope.Button11.Badge = "";
+$rootScope.Button11.Icon = "";
+$rootScope.Button11.Text = "Button11";
+$rootScope.Button11.Class = "btn btn-primary btn-md ";
+$rootScope.Button11.Disabled = "";
+
+$rootScope.Button12 = {};
+$rootScope.Button12.ABRole = 2001;
+$rootScope.Button12.Hidden = "";
+$rootScope.Button12.Title = "";
+$rootScope.Button12.TabIndex = -1;
+$rootScope.Button12.TooltipText = "";
+$rootScope.Button12.TooltipPos = "top";
+$rootScope.Button12.PopoverText = "";
+$rootScope.Button12.PopoverTitle = "";
+$rootScope.Button12.PopoverEvent = "mouseenter";
+$rootScope.Button12.PopoverPos = "top";
+$rootScope.Button12.Badge = "";
+$rootScope.Button12.Icon = "";
+$rootScope.Button12.Text = "Button12";
+$rootScope.Button12.Class = "btn btn-primary btn-md ";
+$rootScope.Button12.Disabled = "";
 
 $rootScope.Image16 = {};
 $rootScope.Image16.ABRole = 8001;
@@ -1749,6 +1813,55 @@ $scope.Image15Click = function($event) {
 $rootScope.Image15.Event = $event;
 
 $rootScope.Entrata = $scope.openWindow("http://myweb.iecc.edu/wvjc/", "true", "_system");
+
+};
+
+}]);
+
+window.App.Ctrls.controller("CampusMapCtrl", ["$scope", "$rootScope", "$sce", "$timeout", "$interval", "$http", "$uibPosition", "blockUI",
+
+function($scope, $rootScope, $sce, $timeout, $interval, $http, $position, blockUI) {
+
+$rootScope.CampusMap = {};
+$rootScope.CampusMap.ABView = true;
+
+window.App.CampusMap = {};
+window.App.CampusMap.Scope = $scope;
+
+angular.element(window.document).ready(function(event){
+$rootScope.CampusMap.Event = event;
+
+if ((window.App.Cordova === undefined) && (window.screen.orientation !== undefined)) {
+  window.screen.orientation.lock("portrait-primary");
+}
+
+$rootScope.$apply();
+});
+
+$scope.Button10Click = function($event) {
+$rootScope.Button10.Event = $event;
+
+if ((window.App.Cordova === undefined) && (window.screen.orientation !== undefined)) {
+  window.screen.orientation.lock("portrait");
+}
+
+};
+
+$scope.Button11Click = function($event) {
+$rootScope.Button11.Event = $event;
+
+if ((window.App.Cordova === undefined) && (window.screen.orientation !== undefined)) {
+  window.screen.orientation.unlock();
+}
+
+};
+
+$scope.Button12Click = function($event) {
+$rootScope.Button12.Event = $event;
+
+if ((window.App.Cordova === undefined) && (window.screen.orientation !== undefined)) {
+  window.screen.orientation.lock("landscape");
+}
 
 };
 

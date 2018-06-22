@@ -26,6 +26,14 @@ html, body, .appView { width: 320px; height: 480px; }
 
 #Image15 { position: absolute; top: 16px; left: 224px; width: 88px; height: 96px; }
 
+#Image20 { position: absolute; top: 0px; left: 0px; width: 320px; height: 312px; }
+
+#Button10 { position: absolute; top: 336px; left: 8px; width: 72px; height: 56px; }
+
+#Button11 { position: absolute; top: 336px; left: 184px; width: 112px; height: 120px; }
+
+#Button12 { position: absolute; top: 336px; left: 104px; width: 64px; height: 56px; }
+
 #Image16 { position: absolute; top: 0px; left: 0px; width: 320px; height: 480px; }
 
 #Image17 { position: absolute; top: 16px; left: 16px; width: 88px; height: 96px; }

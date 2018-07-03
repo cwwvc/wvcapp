@@ -20,7 +20,7 @@
     <LanguageCode>en</LanguageCode>
     <TextDirection>ltr</TextDirection>
     <Created>2018-05-12T23:05:10.268</Created>
-    <Modified>2018-07-03T08:55:01.312</Modified>
+    <Modified>2018-07-03T09:12:58.103</Modified>
     <BuildNumber>0</BuildNumber>
     <AutoBuildNumber>0</AutoBuildNumber>
     <ReadyEvent>
@@ -262,6 +262,7 @@ EndIf
           <Left>368</Left>
           <Width>128</Width>
           <Height>192</Height>
+          <Hidden>1</Hidden>
           <Html>
             <![CDATA[wat
 <head>

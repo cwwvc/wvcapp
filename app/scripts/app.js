@@ -1,4 +1,8 @@
-﻿
+﻿/*!
+ * This file is part of App Builder
+ * For licenses information see App Builder help
+ * ©2018 App Builder - https://www.davidesperalta.com
+ */
 
 window.App = {};
 
@@ -335,15 +339,16 @@ window.App.Module.config
   '$routeProvider',
 
   function ($routeProvider) {
-    $routeProvider.otherwise({redirectTo: "/Main"})
-    .when("/Main", {controller: "MainCtrl", templateUrl: "app/views/Main.html"})
-    .when("/CampusMap", {controller: "CampusMapCtrl", templateUrl: "app/views/CampusMap.html"})
-    .when("/FeedbackPage", {controller: "FeedbackPageCtrl", templateUrl: "app/views/FeedbackPage.html"})
-    .when("/SocialMedia", {controller: "SocialMediaCtrl", templateUrl: "app/views/SocialMedia.html"})
+    $routeProvider.otherwise({redirectTo: "/Mainview"})
+    .when("/Mainview", {controller: "MainviewCtrl", templateUrl: "app/views/Mainview.html"})
     .when("/Calendar", {controller: "CalendarCtrl", templateUrl: "app/views/Calendar.html"})
-    .when("/FAQView", {controller: "FAQViewCtrl", templateUrl: "app/views/FAQView.html"})
-    .when("/WVCSiteView", {controller: "WVCSiteViewCtrl", templateUrl: "app/views/WVCSiteView.html"})
-    .when("/Feedback", {controller: "FeedbackCtrl", templateUrl: "app/views/Feedback.html"});
+    .when("/RedCafe", {controller: "RedCafeCtrl", templateUrl: "app/views/RedCafe.html"})
+    .when("/SocialNetworks", {controller: "SocialNetworksCtrl", templateUrl: "app/views/SocialNetworks.html"})
+    .when("/FAQ", {controller: "FAQCtrl", templateUrl: "app/views/FAQ.html"})
+    .when("/DEVstuff", {controller: "DEVstuffCtrl", templateUrl: "app/views/DEVstuff.html"})
+    .when("/DEVbuttons", {controller: "DEVbuttonsCtrl", templateUrl: "app/views/DEVbuttons.html"})
+    .when("/DEVinputs1", {controller: "DEVinputs1Ctrl", templateUrl: "app/views/DEVinputs1.html"})
+    .when("/DEVaddition", {controller: "DEVadditionCtrl", templateUrl: "app/views/DEVaddition.html"});
   }
 ]);
 
@@ -529,7 +534,7 @@ window.App.Module.service
       init : function () {
         //setAppHideEvent();
         //setAppShowEvent();
-        setAppReadyEvent();
+        //setAppReadyEvent();
         //setAppPauseEvent();
         //setAppKeyUpEvent();
         //setAppResumeEvent();
@@ -598,11 +603,11 @@ window.App.Module.service
 $rootScope.App.DialogView = "";
 $rootScope.App.IdleIsIdling = "false";
 $rootScope.App.IdleIsRunning = "false";
-$rootScope.App.ID = "com.WVCtribe";
-$rootScope.App.Name = "WVC App";
-$rootScope.App.ShortName = "WVCtribeApp";
+$rootScope.App.ID = "com.camwhaler.wvcapp";
+$rootScope.App.Name = "Wabash Valley College App";
+$rootScope.App.ShortName = "WVC App";
 $rootScope.App.Version = "1.0.0";
-$rootScope.App.Description = "WVC App for WVC services";
+$rootScope.App.Description = "App for WVC services";
 $rootScope.App.AuthorName = "Cameron";
 $rootScope.App.AuthorEmail = "";
 $rootScope.App.AuthorUrl = "";
@@ -634,342 +639,124 @@ window.App.Module.service
     var setControlVars = function () {
       
 
-$rootScope.Image11 = {};
-$rootScope.Image11.ABRole = 8001;
-$rootScope.Image11.Hidden = "";
-$rootScope.Image11.Image = "app/images/stars.jpg";
-$rootScope.Image11.Class = "";
-$rootScope.Image11.Title = "";
-$rootScope.Image11.TooltipText = "";
-$rootScope.Image11.TooltipPos = "top";
-$rootScope.Image11.PopoverText = "";
-$rootScope.Image11.PopoverEvent = "mouseenter";
-$rootScope.Image11.PopoverTitle = "";
-$rootScope.Image11.PopoverPos = "top";
+$rootScope.CalenderMainPage = {};
+$rootScope.CalenderMainPage.ABRole = 2001;
+$rootScope.CalenderMainPage.Hidden = "";
+$rootScope.CalenderMainPage.Title = "";
+$rootScope.CalenderMainPage.TabIndex = -1;
+$rootScope.CalenderMainPage.TooltipText = "";
+$rootScope.CalenderMainPage.TooltipPos = "top";
+$rootScope.CalenderMainPage.PopoverText = "";
+$rootScope.CalenderMainPage.PopoverTitle = "";
+$rootScope.CalenderMainPage.PopoverEvent = "mouseenter";
+$rootScope.CalenderMainPage.PopoverPos = "top";
+$rootScope.CalenderMainPage.Badge = "";
+$rootScope.CalenderMainPage.Icon = "fa fa-calendar";
+$rootScope.CalenderMainPage.Text = "Calender";
+$rootScope.CalenderMainPage.Class = "btn btn-primary btn-md ";
+$rootScope.CalenderMainPage.Disabled = "";
 
-$rootScope.Image8 = {};
-$rootScope.Image8.ABRole = 8001;
-$rootScope.Image8.Hidden = "";
-$rootScope.Image8.Image = "app/images/yourcalendar.png";
-$rootScope.Image8.Class = "";
-$rootScope.Image8.Title = "Calendars";
-$rootScope.Image8.TooltipText = "";
-$rootScope.Image8.TooltipPos = "top";
-$rootScope.Image8.PopoverText = "";
-$rootScope.Image8.PopoverEvent = "mouseenter";
-$rootScope.Image8.PopoverTitle = "";
-$rootScope.Image8.PopoverPos = "top";
+$rootScope.RedCafeMainPage = {};
+$rootScope.RedCafeMainPage.ABRole = 2001;
+$rootScope.RedCafeMainPage.Hidden = "";
+$rootScope.RedCafeMainPage.Title = "";
+$rootScope.RedCafeMainPage.TabIndex = -1;
+$rootScope.RedCafeMainPage.TooltipText = "";
+$rootScope.RedCafeMainPage.TooltipPos = "top";
+$rootScope.RedCafeMainPage.PopoverText = "";
+$rootScope.RedCafeMainPage.PopoverTitle = "";
+$rootScope.RedCafeMainPage.PopoverEvent = "mouseenter";
+$rootScope.RedCafeMainPage.PopoverPos = "top";
+$rootScope.RedCafeMainPage.Badge = "";
+$rootScope.RedCafeMainPage.Icon = "";
+$rootScope.RedCafeMainPage.Text = "Red Cafe";
+$rootScope.RedCafeMainPage.Class = "btn btn-primary btn-md ";
+$rootScope.RedCafeMainPage.Disabled = "";
 
-$rootScope.Image6 = {};
-$rootScope.Image6.ABRole = 8001;
-$rootScope.Image6.Hidden = "";
-$rootScope.Image6.Image = "app/images/WVC-RED-CAFE-BACKUP.png";
-$rootScope.Image6.Class = "";
-$rootScope.Image6.Title = "Red Cafe Menu";
-$rootScope.Image6.TooltipText = "";
-$rootScope.Image6.TooltipPos = "top";
-$rootScope.Image6.PopoverText = "";
-$rootScope.Image6.PopoverEvent = "mouseenter";
-$rootScope.Image6.PopoverTitle = "";
-$rootScope.Image6.PopoverPos = "top";
+$rootScope.Entrata = {};
+$rootScope.Entrata.ABRole = 2001;
+$rootScope.Entrata.Hidden = "";
+$rootScope.Entrata.Title = "";
+$rootScope.Entrata.TabIndex = -1;
+$rootScope.Entrata.TooltipText = "";
+$rootScope.Entrata.TooltipPos = "top";
+$rootScope.Entrata.PopoverText = "";
+$rootScope.Entrata.PopoverTitle = "";
+$rootScope.Entrata.PopoverEvent = "mouseenter";
+$rootScope.Entrata.PopoverPos = "top";
+$rootScope.Entrata.Badge = "";
+$rootScope.Entrata.Icon = "";
+$rootScope.Entrata.Text = "Entrata";
+$rootScope.Entrata.Class = "btn btn-primary btn-md ";
+$rootScope.Entrata.Disabled = "";
 
-$rootScope.Image4 = {};
-$rootScope.Image4.ABRole = 8001;
-$rootScope.Image4.Hidden = "";
-$rootScope.Image4.Image = "app/images/entrata.png";
-$rootScope.Image4.Class = "";
-$rootScope.Image4.Title = "Entrata";
-$rootScope.Image4.TooltipText = "";
-$rootScope.Image4.TooltipPos = "top";
-$rootScope.Image4.PopoverText = "";
-$rootScope.Image4.PopoverEvent = "mouseenter";
-$rootScope.Image4.PopoverTitle = "";
-$rootScope.Image4.PopoverPos = "top";
+$rootScope.MainMainPage = {};
+$rootScope.MainMainPage.ABRole = 2001;
+$rootScope.MainMainPage.Hidden = "";
+$rootScope.MainMainPage.Title = "";
+$rootScope.MainMainPage.TabIndex = -1;
+$rootScope.MainMainPage.TooltipText = "";
+$rootScope.MainMainPage.TooltipPos = "top";
+$rootScope.MainMainPage.PopoverText = "";
+$rootScope.MainMainPage.PopoverTitle = "";
+$rootScope.MainMainPage.PopoverEvent = "mouseenter";
+$rootScope.MainMainPage.PopoverPos = "top";
+$rootScope.MainMainPage.Badge = "";
+$rootScope.MainMainPage.Icon = "";
+$rootScope.MainMainPage.Text = "WVC";
+$rootScope.MainMainPage.Class = "btn btn-primary btn-md ";
+$rootScope.MainMainPage.Disabled = "";
 
-$rootScope.Image12 = {};
-$rootScope.Image12.ABRole = 8001;
-$rootScope.Image12.Hidden = "";
-$rootScope.Image12.Image = "app/images/logo_WVC.png";
-$rootScope.Image12.Class = "";
-$rootScope.Image12.Title = "WVC Website";
-$rootScope.Image12.TooltipText = "";
-$rootScope.Image12.TooltipPos = "top";
-$rootScope.Image12.PopoverText = "";
-$rootScope.Image12.PopoverEvent = "mouseenter";
-$rootScope.Image12.PopoverTitle = "";
-$rootScope.Image12.PopoverPos = "top";
+$rootScope.Stuff2 = {};
+$rootScope.Stuff2.ABRole = 2001;
+$rootScope.Stuff2.Hidden = "";
+$rootScope.Stuff2.Title = "";
+$rootScope.Stuff2.TabIndex = -1;
+$rootScope.Stuff2.TooltipText = "";
+$rootScope.Stuff2.TooltipPos = "top";
+$rootScope.Stuff2.PopoverText = "";
+$rootScope.Stuff2.PopoverTitle = "";
+$rootScope.Stuff2.PopoverEvent = "mouseenter";
+$rootScope.Stuff2.PopoverPos = "top";
+$rootScope.Stuff2.Badge = "";
+$rootScope.Stuff2.Icon = "";
+$rootScope.Stuff2.Text = "FAQ";
+$rootScope.Stuff2.Class = "btn btn-primary btn-md ";
+$rootScope.Stuff2.Disabled = "";
 
-$rootScope.FAQImage = {};
-$rootScope.FAQImage.ABRole = 8001;
-$rootScope.FAQImage.Hidden = "";
-$rootScope.FAQImage.Image = "app/images/FAQback.png";
-$rootScope.FAQImage.Class = "";
-$rootScope.FAQImage.Title = "Frequently Asked Questons";
-$rootScope.FAQImage.TooltipText = "";
-$rootScope.FAQImage.TooltipPos = "top";
-$rootScope.FAQImage.PopoverText = "";
-$rootScope.FAQImage.PopoverEvent = "mouseenter";
-$rootScope.FAQImage.PopoverTitle = "";
-$rootScope.FAQImage.PopoverPos = "top";
+$rootScope.CampusMap = {};
+$rootScope.CampusMap.ABRole = 2001;
+$rootScope.CampusMap.Hidden = "";
+$rootScope.CampusMap.Title = "";
+$rootScope.CampusMap.TabIndex = -1;
+$rootScope.CampusMap.TooltipText = "";
+$rootScope.CampusMap.TooltipPos = "top";
+$rootScope.CampusMap.PopoverText = "";
+$rootScope.CampusMap.PopoverTitle = "";
+$rootScope.CampusMap.PopoverEvent = "mouseenter";
+$rootScope.CampusMap.PopoverPos = "top";
+$rootScope.CampusMap.Badge = "";
+$rootScope.CampusMap.Icon = "";
+$rootScope.CampusMap.Text = "Campus Map";
+$rootScope.CampusMap.Class = "btn btn-primary btn-md ";
+$rootScope.CampusMap.Disabled = "";
 
-$rootScope.Map = {};
-$rootScope.Map.ABRole = 8001;
-$rootScope.Map.Hidden = "";
-$rootScope.Map.Image = "app/images/map-icon1.png";
-$rootScope.Map.Class = "";
-$rootScope.Map.Title = "Campus Map";
-$rootScope.Map.TooltipText = "";
-$rootScope.Map.TooltipPos = "top";
-$rootScope.Map.PopoverText = "";
-$rootScope.Map.PopoverEvent = "mouseenter";
-$rootScope.Map.PopoverTitle = "";
-$rootScope.Map.PopoverPos = "top";
-
-$rootScope.Image14 = {};
-$rootScope.Image14.ABRole = 8001;
-$rootScope.Image14.Hidden = "";
-$rootScope.Image14.Image = "app/images/peopleback.png";
-$rootScope.Image14.Class = "";
-$rootScope.Image14.Title = "Social Media";
-$rootScope.Image14.TooltipText = "";
-$rootScope.Image14.TooltipPos = "top";
-$rootScope.Image14.PopoverText = "";
-$rootScope.Image14.PopoverEvent = "mouseenter";
-$rootScope.Image14.PopoverTitle = "";
-$rootScope.Image14.PopoverPos = "top";
-
-$rootScope.Image13 = {};
-$rootScope.Image13.ABRole = 8001;
-$rootScope.Image13.Hidden = "";
-$rootScope.Image13.Image = "app/images/bugback.png";
-$rootScope.Image13.Class = "";
-$rootScope.Image13.Title = "Submit Feedback";
-$rootScope.Image13.TooltipText = "";
-$rootScope.Image13.TooltipPos = "top";
-$rootScope.Image13.PopoverText = "";
-$rootScope.Image13.PopoverEvent = "mouseenter";
-$rootScope.Image13.PopoverTitle = "";
-$rootScope.Image13.PopoverPos = "top";
-
-$rootScope.Image15 = {};
-$rootScope.Image15.ABRole = 8001;
-$rootScope.Image15.Hidden = "";
-$rootScope.Image15.Image = "app/images/bashback2.png";
-$rootScope.Image15.Class = "";
-$rootScope.Image15.Title = "89.1 The Bash";
-$rootScope.Image15.TooltipText = "";
-$rootScope.Image15.TooltipPos = "top";
-$rootScope.Image15.PopoverText = "";
-$rootScope.Image15.PopoverEvent = "mouseenter";
-$rootScope.Image15.PopoverTitle = "";
-$rootScope.Image15.PopoverPos = "top";
-
-$rootScope.Music = {};
-$rootScope.Music.ABRole = 10001;
-$rootScope.Music.Hidden = "true";
-$rootScope.Music.Class = "videogular-container ";
-$rootScope.Music.Loop = false;
-$rootScope.Music.Autoplay = false;
-$rootScope.Music.Sources = [];
-$rootScope.Music.Sources.push({src: $sce.trustAsResourceUrl("http://ice7.securenetsystems.net/WVJC?"), type: "video/ogg"});
-$rootScope.Music.Tracks = [];
-
-$rootScope.Image21 = {};
-$rootScope.Image21.ABRole = 8001;
-$rootScope.Image21.Hidden = "";
-$rootScope.Image21.Image = "app/images/smallCMap.jpg";
-$rootScope.Image21.Class = "";
-$rootScope.Image21.Title = "";
-$rootScope.Image21.TooltipText = "";
-$rootScope.Image21.TooltipPos = "top";
-$rootScope.Image21.PopoverText = "";
-$rootScope.Image21.PopoverEvent = "mouseenter";
-$rootScope.Image21.PopoverTitle = "";
-$rootScope.Image21.PopoverPos = "top";
-
-$rootScope.Image22 = {};
-$rootScope.Image22.ABRole = 8001;
-$rootScope.Image22.Hidden = "";
-$rootScope.Image22.Image = "app/images/pinright.png";
-$rootScope.Image22.Class = "";
-$rootScope.Image22.Title = "";
-$rootScope.Image22.TooltipText = "";
-$rootScope.Image22.TooltipPos = "top";
-$rootScope.Image22.PopoverText = "";
-$rootScope.Image22.PopoverEvent = "mouseenter";
-$rootScope.Image22.PopoverTitle = "";
-$rootScope.Image22.PopoverPos = "top";
-
-$rootScope.HtmlContent2 = {};
-$rootScope.HtmlContent2.ABRole = 6001;
-$rootScope.HtmlContent2.Hidden = "";
-$rootScope.HtmlContent2.Class = "ios-inertial-scroll ";
-$rootScope.HtmlContent2.Title = "";
-$rootScope.HtmlContent2.TooltipText = "";
-$rootScope.HtmlContent2.TooltipPos = "top";
-$rootScope.HtmlContent2.PopoverText = "";
-$rootScope.HtmlContent2.PopoverEvent = "mouseenter";
-$rootScope.HtmlContent2.PopoverTitle = "";
-$rootScope.HtmlContent2.PopoverPos = "top";
-
-$rootScope.FeedbackiFrame = {};
-$rootScope.FeedbackiFrame.ABRole = 4001;
-$rootScope.FeedbackiFrame.Hidden = "";
-$rootScope.FeedbackiFrame.Url = "https://docs.google.com/forms/d/e/1FAIpQLSdahG3-rJTnijYd_7OGyX8r-fu7yH4Hg3JruvV7sqbbILLpRw/viewform?usp=sf_link?device=mobile";
-$rootScope.FeedbackiFrame.Class = "ios-iframe-wrapper ";
-
-$rootScope.Home = {};
-$rootScope.Home.ABRole = 2001;
-$rootScope.Home.Hidden = "";
-$rootScope.Home.Title = "";
-$rootScope.Home.TabIndex = -1;
-$rootScope.Home.TooltipText = "";
-$rootScope.Home.TooltipPos = "top";
-$rootScope.Home.PopoverText = "";
-$rootScope.Home.PopoverTitle = "";
-$rootScope.Home.PopoverEvent = "mouseenter";
-$rootScope.Home.PopoverPos = "top";
-$rootScope.Home.Badge = "";
-$rootScope.Home.Icon = "";
-$rootScope.Home.Text = "Home";
-$rootScope.Home.Class = "btn btn-primary btn-md ";
-$rootScope.Home.Disabled = "";
-
-$rootScope.Image16 = {};
-$rootScope.Image16.ABRole = 8001;
-$rootScope.Image16.Hidden = "";
-$rootScope.Image16.Image = "app/images/stars.jpg";
-$rootScope.Image16.Class = "";
-$rootScope.Image16.Title = "";
-$rootScope.Image16.TooltipText = "";
-$rootScope.Image16.TooltipPos = "top";
-$rootScope.Image16.PopoverText = "";
-$rootScope.Image16.PopoverEvent = "mouseenter";
-$rootScope.Image16.PopoverTitle = "";
-$rootScope.Image16.PopoverPos = "top";
-
-$rootScope.Image17 = {};
-$rootScope.Image17.ABRole = 8001;
-$rootScope.Image17.Hidden = "";
-$rootScope.Image17.Image = "app/images/Facebook.png";
-$rootScope.Image17.Class = "";
-$rootScope.Image17.Title = "";
-$rootScope.Image17.TooltipText = "";
-$rootScope.Image17.TooltipPos = "top";
-$rootScope.Image17.PopoverText = "";
-$rootScope.Image17.PopoverEvent = "mouseenter";
-$rootScope.Image17.PopoverTitle = "";
-$rootScope.Image17.PopoverPos = "top";
-
-$rootScope.Image18 = {};
-$rootScope.Image18.ABRole = 8001;
-$rootScope.Image18.Hidden = "";
-$rootScope.Image18.Image = "app/images/Instagram.png";
-$rootScope.Image18.Class = "";
-$rootScope.Image18.Title = "";
-$rootScope.Image18.TooltipText = "";
-$rootScope.Image18.TooltipPos = "top";
-$rootScope.Image18.PopoverText = "";
-$rootScope.Image18.PopoverEvent = "mouseenter";
-$rootScope.Image18.PopoverTitle = "";
-$rootScope.Image18.PopoverPos = "top";
-
-$rootScope.Image19 = {};
-$rootScope.Image19.ABRole = 8001;
-$rootScope.Image19.Hidden = "";
-$rootScope.Image19.Image = "app/images/Twitter.png";
-$rootScope.Image19.Class = "";
-$rootScope.Image19.Title = "";
-$rootScope.Image19.TooltipText = "";
-$rootScope.Image19.TooltipPos = "top";
-$rootScope.Image19.PopoverText = "";
-$rootScope.Image19.PopoverEvent = "mouseenter";
-$rootScope.Image19.PopoverTitle = "";
-$rootScope.Image19.PopoverPos = "top";
-
-$rootScope.Image1 = {};
-$rootScope.Image1.ABRole = 8001;
-$rootScope.Image1.Hidden = "";
-$rootScope.Image1.Image = "app/images/yourcalendar.png";
-$rootScope.Image1.Class = "";
-$rootScope.Image1.Title = "";
-$rootScope.Image1.TooltipText = "";
-$rootScope.Image1.TooltipPos = "top";
-$rootScope.Image1.PopoverText = "";
-$rootScope.Image1.PopoverEvent = "mouseenter";
-$rootScope.Image1.PopoverTitle = "";
-$rootScope.Image1.PopoverPos = "top";
-
-$rootScope.Image3 = {};
-$rootScope.Image3.ABRole = 8001;
-$rootScope.Image3.Hidden = "";
-$rootScope.Image3.Image = "app/images/yourcalendar.png";
-$rootScope.Image3.Class = "";
-$rootScope.Image3.Title = "";
-$rootScope.Image3.TooltipText = "";
-$rootScope.Image3.TooltipPos = "top";
-$rootScope.Image3.PopoverText = "";
-$rootScope.Image3.PopoverEvent = "mouseenter";
-$rootScope.Image3.PopoverTitle = "";
-$rootScope.Image3.PopoverPos = "top";
-
-$rootScope.Image5 = {};
-$rootScope.Image5.ABRole = 8001;
-$rootScope.Image5.Hidden = "";
-$rootScope.Image5.Image = "app/images/yourcalendar.png";
-$rootScope.Image5.Class = "";
-$rootScope.Image5.Title = "";
-$rootScope.Image5.TooltipText = "";
-$rootScope.Image5.TooltipPos = "top";
-$rootScope.Image5.PopoverText = "";
-$rootScope.Image5.PopoverEvent = "mouseenter";
-$rootScope.Image5.PopoverTitle = "";
-$rootScope.Image5.PopoverPos = "top";
-
-$rootScope.Image7 = {};
-$rootScope.Image7.ABRole = 8001;
-$rootScope.Image7.Hidden = "";
-$rootScope.Image7.Image = "app/images/yourcalendar.png";
-$rootScope.Image7.Class = "";
-$rootScope.Image7.Title = "";
-$rootScope.Image7.TooltipText = "";
-$rootScope.Image7.TooltipPos = "top";
-$rootScope.Image7.PopoverText = "";
-$rootScope.Image7.PopoverEvent = "mouseenter";
-$rootScope.Image7.PopoverTitle = "";
-$rootScope.Image7.PopoverPos = "top";
-
-$rootScope.Image9 = {};
-$rootScope.Image9.ABRole = 8001;
-$rootScope.Image9.Hidden = "";
-$rootScope.Image9.Image = "app/images/yourcalendar.png";
-$rootScope.Image9.Class = "";
-$rootScope.Image9.Title = "";
-$rootScope.Image9.TooltipText = "";
-$rootScope.Image9.TooltipPos = "top";
-$rootScope.Image9.PopoverText = "";
-$rootScope.Image9.PopoverEvent = "mouseenter";
-$rootScope.Image9.PopoverTitle = "";
-$rootScope.Image9.PopoverPos = "top";
-
-$rootScope.Image10 = {};
-$rootScope.Image10.ABRole = 8001;
-$rootScope.Image10.Hidden = "";
-$rootScope.Image10.Image = "app/images/yourcalendar.png";
-$rootScope.Image10.Class = "";
-$rootScope.Image10.Title = "";
-$rootScope.Image10.TooltipText = "";
-$rootScope.Image10.TooltipPos = "top";
-$rootScope.Image10.PopoverText = "";
-$rootScope.Image10.PopoverEvent = "mouseenter";
-$rootScope.Image10.PopoverTitle = "";
-$rootScope.Image10.PopoverPos = "top";
-
-$rootScope.FAQiFrame = {};
-$rootScope.FAQiFrame.ABRole = 4001;
-$rootScope.FAQiFrame.Hidden = "";
-$rootScope.FAQiFrame.Url = "app/files/FAQ/index.html";
-$rootScope.FAQiFrame.Class = "ios-iframe-wrapper ";
+$rootScope.Stuff4 = {};
+$rootScope.Stuff4.ABRole = 2001;
+$rootScope.Stuff4.Hidden = "";
+$rootScope.Stuff4.Title = "";
+$rootScope.Stuff4.TabIndex = -1;
+$rootScope.Stuff4.TooltipText = "";
+$rootScope.Stuff4.TooltipPos = "top";
+$rootScope.Stuff4.PopoverText = "";
+$rootScope.Stuff4.PopoverTitle = "";
+$rootScope.Stuff4.PopoverEvent = "mouseenter";
+$rootScope.Stuff4.PopoverPos = "top";
+$rootScope.Stuff4.Badge = "";
+$rootScope.Stuff4.Icon = "";
+$rootScope.Stuff4.Text = "Social Networks";
+$rootScope.Stuff4.Class = "btn btn-primary btn-md ";
+$rootScope.Stuff4.Disabled = "";
 
 $rootScope.Button8 = {};
 $rootScope.Button8.ABRole = 2001;
@@ -984,7 +771,7 @@ $rootScope.Button8.PopoverEvent = "mouseenter";
 $rootScope.Button8.PopoverPos = "top";
 $rootScope.Button8.Badge = "";
 $rootScope.Button8.Icon = "";
-$rootScope.Button8.Text = "Home";
+$rootScope.Button8.Text = "DEV Stuff";
 $rootScope.Button8.Class = "btn btn-primary btn-md ";
 $rootScope.Button8.Disabled = "";
 
@@ -1005,45 +792,90 @@ $rootScope.Button7.Text = "Back";
 $rootScope.Button7.Class = "btn btn-primary btn-md ";
 $rootScope.Button7.Disabled = "";
 
-$rootScope.Button9 = {};
-$rootScope.Button9.ABRole = 2001;
-$rootScope.Button9.Hidden = "";
-$rootScope.Button9.Title = "";
-$rootScope.Button9.TabIndex = -1;
-$rootScope.Button9.TooltipText = "";
-$rootScope.Button9.TooltipPos = "top";
-$rootScope.Button9.PopoverText = "";
-$rootScope.Button9.PopoverTitle = "";
-$rootScope.Button9.PopoverEvent = "mouseenter";
-$rootScope.Button9.PopoverPos = "top";
-$rootScope.Button9.Badge = "";
-$rootScope.Button9.Icon = "";
-$rootScope.Button9.Text = "Forward";
-$rootScope.Button9.Class = "btn btn-primary btn-md ";
-$rootScope.Button9.Disabled = "";
+$rootScope.Button2 = {};
+$rootScope.Button2.ABRole = 2001;
+$rootScope.Button2.Hidden = "";
+$rootScope.Button2.Title = "";
+$rootScope.Button2.TabIndex = -1;
+$rootScope.Button2.TooltipText = "";
+$rootScope.Button2.TooltipPos = "top";
+$rootScope.Button2.PopoverText = "";
+$rootScope.Button2.PopoverTitle = "";
+$rootScope.Button2.PopoverEvent = "mouseenter";
+$rootScope.Button2.PopoverPos = "top";
+$rootScope.Button2.Badge = "";
+$rootScope.Button2.Icon = "";
+$rootScope.Button2.Text = "Menu";
+$rootScope.Button2.Class = "btn btn-primary btn-md ";
+$rootScope.Button2.Disabled = "";
 
-$rootScope.WVCSiteiFrame = {};
-$rootScope.WVCSiteiFrame.ABRole = 4001;
-$rootScope.WVCSiteiFrame.Hidden = "";
-$rootScope.WVCSiteiFrame.Url = "https://www.iecc.edu/page.php?page=WVCH";
-$rootScope.WVCSiteiFrame.Class = "ios-iframe-wrapper ";
+$rootScope.OrderMeal = {};
+$rootScope.OrderMeal.ABRole = 2001;
+$rootScope.OrderMeal.Hidden = "";
+$rootScope.OrderMeal.Title = "";
+$rootScope.OrderMeal.TabIndex = -1;
+$rootScope.OrderMeal.TooltipText = "";
+$rootScope.OrderMeal.TooltipPos = "top";
+$rootScope.OrderMeal.PopoverText = "";
+$rootScope.OrderMeal.PopoverTitle = "";
+$rootScope.OrderMeal.PopoverEvent = "mouseenter";
+$rootScope.OrderMeal.PopoverPos = "top";
+$rootScope.OrderMeal.Badge = "";
+$rootScope.OrderMeal.Icon = "";
+$rootScope.OrderMeal.Text = "Order";
+$rootScope.OrderMeal.Class = "btn btn-primary btn-md ";
+$rootScope.OrderMeal.Disabled = "";
 
-$rootScope.Button5 = {};
-$rootScope.Button5.ABRole = 2001;
-$rootScope.Button5.Hidden = "";
-$rootScope.Button5.Title = "";
-$rootScope.Button5.TabIndex = -1;
-$rootScope.Button5.TooltipText = "";
-$rootScope.Button5.TooltipPos = "top";
-$rootScope.Button5.PopoverText = "";
-$rootScope.Button5.PopoverTitle = "";
-$rootScope.Button5.PopoverEvent = "mouseenter";
-$rootScope.Button5.PopoverPos = "top";
-$rootScope.Button5.Badge = "";
-$rootScope.Button5.Icon = "";
-$rootScope.Button5.Text = "Home";
-$rootScope.Button5.Class = "btn btn-primary btn-md ";
-$rootScope.Button5.Disabled = "";
+$rootScope.Back = {};
+$rootScope.Back.ABRole = 2001;
+$rootScope.Back.Hidden = "";
+$rootScope.Back.Title = "";
+$rootScope.Back.TabIndex = -1;
+$rootScope.Back.TooltipText = "";
+$rootScope.Back.TooltipPos = "top";
+$rootScope.Back.PopoverText = "";
+$rootScope.Back.PopoverTitle = "";
+$rootScope.Back.PopoverEvent = "mouseenter";
+$rootScope.Back.PopoverPos = "top";
+$rootScope.Back.Badge = "";
+$rootScope.Back.Icon = "";
+$rootScope.Back.Text = "Back";
+$rootScope.Back.Class = "btn btn-primary btn-md ";
+$rootScope.Back.Disabled = "";
+
+$rootScope.socialbutton1 = {};
+$rootScope.socialbutton1.ABRole = 2001;
+$rootScope.socialbutton1.Hidden = "";
+$rootScope.socialbutton1.Title = "";
+$rootScope.socialbutton1.TabIndex = -1;
+$rootScope.socialbutton1.TooltipText = "";
+$rootScope.socialbutton1.TooltipPos = "top";
+$rootScope.socialbutton1.PopoverText = "";
+$rootScope.socialbutton1.PopoverTitle = "";
+$rootScope.socialbutton1.PopoverEvent = "mouseenter";
+$rootScope.socialbutton1.PopoverPos = "top";
+$rootScope.socialbutton1.Badge = "";
+$rootScope.socialbutton1.Icon = "";
+$rootScope.socialbutton1.Text = "Facebook";
+$rootScope.socialbutton1.Class = "btn btn-primary btn-md ";
+$rootScope.socialbutton1.Disabled = "";
+
+$rootScope.Button3 = {};
+$rootScope.Button3.ABRole = 2001;
+$rootScope.Button3.Hidden = "";
+$rootScope.Button3.Title = "";
+$rootScope.Button3.TabIndex = -1;
+$rootScope.Button3.TooltipText = "";
+$rootScope.Button3.TooltipPos = "top";
+$rootScope.Button3.PopoverText = "";
+$rootScope.Button3.PopoverTitle = "";
+$rootScope.Button3.PopoverEvent = "mouseenter";
+$rootScope.Button3.PopoverPos = "top";
+$rootScope.Button3.Badge = "";
+$rootScope.Button3.Icon = "";
+$rootScope.Button3.Text = "Instagram";
+$rootScope.Button3.Class = "btn btn-primary btn-md ";
+$rootScope.Button3.Disabled = "";
 
 $rootScope.Button4 = {};
 $rootScope.Button4.ABRole = 2001;
@@ -1058,9 +890,26 @@ $rootScope.Button4.PopoverEvent = "mouseenter";
 $rootScope.Button4.PopoverPos = "top";
 $rootScope.Button4.Badge = "";
 $rootScope.Button4.Icon = "";
-$rootScope.Button4.Text = "Back";
+$rootScope.Button4.Text = "Snapchat";
 $rootScope.Button4.Class = "btn btn-primary btn-md ";
 $rootScope.Button4.Disabled = "";
+
+$rootScope.Button5 = {};
+$rootScope.Button5.ABRole = 2001;
+$rootScope.Button5.Hidden = "";
+$rootScope.Button5.Title = "";
+$rootScope.Button5.TabIndex = -1;
+$rootScope.Button5.TooltipText = "";
+$rootScope.Button5.TooltipPos = "top";
+$rootScope.Button5.PopoverText = "";
+$rootScope.Button5.PopoverTitle = "";
+$rootScope.Button5.PopoverEvent = "mouseenter";
+$rootScope.Button5.PopoverPos = "top";
+$rootScope.Button5.Badge = "";
+$rootScope.Button5.Icon = "";
+$rootScope.Button5.Text = "Twitter";
+$rootScope.Button5.Class = "btn btn-primary btn-md ";
+$rootScope.Button5.Disabled = "";
 
 $rootScope.Button6 = {};
 $rootScope.Button6.ABRole = 2001;
@@ -1075,9 +924,828 @@ $rootScope.Button6.PopoverEvent = "mouseenter";
 $rootScope.Button6.PopoverPos = "top";
 $rootScope.Button6.Badge = "";
 $rootScope.Button6.Icon = "";
-$rootScope.Button6.Text = "Forward";
+$rootScope.Button6.Text = "Back";
 $rootScope.Button6.Class = "btn btn-primary btn-md ";
 $rootScope.Button6.Disabled = "";
+
+$rootScope.Button1 = {};
+$rootScope.Button1.ABRole = 2001;
+$rootScope.Button1.Hidden = "";
+$rootScope.Button1.Title = "";
+$rootScope.Button1.TabIndex = -1;
+$rootScope.Button1.TooltipText = "";
+$rootScope.Button1.TooltipPos = "top";
+$rootScope.Button1.PopoverText = "";
+$rootScope.Button1.PopoverTitle = "";
+$rootScope.Button1.PopoverEvent = "mouseenter";
+$rootScope.Button1.PopoverPos = "top";
+$rootScope.Button1.Badge = "";
+$rootScope.Button1.Icon = "";
+$rootScope.Button1.Text = "Section 1";
+$rootScope.Button1.Class = "btn btn-primary btn-md ";
+$rootScope.Button1.Disabled = "";
+
+$rootScope.Button11 = {};
+$rootScope.Button11.ABRole = 2001;
+$rootScope.Button11.Hidden = "";
+$rootScope.Button11.Title = "";
+$rootScope.Button11.TabIndex = -1;
+$rootScope.Button11.TooltipText = "";
+$rootScope.Button11.TooltipPos = "top";
+$rootScope.Button11.PopoverText = "";
+$rootScope.Button11.PopoverTitle = "";
+$rootScope.Button11.PopoverEvent = "mouseenter";
+$rootScope.Button11.PopoverPos = "top";
+$rootScope.Button11.Badge = "";
+$rootScope.Button11.Icon = "";
+$rootScope.Button11.Text = "Section 1";
+$rootScope.Button11.Class = "btn btn-primary btn-md ";
+$rootScope.Button11.Disabled = "";
+
+$rootScope.Button12 = {};
+$rootScope.Button12.ABRole = 2001;
+$rootScope.Button12.Hidden = "";
+$rootScope.Button12.Title = "";
+$rootScope.Button12.TabIndex = -1;
+$rootScope.Button12.TooltipText = "";
+$rootScope.Button12.TooltipPos = "top";
+$rootScope.Button12.PopoverText = "";
+$rootScope.Button12.PopoverTitle = "";
+$rootScope.Button12.PopoverEvent = "mouseenter";
+$rootScope.Button12.PopoverPos = "top";
+$rootScope.Button12.Badge = "";
+$rootScope.Button12.Icon = "";
+$rootScope.Button12.Text = "Section 2";
+$rootScope.Button12.Class = "btn btn-primary btn-md ";
+$rootScope.Button12.Disabled = "";
+
+$rootScope.Button13 = {};
+$rootScope.Button13.ABRole = 2001;
+$rootScope.Button13.Hidden = "";
+$rootScope.Button13.Title = "";
+$rootScope.Button13.TabIndex = -1;
+$rootScope.Button13.TooltipText = "";
+$rootScope.Button13.TooltipPos = "top";
+$rootScope.Button13.PopoverText = "";
+$rootScope.Button13.PopoverTitle = "";
+$rootScope.Button13.PopoverEvent = "mouseenter";
+$rootScope.Button13.PopoverPos = "top";
+$rootScope.Button13.Badge = "";
+$rootScope.Button13.Icon = "";
+$rootScope.Button13.Text = "Section 3";
+$rootScope.Button13.Class = "btn btn-primary btn-md ";
+$rootScope.Button13.Disabled = "";
+
+$rootScope.Button14 = {};
+$rootScope.Button14.ABRole = 2001;
+$rootScope.Button14.Hidden = "";
+$rootScope.Button14.Title = "";
+$rootScope.Button14.TabIndex = -1;
+$rootScope.Button14.TooltipText = "";
+$rootScope.Button14.TooltipPos = "top";
+$rootScope.Button14.PopoverText = "";
+$rootScope.Button14.PopoverTitle = "";
+$rootScope.Button14.PopoverEvent = "mouseenter";
+$rootScope.Button14.PopoverPos = "top";
+$rootScope.Button14.Badge = "";
+$rootScope.Button14.Icon = "";
+$rootScope.Button14.Text = "Section 4";
+$rootScope.Button14.Class = "btn btn-primary btn-md ";
+$rootScope.Button14.Disabled = "";
+
+$rootScope.Button15 = {};
+$rootScope.Button15.ABRole = 2001;
+$rootScope.Button15.Hidden = "";
+$rootScope.Button15.Title = "";
+$rootScope.Button15.TabIndex = -1;
+$rootScope.Button15.TooltipText = "";
+$rootScope.Button15.TooltipPos = "top";
+$rootScope.Button15.PopoverText = "";
+$rootScope.Button15.PopoverTitle = "";
+$rootScope.Button15.PopoverEvent = "mouseenter";
+$rootScope.Button15.PopoverPos = "top";
+$rootScope.Button15.Badge = "";
+$rootScope.Button15.Icon = "";
+$rootScope.Button15.Text = "Section 5";
+$rootScope.Button15.Class = "btn btn-primary btn-md ";
+$rootScope.Button15.Disabled = "";
+
+$rootScope.Button16 = {};
+$rootScope.Button16.ABRole = 2001;
+$rootScope.Button16.Hidden = "";
+$rootScope.Button16.Title = "";
+$rootScope.Button16.TabIndex = -1;
+$rootScope.Button16.TooltipText = "";
+$rootScope.Button16.TooltipPos = "top";
+$rootScope.Button16.PopoverText = "";
+$rootScope.Button16.PopoverTitle = "";
+$rootScope.Button16.PopoverEvent = "mouseenter";
+$rootScope.Button16.PopoverPos = "top";
+$rootScope.Button16.Badge = "";
+$rootScope.Button16.Icon = "";
+$rootScope.Button16.Text = "Section 6";
+$rootScope.Button16.Class = "btn btn-primary btn-md ";
+$rootScope.Button16.Disabled = "";
+
+$rootScope.Button17 = {};
+$rootScope.Button17.ABRole = 2001;
+$rootScope.Button17.Hidden = "";
+$rootScope.Button17.Title = "";
+$rootScope.Button17.TabIndex = -1;
+$rootScope.Button17.TooltipText = "";
+$rootScope.Button17.TooltipPos = "top";
+$rootScope.Button17.PopoverText = "";
+$rootScope.Button17.PopoverTitle = "";
+$rootScope.Button17.PopoverEvent = "mouseenter";
+$rootScope.Button17.PopoverPos = "top";
+$rootScope.Button17.Badge = "";
+$rootScope.Button17.Icon = "";
+$rootScope.Button17.Text = "Back";
+$rootScope.Button17.Class = "btn btn-primary btn-md ";
+$rootScope.Button17.Disabled = "";
+
+$rootScope.Button9 = {};
+$rootScope.Button9.ABRole = 2001;
+$rootScope.Button9.Hidden = "";
+$rootScope.Button9.Title = "";
+$rootScope.Button9.TabIndex = -1;
+$rootScope.Button9.TooltipText = "";
+$rootScope.Button9.TooltipPos = "top";
+$rootScope.Button9.PopoverText = "";
+$rootScope.Button9.PopoverTitle = "";
+$rootScope.Button9.PopoverEvent = "mouseenter";
+$rootScope.Button9.PopoverPos = "top";
+$rootScope.Button9.Badge = "";
+$rootScope.Button9.Icon = "";
+$rootScope.Button9.Text = "1";
+$rootScope.Button9.Class = "btn btn-primary btn-md ";
+$rootScope.Button9.Disabled = "";
+
+$rootScope.Button24 = {};
+$rootScope.Button24.ABRole = 2001;
+$rootScope.Button24.Hidden = "";
+$rootScope.Button24.Title = "";
+$rootScope.Button24.TabIndex = -1;
+$rootScope.Button24.TooltipText = "";
+$rootScope.Button24.TooltipPos = "top";
+$rootScope.Button24.PopoverText = "";
+$rootScope.Button24.PopoverTitle = "";
+$rootScope.Button24.PopoverEvent = "mouseenter";
+$rootScope.Button24.PopoverPos = "top";
+$rootScope.Button24.Badge = "";
+$rootScope.Button24.Icon = "";
+$rootScope.Button24.Text = "Inputs";
+$rootScope.Button24.Class = "btn btn-primary btn-md ";
+$rootScope.Button24.Disabled = "";
+
+$rootScope.Button25 = {};
+$rootScope.Button25.ABRole = 2001;
+$rootScope.Button25.Hidden = "";
+$rootScope.Button25.Title = "";
+$rootScope.Button25.TabIndex = -1;
+$rootScope.Button25.TooltipText = "";
+$rootScope.Button25.TooltipPos = "top";
+$rootScope.Button25.PopoverText = "";
+$rootScope.Button25.PopoverTitle = "";
+$rootScope.Button25.PopoverEvent = "mouseenter";
+$rootScope.Button25.PopoverPos = "top";
+$rootScope.Button25.Badge = "";
+$rootScope.Button25.Icon = "";
+$rootScope.Button25.Text = "1";
+$rootScope.Button25.Class = "btn btn-primary btn-md ";
+$rootScope.Button25.Disabled = "";
+
+$rootScope.Button28 = {};
+$rootScope.Button28.ABRole = 2001;
+$rootScope.Button28.Hidden = "";
+$rootScope.Button28.Title = "";
+$rootScope.Button28.TabIndex = -1;
+$rootScope.Button28.TooltipText = "";
+$rootScope.Button28.TooltipPos = "top";
+$rootScope.Button28.PopoverText = "";
+$rootScope.Button28.PopoverTitle = "";
+$rootScope.Button28.PopoverEvent = "mouseenter";
+$rootScope.Button28.PopoverPos = "top";
+$rootScope.Button28.Badge = "";
+$rootScope.Button28.Icon = "";
+$rootScope.Button28.Text = "Addiontional";
+$rootScope.Button28.Class = "btn btn-primary btn-md ";
+$rootScope.Button28.Disabled = "";
+
+$rootScope.Button29 = {};
+$rootScope.Button29.ABRole = 2001;
+$rootScope.Button29.Hidden = "";
+$rootScope.Button29.Title = "";
+$rootScope.Button29.TabIndex = -1;
+$rootScope.Button29.TooltipText = "";
+$rootScope.Button29.TooltipPos = "top";
+$rootScope.Button29.PopoverText = "";
+$rootScope.Button29.PopoverTitle = "";
+$rootScope.Button29.PopoverEvent = "mouseenter";
+$rootScope.Button29.PopoverPos = "top";
+$rootScope.Button29.Badge = "";
+$rootScope.Button29.Icon = "";
+$rootScope.Button29.Text = "1";
+$rootScope.Button29.Class = "btn btn-primary btn-md ";
+$rootScope.Button29.Disabled = "";
+
+$rootScope.Button34 = {};
+$rootScope.Button34.ABRole = 2001;
+$rootScope.Button34.Hidden = "";
+$rootScope.Button34.Title = "";
+$rootScope.Button34.TabIndex = -1;
+$rootScope.Button34.TooltipText = "";
+$rootScope.Button34.TooltipPos = "top";
+$rootScope.Button34.PopoverText = "";
+$rootScope.Button34.PopoverTitle = "";
+$rootScope.Button34.PopoverEvent = "mouseenter";
+$rootScope.Button34.PopoverPos = "top";
+$rootScope.Button34.Badge = "";
+$rootScope.Button34.Icon = "";
+$rootScope.Button34.Text = "1";
+$rootScope.Button34.Class = "btn btn-primary btn-md ";
+$rootScope.Button34.Disabled = "";
+
+$rootScope.Button35 = {};
+$rootScope.Button35.ABRole = 2001;
+$rootScope.Button35.Hidden = "";
+$rootScope.Button35.Title = "";
+$rootScope.Button35.TabIndex = -1;
+$rootScope.Button35.TooltipText = "";
+$rootScope.Button35.TooltipPos = "top";
+$rootScope.Button35.PopoverText = "";
+$rootScope.Button35.PopoverTitle = "";
+$rootScope.Button35.PopoverEvent = "mouseenter";
+$rootScope.Button35.PopoverPos = "top";
+$rootScope.Button35.Badge = "";
+$rootScope.Button35.Icon = "";
+$rootScope.Button35.Text = "1";
+$rootScope.Button35.Class = "btn btn-primary btn-md ";
+$rootScope.Button35.Disabled = "";
+
+$rootScope.Button36 = {};
+$rootScope.Button36.ABRole = 2001;
+$rootScope.Button36.Hidden = "";
+$rootScope.Button36.Title = "";
+$rootScope.Button36.TabIndex = -1;
+$rootScope.Button36.TooltipText = "";
+$rootScope.Button36.TooltipPos = "top";
+$rootScope.Button36.PopoverText = "";
+$rootScope.Button36.PopoverTitle = "";
+$rootScope.Button36.PopoverEvent = "mouseenter";
+$rootScope.Button36.PopoverPos = "top";
+$rootScope.Button36.Badge = "";
+$rootScope.Button36.Icon = "";
+$rootScope.Button36.Text = "1";
+$rootScope.Button36.Class = "btn btn-primary btn-md ";
+$rootScope.Button36.Disabled = "";
+
+$rootScope.Button37 = {};
+$rootScope.Button37.ABRole = 2001;
+$rootScope.Button37.Hidden = "";
+$rootScope.Button37.Title = "";
+$rootScope.Button37.TabIndex = -1;
+$rootScope.Button37.TooltipText = "";
+$rootScope.Button37.TooltipPos = "top";
+$rootScope.Button37.PopoverText = "";
+$rootScope.Button37.PopoverTitle = "";
+$rootScope.Button37.PopoverEvent = "mouseenter";
+$rootScope.Button37.PopoverPos = "top";
+$rootScope.Button37.Badge = "";
+$rootScope.Button37.Icon = "";
+$rootScope.Button37.Text = "1";
+$rootScope.Button37.Class = "btn btn-primary btn-md ";
+$rootScope.Button37.Disabled = "";
+
+$rootScope.Button38 = {};
+$rootScope.Button38.ABRole = 2001;
+$rootScope.Button38.Hidden = "";
+$rootScope.Button38.Title = "";
+$rootScope.Button38.TabIndex = -1;
+$rootScope.Button38.TooltipText = "";
+$rootScope.Button38.TooltipPos = "top";
+$rootScope.Button38.PopoverText = "";
+$rootScope.Button38.PopoverTitle = "";
+$rootScope.Button38.PopoverEvent = "mouseenter";
+$rootScope.Button38.PopoverPos = "top";
+$rootScope.Button38.Badge = "";
+$rootScope.Button38.Icon = "";
+$rootScope.Button38.Text = "1";
+$rootScope.Button38.Class = "btn btn-primary btn-md ";
+$rootScope.Button38.Disabled = "";
+
+$rootScope.Button39 = {};
+$rootScope.Button39.ABRole = 2001;
+$rootScope.Button39.Hidden = "";
+$rootScope.Button39.Title = "";
+$rootScope.Button39.TabIndex = -1;
+$rootScope.Button39.TooltipText = "";
+$rootScope.Button39.TooltipPos = "top";
+$rootScope.Button39.PopoverText = "";
+$rootScope.Button39.PopoverTitle = "";
+$rootScope.Button39.PopoverEvent = "mouseenter";
+$rootScope.Button39.PopoverPos = "top";
+$rootScope.Button39.Badge = "";
+$rootScope.Button39.Icon = "";
+$rootScope.Button39.Text = "1";
+$rootScope.Button39.Class = "btn btn-primary btn-md ";
+$rootScope.Button39.Disabled = "";
+
+$rootScope.Button40 = {};
+$rootScope.Button40.ABRole = 2001;
+$rootScope.Button40.Hidden = "";
+$rootScope.Button40.Title = "";
+$rootScope.Button40.TabIndex = -1;
+$rootScope.Button40.TooltipText = "";
+$rootScope.Button40.TooltipPos = "top";
+$rootScope.Button40.PopoverText = "";
+$rootScope.Button40.PopoverTitle = "";
+$rootScope.Button40.PopoverEvent = "mouseenter";
+$rootScope.Button40.PopoverPos = "top";
+$rootScope.Button40.Badge = "";
+$rootScope.Button40.Icon = "";
+$rootScope.Button40.Text = "1";
+$rootScope.Button40.Class = "btn btn-primary btn-md ";
+$rootScope.Button40.Disabled = "";
+
+$rootScope.Button41 = {};
+$rootScope.Button41.ABRole = 2001;
+$rootScope.Button41.Hidden = "";
+$rootScope.Button41.Title = "";
+$rootScope.Button41.TabIndex = -1;
+$rootScope.Button41.TooltipText = "";
+$rootScope.Button41.TooltipPos = "top";
+$rootScope.Button41.PopoverText = "";
+$rootScope.Button41.PopoverTitle = "";
+$rootScope.Button41.PopoverEvent = "mouseenter";
+$rootScope.Button41.PopoverPos = "top";
+$rootScope.Button41.Badge = "";
+$rootScope.Button41.Icon = "";
+$rootScope.Button41.Text = "1";
+$rootScope.Button41.Class = "btn btn-primary btn-md ";
+$rootScope.Button41.Disabled = "";
+
+$rootScope.Button43 = {};
+$rootScope.Button43.ABRole = 2001;
+$rootScope.Button43.Hidden = "";
+$rootScope.Button43.Title = "";
+$rootScope.Button43.TabIndex = -1;
+$rootScope.Button43.TooltipText = "";
+$rootScope.Button43.TooltipPos = "top";
+$rootScope.Button43.PopoverText = "";
+$rootScope.Button43.PopoverTitle = "";
+$rootScope.Button43.PopoverEvent = "mouseenter";
+$rootScope.Button43.PopoverPos = "top";
+$rootScope.Button43.Badge = "";
+$rootScope.Button43.Icon = "";
+$rootScope.Button43.Text = "Buttons";
+$rootScope.Button43.Class = "btn btn-primary btn-md ";
+$rootScope.Button43.Disabled = "";
+
+$rootScope.Button44 = {};
+$rootScope.Button44.ABRole = 2001;
+$rootScope.Button44.Hidden = "";
+$rootScope.Button44.Title = "";
+$rootScope.Button44.TabIndex = -1;
+$rootScope.Button44.TooltipText = "";
+$rootScope.Button44.TooltipPos = "top";
+$rootScope.Button44.PopoverText = "";
+$rootScope.Button44.PopoverTitle = "";
+$rootScope.Button44.PopoverEvent = "mouseenter";
+$rootScope.Button44.PopoverPos = "top";
+$rootScope.Button44.Badge = "";
+$rootScope.Button44.Icon = "";
+$rootScope.Button44.Text = "Back";
+$rootScope.Button44.Class = "btn btn-primary btn-md ";
+$rootScope.Button44.Disabled = "";
+
+$rootScope.Button10 = {};
+$rootScope.Button10.ABRole = 2001;
+$rootScope.Button10.Hidden = "";
+$rootScope.Button10.Title = "";
+$rootScope.Button10.TabIndex = -1;
+$rootScope.Button10.TooltipText = "";
+$rootScope.Button10.TooltipPos = "top";
+$rootScope.Button10.PopoverText = "";
+$rootScope.Button10.PopoverTitle = "";
+$rootScope.Button10.PopoverEvent = "mouseenter";
+$rootScope.Button10.PopoverPos = "top";
+$rootScope.Button10.Badge = "";
+$rootScope.Button10.Icon = "";
+$rootScope.Button10.Text = "Button";
+$rootScope.Button10.Class = "btn btn-primary btn-md ";
+$rootScope.Button10.Disabled = "";
+
+$rootScope.Button18 = {};
+$rootScope.Button18.ABRole = 2003;
+$rootScope.Button18.Hidden = "";
+$rootScope.Button18.Checked = "checked";
+$rootScope.Button18.Title = "";
+$rootScope.Button18.TabIndex = 3;
+$rootScope.Button18.TooltipText = "";
+$rootScope.Button18.TooltipPos = "top";
+$rootScope.Button18.PopoverText = "";
+$rootScope.Button18.PopoverTitle = "";
+$rootScope.Button18.PopoverEvent = "mouseenter";
+$rootScope.Button18.PopoverPos = "top";
+$rootScope.Button18.Badge = "";
+$rootScope.Button18.Icon = "";
+$rootScope.Button18.Text = "Toggle";
+$rootScope.Button18.Class = "btn btn-primary btn-md 3";
+$rootScope.Button18.Disabled = "";
+
+$rootScope.Button42 = {};
+$rootScope.Button42.ABRole = 2002;
+$rootScope.Button42.Hidden = "";
+$rootScope.Button42.Items = [];
+$rootScope.Button42.Items.push("5");
+$rootScope.Button42.Items.push("3");
+$rootScope.Button42.Items.push("1");
+$rootScope.Button42.Items.push("56");
+$rootScope.Button42.Items.push("6");
+$rootScope.Button42.Title = "";
+$rootScope.Button42.Alignment = "left";
+$rootScope.Button42.TabIndex = -1;
+$rootScope.Button42.TooltipText = "";
+$rootScope.Button42.TooltipPos = "top";
+$rootScope.Button42.PopoverText = "";
+$rootScope.Button42.PopoverTitle = "";
+$rootScope.Button42.PopoverEvent = "mouseenter";
+$rootScope.Button42.PopoverPos = "top";
+$rootScope.Button42.Icon = "";
+$rootScope.Button42.Text = "Dropdown <i class='fa fa-caret-down'></i>"
+$rootScope.Button42.Class = "uib-dropdown-toggle btn btn-primary btn-md ";
+$rootScope.Button42.Disabled = "";
+
+$rootScope.Button45 = {};
+$rootScope.Button45.ABRole = 2001;
+$rootScope.Button45.Hidden = "";
+$rootScope.Button45.Title = "";
+$rootScope.Button45.TabIndex = -1;
+$rootScope.Button45.TooltipText = "";
+$rootScope.Button45.TooltipPos = "top";
+$rootScope.Button45.PopoverText = "";
+$rootScope.Button45.PopoverTitle = "";
+$rootScope.Button45.PopoverEvent = "mouseenter";
+$rootScope.Button45.PopoverPos = "top";
+$rootScope.Button45.Badge = "";
+$rootScope.Button45.Icon = "";
+$rootScope.Button45.Text = "Back";
+$rootScope.Button45.Class = "btn btn-primary btn-md ";
+$rootScope.Button45.Disabled = "";
+
+$rootScope.Button19 = {};
+$rootScope.Button19.ABRole = 2001;
+$rootScope.Button19.Hidden = "";
+$rootScope.Button19.Title = "";
+$rootScope.Button19.TabIndex = -1;
+$rootScope.Button19.TooltipText = "";
+$rootScope.Button19.TooltipPos = "top";
+$rootScope.Button19.PopoverText = "";
+$rootScope.Button19.PopoverTitle = "";
+$rootScope.Button19.PopoverEvent = "mouseenter";
+$rootScope.Button19.PopoverPos = "top";
+$rootScope.Button19.Badge = "";
+$rootScope.Button19.Icon = "";
+$rootScope.Button19.Text = "Back";
+$rootScope.Button19.Class = "btn btn-primary btn-md ";
+$rootScope.Button19.Disabled = "";
+
+$rootScope.Input1 = {};
+$rootScope.Input1.ABRole = 3001;
+$rootScope.Input1.Hidden = "";
+$rootScope.Input1.Value = "Input1";
+$rootScope.Input1.Title = "";
+$rootScope.Input1.TabIndex = -1;
+$rootScope.Input1.TooltipText = "";
+$rootScope.Input1.TooltipPos = "top";
+$rootScope.Input1.PopoverText = "";
+$rootScope.Input1.PopoverEvent = "mouseenter";
+$rootScope.Input1.PopoverTitle = "";
+$rootScope.Input1.PopoverPos = "top";
+$rootScope.Input1.PlaceHolder = "";
+$rootScope.Input1.Class = "form-control form-control-ms ";
+$rootScope.Input1.Disabled = "";
+$rootScope.Input1.ReadOnly = "";
+
+$rootScope.Input2 = {};
+$rootScope.Input2.ABRole = 3002;
+$rootScope.Input2.Hidden = "";
+$rootScope.Input2.Value = 0;
+$rootScope.Input2.Title = "";
+$rootScope.Input2.TabIndex = -1;
+$rootScope.Input2.TooltipText = "";
+$rootScope.Input2.TooltipPos = "top";
+$rootScope.Input2.PopoverText = "";
+$rootScope.Input2.PopoverEvent = "mouseenter";
+$rootScope.Input2.PopoverTitle = "";
+$rootScope.Input2.PopoverPos = "top";
+$rootScope.Input2.PlaceHolder = "";
+$rootScope.Input2.Class = "form-control form-control-ms ";
+$rootScope.Input2.Disabled = "";
+$rootScope.Input2.ReadOnly = "";
+
+$rootScope.Input3 = {};
+$rootScope.Input3.ABRole = 3003;
+$rootScope.Input3.Hidden = "";
+$rootScope.Input3.Value = "Input3";
+$rootScope.Input3.Title = "";
+$rootScope.Input3.TabIndex = -1;
+$rootScope.Input3.TooltipText = "";
+$rootScope.Input3.TooltipPos = "top";
+$rootScope.Input3.PopoverText = "";
+$rootScope.Input3.PopoverEvent = "mouseenter";
+$rootScope.Input3.PopoverTitle = "";
+$rootScope.Input3.PopoverPos = "top";
+$rootScope.Input3.PlaceHolder = "";
+$rootScope.Input3.Class = "form-control form-control-ms ";
+$rootScope.Input3.Disabled = "";
+$rootScope.Input3.ReadOnly = "";
+
+$rootScope.Radio3 = {};
+$rootScope.Radio3.ABRole = 20003;
+$rootScope.Radio3.Hidden = "";
+$rootScope.Radio3.Value = "Radio3";
+$rootScope.Radio3.Checked = "";
+$rootScope.Radio3.Title = "";
+$rootScope.Radio3.TabIndex = -1;
+$rootScope.Radio3.TooltipText = "";
+$rootScope.Radio3.TooltipPos = "top";
+$rootScope.Radio3.PopoverText = "";
+$rootScope.Radio3.PopoverEvent = "mouseenter";
+$rootScope.Radio3.PopoverTitle = "";
+$rootScope.Radio3.PopoverPos = "top";
+$rootScope.Radio3.Class = "custom-control custom-radio ";
+$rootScope.Radio3.Disabled = "";
+
+$rootScope.Checkbox1 = {};
+$rootScope.Checkbox1.ABRole = 20002;
+$rootScope.Checkbox1.Hidden = "";
+$rootScope.Checkbox1.Checked = "checked";
+$rootScope.Checkbox1.Title = "";
+$rootScope.Checkbox1.TabIndex = -1;
+$rootScope.Checkbox1.TooltipText = "";
+$rootScope.Checkbox1.TooltipPos = "top";
+$rootScope.Checkbox1.PopoverText = "";
+$rootScope.Checkbox1.PopoverEvent = "mouseenter";
+$rootScope.Checkbox1.PopoverTitle = "";
+$rootScope.Checkbox1.PopoverPos = "top";
+$rootScope.Checkbox1.Class = "custom-control custom-checkbox ";
+$rootScope.Checkbox1.Disabled = "";
+
+$rootScope.Input4 = {};
+$rootScope.Input4.ABRole = 3005;
+$rootScope.Input4.Hidden = "";
+$rootScope.Input4.Value = "Input4";
+$rootScope.Input4.Title = "";
+$rootScope.Input4.TabIndex = -1;
+$rootScope.Input4.TooltipText = "";
+$rootScope.Input4.TooltipPos = "top";
+$rootScope.Input4.PopoverText = "";
+$rootScope.Input4.PopoverEvent = "mouseenter";
+$rootScope.Input4.PopoverTitle = "";
+$rootScope.Input4.PopoverPos = "top";
+$rootScope.Input4.PlaceHolder = "";
+$rootScope.Input4.Class = "form-control form-control-ms ";
+$rootScope.Input4.Disabled = "";
+$rootScope.Input4.ReadOnly = "";
+
+$rootScope.Input5 = {};
+$rootScope.Input5.ABRole = 3008;
+$rootScope.Input5.Hidden = "";
+$rootScope.Input5.Value = "";
+$rootScope.Input5.Title = "";
+$rootScope.Input5.TabIndex = -1;
+$rootScope.Input5.TooltipText = "";
+$rootScope.Input5.TooltipPos = "top";
+$rootScope.Input5.PopoverText = "";
+$rootScope.Input5.PopoverEvent = "mouseenter";
+$rootScope.Input5.PopoverTitle = "";
+$rootScope.Input5.PopoverPos = "top";
+$rootScope.Input5.PlaceHolder = "";
+$rootScope.Input5.Class = "form-control form-control-ms ";
+$rootScope.Input5.Disabled = "";
+$rootScope.Input5.ReadOnly = "";
+
+$rootScope.Input6 = {};
+$rootScope.Input6.ABRole = 3009;
+$rootScope.Input6.Hidden = "";
+$rootScope.Input6.Value = moment("2018-05-02").toDate();
+$rootScope.Input6.Title = "";
+$rootScope.Input6.TabIndex = -1;
+$rootScope.Input6.TooltipText = "";
+$rootScope.Input6.TooltipPos = "top";
+$rootScope.Input6.PopoverText = "";
+$rootScope.Input6.PopoverEvent = "mouseenter";
+$rootScope.Input6.PopoverTitle = "";
+$rootScope.Input6.PopoverPos = "top";
+$rootScope.Input6.PlaceHolder = "";
+$rootScope.Input6.Class = "form-control form-control-ms ";
+$rootScope.Input6.Disabled = "";
+$rootScope.Input6.ReadOnly = "";
+
+$rootScope.Input7 = {};
+$rootScope.Input7.ABRole = 3004;
+$rootScope.Input7.Hidden = "";
+$rootScope.Input7.Value = "Input7";
+$rootScope.Input7.Title = "";
+$rootScope.Input7.TabIndex = -1;
+$rootScope.Input7.TooltipText = "";
+$rootScope.Input7.TooltipPos = "top";
+$rootScope.Input7.PopoverText = "";
+$rootScope.Input7.PopoverEvent = "mouseenter";
+$rootScope.Input7.PopoverTitle = "";
+$rootScope.Input7.PopoverPos = "top";
+$rootScope.Input7.PlaceHolder = "";
+$rootScope.Input7.Class = "form-control form-control-ms ";
+$rootScope.Input7.Disabled = "";
+$rootScope.Input7.ReadOnly = "";
+
+$rootScope.Range1 = {};
+$rootScope.Range1.ABRole = 3007;
+$rootScope.Range1.Hidden = "";
+$rootScope.Range1.Min = "0";
+$rootScope.Range1.Max = "100";
+$rootScope.Range1.Step = "1";
+$rootScope.Range1.Value = 50;
+$rootScope.Range1.Orient = "";
+$rootScope.Range1.Title = "";
+$rootScope.Range1.TabIndex = -1;
+$rootScope.Range1.TooltipText = "";
+$rootScope.Range1.TooltipPos = "top";
+$rootScope.Range1.PopoverText = "";
+$rootScope.Range1.PopoverEvent = "mouseenter";
+$rootScope.Range1.PopoverTitle = "";
+$rootScope.Range1.PopoverPos = "top";
+$rootScope.Range1.Class = "form-control ";
+$rootScope.Range1.Disabled = "";
+
+$rootScope.Input8 = {};
+$rootScope.Input8.ABRole = 20001;
+$rootScope.Input8.Hidden = "";
+$rootScope.Input8.Url = "";
+$rootScope.Input8.Data = "";
+$rootScope.Input8.Value = null;
+$rootScope.Input8.Title = "";
+$rootScope.Input8.Accept = "";
+$rootScope.Input8.TabIndex = -1;
+$rootScope.Input8.TooltipText = "";
+$rootScope.Input8.TooltipPos = "top";
+$rootScope.Input8.PopoverText = "";
+$rootScope.Input8.PopoverEvent = "mouseenter";
+$rootScope.Input8.PopoverTitle = "";
+$rootScope.Input8.PopoverPos = "top";
+$rootScope.Input8.Class = "form-control form-control-md ";
+$rootScope.Input8.Disabled = "";
+
+$rootScope.Input9 = {};
+$rootScope.Input9.ABRole = 3006;
+$rootScope.Input9.Hidden = "";
+$rootScope.Input9.Value = "#ffffff";
+$rootScope.Input9.Title = "";
+$rootScope.Input9.TabIndex = -1;
+$rootScope.Input9.TooltipText = "";
+$rootScope.Input9.TooltipPos = "top";
+$rootScope.Input9.PopoverText = "";
+$rootScope.Input9.PopoverEvent = "mouseenter";
+$rootScope.Input9.PopoverTitle = "";
+$rootScope.Input9.PopoverPos = "top";
+$rootScope.Input9.PlaceHolder = "";
+$rootScope.Input9.Class = "form-control form-control-ms ";
+$rootScope.Input9.Disabled = "";
+$rootScope.Input9.ReadOnly = "";
+
+$rootScope.Textarea1 = {};
+$rootScope.Textarea1.ABRole = 9001;
+$rootScope.Textarea1.Hidden = "";
+$rootScope.Textarea1.Value = "Textarea1";
+$rootScope.Textarea1.Title = "";
+$rootScope.Textarea1.TabIndex = -1;
+$rootScope.Textarea1.TooltipText = "";
+$rootScope.Textarea1.TooltipPos = "top";
+$rootScope.Textarea1.PopoverText = "";
+$rootScope.Textarea1.PopoverEvent = "mouseenter";
+$rootScope.Textarea1.PopoverTitle = "";
+$rootScope.Textarea1.PopoverPos = "top";
+$rootScope.Textarea1.PlaceHolder = "";
+$rootScope.Textarea1.Class = "form-control form-control-md ";
+$rootScope.Textarea1.Disabled = "";
+$rootScope.Textarea1.ReadOnly = "";
+
+$rootScope.Select1 = {};
+$rootScope.Select1.ABRole = 20004;
+$rootScope.Select1.Hidden = "";
+$rootScope.Select1.Items = [];
+$rootScope.Select1.ItemIndex = 0;
+$rootScope.Select1.Title = "";
+$rootScope.Select1.TabIndex = -1;
+$rootScope.Select1.TooltipText = "";
+$rootScope.Select1.TooltipPos = "top";
+$rootScope.Select1.PopoverText = "";
+$rootScope.Select1.PopoverEvent = "mouseenter";
+$rootScope.Select1.PopoverTitle = "";
+$rootScope.Select1.PopoverPos = "top";
+$rootScope.Select1.Class = "custom-select custom-select-md ";
+$rootScope.Select1.Disabled = "";
+
+$rootScope.Select2 = {};
+$rootScope.Select2.ABRole = 20005;
+$rootScope.Select2.Hidden = "";
+$rootScope.Select2.Items = [];
+$rootScope.Select2.SelItems = [];
+$rootScope.Select2.Title = "";
+$rootScope.Select2.TabIndex = -1;
+$rootScope.Select2.TooltipText = "";
+$rootScope.Select2.TooltipPos = "top";
+$rootScope.Select2.PopoverText = "";
+$rootScope.Select2.PopoverEvent = "mouseenter";
+$rootScope.Select2.PopoverTitle = "";
+$rootScope.Select2.PopoverPos = "top";
+$rootScope.Select2.Class = "form-control form-control-md ";
+$rootScope.Select2.Disabled = "";
+
+$rootScope.Typeahead1 = {};
+$rootScope.Typeahead1.ABRole = 20006;
+$rootScope.Typeahead1.Hidden = "";
+$rootScope.Typeahead1.Items = [];
+$rootScope.Typeahead1.Value = "Typeahead1";
+$rootScope.Typeahead1.PlaceHolder = "";
+$rootScope.Typeahead1.Title = "";
+$rootScope.Typeahead1.TabIndex = -1;
+$rootScope.Typeahead1.TooltipText = "";
+$rootScope.Typeahead1.TooltipPos = "top";
+$rootScope.Typeahead1.PopoverText = "";
+$rootScope.Typeahead1.PopoverEvent = "mouseenter";
+$rootScope.Typeahead1.PopoverTitle = "";
+$rootScope.Typeahead1.PopoverPos = "top";
+$rootScope.Typeahead1.Class = "form-control form-control-md ";
+$rootScope.Typeahead1.Disabled = "";
+
+$rootScope.Button20 = {};
+$rootScope.Button20.ABRole = 2001;
+$rootScope.Button20.Hidden = "";
+$rootScope.Button20.Title = "";
+$rootScope.Button20.TabIndex = -1;
+$rootScope.Button20.TooltipText = "";
+$rootScope.Button20.TooltipPos = "top";
+$rootScope.Button20.PopoverText = "";
+$rootScope.Button20.PopoverTitle = "";
+$rootScope.Button20.PopoverEvent = "mouseenter";
+$rootScope.Button20.PopoverPos = "top";
+$rootScope.Button20.Badge = "";
+$rootScope.Button20.Icon = "";
+$rootScope.Button20.Text = "Back";
+$rootScope.Button20.Class = "btn btn-primary btn-md ";
+$rootScope.Button20.Disabled = "";
+
+$rootScope.Label1 = {};
+$rootScope.Label1.ABRole = 6002;
+$rootScope.Label1.Hidden = "";
+$rootScope.Label1.Class = "";
+$rootScope.Label1.Text = "Label1";
+$rootScope.Label1.Input = "";
+$rootScope.Label1.Title = "";
+$rootScope.Label1.TooltipText = "";
+$rootScope.Label1.TooltipPos = "top";
+$rootScope.Label1.PopoverText = "";
+$rootScope.Label1.PopoverEvent = "mouseenter";
+$rootScope.Label1.PopoverTitle = "";
+$rootScope.Label1.PopoverPos = "top";
+$rootScope.Label1.Icon = "";
+
+$rootScope.Image1 = {};
+$rootScope.Image1.ABRole = 8001;
+$rootScope.Image1.Hidden = "";
+$rootScope.Image1.Image = "";
+$rootScope.Image1.Class = "";
+$rootScope.Image1.Title = "";
+$rootScope.Image1.TooltipText = "";
+$rootScope.Image1.TooltipPos = "top";
+$rootScope.Image1.PopoverText = "";
+$rootScope.Image1.PopoverEvent = "mouseenter";
+$rootScope.Image1.PopoverTitle = "";
+$rootScope.Image1.PopoverPos = "top";
+
+$rootScope.Carousel1 = {};
+$rootScope.Carousel1.ABRole = 8002;
+$rootScope.Carousel1.Hidden = "";
+$rootScope.Carousel1.Interval = 5000;
+$rootScope.Carousel1.ImageClasses = "";
+$rootScope.Carousel1.Source = [];
+
+$rootScope.Progressbar1 = {};
+$rootScope.Progressbar1.ABRole = 5001;
+$rootScope.Progressbar1.Hidden = "";
+$rootScope.Progressbar1.Title = "";
+$rootScope.Progressbar1.BarText = "";
+$rootScope.Progressbar1.TooltipText = "";
+$rootScope.Progressbar1.TooltipPos = "top";
+$rootScope.Progressbar1.PopoverText = "";
+$rootScope.Progressbar1.PopoverEvent = "mouseenter";
+$rootScope.Progressbar1.PopoverTitle = "";
+$rootScope.Progressbar1.PopoverPos = "top";
+$rootScope.Progressbar1.Class = "progress-bar bg-success progress-bar-striped progress-bar-animated ";
+$rootScope.Progressbar1.Percentage = 100;
 
 $rootScope.HtmlContent1 = {};
 $rootScope.HtmlContent1.ABRole = 6001;
@@ -1090,6 +1758,131 @@ $rootScope.HtmlContent1.PopoverText = "";
 $rootScope.HtmlContent1.PopoverEvent = "mouseenter";
 $rootScope.HtmlContent1.PopoverTitle = "";
 $rootScope.HtmlContent1.PopoverPos = "top";
+
+$rootScope.Report1 = {};
+$rootScope.Report1.ABRole = 7001;
+$rootScope.Report1.Hidden = "";
+$rootScope.Report1.Url = "";
+$rootScope.Report1.Loading = "Loading...";
+$rootScope.Report1.Class = "ios-inertial-scroll ";
+$rootScope.Report1.RowClass = "col-12 col-md-6 col-lg-4 col-xl-4";
+$rootScope.Report1.Order = "-1";
+$rootScope.Report1.Query = "";
+$rootScope.Report1.Record = null;
+$rootScope.Report1.Data = "";
+
+$rootScope.Menu1 = {};
+$rootScope.Menu1.ABRole = 6003;
+$rootScope.Menu1.Hidden = "";
+$rootScope.Menu1.Items = [];
+$rootScope.Menu1.Class = "list-group ";
+
+$rootScope.Chart1 = {};
+$rootScope.Chart1.ABRole = 60006;
+$rootScope.Chart1.Hidden = "";
+$rootScope.Chart1.Kind = "Pie";
+$rootScope.Chart1.Class = "text-center chart-base ";
+$rootScope.Chart1.Data = [];
+$rootScope.Chart1.Series = [];
+$rootScope.Chart1.Labels = [];
+$rootScope.Chart1.Animate = false;
+$rootScope.Chart1.Legend = false;
+$rootScope.Chart1.Responsive = false;
+$rootScope.Chart1.AspectRatio = false;
+$rootScope.Chart1.Options =
+{
+animation: $rootScope.Chart1.Animate,
+responsive: $rootScope.Chart1.Responsive,
+maintainAspectRatio: $rootScope.Chart1.AspectRatio
+};
+
+$rootScope.Gauge1 = {};
+$rootScope.Gauge1.ABRole = 60007;
+$rootScope.Gauge1.Hidden = "";
+$rootScope.Gauge1.Class = "text-center ";
+$rootScope.Gauge1.Units = "";
+$rootScope.Gauge1.Glow = "true";
+$rootScope.Gauge1.StrokeTicks = "true";
+$rootScope.Gauge1.ValueBoxVisible = "true";
+$rootScope.Gauge1.ValueTextVisible = "true";
+$rootScope.Gauge1.CircleOuterVisible = "true";
+$rootScope.Gauge1.CircleMiddleVisible = "true";
+$rootScope.Gauge1.CircleInnerVisible = "true";
+$rootScope.Gauge1.Title = "";
+$rootScope.Gauge1.Value = 0;
+$rootScope.Gauge1.ValueFormat = "3.2";
+$rootScope.Gauge1.AnimationDelay = 20;
+$rootScope.Gauge1.AnimationDuration = 200;
+$rootScope.Gauge1.Width = 184;
+$rootScope.Gauge1.Height = 42;
+$rootScope.Gauge1.Animation = "";
+$rootScope.Gauge1.MinorTicks = 10;
+$rootScope.Gauge1.MajorTicks = "0 10 20 30 40 50 60 70 80 90 100";
+$rootScope.Gauge1.Highlights = "20 60 #eee, 60 80 #ccc, 80 100 #999";
+$rootScope.Gauge1.MinValue = 0;
+$rootScope.Gauge1.MaxValue = 100;
+$rootScope.Gauge1.PlateColor = "#fff";
+$rootScope.Gauge1.TitleColor = "#888";
+$rootScope.Gauge1.UnitsColor = "#888";
+$rootScope.Gauge1.NumbersColor = "#444";
+$rootScope.Gauge1.NeedleStartColor = "rgba(240, 128, 128, 1)";
+$rootScope.Gauge1.NeedleEndColor = "rgba(255, 160, 122, .9)";
+$rootScope.Gauge1.NeedleShadowUpColor = "rgba(2, 255, 255, 0.2)";
+$rootScope.Gauge1.NeedleShadowDownColor = "rgba(188, 143, 143, 0.45)";
+$rootScope.Gauge1.NeedleCircleOuterStartColor = "#f0f0f0";
+$rootScope.Gauge1.NeedleCircleOuterEndColor = "#ccc";
+$rootScope.Gauge1.NeedleCircleInnerStartColor = "#e8e8e8";
+$rootScope.Gauge1.NeedleCircleInnerEndColor = "#f5f5f5";
+$rootScope.Gauge1.ValueBoxRectStartColor = "#888";
+$rootScope.Gauge1.ValueBoxRectEndColor = "#666";
+$rootScope.Gauge1.ValueBoxBackgroundColor = "#babab2";
+$rootScope.Gauge1.ValueBoxShadowColor = "rgba(0, 0, 0, 1)";
+$rootScope.Gauge1.ValueTextForegroundColor = "#444";
+$rootScope.Gauge1.ValueTextShadowColor = "rgba(0, 0, 0, 0.3)";
+$rootScope.Gauge1.CircleShadowColor = "rgba(0, 0, 0, 0.3)";
+$rootScope.Gauge1.CircleOuterStartColor = "#ddd";
+$rootScope.Gauge1.CircleOuterEndColor = "#aaa";
+$rootScope.Gauge1.CircleMiddleStartColor = "#eee";
+$rootScope.Gauge1.CircleMiddleEndColor = "#f0f0f0";
+$rootScope.Gauge1.CircleInnerStartColor = "#fafafa";
+$rootScope.Gauge1.CircleInnerEndColor = "#ccc";
+$rootScope.Gauge1.MinorTicksColor = "#666";
+$rootScope.Gauge1.MajorTicksColor = "#444";
+
+$rootScope.MediaPlayer1 = {};
+$rootScope.MediaPlayer1.ABRole = 10001;
+$rootScope.MediaPlayer1.Hidden = "";
+$rootScope.MediaPlayer1.Class = "videogular-container ";
+$rootScope.MediaPlayer1.Loop = false;
+$rootScope.MediaPlayer1.Autoplay = false;
+$rootScope.MediaPlayer1.Sources = [];
+$rootScope.MediaPlayer1.Tracks = [];
+
+$rootScope.WebCam1 = {};
+$rootScope.WebCam1.ABRole = 10002;
+$rootScope.WebCam1.Hidden = "";
+$rootScope.WebCam1.Error = "";
+$rootScope.WebCam1.VideoWidth = "";
+$rootScope.WebCam1.VideoHeight = "";
+$rootScope.WebCam1.Class = "";
+
+$rootScope.IFrame1 = {};
+$rootScope.IFrame1.ABRole = 4001;
+$rootScope.IFrame1.Hidden = "";
+$rootScope.IFrame1.Url = "";
+$rootScope.IFrame1.Class = "ios-iframe-wrapper ";
+
+$rootScope.Container1 = {};
+$rootScope.Container1.ABRole = 1001;
+$rootScope.Container1.Hidden = "";
+$rootScope.Container1.Title = "";
+$rootScope.Container1.TooltipText = "";
+$rootScope.Container1.TooltipPos = "top";
+$rootScope.Container1.PopoverText = "";
+$rootScope.Container1.PopoverTitle = "";
+$rootScope.Container1.PopoverEvent = "mouseenter";
+$rootScope.Container1.PopoverPos = "top";
+$rootScope.Container1.Class = "";
     };
 
     return {
@@ -1570,18 +2363,6 @@ window.App.Ctrls.controller
     };        
 
    
-$scope.BackButton = function()
-{
-window.onscroll = function() {scrollFunction()};
-function scrollFunction() {
-{    document.getElementById("myBtn").style.display = "block";
-}
-}
-function goBack() {
-window.history.back();
-}
-};
-
 }]);
 
 window.App.Ctrls.controller
@@ -1612,9 +2393,7 @@ window.App.Ctrls.controller
     };    
 
     $rootScope.OnAppReady = function () {
-      
-$rootScope.Music.playing = 0;
-
+      //__APP_READY_EVENT
     };
 
     $rootScope.OnAppPause = function () {
@@ -1699,186 +2478,122 @@ angular.element(window.document).ready(function () {
   angular.bootstrap(window.document, ['AppModule']);
 });
 
-window.App.Ctrls.controller("MainCtrl", ["$scope", "$rootScope", "$sce", "$timeout", "$interval", "$http", "$uibPosition", "blockUI",
+window.App.Ctrls.controller("MainviewCtrl", ["$scope", "$rootScope", "$sce", "$timeout", "$interval", "$http", "$uibPosition", "blockUI",
 
 function($scope, $rootScope, $sce, $timeout, $interval, $http, $position, blockUI) {
 
-$rootScope.Main = {};
-$rootScope.Main.ABView = true;
+$rootScope.Mainview = {};
+$rootScope.Mainview.ABView = true;
 
-window.App.Main = {};
-window.App.Main.Scope = $scope;
-$rootScope.App.CurrentView = "Main";
+window.App.Mainview = {};
+window.App.Mainview.Scope = $scope;
+$rootScope.App.CurrentView = "Mainview";
 
 angular.element(window.document).ready(function(event){
 angular.element(document.querySelector("body")).addClass($rootScope.App.Theme.toLowerCase());
 });
 
-$scope.Image8Click = function($event) {
-$rootScope.Image8.Event = $event;
+$scope.CalenderMainPageClick = function($event) {
+$rootScope.CalenderMainPage.Event = $event;
 
-$scope.openWindow("app/files/CalendarList/index.html", "", "_self");
+window.App.Debugger.log("Start of CalenderMainPage Click event", "info", -1);
 
-};
+window.App.Debugger.log("AlertBox \x22Calendar is stil being developed\x22 \x22\x22", "info", 1);
 
-$scope.Image6Click = function($event) {
-$rootScope.Image6.Event = $event;
+$scope.alertBox("Calendar is stil being developed", "");
 
-$scope.openWindow("app/files/MenuDemo/index.html", "", "_self");
-
-};
-
-$scope.Image4Click = function($event) {
-$rootScope.Image4.Event = $event;
-
-$rootScope.Entrata = $scope.openWindow("https://www.iecc.edu/e4/", "true", "_system");
+window.App.Debugger.log("End of CalenderMainPage Click event", "info", -2);
 
 };
 
-$scope.Image12Click = function($event) {
-$rootScope.Image12.Event = $event;
+$scope.RedCafeMainPageClick = function($event) {
+$rootScope.RedCafeMainPage.Event = $event;
 
-$rootScope.WVC_Website = $scope.openWindow("https://www.iecc.edu/page.php?page=WVCH", "true", "_system");
+window.App.Debugger.log("Start of RedCafeMainPage Click event", "info", -1);
 
-};
+window.App.Debugger.log("ShowView \x22RedCafe\x22", "info", 1);
 
-$scope.FAQImageClick = function($event) {
-$rootScope.FAQImage.Event = $event;
+$scope.showView("RedCafe");
 
-$scope.openWindow("app/files/FAQ/index.html", "", "_self");
-
-};
-
-$scope.MapClick = function($event) {
-$rootScope.Map.Event = $event;
-
-$scope.replaceView("CampusMap");
+window.App.Debugger.log("End of RedCafeMainPage Click event", "info", -2);
 
 };
 
-$scope.Image14Click = function($event) {
-$rootScope.Image14.Event = $event;
+$scope.EntrataClick = function($event) {
+$rootScope.Entrata.Event = $event;
 
-$scope.openWindow("app/files/SocialMedia/index.html", "", "_self");
+window.App.Debugger.log("Start of Entrata Click event", "info", -1);
 
-};
+window.App.Debugger.log("OpenWindow \x22https://www.iecc.edu/e4/\x22 \x22\x22 \x22\x22 \x22\x22", "info", 1);
 
-$scope.Image13Click = function($event) {
-$rootScope.Image13.Event = $event;
+$scope.openWindow("https://www.iecc.edu/e4/", "", "");
 
-$scope.openWindow("https://docs.google.com/forms/d/e/1FAIpQLSdahG3-rJTnijYd_7OGyX8r-fu7yH4Hg3JruvV7sqbbILLpRw/viewform?usp=sf_link", "", "_system");
-
-};
-
-$scope.Image15Click = function($event) {
-$rootScope.Image15.Event = $event;
-
-if ($rootScope.Music.playing == 0) {
-
-$rootScope.Music.playing = 1;
-
-setTimeout(function(){$rootScope.Music.API.play();},1);
-
-} else {
-
-$rootScope.Music.playing = 0;
-
-$rootScope.Music.API.stop();
-
-}
+window.App.Debugger.log("End of Entrata Click event", "info", -2);
 
 };
 
-$rootScope.Music.onCanPlay = function() {
+$scope.MainMainPageClick = function($event) {
+$rootScope.MainMainPage.Event = $event;
+
+window.App.Debugger.log("Start of MainMainPage Click event", "info", -1);
+
+window.App.Debugger.log("OpenWindow \x22https://www.iecc.edu/page.php?page=WVCH\x22 \x22\x22 \x22\x22 \x22\x22", "info", 1);
+
+$scope.openWindow("https://www.iecc.edu/page.php?page=WVCH", "", "");
+
+window.App.Debugger.log("End of MainMainPage Click event", "info", -2);
 
 };
 
-$rootScope.Music.onReady = function(API) {
-$rootScope.Music.API = API;
+$scope.Stuff2Click = function($event) {
+$rootScope.Stuff2.Event = $event;
+
+window.App.Debugger.log("Start of Stuff2 Click event", "info", -1);
+
+window.App.Debugger.log("ShowView \x22FAQ\x22", "info", 1);
+
+$scope.showView("FAQ");
+
+window.App.Debugger.log("End of Stuff2 Click event", "info", -2);
 
 };
 
-$rootScope.Music.onError = function() {
-};
+$scope.CampusMapClick = function($event) {
+$rootScope.CampusMap.Event = $event;
 
-$rootScope.Music.onComplete = function() {
-};
+window.App.Debugger.log("Start of CampusMap Click event", "info", -1);
 
-$rootScope.Music.onUpdate = function() {
-};
+window.App.Debugger.log("AlertBox \x22The Campus Map is not ready yet\x22 \x22\x22", "info", 1);
 
-}]);
+$scope.alertBox("The Campus Map is not ready yet", "");
 
-window.App.Ctrls.controller("CampusMapCtrl", ["$scope", "$rootScope", "$sce", "$timeout", "$interval", "$http", "$uibPosition", "blockUI",
-
-function($scope, $rootScope, $sce, $timeout, $interval, $http, $position, blockUI) {
-
-$rootScope.CampusMap = {};
-$rootScope.CampusMap.ABView = true;
-
-window.App.CampusMap = {};
-window.App.CampusMap.Scope = $scope;
-
-angular.element(window.document).ready(function(event){
-$rootScope.CampusMap.Event = event;
-
-if ((window.App.Cordova === undefined) && (window.screen.orientation !== undefined)) {
-  window.screen.orientation.lock("portrait-primary");
-}
-
-$rootScope.$apply();
-});
-
-$scope.Image22Click = function($event) {
-$rootScope.Image22.Event = $event;
-
-$scope.openWindow("https://youtu.be/QHZJVDzFRks", "", "_system");
+window.App.Debugger.log("End of CampusMap Click event", "info", -2);
 
 };
 
-}]);
+$scope.Stuff4Click = function($event) {
+$rootScope.Stuff4.Event = $event;
 
-window.App.Ctrls.controller("FeedbackPageCtrl", ["$scope", "$rootScope", "$sce", "$timeout", "$interval", "$http", "$uibPosition", "blockUI",
+window.App.Debugger.log("Start of Stuff4 Click event", "info", -1);
 
-function($scope, $rootScope, $sce, $timeout, $interval, $http, $position, blockUI) {
+window.App.Debugger.log("ShowView \x22SocialNetworks\x22", "info", 1);
 
-$rootScope.FeedbackPage = {};
-$rootScope.FeedbackPage.ABView = true;
+$scope.showView("SocialNetworks");
 
-window.App.FeedbackPage = {};
-window.App.FeedbackPage.Scope = $scope;
-
-$scope.HomeClick = function($event) {
-$rootScope.Home.Event = $event;
-
-$scope.showView("Main");
+window.App.Debugger.log("End of Stuff4 Click event", "info", -2);
 
 };
 
-}]);
+$scope.Button8Click = function($event) {
+$rootScope.Button8.Event = $event;
 
-window.App.Ctrls.controller("SocialMediaCtrl", ["$scope", "$rootScope", "$sce", "$timeout", "$interval", "$http", "$uibPosition", "blockUI",
+window.App.Debugger.log("Start of Button8 Click event", "info", -1);
 
-function($scope, $rootScope, $sce, $timeout, $interval, $http, $position, blockUI) {
+window.App.Debugger.log("ShowView \x22DEVstuff\x22", "info", 1);
 
-$rootScope.SocialMedia = {};
-$rootScope.SocialMedia.ABView = true;
+$scope.showView("DEVstuff");
 
-window.App.SocialMedia = {};
-window.App.SocialMedia.Scope = $scope;
-
-$scope.Image17Click = function($event) {
-$rootScope.Image17.Event = $event;
-
-};
-
-$scope.Image18Click = function($event) {
-$rootScope.Image18.Event = $event;
-
-};
-
-$scope.Image19Click = function($event) {
-$rootScope.Image19.Event = $event;
+window.App.Debugger.log("End of Button8 Click event", "info", -2);
 
 };
 
@@ -1894,124 +2609,380 @@ $rootScope.Calendar.ABView = true;
 window.App.Calendar = {};
 window.App.Calendar.Scope = $scope;
 
-$scope.Image1Click = function($event) {
-$rootScope.Image1.Event = $event;
-
-$scope.openWindow("app/files/Calendars/index.html", "", "_system");
-
-};
-
-$scope.Image3Click = function($event) {
-$rootScope.Image3.Event = $event;
-
-$scope.replaceView("Calendar");
-
-};
-
-$scope.Image5Click = function($event) {
-$rootScope.Image5.Event = $event;
-
-$scope.replaceView("Calendar");
-
-};
-
-$scope.Image7Click = function($event) {
-$rootScope.Image7.Event = $event;
-
-$scope.replaceView("Calendar");
-
-};
-
-$scope.Image9Click = function($event) {
-$rootScope.Image9.Event = $event;
-
-$scope.replaceView("Calendar");
-
-};
-
-$scope.Image10Click = function($event) {
-$rootScope.Image10.Event = $event;
-
-$scope.replaceView("Calendar");
-
-};
-
-}]);
-
-window.App.Ctrls.controller("FAQViewCtrl", ["$scope", "$rootScope", "$sce", "$timeout", "$interval", "$http", "$uibPosition", "blockUI",
-
-function($scope, $rootScope, $sce, $timeout, $interval, $http, $position, blockUI) {
-
-$rootScope.FAQView = {};
-$rootScope.FAQView.ABView = true;
-
-window.App.FAQView = {};
-window.App.FAQView.Scope = $scope;
-
-$scope.Button8Click = function($event) {
-$rootScope.Button8.Event = $event;
-
-$scope.showView("Main");
-
-};
-
 $scope.Button7Click = function($event) {
 $rootScope.Button7.Event = $event;
 
+window.App.Debugger.log("Start of Button7 Click event", "info", -1);
+
+window.App.Debugger.log("HistoryBack", "info", 1);
+
 window.history.back();
 
-};
-
-$scope.Button9Click = function($event) {
-$rootScope.Button9.Event = $event;
-
-window.history.forward();
+window.App.Debugger.log("End of Button7 Click event", "info", -2);
 
 };
 
 }]);
 
-window.App.Ctrls.controller("WVCSiteViewCtrl", ["$scope", "$rootScope", "$sce", "$timeout", "$interval", "$http", "$uibPosition", "blockUI",
+window.App.Ctrls.controller("RedCafeCtrl", ["$scope", "$rootScope", "$sce", "$timeout", "$interval", "$http", "$uibPosition", "blockUI",
 
 function($scope, $rootScope, $sce, $timeout, $interval, $http, $position, blockUI) {
 
-$rootScope.WVCSiteView = {};
-$rootScope.WVCSiteView.ABView = true;
+$rootScope.RedCafe = {};
+$rootScope.RedCafe.ABView = true;
 
-window.App.WVCSiteView = {};
-window.App.WVCSiteView.Scope = $scope;
+window.App.RedCafe = {};
+window.App.RedCafe.Scope = $scope;
 
-$scope.Button5Click = function($event) {
-$rootScope.Button5.Event = $event;
+$scope.Button2Click = function($event) {
+$rootScope.Button2.Event = $event;
 
-$scope.showView("Main");
+window.App.Debugger.log("Start of Button2 Click event", "info", -1);
+
+window.App.Debugger.log("AlertBox \x22This feature is not available yet. Coming Soon!\x22 \x22info\x22", "info", 1);
+
+$scope.alertBox("This feature is not available yet. Coming Soon!", "info");
+
+window.App.Debugger.log("End of Button2 Click event", "info", -2);
 
 };
 
-$scope.Button4Click = function($event) {
-$rootScope.Button4.Event = $event;
+$scope.OrderMealClick = function($event) {
+$rootScope.OrderMeal.Event = $event;
+
+window.App.Debugger.log("Start of OrderMeal Click event", "info", -1);
+
+window.App.Debugger.log("AlertBox \x22This feature is not available yet. Coming Soon!\x22 \x22info\x22", "info", 1);
+
+$scope.alertBox("This feature is not available yet. Coming Soon!", "info");
+
+window.App.Debugger.log("End of OrderMeal Click event", "info", -2);
+
+};
+
+$scope.BackClick = function($event) {
+$rootScope.Back.Event = $event;
+
+window.App.Debugger.log("Start of Back Click event", "info", -1);
+
+window.App.Debugger.log("HistoryBack", "info", 1);
 
 window.history.back();
 
+window.App.Debugger.log("End of Back Click event", "info", -2);
+
 };
+
+}]);
+
+window.App.Ctrls.controller("SocialNetworksCtrl", ["$scope", "$rootScope", "$sce", "$timeout", "$interval", "$http", "$uibPosition", "blockUI",
+
+function($scope, $rootScope, $sce, $timeout, $interval, $http, $position, blockUI) {
+
+$rootScope.SocialNetworks = {};
+$rootScope.SocialNetworks.ABView = true;
+
+window.App.SocialNetworks = {};
+window.App.SocialNetworks.Scope = $scope;
 
 $scope.Button6Click = function($event) {
 $rootScope.Button6.Event = $event;
 
-window.history.forward();
+window.App.Debugger.log("Start of Button6 Click event", "info", -1);
+
+window.App.Debugger.log("HistoryBack", "info", 1);
+
+window.history.back();
+
+window.App.Debugger.log("End of Button6 Click event", "info", -2);
 
 };
 
 }]);
 
-window.App.Ctrls.controller("FeedbackCtrl", ["$scope", "$rootScope", "$sce", "$timeout", "$interval", "$http", "$uibPosition", "blockUI",
+window.App.Ctrls.controller("FAQCtrl", ["$scope", "$rootScope", "$sce", "$timeout", "$interval", "$http", "$uibPosition", "blockUI",
 
 function($scope, $rootScope, $sce, $timeout, $interval, $http, $position, blockUI) {
 
-$rootScope.Feedback = {};
-$rootScope.Feedback.ABView = true;
+$rootScope.FAQ = {};
+$rootScope.FAQ.ABView = true;
 
-window.App.Feedback = {};
-window.App.Feedback.Scope = $scope;
+window.App.FAQ = {};
+window.App.FAQ.Scope = $scope;
+
+$scope.Button17Click = function($event) {
+$rootScope.Button17.Event = $event;
+
+window.App.Debugger.log("Start of Button17 Click event", "info", -1);
+
+window.App.Debugger.log("HistoryBack", "info", 1);
+
+window.history.back();
+
+window.App.Debugger.log("End of Button17 Click event", "info", -2);
+
+};
+
+}]);
+
+window.App.Ctrls.controller("DEVstuffCtrl", ["$scope", "$rootScope", "$sce", "$timeout", "$interval", "$http", "$uibPosition", "blockUI",
+
+function($scope, $rootScope, $sce, $timeout, $interval, $http, $position, blockUI) {
+
+$rootScope.DEVstuff = {};
+$rootScope.DEVstuff.ABView = true;
+
+window.App.DEVstuff = {};
+window.App.DEVstuff.Scope = $scope;
+
+$scope.Button24Click = function($event) {
+$rootScope.Button24.Event = $event;
+
+window.App.Debugger.log("Start of Button24 Click event", "info", -1);
+
+window.App.Debugger.log("ShowView \x22DEVinputs1\x22", "info", 1);
+
+$scope.showView("DEVinputs1");
+
+window.App.Debugger.log("End of Button24 Click event", "info", -2);
+
+};
+
+$scope.Button28Click = function($event) {
+$rootScope.Button28.Event = $event;
+
+window.App.Debugger.log("Start of Button28 Click event", "info", -1);
+
+window.App.Debugger.log("ShowView \x22DEVaddition\x22", "info", 1);
+
+$scope.showView("DEVaddition");
+
+window.App.Debugger.log("End of Button28 Click event", "info", -2);
+
+};
+
+$scope.Button43Click = function($event) {
+$rootScope.Button43.Event = $event;
+
+window.App.Debugger.log("Start of Button43 Click event", "info", -1);
+
+window.App.Debugger.log("ShowView \x22DEVbuttons\x22", "info", 1);
+
+$scope.showView("DEVbuttons");
+
+window.App.Debugger.log("End of Button43 Click event", "info", -2);
+
+};
+
+$scope.Button44Click = function($event) {
+$rootScope.Button44.Event = $event;
+
+window.App.Debugger.log("Start of Button44 Click event", "info", -1);
+
+window.App.Debugger.log("HistoryBack", "info", 1);
+
+window.history.back();
+
+window.App.Debugger.log("End of Button44 Click event", "info", -2);
+
+};
+
+}]);
+
+window.App.Ctrls.controller("DEVbuttonsCtrl", ["$scope", "$rootScope", "$sce", "$timeout", "$interval", "$http", "$uibPosition", "blockUI",
+
+function($scope, $rootScope, $sce, $timeout, $interval, $http, $position, blockUI) {
+
+$rootScope.DEVbuttons = {};
+$rootScope.DEVbuttons.ABView = true;
+
+window.App.DEVbuttons = {};
+window.App.DEVbuttons.Scope = $scope;
+
+$rootScope.Button42.ItemClick = function(index) {
+  $rootScope.Button42.ItemIndex = index;
+
+};
+
+$scope.Button45Click = function($event) {
+$rootScope.Button45.Event = $event;
+
+window.App.Debugger.log("Start of Button45 Click event", "info", -1);
+
+window.App.Debugger.log("HistoryBack", "info", 1);
+
+window.history.back();
+
+window.App.Debugger.log("End of Button45 Click event", "info", -2);
+
+};
+
+}]);
+
+window.App.Ctrls.controller("DEVinputs1Ctrl", ["$scope", "$rootScope", "$sce", "$timeout", "$interval", "$http", "$uibPosition", "blockUI",
+
+function($scope, $rootScope, $sce, $timeout, $interval, $http, $position, blockUI) {
+
+$rootScope.DEVinputs1 = {};
+$rootScope.DEVinputs1.ABView = true;
+
+window.App.DEVinputs1 = {};
+window.App.DEVinputs1.Scope = $scope;
+
+$scope.Button19Click = function($event) {
+$rootScope.Button19.Event = $event;
+
+window.App.Debugger.log("Start of Button19 Click event", "info", -1);
+
+window.App.Debugger.log("HistoryBack", "info", 1);
+
+window.history.back();
+
+window.App.Debugger.log("End of Button19 Click event", "info", -2);
+
+};
+$scope.Input8Change = function(event) {
+  $rootScope.Input8.Event = event;
+};
+
+angular.element(window.document).ready(function(event){
+  angular.element(document.getElementById("Input8")).on("change", function(event){
+    $rootScope.Input8.Url = URL.createObjectURL(event.target.files[0]);
+    $scope.Input8Change(event);
+  });
+});
+
+}]);
+
+window.App.Ctrls.controller("DEVadditionCtrl", ["$scope", "$rootScope", "$sce", "$timeout", "$interval", "$http", "$uibPosition", "blockUI",
+
+function($scope, $rootScope, $sce, $timeout, $interval, $http, $position, blockUI) {
+
+$rootScope.DEVaddition = {};
+$rootScope.DEVaddition.ABView = true;
+
+window.App.DEVaddition = {};
+window.App.DEVaddition.Scope = $scope;
+
+$scope.Button20Click = function($event) {
+$rootScope.Button20.Event = $event;
+
+window.App.Debugger.log("Start of Button20 Click event", "info", -1);
+
+window.App.Debugger.log("HistoryBack", "info", 1);
+
+window.history.back();
+
+window.App.Debugger.log("End of Button20 Click event", "info", -2);
+
+};
+
+$rootScope.Carousel1.Click = function(event, index, source) {
+  $rootScope.Carousel1.Event = event;
+  $rootScope.Carousel1.Index = index;
+  $rootScope.Carousel1.Selected = source;
+
+};
+
+$scope.Report1RowClick = function($event, $index, record) {
+$rootScope.Report1.Event = $event;
+$rootScope.Report1.Index = $index;
+$rootScope.Report1.Record = record;
+
+};
+
+$scope.Report1RowDblClick = function($event, $index, record) {
+$rootScope.Report1.Event = $event;
+$rootScope.Report1.Index = $index;
+$rootScope.Report1.Record = record;
+
+};
+
+$scope.Report1RowSwipeLeft = function($event, $index, record) {
+$rootScope.Report1.Event = $event;
+$rootScope.Report1.Index = $index;
+$rootScope.Report1.Record = record;
+
+};
+
+$scope.Report1RowSwipeRight = function($event, $index, record) {
+$rootScope.Report1.Event = $event;
+$rootScope.Report1.Index = $index;
+$rootScope.Report1.Record = record;
+
+};
+
+$rootScope.Report1.GetData = function() {
+if($rootScope.Report1.Url == ""){return;}
+$http.get($rootScope.Report1.Url)
+.then(function(response) {
+$rootScope.Report1.Status = response.status;
+$rootScope.Report1.Data = response.data;
+
+},
+function(response) {
+$rootScope.Report1.Status = response.status || "";
+$rootScope.Report1.Data = response.data || "";
+
+});
+};
+$rootScope.$watch("Report1.Url", function() {
+  $rootScope.Report1.GetData();
+});
+
+$rootScope.Menu1.ItemClick = function(index) {
+  $rootScope.Menu1.ItemIndex = index;
+
+};
+
+$rootScope.Chart1.Click = function(points, event) {
+  $rootScope.Chart1.Event = event;
+  $rootScope.Chart1.Points = points;
+
+};
+
+$rootScope.MediaPlayer1.onCanPlay = function() {
+
+};
+
+$rootScope.MediaPlayer1.onReady = function(API) {
+$rootScope.MediaPlayer1.API = API;
+
+};
+
+$rootScope.MediaPlayer1.onError = function() {
+};
+
+$rootScope.MediaPlayer1.onComplete = function() {
+};
+
+$rootScope.MediaPlayer1.onUpdate = function() {
+};
+
+angular.element(window.document).ready(function(event){
+  $rootScope.WebCam1.VideoStream = false;
+  $rootScope.WebCam1.Video = document.getElementById("WebCam1");
+  $rootScope.WebCam1.Canvas = document.getElementById("WebCam1Canvas");
+  $rootScope.WebCam1.CanvasContext = $rootScope.WebCam1.Canvas.getContext("2d");
+
+  $rootScope.WebCam1.Video.onloadedmetadata = function() {
+    $rootScope.WebCam1.VideoWidth = this.videoWidth;
+    $rootScope.WebCam1.VideoHeight = this.videoHeight;
+    $rootScope.WebCam1.Canvas.setAttribute("width", this.videoWidth);
+    $rootScope.WebCam1.Canvas.setAttribute("height", this.videoHeight);
+    $rootScope.WebCam1.CanvasContext.translate($rootScope.WebCam1.Canvas.width, 0);
+    $rootScope.WebCam1.CanvasContext.scale(-1, 1);
+  };
+});
+
+$rootScope.WebCam1.onSuccess = function(stream) {
+  $rootScope.WebCam1.VideoStream = stream;
+  $rootScope.WebCam1.Video.src = window.URL.createObjectURL(stream);
+};
+
+$rootScope.WebCam1.onError = function(error) {
+
+$rootScope.WebCam1.Error = error;
+};
 
 }]);

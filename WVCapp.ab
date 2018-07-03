@@ -20,12 +20,11 @@
     <LanguageCode>en</LanguageCode>
     <TextDirection>ltr</TextDirection>
     <Created>2018-05-12T23:05:10.268</Created>
-    <Modified>2018-06-22T03:28:59.394</Modified>
+    <Modified>2018-07-03T08:55:01.312</Modified>
     <BuildNumber>0</BuildNumber>
     <AutoBuildNumber>0</AutoBuildNumber>
     <ReadyEvent>
-      <![CDATA[
-]]>
+      <![CDATA[SetVar "[Music.playing]" "0" "Number"]]>
     </ReadyEvent>
     <Metadata />
     <Webapp />
@@ -39,10 +38,7 @@
         <CreateConfig>1</CreateConfig>
       </General>
       <Plugins>
-        <FilesPlugin>1</FilesPlugin>
         <NetworkPlugin>1</NetworkPlugin>
-        <DialogsPlugin>1</DialogsPlugin>
-        <BrowserPlugin>1</BrowserPlugin>
       </Plugins>
       <Android />
       <IOS>
@@ -53,7 +49,6 @@
       <Windows />
       <Phonegap />
       <Platforms>
-        <IOS>1</IOS>
         <Browser>1</Browser>
       </Platforms>
       <Splash />
@@ -165,8 +160,8 @@ OpenWindow "app/files/CalendarList/index.html" "" "_self" ""
           <ClickEvent>
             <![CDATA[//MessageBox "Work in Progress" "Under Construction" "OK" "primary" ""
 //MessageBox "Work in Progress" "This function is not avaible yet. When it is, you\x27ll be able to view the map of Campus and do other cool stuff!" "Sounds Cool!" "primary" ""
-Alert "Work in Progress" "Under Construction"
-//ReplaceView "CampusMap"
+//Alert "Work in Progress" "Under Construction"
+ReplaceView "CampusMap"
 ]]>
           </ClickEvent>
         </Control>
@@ -194,7 +189,8 @@ Alert "Work in Progress" "Under Construction"
           <Image>Images\bugback.png</Image>
           <Title>Submit Feedback</Title>
           <ClickEvent>
-            <![CDATA[OpenWindow "https://docs.google.com/forms/d/e/1FAIpQLSdahG3-rJTnijYd_7OGyX8r-fu7yH4Hg3JruvV7sqbbILLpRw/viewform?usp=sf_link" "true" "_system" "Entrata"
+            <![CDATA[OpenWindow "https://docs.google.com/forms/d/e/1FAIpQLSdahG3-rJTnijYd_7OGyX8r-fu7yH4Hg3JruvV7sqbbILLpRw/viewform?usp=sf_link" "" "_system" ""
+//ReplaceView "FeedbackPage"
 ]]>
           </ClickEvent>
         </Control>
@@ -207,9 +203,29 @@ Alert "Work in Progress" "Under Construction"
           <Image>Images\inverted\bashback2.png</Image>
           <Title>89.1 The Bash</Title>
           <ClickEvent>
-            <![CDATA[OpenWindow "http://myweb.iecc.edu/wvjc/" "true" "_system" "Entrata"
+            <![CDATA[//OpenWindow "http://myweb.iecc.edu/wvjc/" "true" "_system"
+//http://ice7.securenetsystems.net/WVJC?
+
+//OpenWindow "http://ice7.securenetsystems.net/WVJC?" "" "_system" ""
+
+If "[Music.playing]" "==" "0"
+  SetVar "[Music.playing]" "1" "Number"
+  MediaPlay "Music"
+Else
+  SetVar "[Music.playing]" "0" "Number"
+  MediaStop "Music"
+EndIf
 ]]>
           </ClickEvent>
+        </Control>
+        <Control Role="10001">
+          <Name>Music</Name>
+          <Top>16</Top>
+          <Left>336</Left>
+          <Width>88</Width>
+          <Height>96</Height>
+          <Hidden>1</Hidden>
+          <SourceOgg>http://ice7.securenetsystems.net/WVJC?</SourceOgg>
         </Control>
       </Controls>
     </View>
@@ -221,55 +237,113 @@ Alert "Work in Progress" "Under Construction"
       </ShowEvent>
       <Controls>
         <Control Role="8001">
-          <Name>Image20</Name>
+          <Name>Image21</Name>
           <Top>0</Top>
           <Left>0</Left>
           <Width>320</Width>
-          <Height>312</Height>
-          <Image>Images\CMap.png</Image>
+          <Height>480</Height>
+          <Image>Images\smallCMap.jpg</Image>
         </Control>
-        <Control Role="2001">
-          <Name>Button10</Name>
-          <Top>336</Top>
-          <Left>8</Left>
-          <Width>72</Width>
-          <Height>56</Height>
-          <Text>
-            <![CDATA[Button10]]>
-          </Text>
-          <Kind>primary</Kind>
+        <Control Role="8001">
+          <Name>Image22</Name>
+          <Top>160</Top>
+          <Left>160</Left>
+          <Width>48</Width>
+          <Height>40</Height>
+          <Image>Images\pinright.png</Image>
           <ClickEvent>
-            <![CDATA[OrientationLock "portrait"
+            <![CDATA[OpenWindow "https://youtu.be/QHZJVDzFRks" "" "_system" ""
 ]]>
           </ClickEvent>
         </Control>
-        <Control Role="2001">
-          <Name>Button11</Name>
-          <Top>336</Top>
-          <Left>184</Left>
-          <Width>112</Width>
-          <Height>120</Height>
-          <Text>
-            <![CDATA[Button11]]>
-          </Text>
-          <Kind>primary</Kind>
-          <ClickEvent>
-            <![CDATA[OrientationUnlock
-]]>
-          </ClickEvent>
+        <Control Role="6001">
+          <Name>HtmlContent2</Name>
+          <Top>200</Top>
+          <Left>368</Left>
+          <Width>128</Width>
+          <Height>192</Height>
+          <Html>
+            <![CDATA[wat
+<head>
+<!-- Start of dirty code 1 -->
+
+<style>
+#myBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color: red;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+#myBtn:hover {
+  background-color: #555;
+}
+</style>
+
+<!-- End of dirty code 1 -->
+</head>
+<body>
+
+<!-- Start of dirty code 2 -->
+
+<body onload="scrollFunction()">
+
+<button onclick="goBack()" id="myBtn" title="Go to top">Back</button>
+
+<script>
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+
+{    document.getElementById("myBtn").style.display = "block";
+    }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function goBack() {
+    window.history.back();
+}
+</script>
+
+<!-- End of dirty code 2 -->
+</body>]]>
+          </Html>
+        </Control>
+      </Controls>
+    </View>
+    <View>
+      <Name>FeedbackPage</Name>
+      <Controls>
+        <Control Role="4001">
+          <Name>FeedbackiFrame</Name>
+          <Top>0</Top>
+          <Left>0</Left>
+          <Width>320</Width>
+          <Height>432</Height>
+          <Url>https://docs.google.com/forms/d/e/1FAIpQLSdahG3-rJTnijYd_7OGyX8r-fu7yH4Hg3JruvV7sqbbILLpRw/viewform?usp=sf_link?device=mobile</Url>
         </Control>
         <Control Role="2001">
-          <Name>Button12</Name>
-          <Top>336</Top>
-          <Left>104</Left>
-          <Width>64</Width>
-          <Height>56</Height>
+          <Name>Home</Name>
+          <Top>432</Top>
+          <Left>0</Left>
+          <Width>320</Width>
+          <Height>48</Height>
           <Text>
-            <![CDATA[Button12]]>
+            <![CDATA[Home]]>
           </Text>
           <Kind>primary</Kind>
           <ClickEvent>
-            <![CDATA[OrientationLock "landscape"
+            <![CDATA[ShowView "Main"
 ]]>
           </ClickEvent>
         </Control>
@@ -530,64 +604,6 @@ ReplaceView "Calendar"
       </Controls>
     </View>
     <View>
-      <Name>EnrtataSiteView</Name>
-      <Controls>
-        <Control Role="4001">
-          <Name>EntrataiFrame</Name>
-          <Top>0</Top>
-          <Left>0</Left>
-          <Width>320</Width>
-          <Height>432</Height>
-          <Url>https://www.iecc.edu/e4/</Url>
-        </Control>
-        <Control Role="2001">
-          <Name>Button2</Name>
-          <Top>432</Top>
-          <Left>104</Left>
-          <Width>112</Width>
-          <Height>48</Height>
-          <Text>
-            <![CDATA[Home]]>
-          </Text>
-          <Kind>primary</Kind>
-          <ClickEvent>
-            <![CDATA[ShowView "Main"
-]]>
-          </ClickEvent>
-        </Control>
-        <Control Role="2001">
-          <Name>Button1</Name>
-          <Top>432</Top>
-          <Left>0</Left>
-          <Width>112</Width>
-          <Height>48</Height>
-          <Text>
-            <![CDATA[Back]]>
-          </Text>
-          <Kind>primary</Kind>
-          <ClickEvent>
-            <![CDATA[HistoryBack
-]]>
-          </ClickEvent>
-        </Control>
-        <Control Role="2001">
-          <Name>Button3</Name>
-          <Top>432</Top>
-          <Left>208</Left>
-          <Width>112</Width>
-          <Height>48</Height>
-          <Text>
-            <![CDATA[Forward]]>
-          </Text>
-          <Kind>primary</Kind>
-          <ClickEvent>
-            <![CDATA[HistoryForward
-]]>
-          </ClickEvent>
-        </Control>
-      </Controls>
-    </View>
-    <View>
       <Name>Feedback</Name>
       <Controls>
         <Control Role="6001">
@@ -616,7 +632,18 @@ ReplaceView "Calendar"
       <Description></Description>
       <Arguments />
       <Code>
-        <![CDATA[]]>
+        <![CDATA[window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+
+{    document.getElementById("myBtn").style.display = "block";
+    }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function goBack() {
+    window.history.back();
+}]]>
       </Code>
     </Function>
   </Functions>

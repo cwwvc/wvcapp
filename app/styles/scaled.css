@@ -24,13 +24,17 @@ html, body { width: 320px; height: 480px; }
 
 #Image15 { position: absolute; top: 3.33%; left: 70.00%; width: 27.50%; height: 20.00%; }
 
-#Image20 { position: absolute; top: 0.00%; left: 0.00%; width: 100.00%; height: 65.00%; }
+#Music { position: absolute; top: 3.33%; left: 105.00%; width: 27.50%; height: 20.00%; }
 
-#Button10 { position: absolute; top: 70.00%; left: 2.50%; width: 22.50%; height: 11.67%; }
+#Image21 { position: absolute; top: 0.00%; left: 0.00%; width: 100.00%; height: 100.00%; }
 
-#Button11 { position: absolute; top: 70.00%; left: 57.50%; width: 35.00%; height: 25.00%; }
+#Image22 { position: absolute; top: 33.33%; left: 50.00%; width: 15.00%; height: 8.33%; }
 
-#Button12 { position: absolute; top: 70.00%; left: 32.50%; width: 20.00%; height: 11.67%; }
+#HtmlContent2 { position: absolute; top: 41.67%; left: 115.00%; width: 40.00%; height: 40.00%; }
+
+#FeedbackiFrame { position: absolute; top: 0.00%; left: 0.00%; width: 100.00%; height: 90.00%; }
+
+#Home { position: absolute; top: 90.00%; left: 0.00%; width: 100.00%; height: 10.00%; }
 
 #Image16 { position: absolute; top: 0.00%; left: 0.00%; width: 100.00%; height: 100.00%; }
 
@@ -67,13 +71,5 @@ html, body { width: 320px; height: 480px; }
 #Button4 { position: absolute; top: 90.00%; left: 0.00%; width: 35.00%; height: 10.00%; }
 
 #Button6 { position: absolute; top: 90.00%; left: 65.00%; width: 35.00%; height: 10.00%; }
-
-#EntrataiFrame { position: absolute; top: 0.00%; left: 0.00%; width: 100.00%; height: 90.00%; }
-
-#Button2 { position: absolute; top: 90.00%; left: 32.50%; width: 35.00%; height: 10.00%; }
-
-#Button1 { position: absolute; top: 90.00%; left: 0.00%; width: 35.00%; height: 10.00%; }
-
-#Button3 { position: absolute; top: 90.00%; left: 65.00%; width: 35.00%; height: 10.00%; }
 
 #HtmlContent1 { position: absolute; top: 0.00%; left: 0.00%; width: 100.00%; height: 100.00%; }

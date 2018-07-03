@@ -804,17 +804,22 @@ $rootScope.Image22.PopoverEvent = "mouseenter";
 $rootScope.Image22.PopoverTitle = "";
 $rootScope.Image22.PopoverPos = "top";
 
-$rootScope.HtmlContent2 = {};
-$rootScope.HtmlContent2.ABRole = 6001;
-$rootScope.HtmlContent2.Hidden = "";
-$rootScope.HtmlContent2.Class = "ios-inertial-scroll ";
-$rootScope.HtmlContent2.Title = "";
-$rootScope.HtmlContent2.TooltipText = "";
-$rootScope.HtmlContent2.TooltipPos = "top";
-$rootScope.HtmlContent2.PopoverText = "";
-$rootScope.HtmlContent2.PopoverEvent = "mouseenter";
-$rootScope.HtmlContent2.PopoverTitle = "";
-$rootScope.HtmlContent2.PopoverPos = "top";
+$rootScope.Button2 = {};
+$rootScope.Button2.ABRole = 2001;
+$rootScope.Button2.Hidden = "";
+$rootScope.Button2.Title = "";
+$rootScope.Button2.TabIndex = -1;
+$rootScope.Button2.TooltipText = "";
+$rootScope.Button2.TooltipPos = "top";
+$rootScope.Button2.PopoverText = "";
+$rootScope.Button2.PopoverTitle = "";
+$rootScope.Button2.PopoverEvent = "mouseenter";
+$rootScope.Button2.PopoverPos = "top";
+$rootScope.Button2.Badge = "";
+$rootScope.Button2.Icon = "";
+$rootScope.Button2.Text = "";
+$rootScope.Button2.Class = "btn btn-primary btn-md ";
+$rootScope.Button2.Disabled = "";
 
 $rootScope.FeedbackiFrame = {};
 $rootScope.FeedbackiFrame.ABRole = 4001;
@@ -1837,6 +1842,13 @@ $scope.Image22Click = function($event) {
 $rootScope.Image22.Event = $event;
 
 $scope.openWindow("https://youtu.be/QHZJVDzFRks", "", "_system");
+
+};
+
+$scope.Button2Click = function($event) {
+$rootScope.Button2.Event = $event;
+
+$scope.replaceView("Main");
 
 };
 

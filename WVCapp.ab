@@ -9,7 +9,7 @@
     <Width>320</Width>
     <Height>480</Height>
     <Scale>1</Scale>
-    <Zoom>1</Zoom>
+    <Zoom>0</Zoom>
     <Theme>Default</Theme>
     <Themes></Themes>
     <Plugins></Plugins>
@@ -20,11 +20,33 @@
     <LanguageCode>en</LanguageCode>
     <TextDirection>ltr</TextDirection>
     <Created>2018-05-12T23:05:10.268</Created>
-    <Modified>2018-07-03T09:12:58.103</Modified>
+    <Modified>2018-07-23T11:37:25.424</Modified>
     <BuildNumber>0</BuildNumber>
     <AutoBuildNumber>0</AutoBuildNumber>
     <ReadyEvent>
-      <![CDATA[SetVar "[Music.playing]" "0" "Number"]]>
+      <![CDATA[SetVar "[Music.playing]" "0" "Number"
+OrientationLock "portrait-primary"
+StatusBarIsVisible "StatusBarHide"
+
+//First Run stuff
+GetOption "FirstRunStorage" "[FirstRun]"
+If "[FirstRun]" "!=" "false"
+SetVar "[FirstRun]" "false" "String"
+SetOption "FirstRunStorage" "[FirstRun]" "String"
+SetVar "[FirstRun]" "true" "String"
+
+SetVar "[Variable1]" "false" "String"
+SetOption "Variable1Storage" "[Variable1]" "String"
+
+EndIf
+
+//Load variables from storage
+If "[FirstRun]" "==" "false"
+GetOption "Variable1Storage" "[Variable1]"
+
+EndIf
+
+]]>
     </ReadyEvent>
     <Metadata />
     <Webapp />
@@ -64,7 +86,20 @@
     </View>
     <View>
       <Name>Main</Name>
+      <DrawMaster>1</DrawMaster>
+      <MasterTop>1</MasterTop>
       <Style>background-color: #808080; </Style>
+      <ShowEvent>
+        <![CDATA[
+StartJS
+n =  new Date();
+y = n.getFullYear();
+m = n.getMonth() + 1;
+d = n.getDate();
+document.getElementById("date").innerHTML = d;
+EndJS
+]]>
+      </ShowEvent>
       <Controls>
         <Control Role="8001">
           <Name>Image11</Name>
@@ -76,11 +111,11 @@
         </Control>
         <Control Role="8001">
           <Name>Image8</Name>
-          <Top>136</Top>
+          <Top>128</Top>
           <Left>120</Left>
           <Width>88</Width>
           <Height>96</Height>
-          <Image>Images\yourcalendar.png</Image>
+          <Image>Images\blank-yourcalendar.png</Image>
           <Title>Calendars</Title>
           <ClickEvent>
             <![CDATA[//OpenWindow "app/files/Calendars/index.html" "" "_self" ""
@@ -88,58 +123,33 @@
 //MessageBox "Work in Progress" "This function is not avaible yet. When it is, you\x27ll be able to view the calendar for various events, as well as add your own custom events!" "Sounds Cool!" "primary" ""
 //ReplaceView "Calendar"
 //Alert "Work in Progress" "Under Construction"
-OpenWindow "app/files/CalendarList/index.html" "" "_self" ""
-]]>
-          </ClickEvent>
-        </Control>
-        <Control Role="8001">
-          <Name>Image6</Name>
-          <Top>16</Top>
-          <Left>120</Left>
-          <Width>88</Width>
-          <Height>96</Height>
-          <Image>Images\WVC-RED-CAFE-BACKUP.png</Image>
-          <Title>Red Cafe Menu</Title>
-          <ClickEvent>
-            <![CDATA[OpenWindow "app/files/MenuDemo/index.html" "" "_self" ""
-//MessageBox "Work in Progress" "This function is not avaible yet. When it is, you\x27ll be able to view the menu as well as make orders right from within the app!" "Sounds Cool!" "primary" ""
+//OpenWindow "app/files/CalendarList/index.html" "" "_self" ""
+
+ShowDialog "DialogCalendar"
 ]]>
           </ClickEvent>
         </Control>
         <Control Role="8001">
           <Name>Image4</Name>
-          <Top>136</Top>
+          <Top>128</Top>
           <Left>224</Left>
           <Width>87</Width>
           <Height>96</Height>
           <Image>Images\entrata.png</Image>
           <Title>Entrata</Title>
           <ClickEvent>
-            <![CDATA[OpenWindow "https://www.iecc.edu/e4/" "true" "_system" "Entrata"
+            <![CDATA[OpenWindow "https://www.iecc.edu/e4/" "" "_system" ""
 //ShowView "EnrtataSiteView"
 ]]>
           </ClickEvent>
         </Control>
         <Control Role="8001">
-          <Name>Image12</Name>
-          <Top>16</Top>
-          <Left>16</Left>
-          <Width>88</Width>
-          <Height>96</Height>
-          <Image>Images\logo_WVC.png</Image>
-          <Title>WVC Website</Title>
-          <ClickEvent>
-            <![CDATA[OpenWindow "https://www.iecc.edu/page.php?page=WVCH" "true" "_system" "WVC_Website"
-//ShowView "WVCSiteView"
-]]>
-          </ClickEvent>
-        </Control>
-        <Control Role="8001">
           <Name>FAQImage</Name>
-          <Top>136</Top>
-          <Left>16</Left>
+          <Top>320</Top>
+          <Left>448</Left>
           <Width>88</Width>
           <Height>96</Height>
+          <Hidden>1</Hidden>
           <Image>Images\FAQback.png</Image>
           <Title>Frequently Asked Questons</Title>
           <ClickEvent>
@@ -151,9 +161,9 @@ OpenWindow "app/files/CalendarList/index.html" "" "_self" ""
         </Control>
         <Control Role="8001">
           <Name>Map</Name>
-          <Top>248</Top>
+          <Top>240</Top>
           <Left>16</Left>
-          <Width>84</Width>
+          <Width>88</Width>
           <Height>96</Height>
           <Image>Images\map-icon1.png</Image>
           <Title>Campus Map</Title>
@@ -167,8 +177,8 @@ ReplaceView "CampusMap"
         </Control>
         <Control Role="8001">
           <Name>Image14</Name>
-          <Top>248</Top>
-          <Left>224</Left>
+          <Top>128</Top>
+          <Left>16</Left>
           <Width>88</Width>
           <Height>96</Height>
           <Image>Images\peopleback.png</Image>
@@ -182,10 +192,11 @@ ReplaceView "CampusMap"
         </Control>
         <Control Role="8001">
           <Name>Image13</Name>
-          <Top>248</Top>
-          <Left>120</Left>
+          <Top>320</Top>
+          <Left>616</Left>
           <Width>88</Width>
           <Height>96</Height>
+          <Hidden>1</Hidden>
           <Image>Images\bugback.png</Image>
           <Title>Submit Feedback</Title>
           <ClickEvent>
@@ -221,11 +232,337 @@ EndIf
         <Control Role="10001">
           <Name>Music</Name>
           <Top>16</Top>
-          <Left>336</Left>
+          <Left>352</Left>
           <Width>88</Width>
           <Height>96</Height>
           <Hidden>1</Hidden>
           <SourceOgg>http://ice7.securenetsystems.net/WVJC?</SourceOgg>
+        </Control>
+        <Control Role="8001">
+          <Name>Image6</Name>
+          <Top>16</Top>
+          <Left>120</Left>
+          <Width>88</Width>
+          <Height>96</Height>
+          <Image>Images\WVC-RED-CAFE-BACKUP.png</Image>
+          <Title>Red Cafe Menu</Title>
+          <ClickEvent>
+            <![CDATA[OpenWindow "app/files/MenuDemo/index.html" "" "_self" ""
+//MessageBox "Work in Progress" "This function is not avaible yet. When it is, you\x27ll be able to view the menu as well as make orders right from within the app!" "Sounds Cool!" "primary" ""
+]]>
+          </ClickEvent>
+        </Control>
+        <Control Role="8001">
+          <Name>Image12</Name>
+          <Top>16</Top>
+          <Left>16</Left>
+          <Width>88</Width>
+          <Height>96</Height>
+          <Image>Images\logo_WVC.png</Image>
+          <Title>WVC Website</Title>
+          <ClickEvent>
+            <![CDATA[//OpenWindow "https://www.iecc.edu/page.php?page=WVCH" "true" "_system" "WVC_Website"
+//ShowView "WVCSiteView"
+ShowDialog "DialogWVC"
+
+]]>
+          </ClickEvent>
+        </Control>
+        <Control Role="8001">
+          <Name>Image2</Name>
+          <Top>344</Top>
+          <Left>264</Left>
+          <Width>40</Width>
+          <Height>48</Height>
+          <Image>Images\settings.png</Image>
+          <Title>Social Media</Title>
+          <ClickEvent>
+            <![CDATA[ReplaceView "Settings"
+]]>
+          </ClickEvent>
+        </Control>
+        <Control Role="6001">
+          <Name>HtmlContent2</Name>
+          <Top>168</Top>
+          <Left>360</Left>
+          <Width>40</Width>
+          <Height>32</Height>
+          <Hidden>1</Hidden>
+          <Html>
+            <![CDATA[
+<h2><p id="date"></p><h2/>
+
+]]>
+          </Html>
+          <ClickEvent>
+            <![CDATA[OpenWindow "app/files/CalendarList/index.html" "" "_self" ""]]>
+          </ClickEvent>
+        </Control>
+      </Controls>
+    </View>
+    <View>
+      <Name>DialogCalendar</Name>
+      <Controls>
+        <Control Role="6003">
+          <Name>Menu2</Name>
+          <Top>0</Top>
+          <Left>0</Left>
+          <Width>320</Width>
+          <Height>392</Height>
+          <Items>
+            <![CDATA[<h4> Athletics<h4/>
+<h4> Events<h4/>
+<h4> Important Dates<h4/>
+<h4> Learning Skills<h4/>
+<h4> Trio SSS<h4/>
+<h4> Error with calendar? (Inactive)<h4/>
+]]>
+          </Items>
+          <ItemClickEvent>
+            <![CDATA[
+//AlertBox "hmu" "secondary"
+//AlertBox "2" "primary"
+
+//If "[Menu1.ItemIndex]" "==" "0"
+//ReplaceView "Main"
+If "[Menu2.ItemIndex]" "==" "0"
+OpenWindow "app/files/CalendarList/sections/section1/index.html" "" "_self" ""
+ElseIf "[Menu2.ItemIndex]" "==" "1"
+OpenWindow "app/files/CalendarList/sections/section2/index.html" "" "_self" ""
+ElseIf "[Menu2.ItemIndex]" "==" "2"
+OpenWindow "app/files/CalendarList/sections/section3/index.html" "" "_self" ""
+ElseIf "[Menu2.ItemIndex]" "==" "3"
+OpenWindow "app/files/CalendarList/sections/section4/index.html" "" "_self" ""
+ElseIf "[Menu2.ItemIndex]" "==" "4"
+OpenWindow "app/files/CalendarList/sections/section5/index.html" "" "_self" ""
+ElseIf "[Menu2.ItemIndex]" "==" "5"
+Alert "(Inactive)" "When this feature is active you will be able to report any errors or issues you have with a specific calendar directly with that calendar\x27s maintainer"
+EndIf
+
+]]>
+          </ItemClickEvent>
+        </Control>
+        <Control Role="2001">
+          <Name>Button1</Name>
+          <Top>408</Top>
+          <Left>40</Left>
+          <Width>240</Width>
+          <Height>48</Height>
+          <Text>
+            <![CDATA[<strong>Go Back</strong>]]>
+          </Text>
+          <Kind>danger</Kind>
+          <Title>Back Button</Title>
+          <ClickEvent>
+            <![CDATA[ReplaceView "Main"]]>
+          </ClickEvent>
+        </Control>
+      </Controls>
+    </View>
+    <View>
+      <Name>DialogWVC</Name>
+      <Controls>
+        <Control Role="6003">
+          <Name>Menu1</Name>
+          <Top>0</Top>
+          <Left>0</Left>
+          <Width>320</Width>
+          <Height>392</Height>
+          <Items>
+            <![CDATA[<h4><span class="fa fa-question"></span> FAQ<h4/>
+<h4><span class="fa fa-address-card"></span> Important #’s and e-mails<h4/>
+<h4><span class="fa fa-calendar"></span> Combined Calendar<h4/>
+<h4><span class="fa fa-graduation-cap"></span> Degree Programs<h4/>
+<h4><span class="fa fa-etsy"></span> Entrata<h4/>
+<h4><span class="fa fa-bug"></span> Submit an issue/suggestion<h4/>
+]]>
+          </Items>
+          <ItemClickEvent>
+            <![CDATA[
+//AlertBox "hmu" "secondary"
+//AlertBox "2" "primary"
+
+//If "[Menu1.ItemIndex]" "==" "0"
+//ReplaceView "Main"
+If "[Menu1.ItemIndex]" "==" "0"
+OpenWindow "app/files/FAQ/index.html" "" "_self" ""
+ElseIf "[Menu1.ItemIndex]" "==" "1"
+OpenWindow "app/files/ContactInfo/index.html" "" "_self" ""
+ElseIf "[Menu1.ItemIndex]" "==" "2"
+OpenWindow "app/files/Calendars/index.html" "" "_self" ""
+ElseIf "[Menu1.ItemIndex]" "==" "3"
+OpenWindow "https://www.iecc.edu/page.php?page=WVCH_PRGM&acad=list&acadc=wvc" "" "_system" ""
+ElseIf "[Menu1.ItemIndex]" "==" "4"
+OpenWindow "https://www.iecc.edu/e4/" "" "_system" ""
+ElseIf "[Menu1.ItemIndex]" "==" "5"
+OpenWindow "https://docs.google.com/forms/d/e/1FAIpQLSdahG3-rJTnijYd_7OGyX8r-fu7yH4Hg3JruvV7sqbbILLpRw/viewform?usp=sf_link" "" "_system" ""
+EndIf
+
+]]>
+          </ItemClickEvent>
+        </Control>
+        <Control Role="2001">
+          <Name>Backbutton</Name>
+          <Top>408</Top>
+          <Left>40</Left>
+          <Width>240</Width>
+          <Height>48</Height>
+          <Text>
+            <![CDATA[<strong>Go Back</strong>]]>
+          </Text>
+          <Kind>danger</Kind>
+          <Title>Back Button</Title>
+          <ClickEvent>
+            <![CDATA[ReplaceView "Main"]]>
+          </ClickEvent>
+        </Control>
+      </Controls>
+    </View>
+    <View>
+      <Name>Settings</Name>
+      <ShowEvent>
+        <![CDATA[
+//If "[Variable1]" "==" "false"
+//SetAttribute "Variable1Switch" "src" "app/files/images/vectors/offswitch.svg"
+//EndIf
+
+//If "[Variable1]" "==" "true"
+//SetAttribute "Variable1Switch" "src" "app/files/images/vectors/onswitch.svg"
+//EndIf
+
+
+
+If "[Variable1]" "==" "false"
+SetAttribute "Variable1Switch" "src" "app/files/images/vectors/offswitch.svg"
+Exit
+EndIf
+
+If "[Variable1]" "==" "true"
+SetAttribute "Variable1Switch" "src" "app/files/images/vectors/onswitch.svg"
+EndIf
+
+WatcherStart "Watcher2"
+WatcherVariable "Watcher2" "[Variable1]"
+
+
+]]>
+      </ShowEvent>
+      <Controls>
+        <Control Role="1001">
+          <Name>Container1</Name>
+          <Top>0</Top>
+          <Left>0</Left>
+          <Width>320</Width>
+          <Height>56</Height>
+          <Style>background-color: #e02c2c; </Style>
+          <Controls>
+            <Control Role="6001">
+              <Name>HeaderHtml</Name>
+              <Top>16</Top>
+              <Left>16</Left>
+              <Width>288</Width>
+              <Height>40</Height>
+              <Style>background-color: transparent; </Style>
+              <Html>
+                <![CDATA[<h2 style="color: #fff;">
+<center>Settings Menu</center>
+</h2>]]>
+              </Html>
+            </Control>
+          </Controls>
+        </Control>
+        <Control Role="8001">
+          <Name>Variable1Switch</Name>
+          <Top>64</Top>
+          <Left>224</Left>
+          <Width>80</Width>
+          <Height>72</Height>
+          <ClickEvent>
+            <![CDATA[
+
+//SetAttribute "Image20" "src" "app/files/images/vectors/offswitch.svg"
+
+//SetAttribute "Image20" "src" "app/files/images/vectors/onswitch.svg"
+
+
+
+
+//SetVar "Variable1" "true" "String"
+
+//StopPropagation "[Variable1]"
+
+
+If "[Variable1]" "==" "false"
+SetVar "[Variable1]" "true" "String"
+SetAttribute "Variable1Switch" "src" "app/files/images/vectors/onswitch.svg"
+Exit
+EndIf
+
+If "[Variable1]" "==" "true"
+SetVar "[Variable1]" "false" "String"
+SetAttribute "Variable1Switch" "src" "app/files/images/vectors/offswitch.svg"
+EndIf
+
+//SetOption "Variabe1Storage" "[Variable1]" "String"
+]]>
+          </ClickEvent>
+        </Control>
+        <Control Role="2001">
+          <Name>ResetAll</Name>
+          <Top>416</Top>
+          <Left>56</Left>
+          <Width>200</Width>
+          <Height>40</Height>
+          <Text>
+            <![CDATA[RESET ALL]]>
+          </Text>
+          <Kind>primary</Kind>
+          <ClickEvent>
+            <![CDATA[ClearOptions
+BlockApp
+Alert "Close" "App Reset. Please Close and reopen the app."
+]]>
+          </ClickEvent>
+        </Control>
+        <Control Role="2001">
+          <Name>Button13</Name>
+          <Top>80</Top>
+          <Left>24</Left>
+          <Width>111</Width>
+          <Height>40</Height>
+          <Text>
+            <![CDATA[[Variable1]]]>
+          </Text>
+          <Kind>primary</Kind>
+          <ClickEvent>
+            <![CDATA[
+If "[Variable1]" "==" "false"
+SetVar "[Variable1]" "true" "String"
+Exit
+EndIf
+
+If "[Variable1]" "==" "true"
+SetVar "[Variable1]" "false" "String"
+EndIf]]>
+          </ClickEvent>
+        </Control>
+        <Control Role="30003">
+          <Name>Watcher2</Name>
+          <Top>88</Top>
+          <Left>352</Left>
+          <Width>150</Width>
+          <Height>40</Height>
+          <ChangeEvent>
+            <![CDATA[
+If "[Variable1]" "==" "false"
+SetAttribute "Variable1Switch" "src" "app/files/images/vectors/offswitch.svg"
+Exit
+EndIf
+
+If "[Variable1]" "==" "true"
+SetAttribute "Variable1Switch" "src" "app/files/images/vectors/onswitch.svg"
+EndIf]]>
+          </ChangeEvent>
         </Control>
       </Controls>
     </View>
@@ -256,69 +593,17 @@ EndIf
 ]]>
           </ClickEvent>
         </Control>
-        <Control Role="6001">
-          <Name>HtmlContent2</Name>
-          <Top>200</Top>
-          <Left>368</Left>
-          <Width>128</Width>
-          <Height>192</Height>
-          <Hidden>1</Hidden>
-          <Html>
-            <![CDATA[wat
-<head>
-<!-- Start of dirty code 1 -->
-
-<style>
-#myBtn {
-  display: none;
-  position: fixed;
-  bottom: 20px;
-  right: 30px;
-  z-index: 99;
-  font-size: 18px;
-  border: none;
-  outline: none;
-  background-color: red;
-  color: white;
-  cursor: pointer;
-  padding: 15px;
-  border-radius: 4px;
-}
-
-#myBtn:hover {
-  background-color: #555;
-}
-</style>
-
-<!-- End of dirty code 1 -->
-</head>
-<body>
-
-<!-- Start of dirty code 2 -->
-
-<body onload="scrollFunction()">
-
-<button onclick="goBack()" id="myBtn" title="Go to top">Back</button>
-
-<script>
-// When the user scrolls down 20px from the top of the document, show the button
-window.onscroll = function() {scrollFunction()};
-
-function scrollFunction() {
-
-{    document.getElementById("myBtn").style.display = "block";
-    }
-}
-
-// When the user clicks on the button, scroll to the top of the document
-function goBack() {
-    window.history.back();
-}
-</script>
-
-<!-- End of dirty code 2 -->
-</body>]]>
-          </Html>
+        <Control Role="2001">
+          <Name>Button2</Name>
+          <Top>40</Top>
+          <Left>32</Left>
+          <Width>64</Width>
+          <Height>168</Height>
+          <Kind>primary</Kind>
+          <ClickEvent>
+            <![CDATA[ReplaceView "Main"
+]]>
+          </ClickEvent>
         </Control>
       </Controls>
     </View>
@@ -658,6 +943,7 @@ function goBack() {
       <Path>Calendars</Path>
       <Path>SocialMedia</Path>
       <Path>CalendarList</Path>
+      <Path>ContactInfo</Path>
     </Folders>
     <Images />
     <Others />

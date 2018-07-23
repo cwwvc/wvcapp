@@ -14,25 +14,47 @@ html, body, .appView { width: 320px; height: 480px; }
 
 #Image11 { position: absolute; top: 0px; left: 0px; width: 320px; height: 480px; }
 
-#Image8 { position: absolute; top: 136px; left: 120px; width: 88px; height: 96px; }
+#Image8 { position: absolute; top: 128px; left: 120px; width: 88px; height: 96px; }
 
-#Image6 { position: absolute; top: 16px; left: 120px; width: 88px; height: 96px; }
+#Image4 { position: absolute; top: 128px; left: 224px; width: 87px; height: 96px; }
 
-#Image4 { position: absolute; top: 136px; left: 224px; width: 87px; height: 96px; }
+#FAQImage { position: absolute; top: 320px; left: 448px; width: 88px; height: 96px; }
 
-#Image12 { position: absolute; top: 16px; left: 16px; width: 88px; height: 96px; }
+#Map { position: absolute; top: 240px; left: 16px; width: 88px; height: 96px; }
 
-#FAQImage { position: absolute; top: 136px; left: 16px; width: 88px; height: 96px; }
+#Image14 { position: absolute; top: 128px; left: 16px; width: 88px; height: 96px; }
 
-#Map { position: absolute; top: 248px; left: 16px; width: 84px; height: 96px; }
-
-#Image14 { position: absolute; top: 248px; left: 224px; width: 88px; height: 96px; }
-
-#Image13 { position: absolute; top: 248px; left: 120px; width: 88px; height: 96px; }
+#Image13 { position: absolute; top: 320px; left: 616px; width: 88px; height: 96px; }
 
 #Image15 { position: absolute; top: 16px; left: 224px; width: 88px; height: 96px; }
 
-#Music { position: absolute; top: 16px; left: 336px; width: 88px; height: 96px; }
+#Music { position: absolute; top: 16px; left: 352px; width: 88px; height: 96px; }
+
+#Image6 { position: absolute; top: 16px; left: 120px; width: 88px; height: 96px; }
+
+#Image12 { position: absolute; top: 16px; left: 16px; width: 88px; height: 96px; }
+
+#Image2 { position: absolute; top: 344px; left: 264px; width: 40px; height: 48px; }
+
+#HtmlContent2 { position: absolute; top: 168px; left: 360px; width: 40px; height: 32px; }
+
+#Menu2 { position: absolute; top: 0px; left: 0px; width: 320px; height: 392px; }
+
+#Button1 { position: absolute; top: 408px; left: 40px; width: 240px; height: 48px; }
+
+#Menu1 { position: absolute; top: 0px; left: 0px; width: 320px; height: 392px; }
+
+#Backbutton { position: absolute; top: 408px; left: 40px; width: 240px; height: 48px; }
+
+#Container1 { position: absolute; top: 0px; left: 0px; width: 320px; height: 56px; background-color: #e02c2c;}
+
+#HeaderHtml { position: absolute; top: 16px; left: 16px; width: 288px; height: 40px; background-color: transparent;}
+
+#Variable1Switch { position: absolute; top: 64px; left: 224px; width: 80px; height: 72px; }
+
+#ResetAll { position: absolute; top: 416px; left: 56px; width: 200px; height: 40px; }
+
+#Button13 { position: absolute; top: 80px; left: 24px; width: 111px; height: 40px; }
 
 #Image21 { position: absolute; top: 0px; left: 0px; width: 320px; height: 480px; }
 

@@ -341,6 +341,9 @@ window.App.Module.config
   function ($routeProvider) {
     $routeProvider.otherwise({redirectTo: "/Main"})
     .when("/Main", {controller: "MainCtrl", templateUrl: "app/views/Main.html"})
+    .when("/DialogCalendar", {controller: "DialogCalendarCtrl", templateUrl: "app/views/DialogCalendar.html"})
+    .when("/DialogWVC", {controller: "DialogWVCCtrl", templateUrl: "app/views/DialogWVC.html"})
+    .when("/Settings", {controller: "SettingsCtrl", templateUrl: "app/views/Settings.html"})
     .when("/CampusMap", {controller: "CampusMapCtrl", templateUrl: "app/views/CampusMap.html"})
     .when("/FeedbackPage", {controller: "FeedbackPageCtrl", templateUrl: "app/views/FeedbackPage.html"})
     .when("/SocialMedia", {controller: "SocialMediaCtrl", templateUrl: "app/views/SocialMedia.html"})
@@ -654,7 +657,7 @@ $rootScope.Image11.PopoverPos = "top";
 $rootScope.Image8 = {};
 $rootScope.Image8.ABRole = 8001;
 $rootScope.Image8.Hidden = "";
-$rootScope.Image8.Image = "app/images/yourcalendar.png";
+$rootScope.Image8.Image = "app/images/blank-yourcalendar.png";
 $rootScope.Image8.Class = "";
 $rootScope.Image8.Title = "Calendars";
 $rootScope.Image8.TooltipText = "";
@@ -663,19 +666,6 @@ $rootScope.Image8.PopoverText = "";
 $rootScope.Image8.PopoverEvent = "mouseenter";
 $rootScope.Image8.PopoverTitle = "";
 $rootScope.Image8.PopoverPos = "top";
-
-$rootScope.Image6 = {};
-$rootScope.Image6.ABRole = 8001;
-$rootScope.Image6.Hidden = "";
-$rootScope.Image6.Image = "app/images/WVC-RED-CAFE-BACKUP.png";
-$rootScope.Image6.Class = "";
-$rootScope.Image6.Title = "Red Cafe Menu";
-$rootScope.Image6.TooltipText = "";
-$rootScope.Image6.TooltipPos = "top";
-$rootScope.Image6.PopoverText = "";
-$rootScope.Image6.PopoverEvent = "mouseenter";
-$rootScope.Image6.PopoverTitle = "";
-$rootScope.Image6.PopoverPos = "top";
 
 $rootScope.Image4 = {};
 $rootScope.Image4.ABRole = 8001;
@@ -690,22 +680,9 @@ $rootScope.Image4.PopoverEvent = "mouseenter";
 $rootScope.Image4.PopoverTitle = "";
 $rootScope.Image4.PopoverPos = "top";
 
-$rootScope.Image12 = {};
-$rootScope.Image12.ABRole = 8001;
-$rootScope.Image12.Hidden = "";
-$rootScope.Image12.Image = "app/images/logo_WVC.png";
-$rootScope.Image12.Class = "";
-$rootScope.Image12.Title = "WVC Website";
-$rootScope.Image12.TooltipText = "";
-$rootScope.Image12.TooltipPos = "top";
-$rootScope.Image12.PopoverText = "";
-$rootScope.Image12.PopoverEvent = "mouseenter";
-$rootScope.Image12.PopoverTitle = "";
-$rootScope.Image12.PopoverPos = "top";
-
 $rootScope.FAQImage = {};
 $rootScope.FAQImage.ABRole = 8001;
-$rootScope.FAQImage.Hidden = "";
+$rootScope.FAQImage.Hidden = "true";
 $rootScope.FAQImage.Image = "app/images/FAQback.png";
 $rootScope.FAQImage.Class = "";
 $rootScope.FAQImage.Title = "Frequently Asked Questons";
@@ -744,7 +721,7 @@ $rootScope.Image14.PopoverPos = "top";
 
 $rootScope.Image13 = {};
 $rootScope.Image13.ABRole = 8001;
-$rootScope.Image13.Hidden = "";
+$rootScope.Image13.Hidden = "true";
 $rootScope.Image13.Image = "app/images/bugback.png";
 $rootScope.Image13.Class = "";
 $rootScope.Image13.Title = "Submit Feedback";
@@ -777,6 +754,190 @@ $rootScope.Music.Autoplay = false;
 $rootScope.Music.Sources = [];
 $rootScope.Music.Sources.push({src: $sce.trustAsResourceUrl("http://ice7.securenetsystems.net/WVJC?"), type: "video/ogg"});
 $rootScope.Music.Tracks = [];
+
+$rootScope.Image6 = {};
+$rootScope.Image6.ABRole = 8001;
+$rootScope.Image6.Hidden = "";
+$rootScope.Image6.Image = "app/images/WVC-RED-CAFE-BACKUP.png";
+$rootScope.Image6.Class = "";
+$rootScope.Image6.Title = "Red Cafe Menu";
+$rootScope.Image6.TooltipText = "";
+$rootScope.Image6.TooltipPos = "top";
+$rootScope.Image6.PopoverText = "";
+$rootScope.Image6.PopoverEvent = "mouseenter";
+$rootScope.Image6.PopoverTitle = "";
+$rootScope.Image6.PopoverPos = "top";
+
+$rootScope.Image12 = {};
+$rootScope.Image12.ABRole = 8001;
+$rootScope.Image12.Hidden = "";
+$rootScope.Image12.Image = "app/images/logo_WVC.png";
+$rootScope.Image12.Class = "";
+$rootScope.Image12.Title = "WVC Website";
+$rootScope.Image12.TooltipText = "";
+$rootScope.Image12.TooltipPos = "top";
+$rootScope.Image12.PopoverText = "";
+$rootScope.Image12.PopoverEvent = "mouseenter";
+$rootScope.Image12.PopoverTitle = "";
+$rootScope.Image12.PopoverPos = "top";
+
+$rootScope.Image2 = {};
+$rootScope.Image2.ABRole = 8001;
+$rootScope.Image2.Hidden = "";
+$rootScope.Image2.Image = "app/images/settings.png";
+$rootScope.Image2.Class = "";
+$rootScope.Image2.Title = "Social Media";
+$rootScope.Image2.TooltipText = "";
+$rootScope.Image2.TooltipPos = "top";
+$rootScope.Image2.PopoverText = "";
+$rootScope.Image2.PopoverEvent = "mouseenter";
+$rootScope.Image2.PopoverTitle = "";
+$rootScope.Image2.PopoverPos = "top";
+
+$rootScope.HtmlContent2 = {};
+$rootScope.HtmlContent2.ABRole = 6001;
+$rootScope.HtmlContent2.Hidden = "true";
+$rootScope.HtmlContent2.Class = "ios-inertial-scroll ";
+$rootScope.HtmlContent2.Title = "";
+$rootScope.HtmlContent2.TooltipText = "";
+$rootScope.HtmlContent2.TooltipPos = "top";
+$rootScope.HtmlContent2.PopoverText = "";
+$rootScope.HtmlContent2.PopoverEvent = "mouseenter";
+$rootScope.HtmlContent2.PopoverTitle = "";
+$rootScope.HtmlContent2.PopoverPos = "top";
+
+$rootScope.Menu2 = {};
+$rootScope.Menu2.ABRole = 6003;
+$rootScope.Menu2.Hidden = "";
+$rootScope.Menu2.Items = [];
+$rootScope.Menu2.Items.push("<h4> Athletics<h4/>");
+$rootScope.Menu2.Items.push("<h4> Events<h4/>");
+$rootScope.Menu2.Items.push("<h4> Important Dates<h4/>");
+$rootScope.Menu2.Items.push("<h4> Learning Skills<h4/>");
+$rootScope.Menu2.Items.push("<h4> Trio SSS<h4/>");
+$rootScope.Menu2.Items.push("<h4> Error with calendar? (Inactive)<h4/>");
+$rootScope.Menu2.Class = "list-group ";
+
+$rootScope.Button1 = {};
+$rootScope.Button1.ABRole = 2001;
+$rootScope.Button1.Hidden = "";
+$rootScope.Button1.Title = "Back Button";
+$rootScope.Button1.TabIndex = -1;
+$rootScope.Button1.TooltipText = "";
+$rootScope.Button1.TooltipPos = "top";
+$rootScope.Button1.PopoverText = "";
+$rootScope.Button1.PopoverTitle = "";
+$rootScope.Button1.PopoverEvent = "mouseenter";
+$rootScope.Button1.PopoverPos = "top";
+$rootScope.Button1.Badge = "";
+$rootScope.Button1.Icon = "";
+$rootScope.Button1.Text = "<strong>Go Back</strong>";
+$rootScope.Button1.Class = "btn btn-danger btn-md ";
+$rootScope.Button1.Disabled = "";
+
+$rootScope.Menu1 = {};
+$rootScope.Menu1.ABRole = 6003;
+$rootScope.Menu1.Hidden = "";
+$rootScope.Menu1.Items = [];
+$rootScope.Menu1.Items.push("<h4><span class=\x22fa fa-question\x22></span> FAQ<h4/>");
+$rootScope.Menu1.Items.push("<h4><span class=\x22fa fa-address-card\x22></span> Important #’s and e-mails<h4/>");
+$rootScope.Menu1.Items.push("<h4><span class=\x22fa fa-calendar\x22></span> Combined Calendar<h4/>");
+$rootScope.Menu1.Items.push("<h4><span class=\x22fa fa-graduation-cap\x22></span> Degree Programs<h4/>");
+$rootScope.Menu1.Items.push("<h4><span class=\x22fa fa-etsy\x22></span> Entrata<h4/>");
+$rootScope.Menu1.Items.push("<h4><span class=\x22fa fa-bug\x22></span> Submit an issue/suggestion<h4/>");
+$rootScope.Menu1.Class = "list-group ";
+
+$rootScope.Backbutton = {};
+$rootScope.Backbutton.ABRole = 2001;
+$rootScope.Backbutton.Hidden = "";
+$rootScope.Backbutton.Title = "Back Button";
+$rootScope.Backbutton.TabIndex = -1;
+$rootScope.Backbutton.TooltipText = "";
+$rootScope.Backbutton.TooltipPos = "top";
+$rootScope.Backbutton.PopoverText = "";
+$rootScope.Backbutton.PopoverTitle = "";
+$rootScope.Backbutton.PopoverEvent = "mouseenter";
+$rootScope.Backbutton.PopoverPos = "top";
+$rootScope.Backbutton.Badge = "";
+$rootScope.Backbutton.Icon = "";
+$rootScope.Backbutton.Text = "<strong>Go Back</strong>";
+$rootScope.Backbutton.Class = "btn btn-danger btn-md ";
+$rootScope.Backbutton.Disabled = "";
+
+$rootScope.Container1 = {};
+$rootScope.Container1.ABRole = 1001;
+$rootScope.Container1.Hidden = "";
+$rootScope.Container1.Title = "";
+$rootScope.Container1.TooltipText = "";
+$rootScope.Container1.TooltipPos = "top";
+$rootScope.Container1.PopoverText = "";
+$rootScope.Container1.PopoverTitle = "";
+$rootScope.Container1.PopoverEvent = "mouseenter";
+$rootScope.Container1.PopoverPos = "top";
+$rootScope.Container1.Class = "";
+
+$rootScope.HeaderHtml = {};
+$rootScope.HeaderHtml.ABRole = 6001;
+$rootScope.HeaderHtml.Hidden = "";
+$rootScope.HeaderHtml.Class = "ios-inertial-scroll ";
+$rootScope.HeaderHtml.Title = "";
+$rootScope.HeaderHtml.TooltipText = "";
+$rootScope.HeaderHtml.TooltipPos = "top";
+$rootScope.HeaderHtml.PopoverText = "";
+$rootScope.HeaderHtml.PopoverEvent = "mouseenter";
+$rootScope.HeaderHtml.PopoverTitle = "";
+$rootScope.HeaderHtml.PopoverPos = "top";
+
+$rootScope.Variable1Switch = {};
+$rootScope.Variable1Switch.ABRole = 8001;
+$rootScope.Variable1Switch.Hidden = "";
+$rootScope.Variable1Switch.Image = "";
+$rootScope.Variable1Switch.Class = "";
+$rootScope.Variable1Switch.Title = "";
+$rootScope.Variable1Switch.TooltipText = "";
+$rootScope.Variable1Switch.TooltipPos = "top";
+$rootScope.Variable1Switch.PopoverText = "";
+$rootScope.Variable1Switch.PopoverEvent = "mouseenter";
+$rootScope.Variable1Switch.PopoverTitle = "";
+$rootScope.Variable1Switch.PopoverPos = "top";
+
+$rootScope.ResetAll = {};
+$rootScope.ResetAll.ABRole = 2001;
+$rootScope.ResetAll.Hidden = "";
+$rootScope.ResetAll.Title = "";
+$rootScope.ResetAll.TabIndex = -1;
+$rootScope.ResetAll.TooltipText = "";
+$rootScope.ResetAll.TooltipPos = "top";
+$rootScope.ResetAll.PopoverText = "";
+$rootScope.ResetAll.PopoverTitle = "";
+$rootScope.ResetAll.PopoverEvent = "mouseenter";
+$rootScope.ResetAll.PopoverPos = "top";
+$rootScope.ResetAll.Badge = "";
+$rootScope.ResetAll.Icon = "";
+$rootScope.ResetAll.Text = "RESET ALL";
+$rootScope.ResetAll.Class = "btn btn-primary btn-md ";
+$rootScope.ResetAll.Disabled = "";
+
+$rootScope.Button13 = {};
+$rootScope.Button13.ABRole = 2001;
+$rootScope.Button13.Hidden = "";
+$rootScope.Button13.Title = "";
+$rootScope.Button13.TabIndex = -1;
+$rootScope.Button13.TooltipText = "";
+$rootScope.Button13.TooltipPos = "top";
+$rootScope.Button13.PopoverText = "";
+$rootScope.Button13.PopoverTitle = "";
+$rootScope.Button13.PopoverEvent = "mouseenter";
+$rootScope.Button13.PopoverPos = "top";
+$rootScope.Button13.Badge = "";
+$rootScope.Button13.Icon = "";
+$rootScope.Button13.Text = ""+$rootScope.Variable1+"";
+$rootScope.Button13.Class = "btn btn-primary btn-md ";
+$rootScope.Button13.Disabled = "";
+
+$rootScope.Watcher2 = {};
+$rootScope.Watcher2.ABRole = 30003;
+$rootScope.Watcher2.Variable = "";
 
 $rootScope.Image21 = {};
 $rootScope.Image21.ABRole = 8001;
@@ -1624,6 +1785,34 @@ window.App.Ctrls.controller
       
 $rootScope.Music.playing = 0;
 
+if ((window.App.Cordova === undefined) && (window.screen.orientation !== undefined)) {
+  window.screen.orientation.lock("portrait-primary");
+}
+
+$rootScope.StatusBarHide = (window.StatusBar !== undefined) && window.StatusBar.isVisible ? "true" : "false";
+
+$rootScope.FirstRun = $scope.getLocalOption("FirstRunStorage");
+
+if ($rootScope.FirstRun !=  "false" ) {
+
+$rootScope.FirstRun = "false";
+
+$scope.setLocalOption("FirstRunStorage", $rootScope.FirstRun);
+
+$rootScope.FirstRun = "true";
+
+$rootScope.Variable1 = "false";
+
+$scope.setLocalOption("Variable1Storage", $rootScope.Variable1);
+
+}
+
+if ($rootScope.FirstRun ==  "false" ) {
+
+$rootScope.Variable1 = $scope.getLocalOption("Variable1Storage");
+
+}
+
     };
 
     $rootScope.OnAppPause = function () {
@@ -1723,31 +1912,30 @@ angular.element(window.document).ready(function(event){
 angular.element(document.querySelector("body")).addClass($rootScope.App.Theme.toLowerCase());
 });
 
+angular.element(window.document).ready(function(event){
+$rootScope.Main.Event = event;
+
+
+n =  new Date();
+y = n.getFullYear();
+m = n.getMonth() + 1;
+d = n.getDate();
+document.getElementById("date").innerHTML = d;
+
+$rootScope.$apply();
+});
+
 $scope.Image8Click = function($event) {
 $rootScope.Image8.Event = $event;
 
-$scope.openWindow("app/files/CalendarList/index.html", "", "_self");
-
-};
-
-$scope.Image6Click = function($event) {
-$rootScope.Image6.Event = $event;
-
-$scope.openWindow("app/files/MenuDemo/index.html", "", "_self");
+$scope.showModalView("DialogCalendar");
 
 };
 
 $scope.Image4Click = function($event) {
 $rootScope.Image4.Event = $event;
 
-$rootScope.Entrata = $scope.openWindow("https://www.iecc.edu/e4/", "true", "_system");
-
-};
-
-$scope.Image12Click = function($event) {
-$rootScope.Image12.Event = $event;
-
-$rootScope.WVC_Website = $scope.openWindow("https://www.iecc.edu/page.php?page=WVCH", "true", "_system");
+$scope.openWindow("https://www.iecc.edu/e4/", "", "_system");
 
 };
 
@@ -1815,6 +2003,244 @@ $rootScope.Music.onComplete = function() {
 
 $rootScope.Music.onUpdate = function() {
 };
+
+$scope.Image6Click = function($event) {
+$rootScope.Image6.Event = $event;
+
+$scope.openWindow("app/files/MenuDemo/index.html", "", "_self");
+
+};
+
+$scope.Image12Click = function($event) {
+$rootScope.Image12.Event = $event;
+
+$scope.showModalView("DialogWVC");
+
+};
+
+$scope.Image2Click = function($event) {
+$rootScope.Image2.Event = $event;
+
+$scope.replaceView("Settings");
+
+};
+
+$scope.HtmlContent2Click = function($event) {
+$rootScope.HtmlContent2.Event = $event;
+
+$scope.openWindow("app/files/CalendarList/index.html", "", "_self");
+
+};
+
+}]);
+
+window.App.Ctrls.controller("DialogCalendarCtrl", ["$scope", "$rootScope", "$sce", "$timeout", "$interval", "$http", "$uibPosition", "blockUI",
+
+function($scope, $rootScope, $sce, $timeout, $interval, $http, $position, blockUI) {
+
+$rootScope.DialogCalendar = {};
+$rootScope.DialogCalendar.ABView = true;
+
+window.App.DialogCalendar = {};
+window.App.DialogCalendar.Scope = $scope;
+
+$rootScope.Menu2.ItemClick = function(index) {
+  $rootScope.Menu2.ItemIndex = index;
+
+if (""+$rootScope.Menu2.ItemIndex+"" == 0) {
+
+$scope.openWindow("app/files/CalendarList/sections/section1/index.html", "", "_self");
+
+} else if (""+$rootScope.Menu2.ItemIndex+"" == 1) {
+
+$scope.openWindow("app/files/CalendarList/sections/section2/index.html", "", "_self");
+
+} else if (""+$rootScope.Menu2.ItemIndex+"" == 2) {
+
+$scope.openWindow("app/files/CalendarList/sections/section3/index.html", "", "_self");
+
+} else if (""+$rootScope.Menu2.ItemIndex+"" == 3) {
+
+$scope.openWindow("app/files/CalendarList/sections/section4/index.html", "", "_self");
+
+} else if (""+$rootScope.Menu2.ItemIndex+"" == 4) {
+
+$scope.openWindow("app/files/CalendarList/sections/section5/index.html", "", "_self");
+
+} else if (""+$rootScope.Menu2.ItemIndex+"" == 5) {
+
+$scope.alert("(Inactive)", "When this feature is active you will be able to report any errors or issues you have with a specific calendar directly with that calendar\x27s maintainer");
+
+}
+
+};
+
+$scope.Button1Click = function($event) {
+$rootScope.Button1.Event = $event;
+
+$scope.replaceView("Main");
+
+};
+
+}]);
+
+window.App.Ctrls.controller("DialogWVCCtrl", ["$scope", "$rootScope", "$sce", "$timeout", "$interval", "$http", "$uibPosition", "blockUI",
+
+function($scope, $rootScope, $sce, $timeout, $interval, $http, $position, blockUI) {
+
+$rootScope.DialogWVC = {};
+$rootScope.DialogWVC.ABView = true;
+
+window.App.DialogWVC = {};
+window.App.DialogWVC.Scope = $scope;
+
+$rootScope.Menu1.ItemClick = function(index) {
+  $rootScope.Menu1.ItemIndex = index;
+
+if (""+$rootScope.Menu1.ItemIndex+"" == 0) {
+
+$scope.openWindow("app/files/FAQ/index.html", "", "_self");
+
+} else if (""+$rootScope.Menu1.ItemIndex+"" == 1) {
+
+$scope.openWindow("app/files/ContactInfo/index.html", "", "_self");
+
+} else if (""+$rootScope.Menu1.ItemIndex+"" == 2) {
+
+$scope.openWindow("app/files/Calendars/index.html", "", "_self");
+
+} else if (""+$rootScope.Menu1.ItemIndex+"" == 3) {
+
+$scope.openWindow("https://www.iecc.edu/page.php?page=WVCH_PRGM&acad=list&acadc=wvc", "", "_system");
+
+} else if (""+$rootScope.Menu1.ItemIndex+"" == 4) {
+
+$scope.openWindow("https://www.iecc.edu/e4/", "", "_system");
+
+} else if (""+$rootScope.Menu1.ItemIndex+"" == 5) {
+
+$scope.openWindow("https://docs.google.com/forms/d/e/1FAIpQLSdahG3-rJTnijYd_7OGyX8r-fu7yH4Hg3JruvV7sqbbILLpRw/viewform?usp=sf_link", "", "_system");
+
+}
+
+};
+
+$scope.BackbuttonClick = function($event) {
+$rootScope.Backbutton.Event = $event;
+
+$scope.replaceView("Main");
+
+};
+
+}]);
+
+window.App.Ctrls.controller("SettingsCtrl", ["$scope", "$rootScope", "$sce", "$timeout", "$interval", "$http", "$uibPosition", "blockUI",
+
+function($scope, $rootScope, $sce, $timeout, $interval, $http, $position, blockUI) {
+
+$rootScope.Settings = {};
+$rootScope.Settings.ABView = true;
+
+window.App.Settings = {};
+window.App.Settings.Scope = $scope;
+
+angular.element(window.document).ready(function(event){
+$rootScope.Settings.Event = event;
+
+if ($rootScope.Variable1 ==  "false" ) {
+
+document.getElementById("Variable1Switch").setAttribute("src", "app/files/images/vectors/offswitch.svg");
+
+return null;
+
+}
+
+if ($rootScope.Variable1 ==  "true" ) {
+
+document.getElementById("Variable1Switch").setAttribute("src", "app/files/images/vectors/onswitch.svg");
+
+}
+
+if (!angular.isUndefined($rootScope.Watcher2.WatchStop)) { $rootScope.Watcher2.WatchStop(); } $rootScope.Watcher2.WatchStart();
+
+if (!angular.isUndefined($rootScope.Watcher2.WatchStop)) { $rootScope.Watcher2.WatchStop(); } $rootScope.Watcher2.Variable = "Variable1"; $rootScope.Watcher2.WatchStart();
+
+$rootScope.$apply();
+});
+
+$scope.Variable1SwitchClick = function($event) {
+$rootScope.Variable1Switch.Event = $event;
+
+if ($rootScope.Variable1 ==  "false" ) {
+
+$rootScope.Variable1 = "true";
+
+document.getElementById("Variable1Switch").setAttribute("src", "app/files/images/vectors/onswitch.svg");
+
+return null;
+
+}
+
+if ($rootScope.Variable1 ==  "true" ) {
+
+$rootScope.Variable1 = "false";
+
+document.getElementById("Variable1Switch").setAttribute("src", "app/files/images/vectors/offswitch.svg");
+
+}
+
+};
+
+$scope.ResetAllClick = function($event) {
+$rootScope.ResetAll.Event = $event;
+
+$scope.clearLocalOptions();
+
+blockUI.reset(); blockUI.start();
+
+$scope.alert("Close", "App Reset. Please Close and reopen the app.");
+
+};
+
+$scope.Button13Click = function($event) {
+$rootScope.Button13.Event = $event;
+
+if ($rootScope.Variable1 ==  "false" ) {
+
+$rootScope.Variable1 = "true";
+
+return null;
+
+}
+
+if ($rootScope.Variable1 ==  "true" ) {
+
+$rootScope.Variable1 = "false";
+
+}
+
+};
+
+$rootScope.Watcher2.WatchStart = function(){
+
+$rootScope.Watcher2.WatchStop = $rootScope.$watch($rootScope.Watcher2.Variable, function(newValue, oldValue){
+  $rootScope.Watcher2.NewValue = newValue;
+  $rootScope.Watcher2.OldValue = oldValue;
+
+if ($rootScope.Variable1 ==  "false" ) {
+
+document.getElementById("Variable1Switch").setAttribute("src", "app/files/images/vectors/offswitch.svg");
+
+return null;
+
+}
+
+if ($rootScope.Variable1 ==  "true" ) {
+
+document.getElementById("Variable1Switch").setAttribute("src", "app/files/images/vectors/onswitch.svg");
+
+}
+  });};
 
 }]);
 

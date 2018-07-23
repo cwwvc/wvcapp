@@ -783,7 +783,7 @@ $rootScope.Image12.PopoverPos = "top";
 
 $rootScope.Image2 = {};
 $rootScope.Image2.ABRole = 8001;
-$rootScope.Image2.Hidden = "";
+$rootScope.Image2.Hidden = "true";
 $rootScope.Image2.Image = "app/images/settings.png";
 $rootScope.Image2.Class = "";
 $rootScope.Image2.Title = "Social Media";

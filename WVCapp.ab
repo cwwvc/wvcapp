@@ -20,7 +20,7 @@
     <LanguageCode>en</LanguageCode>
     <TextDirection>ltr</TextDirection>
     <Created>2018-05-12T23:05:10.268</Created>
-    <Modified>2018-07-23T11:37:25.424</Modified>
+    <Modified>2018-07-23T12:04:46.395</Modified>
     <BuildNumber>0</BuildNumber>
     <AutoBuildNumber>0</AutoBuildNumber>
     <ReadyEvent>
@@ -274,10 +274,11 @@ ShowDialog "DialogWVC"
           <Left>264</Left>
           <Width>40</Width>
           <Height>48</Height>
+          <Hidden>1</Hidden>
           <Image>Images\settings.png</Image>
           <Title>Social Media</Title>
           <ClickEvent>
-            <![CDATA[ReplaceView "Settings"
+            <![CDATA[//ReplaceView "Settings"
 ]]>
           </ClickEvent>
         </Control>

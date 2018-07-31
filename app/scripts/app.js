@@ -806,6 +806,19 @@ $rootScope.HtmlContent2.PopoverEvent = "mouseenter";
 $rootScope.HtmlContent2.PopoverTitle = "";
 $rootScope.HtmlContent2.PopoverPos = "top";
 
+$rootScope.MusicCover = {};
+$rootScope.MusicCover.ABRole = 8001;
+$rootScope.MusicCover.Hidden = "true";
+$rootScope.MusicCover.Image = "http://myweb.iecc.edu/wvjc/content/ALBUM.JPG";
+$rootScope.MusicCover.Class = "";
+$rootScope.MusicCover.Title = "";
+$rootScope.MusicCover.TooltipText = "";
+$rootScope.MusicCover.TooltipPos = "top";
+$rootScope.MusicCover.PopoverText = "";
+$rootScope.MusicCover.PopoverEvent = "mouseenter";
+$rootScope.MusicCover.PopoverTitle = "";
+$rootScope.MusicCover.PopoverPos = "top";
+
 $rootScope.Menu2 = {};
 $rootScope.Menu2.ABRole = 6003;
 $rootScope.Menu2.Hidden = "";
@@ -1976,11 +1989,15 @@ $rootScope.Music.playing = 1;
 
 setTimeout(function(){$rootScope.Music.API.play();},1);
 
+$rootScope.MusicCover.Hidden = "";
+
 } else {
 
 $rootScope.Music.playing = 0;
 
 $rootScope.Music.API.stop();
+
+$rootScope.MusicCover.Hidden = "true";
 
 }
 
@@ -2007,7 +2024,7 @@ $rootScope.Music.onUpdate = function() {
 $scope.Image6Click = function($event) {
 $rootScope.Image6.Event = $event;
 
-$scope.openWindow("app/files/MenuDemo/index.html", "", "_self");
+$scope.fileDownload("http://myweb.iecc.edu/wvjc/content/ALBUM.JPG", "", "hi.jpg", "", "", (("".length > 0) && angular.isFunction($scope[""])) ? $scope[""] : null, (("".length > 0) && angular.isFunction($scope[""])) ? $scope[""] : null);
 
 };
 
@@ -2021,14 +2038,35 @@ $scope.showModalView("DialogWVC");
 $scope.Image2Click = function($event) {
 $rootScope.Image2.Event = $event;
 
-$scope.replaceView("Settings");
-
 };
 
 $scope.HtmlContent2Click = function($event) {
 $rootScope.HtmlContent2.Event = $event;
 
 $scope.openWindow("app/files/CalendarList/index.html", "", "_self");
+
+};
+
+$scope.MusicCoverClick = function($event) {
+$rootScope.MusicCover.Event = $event;
+
+if ($rootScope.Music.playing == 0) {
+
+$rootScope.Music.playing = 1;
+
+setTimeout(function(){$rootScope.Music.API.play();},1);
+
+$rootScope.MusicCover.Hidden = "";
+
+} else {
+
+$rootScope.Music.playing = 0;
+
+$rootScope.Music.API.stop();
+
+$rootScope.MusicCover.Hidden = "true";
+
+}
 
 };
 

@@ -16,11 +16,11 @@ html, body, .appView { width: 320px; height: 480px; }
 
 #Image8 { position: absolute; top: 128px; left: 120px; width: 88px; height: 96px; }
 
-#Image4 { position: absolute; top: 128px; left: 224px; width: 87px; height: 96px; }
+#Image4 { position: absolute; top: 16px; left: 120px; width: 87px; height: 96px; }
 
 #FAQImage { position: absolute; top: 320px; left: 448px; width: 88px; height: 96px; }
 
-#Map { position: absolute; top: 240px; left: 16px; width: 88px; height: 96px; }
+#Map { position: absolute; top: 128px; left: 224px; width: 88px; height: 96px; }
 
 #Image14 { position: absolute; top: 128px; left: 16px; width: 88px; height: 96px; }
 
@@ -30,7 +30,7 @@ html, body, .appView { width: 320px; height: 480px; }
 
 #Music { position: absolute; top: 16px; left: 352px; width: 88px; height: 96px; }
 
-#Image6 { position: absolute; top: 16px; left: 120px; width: 88px; height: 96px; }
+#Image6 { position: absolute; top: 176px; left: 496px; width: 88px; height: 96px; }
 
 #Image12 { position: absolute; top: 16px; left: 16px; width: 88px; height: 96px; }
 
@@ -58,11 +58,21 @@ html, body, .appView { width: 320px; height: 480px; }
 
 #Button13 { position: absolute; top: 80px; left: 24px; width: 111px; height: 40px; }
 
-#Image21 { position: absolute; top: 0px; left: 0px; width: 320px; height: 480px; }
+#Image21 { position: absolute; top: 0px; left: 8px; width: 320px; height: 480px; }
 
-#Image22 { position: absolute; top: 160px; left: 160px; width: 48px; height: 40px; }
+#Image22 { position: absolute; top: 320px; left: 192px; width: 48px; height: 40px; }
 
-#Button2 { position: absolute; top: 40px; left: 32px; width: 64px; height: 168px; }
+#Button2 { position: absolute; top: 128px; left: 488px; width: 64px; height: 168px; }
+
+#Image20 { position: absolute; top: 80px; left: 256px; width: 48px; height: 40px; }
+
+#Image23 { position: absolute; top: 232px; left: 272px; width: 48px; height: 40px; }
+
+#Image24 { position: absolute; top: 200px; left: 160px; width: 48px; height: 40px; }
+
+#Image25 { position: absolute; top: 280px; left: 128px; width: 48px; height: 40px; }
+
+#Image26 { position: absolute; top: 40px; left: 40px; width: 64px; height: 168px; }
 
 #FeedbackiFrame { position: absolute; top: 0px; left: 0px; width: 320px; height: 432px; }
 

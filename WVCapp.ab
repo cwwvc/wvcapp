@@ -20,7 +20,7 @@
     <LanguageCode>en</LanguageCode>
     <TextDirection>ltr</TextDirection>
     <Created>2018-05-12T23:05:10.268</Created>
-    <Modified>2018-07-30T02:52:42.124</Modified>
+    <Modified>2018-08-02T09:47:18.310</Modified>
     <BuildNumber>0</BuildNumber>
     <AutoBuildNumber>0</AutoBuildNumber>
     <ReadyEvent>
@@ -127,8 +127,8 @@ ShowDialog "DialogCalendar"
         </Control>
         <Control Role="8001">
           <Name>Image4</Name>
-          <Top>128</Top>
-          <Left>224</Left>
+          <Top>16</Top>
+          <Left>120</Left>
           <Width>87</Width>
           <Height>96</Height>
           <Image>Images\entrata.png</Image>
@@ -157,8 +157,8 @@ ShowDialog "DialogCalendar"
         </Control>
         <Control Role="8001">
           <Name>Map</Name>
-          <Top>240</Top>
-          <Left>16</Left>
+          <Top>128</Top>
+          <Left>224</Left>
           <Width>88</Width>
           <Height>96</Height>
           <Image>Images\map-icon1.png</Image>
@@ -219,6 +219,7 @@ If "[Music.playing]" "==" "0"
   SetVar "[Music.playing]" "1" "Number"
   MediaPlay "Music"
   Show "MusicCover"
+  Alert "" "This is meant to play a live stream of the music on 89.1 The Bash but it isn\x27t fully functional yet."
 Else
   SetVar "[Music.playing]" "0" "Number"
   MediaStop "Music"
@@ -238,10 +239,11 @@ EndIf
         </Control>
         <Control Role="8001">
           <Name>Image6</Name>
-          <Top>16</Top>
-          <Left>120</Left>
+          <Top>176</Top>
+          <Left>496</Left>
           <Width>88</Width>
           <Height>96</Height>
+          <Hidden>1</Hidden>
           <Image>Images\WVC-RED-CAFE-BACKUP.png</Image>
           <Title>Red Cafe Menu</Title>
           <ClickEvent>
@@ -597,14 +599,63 @@ EndIf]]>
         <Control Role="8001">
           <Name>Image21</Name>
           <Top>0</Top>
-          <Left>0</Left>
+          <Left>8</Left>
           <Width>320</Width>
           <Height>480</Height>
           <Image>Images\smallCMap.jpg</Image>
         </Control>
         <Control Role="8001">
           <Name>Image22</Name>
-          <Top>160</Top>
+          <Top>320</Top>
+          <Left>192</Left>
+          <Width>48</Width>
+          <Height>40</Height>
+          <Image>Images\pinright.png</Image>
+          <ClickEvent>
+            <![CDATA[OpenWindow "https://www.youtube.com/watch?v=J43D27kabgM" "" "_system" ""
+]]>
+          </ClickEvent>
+        </Control>
+        <Control Role="2001">
+          <Name>Button2</Name>
+          <Top>128</Top>
+          <Left>488</Left>
+          <Width>64</Width>
+          <Height>168</Height>
+          <Hidden>1</Hidden>
+          <Kind>danger</Kind>
+          <ClickEvent>
+            <![CDATA[ReplaceView "Main"
+]]>
+          </ClickEvent>
+        </Control>
+        <Control Role="8001">
+          <Name>Image20</Name>
+          <Top>80</Top>
+          <Left>256</Left>
+          <Width>48</Width>
+          <Height>40</Height>
+          <Image>Images\pinright.png</Image>
+          <ClickEvent>
+            <![CDATA[OpenWindow "https://www.youtube.com/watch?v=8eUd4Ktf0Jo" "" "_system" ""
+]]>
+          </ClickEvent>
+        </Control>
+        <Control Role="8001">
+          <Name>Image23</Name>
+          <Top>232</Top>
+          <Left>272</Left>
+          <Width>48</Width>
+          <Height>40</Height>
+          <Image>Images\pinright.png</Image>
+          <ClickEvent>
+            <![CDATA[OpenWindow "https://www.youtube.com/watch?v=xN3q6LOovuc" "" "_system" ""
+]]>
+          </ClickEvent>
+        </Control>
+        <Control Role="8001">
+          <Name>Image24</Name>
+          <Top>200</Top>
           <Left>160</Left>
           <Width>48</Width>
           <Height>40</Height>
@@ -614,13 +665,26 @@ EndIf]]>
 ]]>
           </ClickEvent>
         </Control>
-        <Control Role="2001">
-          <Name>Button2</Name>
+        <Control Role="8001">
+          <Name>Image25</Name>
+          <Top>280</Top>
+          <Left>128</Left>
+          <Width>48</Width>
+          <Height>40</Height>
+          <Image>Images\pinright.png</Image>
+          <ClickEvent>
+            <![CDATA[OpenWindow "https://www.youtube.com/watch?v=zv30oNZoUIw" "" "_system" ""
+]]>
+          </ClickEvent>
+        </Control>
+        <Control Role="8001">
+          <Name>Image26</Name>
           <Top>40</Top>
-          <Left>32</Left>
+          <Left>40</Left>
           <Width>64</Width>
           <Height>168</Height>
-          <Kind>primary</Kind>
+          <Image>Images\back-button1.png</Image>
+          <Title>Back Button</Title>
           <ClickEvent>
             <![CDATA[ReplaceView "Main"
 ]]>

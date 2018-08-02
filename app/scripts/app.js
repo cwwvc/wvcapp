@@ -757,7 +757,7 @@ $rootScope.Music.Tracks = [];
 
 $rootScope.Image6 = {};
 $rootScope.Image6.ABRole = 8001;
-$rootScope.Image6.Hidden = "";
+$rootScope.Image6.Hidden = "true";
 $rootScope.Image6.Image = "app/images/WVC-RED-CAFE-BACKUP.png";
 $rootScope.Image6.Class = "";
 $rootScope.Image6.Title = "Red Cafe Menu";
@@ -980,7 +980,7 @@ $rootScope.Image22.PopoverPos = "top";
 
 $rootScope.Button2 = {};
 $rootScope.Button2.ABRole = 2001;
-$rootScope.Button2.Hidden = "";
+$rootScope.Button2.Hidden = "true";
 $rootScope.Button2.Title = "";
 $rootScope.Button2.TabIndex = -1;
 $rootScope.Button2.TooltipText = "";
@@ -992,8 +992,73 @@ $rootScope.Button2.PopoverPos = "top";
 $rootScope.Button2.Badge = "";
 $rootScope.Button2.Icon = "";
 $rootScope.Button2.Text = "";
-$rootScope.Button2.Class = "btn btn-primary btn-md ";
+$rootScope.Button2.Class = "btn btn-danger btn-md ";
 $rootScope.Button2.Disabled = "";
+
+$rootScope.Image20 = {};
+$rootScope.Image20.ABRole = 8001;
+$rootScope.Image20.Hidden = "";
+$rootScope.Image20.Image = "app/images/pinright.png";
+$rootScope.Image20.Class = "";
+$rootScope.Image20.Title = "";
+$rootScope.Image20.TooltipText = "";
+$rootScope.Image20.TooltipPos = "top";
+$rootScope.Image20.PopoverText = "";
+$rootScope.Image20.PopoverEvent = "mouseenter";
+$rootScope.Image20.PopoverTitle = "";
+$rootScope.Image20.PopoverPos = "top";
+
+$rootScope.Image23 = {};
+$rootScope.Image23.ABRole = 8001;
+$rootScope.Image23.Hidden = "";
+$rootScope.Image23.Image = "app/images/pinright.png";
+$rootScope.Image23.Class = "";
+$rootScope.Image23.Title = "";
+$rootScope.Image23.TooltipText = "";
+$rootScope.Image23.TooltipPos = "top";
+$rootScope.Image23.PopoverText = "";
+$rootScope.Image23.PopoverEvent = "mouseenter";
+$rootScope.Image23.PopoverTitle = "";
+$rootScope.Image23.PopoverPos = "top";
+
+$rootScope.Image24 = {};
+$rootScope.Image24.ABRole = 8001;
+$rootScope.Image24.Hidden = "";
+$rootScope.Image24.Image = "app/images/pinright.png";
+$rootScope.Image24.Class = "";
+$rootScope.Image24.Title = "";
+$rootScope.Image24.TooltipText = "";
+$rootScope.Image24.TooltipPos = "top";
+$rootScope.Image24.PopoverText = "";
+$rootScope.Image24.PopoverEvent = "mouseenter";
+$rootScope.Image24.PopoverTitle = "";
+$rootScope.Image24.PopoverPos = "top";
+
+$rootScope.Image25 = {};
+$rootScope.Image25.ABRole = 8001;
+$rootScope.Image25.Hidden = "";
+$rootScope.Image25.Image = "app/images/pinright.png";
+$rootScope.Image25.Class = "";
+$rootScope.Image25.Title = "";
+$rootScope.Image25.TooltipText = "";
+$rootScope.Image25.TooltipPos = "top";
+$rootScope.Image25.PopoverText = "";
+$rootScope.Image25.PopoverEvent = "mouseenter";
+$rootScope.Image25.PopoverTitle = "";
+$rootScope.Image25.PopoverPos = "top";
+
+$rootScope.Image26 = {};
+$rootScope.Image26.ABRole = 8001;
+$rootScope.Image26.Hidden = "";
+$rootScope.Image26.Image = "app/images/back-button1.png";
+$rootScope.Image26.Class = "";
+$rootScope.Image26.Title = "Back Button";
+$rootScope.Image26.TooltipText = "";
+$rootScope.Image26.TooltipPos = "top";
+$rootScope.Image26.PopoverText = "";
+$rootScope.Image26.PopoverEvent = "mouseenter";
+$rootScope.Image26.PopoverTitle = "";
+$rootScope.Image26.PopoverPos = "top";
 
 $rootScope.FeedbackiFrame = {};
 $rootScope.FeedbackiFrame.ABRole = 4001;
@@ -1991,6 +2056,8 @@ setTimeout(function(){$rootScope.Music.API.play();},1);
 
 $rootScope.MusicCover.Hidden = "";
 
+$scope.alert("", "This is meant to play a live stream of the music on 89.1 The Bash but it isn\x27t fully functional yet.");
+
 } else {
 
 $rootScope.Music.playing = 0;
@@ -2305,12 +2372,47 @@ $rootScope.$apply();
 $scope.Image22Click = function($event) {
 $rootScope.Image22.Event = $event;
 
-$scope.openWindow("https://youtu.be/QHZJVDzFRks", "", "_system");
+$scope.openWindow("https://www.youtube.com/watch?v=J43D27kabgM", "", "_system");
 
 };
 
 $scope.Button2Click = function($event) {
 $rootScope.Button2.Event = $event;
+
+$scope.replaceView("Main");
+
+};
+
+$scope.Image20Click = function($event) {
+$rootScope.Image20.Event = $event;
+
+$scope.openWindow("https://www.youtube.com/watch?v=8eUd4Ktf0Jo", "", "_system");
+
+};
+
+$scope.Image23Click = function($event) {
+$rootScope.Image23.Event = $event;
+
+$scope.openWindow("https://www.youtube.com/watch?v=xN3q6LOovuc", "", "_system");
+
+};
+
+$scope.Image24Click = function($event) {
+$rootScope.Image24.Event = $event;
+
+$scope.openWindow("https://youtu.be/QHZJVDzFRks", "", "_system");
+
+};
+
+$scope.Image25Click = function($event) {
+$rootScope.Image25.Event = $event;
+
+$scope.openWindow("https://www.youtube.com/watch?v=zv30oNZoUIw", "", "_system");
+
+};
+
+$scope.Image26Click = function($event) {
+$rootScope.Image26.Event = $event;
 
 $scope.replaceView("Main");
 

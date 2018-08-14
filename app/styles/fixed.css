@@ -58,21 +58,29 @@ html, body, .appView { width: 320px; height: 480px; }
 
 #Button13 { position: absolute; top: 80px; left: 24px; width: 111px; height: 40px; }
 
-#Image21 { position: absolute; top: 0px; left: 8px; width: 320px; height: 480px; }
+#BackMap { position: absolute; top: 0px; left: 8px; width: 320px; height: 480px; }
 
-#Image22 { position: absolute; top: 320px; left: 192px; width: 48px; height: 40px; }
+#MainPin { position: absolute; top: 320px; left: 192px; width: 48px; height: 40px; }
 
-#Button2 { position: absolute; top: 128px; left: 488px; width: 64px; height: 168px; }
+#Button2 { position: absolute; top: 88px; left: 472px; width: 64px; height: 168px; }
 
-#Image20 { position: absolute; top: 80px; left: 256px; width: 48px; height: 40px; }
+#FieldPin { position: absolute; top: 80px; left: 256px; width: 48px; height: 40px; }
 
-#Image23 { position: absolute; top: 232px; left: 272px; width: 48px; height: 40px; }
+#PoolPin { position: absolute; top: 232px; left: 272px; width: 48px; height: 40px; }
 
-#Image24 { position: absolute; top: 200px; left: 160px; width: 48px; height: 40px; }
+#SciencePin { position: absolute; top: 200px; left: 160px; width: 48px; height: 40px; }
 
-#Image25 { position: absolute; top: 280px; left: 128px; width: 48px; height: 40px; }
+#CafePin { position: absolute; top: 280px; left: 128px; width: 48px; height: 40px; }
 
-#Image26 { position: absolute; top: 40px; left: 40px; width: 64px; height: 168px; }
+#BackArrow { position: absolute; top: 40px; left: 40px; width: 64px; height: 168px; }
+
+#Button10 { position: absolute; top: 392px; left: 240px; width: 72px; height: 72px; }
+
+#HtmlContent3 { position: absolute; top: 0px; left: 0px; width: 320px; height: 480px; }
+
+#Button3 { position: absolute; top: 424px; left: 216px; width: 88px; height: 40px; }
+
+#HtmlContent4 { position: absolute; top: 96px; left: 184px; width: 320px; height: 480px; }
 
 #FeedbackiFrame { position: absolute; top: 0px; left: 0px; width: 320px; height: 432px; }
 

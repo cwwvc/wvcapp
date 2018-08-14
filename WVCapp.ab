@@ -20,7 +20,7 @@
     <LanguageCode>en</LanguageCode>
     <TextDirection>ltr</TextDirection>
     <Created>2018-05-12T23:05:10.268</Created>
-    <Modified>2018-08-02T09:47:18.310</Modified>
+    <Modified>2018-08-14T13:45:33.789</Modified>
     <BuildNumber>0</BuildNumber>
     <AutoBuildNumber>0</AutoBuildNumber>
     <ReadyEvent>
@@ -393,11 +393,14 @@ EndIf
           <Height>392</Height>
           <Items>
             <![CDATA[<h4><span class="fa fa-question"></span> FAQ<h4/>
-<h4><span class="fa fa-address-card"></span> Important #’s and e-mails<h4/>
+<h4><span class="fa fa-address-card"></span> Important #’s and E-
+mails<h4/>
 <h4><span class="fa fa-calendar"></span> Combined Calendar<h4/>
-<h4><span class="fa fa-graduation-cap"></span> Degree Programs<h4/>
+<h4><span class="fa fa-graduation-cap"></span> Degree 
+Programs<h4/>
 <h4><span class="fa fa-etsy"></span> Entrata<h4/>
-<h4><span class="fa fa-bug"></span> Submit an issue/suggestion<h4/>
+<h4><span class="fa fa-bug"></span> Submit an 
+Issue/Suggestion<h4/>
 ]]>
           </Items>
           <ItemClickEvent>
@@ -597,7 +600,7 @@ EndIf]]>
       </ShowEvent>
       <Controls>
         <Control Role="8001">
-          <Name>Image21</Name>
+          <Name>BackMap</Name>
           <Top>0</Top>
           <Left>8</Left>
           <Width>320</Width>
@@ -605,7 +608,7 @@ EndIf]]>
           <Image>Images\smallCMap.jpg</Image>
         </Control>
         <Control Role="8001">
-          <Name>Image22</Name>
+          <Name>MainPin</Name>
           <Top>320</Top>
           <Left>192</Left>
           <Width>48</Width>
@@ -618,19 +621,19 @@ EndIf]]>
         </Control>
         <Control Role="2001">
           <Name>Button2</Name>
-          <Top>128</Top>
-          <Left>488</Left>
+          <Top>88</Top>
+          <Left>472</Left>
           <Width>64</Width>
           <Height>168</Height>
           <Hidden>1</Hidden>
           <Kind>danger</Kind>
           <ClickEvent>
-            <![CDATA[ReplaceView "Main"
+            <![CDATA[//ReplaceView "Main"
 ]]>
           </ClickEvent>
         </Control>
         <Control Role="8001">
-          <Name>Image20</Name>
+          <Name>FieldPin</Name>
           <Top>80</Top>
           <Left>256</Left>
           <Width>48</Width>
@@ -642,7 +645,7 @@ EndIf]]>
           </ClickEvent>
         </Control>
         <Control Role="8001">
-          <Name>Image23</Name>
+          <Name>PoolPin</Name>
           <Top>232</Top>
           <Left>272</Left>
           <Width>48</Width>
@@ -654,7 +657,7 @@ EndIf]]>
           </ClickEvent>
         </Control>
         <Control Role="8001">
-          <Name>Image24</Name>
+          <Name>SciencePin</Name>
           <Top>200</Top>
           <Left>160</Left>
           <Width>48</Width>
@@ -666,7 +669,7 @@ EndIf]]>
           </ClickEvent>
         </Control>
         <Control Role="8001">
-          <Name>Image25</Name>
+          <Name>CafePin</Name>
           <Top>280</Top>
           <Left>128</Left>
           <Width>48</Width>
@@ -678,7 +681,7 @@ EndIf]]>
           </ClickEvent>
         </Control>
         <Control Role="8001">
-          <Name>Image26</Name>
+          <Name>BackArrow</Name>
           <Top>40</Top>
           <Left>40</Left>
           <Width>64</Width>
@@ -689,6 +692,58 @@ EndIf]]>
             <![CDATA[ReplaceView "Main"
 ]]>
           </ClickEvent>
+        </Control>
+        <Control Role="2001">
+          <Name>Button10</Name>
+          <Top>392</Top>
+          <Left>240</Left>
+          <Width>72</Width>
+          <Height>72</Height>
+          <Hidden>1</Hidden>
+          <Text>
+            <![CDATA[Button10]]>
+          </Text>
+          <Kind>primary</Kind>
+          <ClickEvent>
+            <![CDATA[ReplaceView "CampusMapZoomable"
+]]>
+          </ClickEvent>
+        </Control>
+      </Controls>
+    </View>
+    <View>
+      <Name>CampusMapZoomable</Name>
+      <Controls>
+        <Control Role="6001">
+          <Name>HtmlContent3</Name>
+          <Top>0</Top>
+          <Left>0</Left>
+          <Width>320</Width>
+          <Height>480</Height>
+          <Html>
+            <![CDATA[<img src="app/files/Images/CMap.png" style="width:100%;height:100%;">]]>
+          </Html>
+        </Control>
+        <Control Role="2001">
+          <Name>Button3</Name>
+          <Top>424</Top>
+          <Left>216</Left>
+          <Width>88</Width>
+          <Height>40</Height>
+          <Text>
+            <![CDATA[Button3]]>
+          </Text>
+          <Kind>primary</Kind>
+        </Control>
+        <Control Role="6001">
+          <Name>HtmlContent4</Name>
+          <Top>96</Top>
+          <Left>184</Left>
+          <Width>320</Width>
+          <Height>480</Height>
+          <Html>
+            <![CDATA[<img src="app/files/Images/CMap.png" style="width:100%;height:100%;">]]>
+          </Html>
         </Control>
       </Controls>
     </View>

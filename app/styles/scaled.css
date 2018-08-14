@@ -56,21 +56,29 @@ html, body { width: 320px; height: 480px; }
 
 #Button13 { position: absolute; top: 16.67%; left: 7.50%; width: 34.69%; height: 8.33%; }
 
-#Image21 { position: absolute; top: 0.00%; left: 2.50%; width: 100.00%; height: 100.00%; }
+#BackMap { position: absolute; top: 0.00%; left: 2.50%; width: 100.00%; height: 100.00%; }
 
-#Image22 { position: absolute; top: 66.67%; left: 60.00%; width: 15.00%; height: 8.33%; }
+#MainPin { position: absolute; top: 66.67%; left: 60.00%; width: 15.00%; height: 8.33%; }
 
-#Button2 { position: absolute; top: 26.67%; left: 152.50%; width: 20.00%; height: 35.00%; }
+#Button2 { position: absolute; top: 18.33%; left: 147.50%; width: 20.00%; height: 35.00%; }
 
-#Image20 { position: absolute; top: 16.67%; left: 80.00%; width: 15.00%; height: 8.33%; }
+#FieldPin { position: absolute; top: 16.67%; left: 80.00%; width: 15.00%; height: 8.33%; }
 
-#Image23 { position: absolute; top: 48.33%; left: 85.00%; width: 15.00%; height: 8.33%; }
+#PoolPin { position: absolute; top: 48.33%; left: 85.00%; width: 15.00%; height: 8.33%; }
 
-#Image24 { position: absolute; top: 41.67%; left: 50.00%; width: 15.00%; height: 8.33%; }
+#SciencePin { position: absolute; top: 41.67%; left: 50.00%; width: 15.00%; height: 8.33%; }
 
-#Image25 { position: absolute; top: 58.33%; left: 40.00%; width: 15.00%; height: 8.33%; }
+#CafePin { position: absolute; top: 58.33%; left: 40.00%; width: 15.00%; height: 8.33%; }
 
-#Image26 { position: absolute; top: 8.33%; left: 12.50%; width: 20.00%; height: 35.00%; }
+#BackArrow { position: absolute; top: 8.33%; left: 12.50%; width: 20.00%; height: 35.00%; }
+
+#Button10 { position: absolute; top: 81.67%; left: 75.00%; width: 22.50%; height: 15.00%; }
+
+#HtmlContent3 { position: absolute; top: 0.00%; left: 0.00%; width: 100.00%; height: 100.00%; }
+
+#Button3 { position: absolute; top: 88.33%; left: 67.50%; width: 27.50%; height: 8.33%; }
+
+#HtmlContent4 { position: absolute; top: 20.00%; left: 57.50%; width: 100.00%; height: 100.00%; }
 
 #FeedbackiFrame { position: absolute; top: 0.00%; left: 0.00%; width: 100.00%; height: 90.00%; }
 

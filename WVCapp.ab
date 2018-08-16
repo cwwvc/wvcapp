@@ -20,7 +20,7 @@
     <LanguageCode>en</LanguageCode>
     <TextDirection>ltr</TextDirection>
     <Created>2018-05-12T23:05:10.268</Created>
-    <Modified>2018-08-14T13:45:33.789</Modified>
+    <Modified>2018-08-16T01:11:48.363</Modified>
     <BuildNumber>0</BuildNumber>
     <AutoBuildNumber>0</AutoBuildNumber>
     <ReadyEvent>
@@ -43,10 +43,26 @@ EndIf
 //Load variables from storage
 If "[FirstRun]" "==" "false"
 GetOption "Variable1Storage" "[Variable1]"
-
 EndIf
 
-]]>
+//Prevent users from using Internet Explorer
+//UserAgent "[UserAgent]"
+//If "[UserAgent.browser.name]" "==" "IE"
+//        BlockApp
+//        BlockedText "Internet Explorer is not supported. Please use another browser such as Firefox or Google Chrome"
+//EndIf
+
+
+
+//Prevent users from using Internet Explorer
+UserAgent "[UserAgent]"
+IfEx "([UserAgent.os.name] == "iOS") && ([UserAgent.os.version] < 10)"
+//If "[UserAgent.os.name]" "==" "iOS"
+//   If "[UserAgent.os.version]" "<" "10"
+      BlockApp
+      BlockedText "iOS [UserAgent.os.version] is not supported. Please update to a newer version of iOS."
+//   EndIf
+EndIf]]>
     </ReadyEvent>
     <Metadata />
     <Webapp />
@@ -87,6 +103,7 @@ EndIf
       <Style>background-color: #808080; </Style>
       <ShowEvent>
         <![CDATA[
+
 StartJS
 n =  new Date();
 y = n.getFullYear();
@@ -94,6 +111,7 @@ m = n.getMonth() + 1;
 d = n.getDate();
 document.getElementById("date").innerHTML = d;
 EndJS
+
 ]]>
       </ShowEvent>
       <Controls>
@@ -141,8 +159,8 @@ ShowDialog "DialogCalendar"
         </Control>
         <Control Role="8001">
           <Name>FAQImage</Name>
-          <Top>320</Top>
-          <Left>448</Left>
+          <Top>312</Top>
+          <Left>456</Left>
           <Width>88</Width>
           <Height>96</Height>
           <Hidden>1</Hidden>
@@ -188,8 +206,8 @@ ReplaceView "CampusMap"
         </Control>
         <Control Role="8001">
           <Name>Image13</Name>
-          <Top>320</Top>
-          <Left>616</Left>
+          <Top>312</Top>
+          <Left>600</Left>
           <Width>88</Width>
           <Height>96</Height>
           <Hidden>1</Hidden>
@@ -219,7 +237,7 @@ If "[Music.playing]" "==" "0"
   SetVar "[Music.playing]" "1" "Number"
   MediaPlay "Music"
   Show "MusicCover"
-  Alert "" "This is meant to play a live stream of the music on 89.1 The Bash but it isn\x27t fully functional yet."
+  Alert "" "This is meant to play a live stream of the music on 89.1 The Bash but it isn\x27t fully functional yet. (The displayed album art my be wrong)"
 Else
   SetVar "[Music.playing]" "0" "Number"
   MediaStop "Music"
@@ -240,7 +258,7 @@ EndIf
         <Control Role="8001">
           <Name>Image6</Name>
           <Top>176</Top>
-          <Left>496</Left>
+          <Left>528</Left>
           <Width>88</Width>
           <Height>96</Height>
           <Hidden>1</Hidden>
@@ -272,7 +290,7 @@ ShowDialog "DialogWVC"
         </Control>
         <Control Role="8001">
           <Name>Image2</Name>
-          <Top>344</Top>
+          <Top>240</Top>
           <Left>264</Left>
           <Width>40</Width>
           <Height>48</Height>
@@ -287,7 +305,7 @@ ShowDialog "DialogWVC"
         <Control Role="6001">
           <Name>HtmlContent2</Name>
           <Top>168</Top>
-          <Left>360</Left>
+          <Left>376</Left>
           <Width>40</Width>
           <Height>32</Height>
           <Hidden>1</Hidden>
@@ -321,6 +339,114 @@ Else
 EndIf]]>
           </ClickEvent>
         </Control>
+        <Control Role="6001">
+          <Name>HtmlContent6</Name>
+          <Top>448</Top>
+          <Left>656</Left>
+          <Width>304</Width>
+          <Height>416</Height>
+          <Hidden>1</Hidden>
+          <Html>
+            <![CDATA[
+<strong>Browser name:</strong> [UserAgent.browser.name]
+
+<br />
+
+<strong>Browser version:</strong> [UserAgent.browser.version]
+
+<br />
+
+<strong>Engine name:</strong> [UserAgent.engine.name]
+
+<br />
+
+<strong>Engine version:</strong> [UserAgent.engine.version]
+
+<br />
+
+<strong>Operating System name:</strong> [UserAgent.os.name]
+
+<br />
+
+<strong>Operating System version:</strong> [UserAgent.os.version]
+
+<br />
+
+<strong>CPU architecture:</strong> [UserAgent.cpu.architecture]
+
+<br />
+
+<strong>Device type:</strong> [UserAgent.device.type]
+
+<br />
+
+<strong>Device vendor:</strong> [UserAgent.device.vendor]
+
+<br />
+
+<strong>Device model:</strong> [UserAgent.device.model]
+]]>
+          </Html>
+        </Control>
+        <Control Role="2001">
+          <Name>Button2</Name>
+          <Top>592</Top>
+          <Left>368</Left>
+          <Width>200</Width>
+          <Height>40</Height>
+          <Hidden>1</Hidden>
+          <Text>
+            <![CDATA[Button2]]>
+          </Text>
+          <Kind>primary</Kind>
+          <ClickEvent>
+            <![CDATA[
+
+//UserAgent "[UserAgent]"
+
+//If "[UserAgent.browser.name]" "==" "IE"
+//        BlockApp
+//        BlockedText "Internet Explorer is not supported. Please use another browser such as Firefox or Google Chrome"
+//EndIf
+
+
+
+//UserAgent "[UserAgent]"
+
+
+]]>
+          </ClickEvent>
+        </Control>
+      </Controls>
+    </View>
+    <View>
+      <Name>InfoViewer</Name>
+      <Controls>
+        <Control Role="4001">
+          <Name>iFrameInfoViewer</Name>
+          <Top>0</Top>
+          <Left>0</Left>
+          <Width>320</Width>
+          <Height>480</Height>
+        </Control>
+        <Control Role="2001">
+          <Name>BackButtonz</Name>
+          <Top>416</Top>
+          <Left>248</Left>
+          <Width>56</Width>
+          <Height>40</Height>
+          <Style>opacity: .85; </Style>
+          <Text>
+            <![CDATA[<strong>Back</strong>]]>
+          </Text>
+          <Kind>danger</Kind>
+          <Size>lg</Size>
+          <Title>BackButton</Title>
+          <ClickEvent>
+            <![CDATA[ReplaceView "Main"
+]]>
+          </ClickEvent>
+        </Control>
       </Controls>
     </View>
     <View>
@@ -331,14 +457,14 @@ EndIf]]>
           <Top>0</Top>
           <Left>0</Left>
           <Width>320</Width>
-          <Height>392</Height>
+          <Height>400</Height>
           <Items>
-            <![CDATA[<h4> Athletics<h4/>
-<h4> Events<h4/>
-<h4> Important Dates<h4/>
-<h4> Learning Skills<h4/>
-<h4> Trio SSS<h4/>
-<h4> Error with calendar? (Inactive)<h4/>
+            <![CDATA[<h4>Athletics<h4/>
+<h4>Events<h4/>
+<h4>Important Dates<h4/>
+<h4>Learning Skills<h4/>
+<h4>Trio SSS<h4/>
+<h4>Error with Calendar? (Inactive)<h4/>
 ]]>
           </Items>
           <ItemClickEvent>
@@ -386,21 +512,18 @@ EndIf
       <Name>DialogWVC</Name>
       <Controls>
         <Control Role="6003">
-          <Name>Menu1</Name>
+          <Name>MenuDialogWVC</Name>
           <Top>0</Top>
           <Left>0</Left>
           <Width>320</Width>
-          <Height>392</Height>
+          <Height>400</Height>
           <Items>
             <![CDATA[<h4><span class="fa fa-question"></span> FAQ<h4/>
-<h4><span class="fa fa-address-card"></span> Important #’s and E-
-mails<h4/>
+<h4><span class="fa fa-address-card"></span> Important #’s and E-mails<h4/>
 <h4><span class="fa fa-calendar"></span> Combined Calendar<h4/>
-<h4><span class="fa fa-graduation-cap"></span> Degree 
-Programs<h4/>
+<h4><span class="fa fa-graduation-cap"></span> Degree Programs<h4/>
 <h4><span class="fa fa-etsy"></span> Entrata<h4/>
-<h4><span class="fa fa-bug"></span> Submit an 
-Issue/Suggestion<h4/>
+<h4><span class="fa fa-bug"></span> Submit an Issue/Suggestion<h4/>
 ]]>
           </Items>
           <ItemClickEvent>
@@ -408,19 +531,19 @@ Issue/Suggestion<h4/>
 //AlertBox "hmu" "secondary"
 //AlertBox "2" "primary"
 
-//If "[Menu1.ItemIndex]" "==" "0"
+//If "[MenuDialogWVC.ItemIndex]" "==" "0"
 //ReplaceView "Main"
-If "[Menu1.ItemIndex]" "==" "0"
-OpenWindow "app/files/FAQ/index.html" "" "_self" ""
-ElseIf "[Menu1.ItemIndex]" "==" "1"
+If "[MenuDialogWVC.ItemIndex]" "==" "0"
+ShowDialog "DialogFAQ"
+ElseIf "[MenuDialogWVC.ItemIndex]" "==" "1"
 OpenWindow "app/files/ContactInfo/index.html" "" "_self" ""
-ElseIf "[Menu1.ItemIndex]" "==" "2"
+ElseIf "[MenuDialogWVC.ItemIndex]" "==" "2"
 OpenWindow "app/files/Calendars/index.html" "" "_self" ""
-ElseIf "[Menu1.ItemIndex]" "==" "3"
+ElseIf "[MenuDialogWVC.ItemIndex]" "==" "3"
 OpenWindow "https://www.iecc.edu/page.php?page=WVCH_PRGM&acad=list&acadc=wvc" "" "_system" ""
-ElseIf "[Menu1.ItemIndex]" "==" "4"
+ElseIf "[MenuDialogWVC.ItemIndex]" "==" "4"
 OpenWindow "https://www.iecc.edu/e4/" "" "_system" ""
-ElseIf "[Menu1.ItemIndex]" "==" "5"
+ElseIf "MenuDialogWVC.ItemIndex]" "==" "5"
 OpenWindow "https://docs.google.com/forms/d/e/1FAIpQLSdahG3-rJTnijYd_7OGyX8r-fu7yH4Hg3JruvV7sqbbILLpRw/viewform?usp=sf_link" "" "_system" ""
 EndIf
 
@@ -439,7 +562,62 @@ EndIf
           <Kind>danger</Kind>
           <Title>Back Button</Title>
           <ClickEvent>
-            <![CDATA[ReplaceView "Main"]]>
+            <![CDATA[CloseDialog
+]]>
+          </ClickEvent>
+        </Control>
+      </Controls>
+    </View>
+    <View>
+      <Name>DialogFAQ</Name>
+      <Controls>
+        <Control Role="6003">
+          <Name>MenuFAQ</Name>
+          <Top>0</Top>
+          <Left>0</Left>
+          <Width>320</Width>
+          <Height>400</Height>
+          <Items>
+            <![CDATA[<h4>Financial Aid</span><h4/>
+<h4>Books<h4/>
+<h4>Courses<h4/>
+<h4>Other Assistance<h4/>
+]]>
+          </Items>
+          <ItemClickEvent>
+            <![CDATA[
+//AlertBox "hmu" "secondary"
+//AlertBox "2" "primary"
+
+//If "[Menu1.ItemIndex]" "==" "0"
+//ReplaceView "Main"
+If "[MenuFAQ.ItemIndex]" "==" "0"
+SetVar "[iFrameInfoViewer.Url]" "app/files/FAQ/sections/financialaid/index.html" "String"
+//OpenWindow "app/files/FAQ/sections/financialaid/index.html" "" "_self" ""
+ElseIf "[MenuFAQ.ItemIndex]" "==" "1"
+SetVar "[iFrameInfoViewer.Url]" "app/files/FAQ/sections/books/index.html" "String"
+ElseIf "[MenuFAQ.ItemIndex]" "==" "2"
+SetVar "[iFrameInfoViewer.Url]" "app/files/FAQ/sections/courses/index.html" "String"
+ElseIf "[MenuFAQ.ItemIndex]" "==" "3"
+SetVar "[iFrameInfoViewer.Url]" "app/files/FAQ/sections/otherstuff/index.html" "String"
+EndIf
+ReplaceView "InfoViewer"]]>
+          </ItemClickEvent>
+        </Control>
+        <Control Role="2001">
+          <Name>Button10</Name>
+          <Top>408</Top>
+          <Left>40</Left>
+          <Width>240</Width>
+          <Height>48</Height>
+          <Text>
+            <![CDATA[<strong>Go Back</strong>]]>
+          </Text>
+          <Kind>danger</Kind>
+          <Title>Back Button</Title>
+          <ClickEvent>
+            <![CDATA[CloseDialog
+]]>
           </ClickEvent>
         </Control>
       </Controls>
@@ -599,10 +777,39 @@ EndIf]]>
 ]]>
       </ShowEvent>
       <Controls>
-        <Control Role="8001">
-          <Name>BackMap</Name>
+        <Control Role="4001">
+          <Name>BackFrame</Name>
           <Top>0</Top>
-          <Left>8</Left>
+          <Left>0</Left>
+          <Width>320</Width>
+          <Height>480</Height>
+          <Hidden>1</Hidden>
+          <Url>app/files/Images/mapinpng.html</Url>
+        </Control>
+        <Control Role="6001">
+          <Name>HtmlContent5</Name>
+          <Top>504</Top>
+          <Left>312</Left>
+          <Width>320</Width>
+          <Height>488</Height>
+          <Hidden>1</Hidden>
+          <Html>
+            <![CDATA[<img src="\app\files\Images\MapinJPG.jpg" alt="map">]]>
+          </Html>
+        </Control>
+        <Control Role="8001">
+          <Name>FullMap</Name>
+          <Top>344</Top>
+          <Left>656</Left>
+          <Width>320</Width>
+          <Height>480</Height>
+          <Hidden>1</Hidden>
+          <Image>Images\MapinJPG.jpg</Image>
+        </Control>
+        <Control Role="8001">
+          <Name>TourMap</Name>
+          <Top>0</Top>
+          <Left>0</Left>
           <Width>320</Width>
           <Height>480</Height>
           <Image>Images\smallCMap.jpg</Image>
@@ -610,25 +817,12 @@ EndIf]]>
         <Control Role="8001">
           <Name>MainPin</Name>
           <Top>320</Top>
-          <Left>192</Left>
+          <Left>200</Left>
           <Width>48</Width>
           <Height>40</Height>
           <Image>Images\pinright.png</Image>
           <ClickEvent>
             <![CDATA[OpenWindow "https://www.youtube.com/watch?v=J43D27kabgM" "" "_system" ""
-]]>
-          </ClickEvent>
-        </Control>
-        <Control Role="2001">
-          <Name>Button2</Name>
-          <Top>88</Top>
-          <Left>472</Left>
-          <Width>64</Width>
-          <Height>168</Height>
-          <Hidden>1</Hidden>
-          <Kind>danger</Kind>
-          <ClickEvent>
-            <![CDATA[//ReplaceView "Main"
 ]]>
           </ClickEvent>
         </Control>
@@ -647,7 +841,7 @@ EndIf]]>
         <Control Role="8001">
           <Name>PoolPin</Name>
           <Top>232</Top>
-          <Left>272</Left>
+          <Left>264</Left>
           <Width>48</Width>
           <Height>40</Height>
           <Image>Images\pinright.png</Image>
@@ -658,7 +852,7 @@ EndIf]]>
         </Control>
         <Control Role="8001">
           <Name>SciencePin</Name>
-          <Top>200</Top>
+          <Top>192</Top>
           <Left>160</Left>
           <Width>48</Width>
           <Height>40</Height>
@@ -671,7 +865,7 @@ EndIf]]>
         <Control Role="8001">
           <Name>CafePin</Name>
           <Top>280</Top>
-          <Left>128</Left>
+          <Left>136</Left>
           <Width>48</Width>
           <Height>40</Height>
           <Image>Images\pinright.png</Image>
@@ -682,8 +876,8 @@ EndIf]]>
         </Control>
         <Control Role="8001">
           <Name>BackArrow</Name>
-          <Top>40</Top>
-          <Left>40</Left>
+          <Top>32</Top>
+          <Left>32</Left>
           <Width>64</Width>
           <Height>168</Height>
           <Image>Images\back-button1.png</Image>
@@ -693,19 +887,35 @@ EndIf]]>
 ]]>
           </ClickEvent>
         </Control>
-        <Control Role="2001">
-          <Name>Button10</Name>
-          <Top>392</Top>
-          <Left>240</Left>
-          <Width>72</Width>
-          <Height>72</Height>
-          <Hidden>1</Hidden>
-          <Text>
-            <![CDATA[Button10]]>
-          </Text>
-          <Kind>primary</Kind>
+        <Control Role="8001">
+          <Name>MapToggle</Name>
+          <Top>400</Top>
+          <Left>248</Left>
+          <Width>56</Width>
+          <Height>64</Height>
+          <Image>Images\gear.png</Image>
           <ClickEvent>
-            <![CDATA[ReplaceView "CampusMapZoomable"
+            <![CDATA[If "[TourMap.Hidden]" "!=" "true"
+   Show "BackFrame"
+   Hide "TourMap"
+   Hide "MainPin"
+   Hide "FieldPin"
+   Hide "PoolPin"
+   Hide "SciencePin"
+   Hide "CafePin"
+   Hide "BackArrow"
+   SetStyle "MapToggle" "opacity" ".5"
+Else
+   Hide "BackFrame"
+   Show "TourMap"
+   Show "MainPin"
+   Show "FieldPin"
+   Show "PoolPin"
+   Show "SciencePin"
+   Show "CafePin"
+   Show "BackArrow"
+      SetStyle "MapToggle" "opacity" "1"
+EndIF
 ]]>
           </ClickEvent>
         </Control>

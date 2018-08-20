@@ -1,6 +1,2879 @@
-/*!
+﻿/*!
  * This file is part of App Builder
  * For licenses information see App Builder help
  * ©2018 App Builder - https://www.davidesperalta.com
  */
-window.App={};window.App.Utils=(function(){var a=0;return{strLen:function(b){return b.length},trimStr:function(b){return b.trim()},strSearch:function(c,b){return c.search(b)},splitStr:function(c,b){return c.split(b)},subStr:function(c,e,b){return c.substr(e,b)},strReplace:function(b,e,c){return b.replace(e,c)},strReplaceAll:function(b,e,c){return b.split(e).join(c)},playSound:function(c,b){if(a===0){a=new Audio()}if(a.canPlayType("audio/mpeg")){a.src=c;a.type="audio/mpeg"}else{a.src=b;a.type="audio/ogg"}a.play()},stopSound:function(){a.pause();a.currentTime=0},sleep:function(b){var e=new Date().getTime();for(var c=0;c<10000000;c++){if((new Date().getTime()-e)>b){break}}}}})();window.App.Modal=(function(){var a=[],b=0;return{insert:function(c){b=a.length;a[b]={};a[b].name=c;a[b].instance=null;return a[b]},getCurrent:function(){if(a[b]){return a[b].instance}else{return null}},removeCurrent:function(){a.splice(b,1);b=b-1;b=(b<0)?0:b},closeAll:function(){for(var c=a.length-1;c>=0;c--){a[c].instance.dismiss()}a=[];b=0}}})();window.App.Debugger=(function(){return{exists:function(){return(typeof window.external==="object")&&("hello" in window.external)},log:function(c,a,b){if(window.App.Debugger.exists()){window.external.log(""+c,a||"info",b||0)}else{console.log(c)}},watch:function(c,b,a){if(window.App.Debugger.exists()){if(angular.isArray(b)){window.external.watch("",c,b.toString(),"array")}else{if(angular.isObject(b)){angular.forEach(b,function(g,f){if(!angular.isFunction(g)){try{window.external.watch(c,f,g.toString(),typeof g)}catch(e){}}})}else{if(angular.isString(b)||angular.isNumber(b)){window.external.watch("",c,b.toString(),typeof b)}}}}}}})();window.App.Module=angular.module("AppModule",["ngRoute","ngTouch","ngAnimate","ngSanitize","blockUI","chart.js","ngOnload","ui.bootstrap","angular-canvas-gauge","com.2fdevs.videogular","com.2fdevs.videogular.plugins.controls","AppCtrls"]);window.App.Module.run(function(){window.FastClick.attach(document.body)});window.App.Module.directive("ngImageLoad",["$parse",function(a){return{restrict:"A",link:function(b,e,c){e.bind("load",function(g){var f=a(c.ngImageLoad);f(b,{$event:g})})}}}]);window.App.Module.directive("ngImageError",["$parse",function(a){return{restrict:"A",link:function(b,e,c){e.bind("error",function(g){var f=a(c.ngImageError);f(b,{$event:g})})}}}]);window.App.Module.directive("ngContextMenu",["$parse",function(a){return{restrict:"A",link:function(b,e,c){e.bind("contextmenu",function(g){var f=a(c.ngContextMenu);f(b,{$event:g})})}}}]);window.App.Module.directive("bindFile",[function(){return{restrict:"A",require:"ngModel",link:function(a,c,b,e){c.bind("change",function(f){e.$setViewValue(f.target.files[0]);a.$apply()});a.$watch(function(){return e.$viewValue},function(f){if(!f){c.val("")}})}}}]);window.App.Module.config(["$compileProvider",function(a){a.debugInfoEnabled(window.App.Debugger.exists());a.imgSrcSanitizationWhitelist(/^\s*(https?|blob|ftp|mailto|file|tel|app|data:image|moz-extension|chrome-extension|ms-appdata|ms-appx-web):/)}]);window.App.Module.config(["$httpProvider",function(a){if(!a.defaults.headers.get){a.defaults.headers.get={}}if(!a.defaults.headers.post){a.defaults.headers.post={}}a.defaults.headers.get.Pragma="no-cache";a.defaults.headers.get["Cache-Control"]="no-cache";a.defaults.headers.get["If-Modified-Since"]="Mon, 26 Jul 1997 05:00:00 GMT";a.defaults.headers.post["Content-Type"]=undefined;a.defaults.transformRequest.unshift(function(b){var c=new FormData();angular.forEach(b,function(f,e){c.append(e,f)});return c})}]);window.App.Module.config(["$provide",function(a){a.decorator("$exceptionHandler",["$injector",function(b){return function(e,f){var c=b.get("$rootScope");if(!angular.isUndefined(f)){e.message+=' (caused by "'+f+'")'}c.App.LastError=e.message;c.OnAppError();c.App.LastError="";if(window.App.Debugger.exists()){throw e}else{if(window.console){window.console.error(e)}}}}])}]);window.App.Module.config(["blockUIConfig",function(a){a.delay=0;a.autoBlock=false;a.resetOnException=true;a.message="Please wait";a.autoInjectBodyBlock=false;a.blockBrowserNavigation=true}]);window.App.Module.config(["$routeProvider",function(a){a.otherwise({redirectTo:"/Main"}).when("/Main",{controller:"MainCtrl",templateUrl:"app/views/Main.html"}).when("/InfoViewer",{controller:"InfoViewerCtrl",templateUrl:"app/views/InfoViewer.html"}).when("/DialogCalendar",{controller:"DialogCalendarCtrl",templateUrl:"app/views/DialogCalendar.html"}).when("/DialogWVC",{controller:"DialogWVCCtrl",templateUrl:"app/views/DialogWVC.html"}).when("/DialogFAQ",{controller:"DialogFAQCtrl",templateUrl:"app/views/DialogFAQ.html"}).when("/Settings",{controller:"SettingsCtrl",templateUrl:"app/views/Settings.html"}).when("/CampusMap",{controller:"CampusMapCtrl",templateUrl:"app/views/CampusMap.html"}).when("/CampusMapZoomable",{controller:"CampusMapZoomableCtrl",templateUrl:"app/views/CampusMapZoomable.html"}).when("/FeedbackPage",{controller:"FeedbackPageCtrl",templateUrl:"app/views/FeedbackPage.html"}).when("/SocialMedia",{controller:"SocialMediaCtrl",templateUrl:"app/views/SocialMedia.html"}).when("/Calendar",{controller:"CalendarCtrl",templateUrl:"app/views/Calendar.html"}).when("/FAQView",{controller:"FAQViewCtrl",templateUrl:"app/views/FAQView.html"}).when("/WVCSiteView",{controller:"WVCSiteViewCtrl",templateUrl:"app/views/WVCSiteView.html"}).when("/Feedback",{controller:"FeedbackCtrl",templateUrl:"app/views/Feedback.html"})}]);window.App.Module.service("AppEventsService",["$rootScope",function(l){function q(){window.document.addEventListener("visibilitychange",function(x){if(window.document.hidden){window.App.Event=x;l.OnAppHide();l.$apply()}},false)}function o(){window.document.addEventListener("visibilitychange",function(x){if(!window.document.hidden){window.App.Event=x;l.OnAppShow();l.$apply()}},false)}function k(){window.addEventListener("online",function(x){window.App.Event=x;l.OnAppOnline()},false)}function i(){window.addEventListener("offline",function(x){window.App.Event=x;l.OnAppOffline()},false)}function j(){window.addEventListener("resize",function(x){window.App.Event=x;l.OnAppResize()},false)}function t(){if(!window.App.Cordova){document.addEventListener("pause",function(x){window.App.Event=x;l.OnAppPause();l.$apply()},false)}}function b(){if(window.App.Cordova){angular.element(window.document).ready(function(x){window.App.Event=x;l.OnAppReady()})}else{document.addEventListener("deviceready",function(x){window.App.Event=x;l.OnAppReady()},false)}}function h(){if(!window.App.Cordova){document.addEventListener("resume",function(x){window.App.Event=x;l.OnAppResume();l.$apply()},false)}}function v(){if(!window.App.Cordova){document.addEventListener("backbutton",function(x){window.App.Event=x;l.OnAppBackButton()},false)}}function s(){if(!window.App.Cordova){document.addEventListener("deviceready",function(x){navigator.app.overrideButton("menubutton",true);document.addEventListener("menubutton",function(z){window.App.Event=z;l.OnAppMenuButton()},false)},false)}}function r(){window.addEventListener("orientationchange",function(x){window.App.Event=x;l.OnAppOrientation()},false)}function e(){if(!window.App.Cordova){document.addEventListener("volumeupbutton",function(x){window.App.Event=x;l.OnAppVolumeUpButton()},false)}}function g(){if(!window.App.Cordova){document.addEventListener("volumedownbutton",function(x){window.App.Event=x;l.OnAppVolumeDownButton()},false)}}function w(){document.addEventListener("keyup",function(x){window.App.Event=x;l.OnAppKeyUp()},false)}function u(){document.addEventListener("keydown",function(x){window.App.Event=x;l.OnAppKeyDown()},false)}function a(){document.addEventListener("mouseup",function(x){window.App.Event=x;l.OnAppMouseUp()},false)}function f(){document.addEventListener("mousedown",function(x){window.App.Event=x;l.OnAppMouseDown()},false)}function c(){angular.element(window.document).ready(function(x){l.$on("$locationChangeStart",function(A,z,B){window.App.Event=A;l.App.NextView=z.substring(z.lastIndexOf("/")+1);l.App.PrevView=B.substring(B.lastIndexOf("/")+1);l.OnAppViewChange()})})}function p(){if(window.chrome){window.chrome.runtime.onMessage.addListener(function(A,z,x){l.App.WebExtMessage=A;l.OnAppWebExtensionMsg()})}}return{init:function(){b()}}}]);window.App.Module.service("AppGlobalsService",["$rootScope","$filter",function(a,c){var b=function(){a.App={};var e=function(f,g){Object.defineProperty(a.App,f,{get:g})};e("Online",function(){return navigator.onLine});e("WeekDay",function(){return new Date().getDay()});e("Event",function(){return window.App.Event||""});e("OuterWidth",function(){return window.outerWidth});e("InnerWidth",function(){return window.innerWidth});e("InnerHeight",function(){return window.innerHeight});e("OuterHeight",function(){return window.outerHeight});e("Timestamp",function(){return new Date().getTime()});e("Day",function(){return c("date")(new Date(),"dd")});e("Hour",function(){return c("date")(new Date(),"hh")});e("Week",function(){return c("date")(new Date(),"ww")});e("Month",function(){return c("date")(new Date(),"MM")});e("Year",function(){return c("date")(new Date(),"yyyy")});e("Hour24",function(){return c("date")(new Date(),"HH")});e("Minutes",function(){return c("date")(new Date(),"mm")});e("Seconds",function(){return c("date")(new Date(),"ss")});e("DayShort",function(){return c("date")(new Date(),"d")});e("WeekShort",function(){return c("date")(new Date(),"w")});e("HourShort",function(){return c("date")(new Date(),"h")});e("YearShort",function(){return c("date")(new Date(),"yy")});e("MonthShort",function(){return c("date")(new Date(),"M")});e("Hour24Short",function(){return c("date")(new Date(),"H")});e("Fullscreen",function(){return window.BigScreen.element!==null});e("MinutesShort",function(){return c("date")(new Date(),"m")});e("SecondsShort",function(){return c("date")(new Date(),"s")});e("Milliseconds",function(){return c("date")(new Date(),"sss")});e("Cordova",function(){return angular.isUndefined(window.App.Cordova)?"true":"false"});e("Orientation",function(){return window.innerWidth>=window.innerHeight?"landscape":"portrait"});e("ActiveControl",function(){return(window.document.activeElement!==null)?window.document.activeElement.id:""});a.App.DialogView="";a.App.IdleIsIdling="false";a.App.IdleIsRunning="false";a.App.ID="com.WVCtribe";a.App.Name="WVC App";a.App.ShortName="WVCtribeApp";a.App.Version="1.0.0";a.App.Description="WVC App for WVC services";a.App.AuthorName="Cameron";a.App.AuthorEmail="";a.App.AuthorUrl="";a.App.LanguageCode="en";a.App.TextDirection="ltr";a.App.BuildNumber=0;a.App.Scaled="scaled";a.App.Theme="Default";a.App.Themes=["Default"];if(a.App.Themes.indexOf("Default")==-1){a.App.Themes.push("Default")}};return{init:function(){b()}}}]);window.App.Module.service("AppControlsService",["$rootScope","$http","$sce",function(a,e,b){var c=function(){a.Image11={};a.Image11.ABRole=8001;a.Image11.Hidden="";a.Image11.Image="app/images/stars.jpg";a.Image11.Class="";a.Image11.Title="";a.Image11.TooltipText="";a.Image11.TooltipPos="top";a.Image11.PopoverText="";a.Image11.PopoverEvent="mouseenter";a.Image11.PopoverTitle="";a.Image11.PopoverPos="top";a.Image8={};a.Image8.ABRole=8001;a.Image8.Hidden="";a.Image8.Image="app/images/blank-yourcalendar.png";a.Image8.Class="";a.Image8.Title="Calendars";a.Image8.TooltipText="";a.Image8.TooltipPos="top";a.Image8.PopoverText="";a.Image8.PopoverEvent="mouseenter";a.Image8.PopoverTitle="";a.Image8.PopoverPos="top";a.Image4={};a.Image4.ABRole=8001;a.Image4.Hidden="";a.Image4.Image="app/images/entrata.png";a.Image4.Class="";a.Image4.Title="Entrata";a.Image4.TooltipText="";a.Image4.TooltipPos="top";a.Image4.PopoverText="";a.Image4.PopoverEvent="mouseenter";a.Image4.PopoverTitle="";a.Image4.PopoverPos="top";a.FAQImage={};a.FAQImage.ABRole=8001;a.FAQImage.Hidden="true";a.FAQImage.Image="app/images/FAQback.png";a.FAQImage.Class="";a.FAQImage.Title="Frequently Asked Questons";a.FAQImage.TooltipText="";a.FAQImage.TooltipPos="top";a.FAQImage.PopoverText="";a.FAQImage.PopoverEvent="mouseenter";a.FAQImage.PopoverTitle="";a.FAQImage.PopoverPos="top";a.Map={};a.Map.ABRole=8001;a.Map.Hidden="";a.Map.Image="app/images/map-icon1.png";a.Map.Class="";a.Map.Title="Campus Map";a.Map.TooltipText="";a.Map.TooltipPos="top";a.Map.PopoverText="";a.Map.PopoverEvent="mouseenter";a.Map.PopoverTitle="";a.Map.PopoverPos="top";a.Image14={};a.Image14.ABRole=8001;a.Image14.Hidden="";a.Image14.Image="app/images/peopleback.png";a.Image14.Class="";a.Image14.Title="Social Media";a.Image14.TooltipText="";a.Image14.TooltipPos="top";a.Image14.PopoverText="";a.Image14.PopoverEvent="mouseenter";a.Image14.PopoverTitle="";a.Image14.PopoverPos="top";a.Image13={};a.Image13.ABRole=8001;a.Image13.Hidden="true";a.Image13.Image="app/images/bugback.png";a.Image13.Class="";a.Image13.Title="Submit Feedback";a.Image13.TooltipText="";a.Image13.TooltipPos="top";a.Image13.PopoverText="";a.Image13.PopoverEvent="mouseenter";a.Image13.PopoverTitle="";a.Image13.PopoverPos="top";a.Image15={};a.Image15.ABRole=8001;a.Image15.Hidden="";a.Image15.Image="app/images/bashback2.png";a.Image15.Class="";a.Image15.Title="89.1 The Bash";a.Image15.TooltipText="";a.Image15.TooltipPos="top";a.Image15.PopoverText="";a.Image15.PopoverEvent="mouseenter";a.Image15.PopoverTitle="";a.Image15.PopoverPos="top";a.Music={};a.Music.ABRole=10001;a.Music.Hidden="true";a.Music.Class="videogular-container ";a.Music.Loop=false;a.Music.Autoplay=false;a.Music.Sources=[];a.Music.Sources.push({src:b.trustAsResourceUrl("http://ice7.securenetsystems.net/WVJC?"),type:"video/ogg"});a.Music.Tracks=[];a.Image6={};a.Image6.ABRole=8001;a.Image6.Hidden="true";a.Image6.Image="app/images/WVC-RED-CAFE-BACKUP.png";a.Image6.Class="";a.Image6.Title="Red Cafe Menu";a.Image6.TooltipText="";a.Image6.TooltipPos="top";a.Image6.PopoverText="";a.Image6.PopoverEvent="mouseenter";a.Image6.PopoverTitle="";a.Image6.PopoverPos="top";a.Image12={};a.Image12.ABRole=8001;a.Image12.Hidden="";a.Image12.Image="app/images/logo_WVC.png";a.Image12.Class="";a.Image12.Title="WVC Website";a.Image12.TooltipText="";a.Image12.TooltipPos="top";a.Image12.PopoverText="";a.Image12.PopoverEvent="mouseenter";a.Image12.PopoverTitle="";a.Image12.PopoverPos="top";a.Image2={};a.Image2.ABRole=8001;a.Image2.Hidden="true";a.Image2.Image="app/images/settings.png";a.Image2.Class="";a.Image2.Title="Social Media";a.Image2.TooltipText="";a.Image2.TooltipPos="top";a.Image2.PopoverText="";a.Image2.PopoverEvent="mouseenter";a.Image2.PopoverTitle="";a.Image2.PopoverPos="top";a.HtmlContent2={};a.HtmlContent2.ABRole=6001;a.HtmlContent2.Hidden="true";a.HtmlContent2.Class="ios-inertial-scroll ";a.HtmlContent2.Title="";a.HtmlContent2.TooltipText="";a.HtmlContent2.TooltipPos="top";a.HtmlContent2.PopoverText="";a.HtmlContent2.PopoverEvent="mouseenter";a.HtmlContent2.PopoverTitle="";a.HtmlContent2.PopoverPos="top";a.MusicCover={};a.MusicCover.ABRole=8001;a.MusicCover.Hidden="true";a.MusicCover.Image="http://myweb.iecc.edu/wvjc/content/ALBUM.JPG";a.MusicCover.Class="";a.MusicCover.Title="";a.MusicCover.TooltipText="";a.MusicCover.TooltipPos="top";a.MusicCover.PopoverText="";a.MusicCover.PopoverEvent="mouseenter";a.MusicCover.PopoverTitle="";a.MusicCover.PopoverPos="top";a.HtmlContent6={};a.HtmlContent6.ABRole=6001;a.HtmlContent6.Hidden="true";a.HtmlContent6.Class="ios-inertial-scroll ";a.HtmlContent6.Title="";a.HtmlContent6.TooltipText="";a.HtmlContent6.TooltipPos="top";a.HtmlContent6.PopoverText="";a.HtmlContent6.PopoverEvent="mouseenter";a.HtmlContent6.PopoverTitle="";a.HtmlContent6.PopoverPos="top";a.Button2={};a.Button2.ABRole=2001;a.Button2.Hidden="true";a.Button2.Title="";a.Button2.TabIndex=-1;a.Button2.TooltipText="";a.Button2.TooltipPos="top";a.Button2.PopoverText="";a.Button2.PopoverTitle="";a.Button2.PopoverEvent="mouseenter";a.Button2.PopoverPos="top";a.Button2.Badge="";a.Button2.Icon="";a.Button2.Text="Button2";a.Button2.Class="btn btn-primary btn-md ";a.Button2.Disabled="";a.iFrameInfoViewer={};a.iFrameInfoViewer.ABRole=4001;a.iFrameInfoViewer.Hidden="";a.iFrameInfoViewer.Url="";a.iFrameInfoViewer.Class="ios-iframe-wrapper ";a.BackButtonz={};a.BackButtonz.ABRole=2001;a.BackButtonz.Hidden="";a.BackButtonz.Title="BackButton";a.BackButtonz.TabIndex=-1;a.BackButtonz.TooltipText="";a.BackButtonz.TooltipPos="top";a.BackButtonz.PopoverText="";a.BackButtonz.PopoverTitle="";a.BackButtonz.PopoverEvent="mouseenter";a.BackButtonz.PopoverPos="top";a.BackButtonz.Badge="";a.BackButtonz.Icon="";a.BackButtonz.Text="<strong>Back</strong>";a.BackButtonz.Class="btn btn-danger btn-lg ";a.BackButtonz.Disabled="";a.Menu2={};a.Menu2.ABRole=6003;a.Menu2.Hidden="";a.Menu2.Items=[];a.Menu2.Items.push("<h4>Athletics<h4/>");a.Menu2.Items.push("<h4>Events<h4/>");a.Menu2.Items.push("<h4>Important Dates<h4/>");a.Menu2.Items.push("<h4>Learning Skills<h4/>");a.Menu2.Items.push("<h4>Trio SSS<h4/>");a.Menu2.Items.push("<h4>Error with Calendar? (Inactive)<h4/>");a.Menu2.Class="list-group ";a.Button1={};a.Button1.ABRole=2001;a.Button1.Hidden="";a.Button1.Title="Back Button";a.Button1.TabIndex=-1;a.Button1.TooltipText="";a.Button1.TooltipPos="top";a.Button1.PopoverText="";a.Button1.PopoverTitle="";a.Button1.PopoverEvent="mouseenter";a.Button1.PopoverPos="top";a.Button1.Badge="";a.Button1.Icon="";a.Button1.Text="<strong>Go Back</strong>";a.Button1.Class="btn btn-danger btn-md ";a.Button1.Disabled="";a.MenuDialogWVC={};a.MenuDialogWVC.ABRole=6003;a.MenuDialogWVC.Hidden="";a.MenuDialogWVC.Items=[];a.MenuDialogWVC.Items.push("<h4><span class=\x22fa fa-question\x22></span> FAQ<h4/>");a.MenuDialogWVC.Items.push("<h4><span class=\x22fa fa-address-card\x22></span> Important #’s and E-mails<h4/>");a.MenuDialogWVC.Items.push("<h4><span class=\x22fa fa-calendar\x22></span> Combined Calendar<h4/>");a.MenuDialogWVC.Items.push("<h4><span class=\x22fa fa-graduation-cap\x22></span> Degree Programs<h4/>");a.MenuDialogWVC.Items.push("<h4><span class=\x22fa fa-etsy\x22></span> Entrata<h4/>");a.MenuDialogWVC.Items.push("<h4><span class=\x22fa fa-bug\x22></span> Submit an Issue/Suggestion<h4/>");a.MenuDialogWVC.Class="list-group ";a.Backbutton={};a.Backbutton.ABRole=2001;a.Backbutton.Hidden="";a.Backbutton.Title="Back Button";a.Backbutton.TabIndex=-1;a.Backbutton.TooltipText="";a.Backbutton.TooltipPos="top";a.Backbutton.PopoverText="";a.Backbutton.PopoverTitle="";a.Backbutton.PopoverEvent="mouseenter";a.Backbutton.PopoverPos="top";a.Backbutton.Badge="";a.Backbutton.Icon="";a.Backbutton.Text="<strong>Go Back</strong>";a.Backbutton.Class="btn btn-danger btn-md ";a.Backbutton.Disabled="";a.MenuFAQ={};a.MenuFAQ.ABRole=6003;a.MenuFAQ.Hidden="";a.MenuFAQ.Items=[];a.MenuFAQ.Items.push("<h4>Financial Aid</span><h4/>");a.MenuFAQ.Items.push("<h4>Books<h4/>");a.MenuFAQ.Items.push("<h4>Courses<h4/>");a.MenuFAQ.Items.push("<h4>Other Assistance<h4/>");a.MenuFAQ.Class="list-group ";a.Button10={};a.Button10.ABRole=2001;a.Button10.Hidden="";a.Button10.Title="Back Button";a.Button10.TabIndex=-1;a.Button10.TooltipText="";a.Button10.TooltipPos="top";a.Button10.PopoverText="";a.Button10.PopoverTitle="";a.Button10.PopoverEvent="mouseenter";a.Button10.PopoverPos="top";a.Button10.Badge="";a.Button10.Icon="";a.Button10.Text="<strong>Go Back</strong>";a.Button10.Class="btn btn-danger btn-md ";a.Button10.Disabled="";a.Container1={};a.Container1.ABRole=1001;a.Container1.Hidden="";a.Container1.Title="";a.Container1.TooltipText="";a.Container1.TooltipPos="top";a.Container1.PopoverText="";a.Container1.PopoverTitle="";a.Container1.PopoverEvent="mouseenter";a.Container1.PopoverPos="top";a.Container1.Class="";a.HeaderHtml={};a.HeaderHtml.ABRole=6001;a.HeaderHtml.Hidden="";a.HeaderHtml.Class="ios-inertial-scroll ";a.HeaderHtml.Title="";a.HeaderHtml.TooltipText="";a.HeaderHtml.TooltipPos="top";a.HeaderHtml.PopoverText="";a.HeaderHtml.PopoverEvent="mouseenter";a.HeaderHtml.PopoverTitle="";a.HeaderHtml.PopoverPos="top";a.Variable1Switch={};a.Variable1Switch.ABRole=8001;a.Variable1Switch.Hidden="";a.Variable1Switch.Image="";a.Variable1Switch.Class="";a.Variable1Switch.Title="";a.Variable1Switch.TooltipText="";a.Variable1Switch.TooltipPos="top";a.Variable1Switch.PopoverText="";a.Variable1Switch.PopoverEvent="mouseenter";a.Variable1Switch.PopoverTitle="";a.Variable1Switch.PopoverPos="top";a.ResetAll={};a.ResetAll.ABRole=2001;a.ResetAll.Hidden="";a.ResetAll.Title="";a.ResetAll.TabIndex=-1;a.ResetAll.TooltipText="";a.ResetAll.TooltipPos="top";a.ResetAll.PopoverText="";a.ResetAll.PopoverTitle="";a.ResetAll.PopoverEvent="mouseenter";a.ResetAll.PopoverPos="top";a.ResetAll.Badge="";a.ResetAll.Icon="";a.ResetAll.Text="RESET ALL";a.ResetAll.Class="btn btn-primary btn-md ";a.ResetAll.Disabled="";a.Button13={};a.Button13.ABRole=2001;a.Button13.Hidden="";a.Button13.Title="";a.Button13.TabIndex=-1;a.Button13.TooltipText="";a.Button13.TooltipPos="top";a.Button13.PopoverText="";a.Button13.PopoverTitle="";a.Button13.PopoverEvent="mouseenter";a.Button13.PopoverPos="top";a.Button13.Badge="";a.Button13.Icon="";a.Button13.Text=""+a.Variable1+"";a.Button13.Class="btn btn-primary btn-md ";a.Button13.Disabled="";a.Watcher2={};a.Watcher2.ABRole=30003;a.Watcher2.Variable="";a.BackFrame={};a.BackFrame.ABRole=4001;a.BackFrame.Hidden="true";a.BackFrame.Url="app/files/Images/mapinpng.html";a.BackFrame.Class="ios-iframe-wrapper ";a.HtmlContent5={};a.HtmlContent5.ABRole=6001;a.HtmlContent5.Hidden="true";a.HtmlContent5.Class="ios-inertial-scroll ";a.HtmlContent5.Title="";a.HtmlContent5.TooltipText="";a.HtmlContent5.TooltipPos="top";a.HtmlContent5.PopoverText="";a.HtmlContent5.PopoverEvent="mouseenter";a.HtmlContent5.PopoverTitle="";a.HtmlContent5.PopoverPos="top";a.FullMap={};a.FullMap.ABRole=8001;a.FullMap.Hidden="true";a.FullMap.Image="app/images/MapinJPG.jpg";a.FullMap.Class="";a.FullMap.Title="";a.FullMap.TooltipText="";a.FullMap.TooltipPos="top";a.FullMap.PopoverText="";a.FullMap.PopoverEvent="mouseenter";a.FullMap.PopoverTitle="";a.FullMap.PopoverPos="top";a.TourMap={};a.TourMap.ABRole=8001;a.TourMap.Hidden="";a.TourMap.Image="app/images/smallCMap.jpg";a.TourMap.Class="";a.TourMap.Title="";a.TourMap.TooltipText="";a.TourMap.TooltipPos="top";a.TourMap.PopoverText="";a.TourMap.PopoverEvent="mouseenter";a.TourMap.PopoverTitle="";a.TourMap.PopoverPos="top";a.MainPin={};a.MainPin.ABRole=8001;a.MainPin.Hidden="";a.MainPin.Image="app/images/pinright.png";a.MainPin.Class="";a.MainPin.Title="";a.MainPin.TooltipText="";a.MainPin.TooltipPos="top";a.MainPin.PopoverText="";a.MainPin.PopoverEvent="mouseenter";a.MainPin.PopoverTitle="";a.MainPin.PopoverPos="top";a.FieldPin={};a.FieldPin.ABRole=8001;a.FieldPin.Hidden="";a.FieldPin.Image="app/images/pinright.png";a.FieldPin.Class="";a.FieldPin.Title="";a.FieldPin.TooltipText="";a.FieldPin.TooltipPos="top";a.FieldPin.PopoverText="";a.FieldPin.PopoverEvent="mouseenter";a.FieldPin.PopoverTitle="";a.FieldPin.PopoverPos="top";a.PoolPin={};a.PoolPin.ABRole=8001;a.PoolPin.Hidden="";a.PoolPin.Image="app/images/pinright.png";a.PoolPin.Class="";a.PoolPin.Title="";a.PoolPin.TooltipText="";a.PoolPin.TooltipPos="top";a.PoolPin.PopoverText="";a.PoolPin.PopoverEvent="mouseenter";a.PoolPin.PopoverTitle="";a.PoolPin.PopoverPos="top";a.SciencePin={};a.SciencePin.ABRole=8001;a.SciencePin.Hidden="";a.SciencePin.Image="app/images/pinright.png";a.SciencePin.Class="";a.SciencePin.Title="";a.SciencePin.TooltipText="";a.SciencePin.TooltipPos="top";a.SciencePin.PopoverText="";a.SciencePin.PopoverEvent="mouseenter";a.SciencePin.PopoverTitle="";a.SciencePin.PopoverPos="top";a.CafePin={};a.CafePin.ABRole=8001;a.CafePin.Hidden="";a.CafePin.Image="app/images/pinright.png";a.CafePin.Class="";a.CafePin.Title="";a.CafePin.TooltipText="";a.CafePin.TooltipPos="top";a.CafePin.PopoverText="";a.CafePin.PopoverEvent="mouseenter";a.CafePin.PopoverTitle="";a.CafePin.PopoverPos="top";a.BackArrow={};a.BackArrow.ABRole=8001;a.BackArrow.Hidden="";a.BackArrow.Image="app/images/back-button1.png";a.BackArrow.Class="";a.BackArrow.Title="Back Button";a.BackArrow.TooltipText="";a.BackArrow.TooltipPos="top";a.BackArrow.PopoverText="";a.BackArrow.PopoverEvent="mouseenter";a.BackArrow.PopoverTitle="";a.BackArrow.PopoverPos="top";a.MapToggle={};a.MapToggle.ABRole=8001;a.MapToggle.Hidden="";a.MapToggle.Image="app/images/gear.png";a.MapToggle.Class="";a.MapToggle.Title="";a.MapToggle.TooltipText="";a.MapToggle.TooltipPos="top";a.MapToggle.PopoverText="";a.MapToggle.PopoverEvent="mouseenter";a.MapToggle.PopoverTitle="";a.MapToggle.PopoverPos="top";a.HtmlContent3={};a.HtmlContent3.ABRole=6001;a.HtmlContent3.Hidden="";a.HtmlContent3.Class="ios-inertial-scroll ";a.HtmlContent3.Title="";a.HtmlContent3.TooltipText="";a.HtmlContent3.TooltipPos="top";a.HtmlContent3.PopoverText="";a.HtmlContent3.PopoverEvent="mouseenter";a.HtmlContent3.PopoverTitle="";a.HtmlContent3.PopoverPos="top";a.Button3={};a.Button3.ABRole=2001;a.Button3.Hidden="";a.Button3.Title="";a.Button3.TabIndex=-1;a.Button3.TooltipText="";a.Button3.TooltipPos="top";a.Button3.PopoverText="";a.Button3.PopoverTitle="";a.Button3.PopoverEvent="mouseenter";a.Button3.PopoverPos="top";a.Button3.Badge="";a.Button3.Icon="";a.Button3.Text="Button3";a.Button3.Class="btn btn-primary btn-md ";a.Button3.Disabled="";a.HtmlContent4={};a.HtmlContent4.ABRole=6001;a.HtmlContent4.Hidden="";a.HtmlContent4.Class="ios-inertial-scroll ";a.HtmlContent4.Title="";a.HtmlContent4.TooltipText="";a.HtmlContent4.TooltipPos="top";a.HtmlContent4.PopoverText="";a.HtmlContent4.PopoverEvent="mouseenter";a.HtmlContent4.PopoverTitle="";a.HtmlContent4.PopoverPos="top";a.FeedbackiFrame={};a.FeedbackiFrame.ABRole=4001;a.FeedbackiFrame.Hidden="";a.FeedbackiFrame.Url="https://docs.google.com/forms/d/e/1FAIpQLSdahG3-rJTnijYd_7OGyX8r-fu7yH4Hg3JruvV7sqbbILLpRw/viewform?usp=sf_link?device=mobile";a.FeedbackiFrame.Class="ios-iframe-wrapper ";a.Home={};a.Home.ABRole=2001;a.Home.Hidden="";a.Home.Title="";a.Home.TabIndex=-1;a.Home.TooltipText="";a.Home.TooltipPos="top";a.Home.PopoverText="";a.Home.PopoverTitle="";a.Home.PopoverEvent="mouseenter";a.Home.PopoverPos="top";a.Home.Badge="";a.Home.Icon="";a.Home.Text="Home";a.Home.Class="btn btn-primary btn-md ";a.Home.Disabled="";a.Image16={};a.Image16.ABRole=8001;a.Image16.Hidden="";a.Image16.Image="app/images/stars.jpg";a.Image16.Class="";a.Image16.Title="";a.Image16.TooltipText="";a.Image16.TooltipPos="top";a.Image16.PopoverText="";a.Image16.PopoverEvent="mouseenter";a.Image16.PopoverTitle="";a.Image16.PopoverPos="top";a.Image17={};a.Image17.ABRole=8001;a.Image17.Hidden="";a.Image17.Image="ImagessocialFacebook.png";a.Image17.Class="";a.Image17.Title="";a.Image17.TooltipText="";a.Image17.TooltipPos="top";a.Image17.PopoverText="";a.Image17.PopoverEvent="mouseenter";a.Image17.PopoverTitle="";a.Image17.PopoverPos="top";a.Image18={};a.Image18.ABRole=8001;a.Image18.Hidden="";a.Image18.Image="ImagessocialInstagram.png";a.Image18.Class="";a.Image18.Title="";a.Image18.TooltipText="";a.Image18.TooltipPos="top";a.Image18.PopoverText="";a.Image18.PopoverEvent="mouseenter";a.Image18.PopoverTitle="";a.Image18.PopoverPos="top";a.Image19={};a.Image19.ABRole=8001;a.Image19.Hidden="";a.Image19.Image="ImagessocialTwitter.png";a.Image19.Class="";a.Image19.Title="";a.Image19.TooltipText="";a.Image19.TooltipPos="top";a.Image19.PopoverText="";a.Image19.PopoverEvent="mouseenter";a.Image19.PopoverTitle="";a.Image19.PopoverPos="top";a.Image1={};a.Image1.ABRole=8001;a.Image1.Hidden="";a.Image1.Image="Imagesyourcalendar.png";a.Image1.Class="";a.Image1.Title="";a.Image1.TooltipText="";a.Image1.TooltipPos="top";a.Image1.PopoverText="";a.Image1.PopoverEvent="mouseenter";a.Image1.PopoverTitle="";a.Image1.PopoverPos="top";a.Image3={};a.Image3.ABRole=8001;a.Image3.Hidden="";a.Image3.Image="Imagesyourcalendar.png";a.Image3.Class="";a.Image3.Title="";a.Image3.TooltipText="";a.Image3.TooltipPos="top";a.Image3.PopoverText="";a.Image3.PopoverEvent="mouseenter";a.Image3.PopoverTitle="";a.Image3.PopoverPos="top";a.Image5={};a.Image5.ABRole=8001;a.Image5.Hidden="";a.Image5.Image="Imagesyourcalendar.png";a.Image5.Class="";a.Image5.Title="";a.Image5.TooltipText="";a.Image5.TooltipPos="top";a.Image5.PopoverText="";a.Image5.PopoverEvent="mouseenter";a.Image5.PopoverTitle="";a.Image5.PopoverPos="top";a.Image7={};a.Image7.ABRole=8001;a.Image7.Hidden="";a.Image7.Image="Imagesyourcalendar.png";a.Image7.Class="";a.Image7.Title="";a.Image7.TooltipText="";a.Image7.TooltipPos="top";a.Image7.PopoverText="";a.Image7.PopoverEvent="mouseenter";a.Image7.PopoverTitle="";a.Image7.PopoverPos="top";a.Image9={};a.Image9.ABRole=8001;a.Image9.Hidden="";a.Image9.Image="Imagesyourcalendar.png";a.Image9.Class="";a.Image9.Title="";a.Image9.TooltipText="";a.Image9.TooltipPos="top";a.Image9.PopoverText="";a.Image9.PopoverEvent="mouseenter";a.Image9.PopoverTitle="";a.Image9.PopoverPos="top";a.Image10={};a.Image10.ABRole=8001;a.Image10.Hidden="";a.Image10.Image="Imagesyourcalendar.png";a.Image10.Class="";a.Image10.Title="";a.Image10.TooltipText="";a.Image10.TooltipPos="top";a.Image10.PopoverText="";a.Image10.PopoverEvent="mouseenter";a.Image10.PopoverTitle="";a.Image10.PopoverPos="top";a.FAQiFrame={};a.FAQiFrame.ABRole=4001;a.FAQiFrame.Hidden="";a.FAQiFrame.Url="app/files/FAQ/index.html";a.FAQiFrame.Class="ios-iframe-wrapper ";a.Button8={};a.Button8.ABRole=2001;a.Button8.Hidden="";a.Button8.Title="";a.Button8.TabIndex=-1;a.Button8.TooltipText="";a.Button8.TooltipPos="top";a.Button8.PopoverText="";a.Button8.PopoverTitle="";a.Button8.PopoverEvent="mouseenter";a.Button8.PopoverPos="top";a.Button8.Badge="";a.Button8.Icon="";a.Button8.Text="Home";a.Button8.Class="btn btn-primary btn-md ";a.Button8.Disabled="";a.Button7={};a.Button7.ABRole=2001;a.Button7.Hidden="";a.Button7.Title="";a.Button7.TabIndex=-1;a.Button7.TooltipText="";a.Button7.TooltipPos="top";a.Button7.PopoverText="";a.Button7.PopoverTitle="";a.Button7.PopoverEvent="mouseenter";a.Button7.PopoverPos="top";a.Button7.Badge="";a.Button7.Icon="";a.Button7.Text="Back";a.Button7.Class="btn btn-primary btn-md ";a.Button7.Disabled="";a.Button9={};a.Button9.ABRole=2001;a.Button9.Hidden="";a.Button9.Title="";a.Button9.TabIndex=-1;a.Button9.TooltipText="";a.Button9.TooltipPos="top";a.Button9.PopoverText="";a.Button9.PopoverTitle="";a.Button9.PopoverEvent="mouseenter";a.Button9.PopoverPos="top";a.Button9.Badge="";a.Button9.Icon="";a.Button9.Text="Forward";a.Button9.Class="btn btn-primary btn-md ";a.Button9.Disabled="";a.WVCSiteiFrame={};a.WVCSiteiFrame.ABRole=4001;a.WVCSiteiFrame.Hidden="";a.WVCSiteiFrame.Url="https://www.iecc.edu/page.php?page=WVCH";a.WVCSiteiFrame.Class="ios-iframe-wrapper ";a.Button5={};a.Button5.ABRole=2001;a.Button5.Hidden="";a.Button5.Title="";a.Button5.TabIndex=-1;a.Button5.TooltipText="";a.Button5.TooltipPos="top";a.Button5.PopoverText="";a.Button5.PopoverTitle="";a.Button5.PopoverEvent="mouseenter";a.Button5.PopoverPos="top";a.Button5.Badge="";a.Button5.Icon="";a.Button5.Text="Home";a.Button5.Class="btn btn-primary btn-md ";a.Button5.Disabled="";a.Button4={};a.Button4.ABRole=2001;a.Button4.Hidden="";a.Button4.Title="";a.Button4.TabIndex=-1;a.Button4.TooltipText="";a.Button4.TooltipPos="top";a.Button4.PopoverText="";a.Button4.PopoverTitle="";a.Button4.PopoverEvent="mouseenter";a.Button4.PopoverPos="top";a.Button4.Badge="";a.Button4.Icon="";a.Button4.Text="Back";a.Button4.Class="btn btn-primary btn-md ";a.Button4.Disabled="";a.Button6={};a.Button6.ABRole=2001;a.Button6.Hidden="";a.Button6.Title="";a.Button6.TabIndex=-1;a.Button6.TooltipText="";a.Button6.TooltipPos="top";a.Button6.PopoverText="";a.Button6.PopoverTitle="";a.Button6.PopoverEvent="mouseenter";a.Button6.PopoverPos="top";a.Button6.Badge="";a.Button6.Icon="";a.Button6.Text="Forward";a.Button6.Class="btn btn-primary btn-md ";a.Button6.Disabled="";a.HtmlContent1={};a.HtmlContent1.ABRole=6001;a.HtmlContent1.Hidden="";a.HtmlContent1.Class="ios-inertial-scroll ";a.HtmlContent1.Title="";a.HtmlContent1.TooltipText="";a.HtmlContent1.TooltipPos="top";a.HtmlContent1.PopoverText="";a.HtmlContent1.PopoverEvent="mouseenter";a.HtmlContent1.PopoverTitle="";a.HtmlContent1.PopoverPos="top"};return{init:function(){c()}}}]);window.App.Plugins={};window.App.Module.service("AppPluginsService",["$rootScope",function(b){var a=function(){Object.keys(window.App.Plugins).forEach(function(c){if(angular.isFunction(window.App.Plugins[c])){c=window.App.Plugins[c].call();if(angular.isFunction(c.PluginSetupEvent)){c.PluginSetupEvent()}if(angular.isFunction(c.PluginDocumentReadyEvent)){angular.element(window.document).ready(c.PluginDocumentReadyEvent)}if(angular.isUndefined(window.App.Cordova)&&angular.isFunction(c.PluginAppReadyEvent)){document.addEventListener("deviceready",c.PluginAppReadyEvent,false)}}})};return{init:function(){a()}}}]);window.App.Ctrls=angular.module("AppCtrls",[]);window.App.Ctrls.controller("AppCtrl",["$scope","$rootScope","$location","$uibModal","$http","$sce","$timeout","$window","$document","blockUI","$uibPosition","AppEventsService","AppGlobalsService","AppControlsService","AppPluginsService",function(q,o,j,f,k,l,e,b,g,c,r,p,h,i,a){window.App.Scope=q;window.App.RootScope=o;p.init();h.init();i.init();a.init();q.showView=function(s){window.App.Modal.closeAll();o.App.CurrentView=s;o.App.DialogView="";j.path(s)};q.replaceView=function(s){window.App.Modal.closeAll();o.App.DialogView="";o.App.CurrentView=s;j.path(s).replace()};q.showModalView=function(u,v){var t=null,s=window.App.Modal.insert(u);o.App.DialogView=u;s.instance=f.open({size:"lg",scope:q,keyboard:false,animation:false,backdrop:"static",windowClass:"dialogView",controller:u+"Ctrl",templateUrl:"app/views/"+u+".html"});t=function(w){window.App.Modal.removeCurrent();if(angular.isFunction(v)){v(w)}};s.instance.result.then(function(w){t(w)},function(w){t(w)})};q.closeModalView=function(s){var t=window.App.Modal.getCurrent();o.App.DialogView="";if(t!==null){window.App.Modal.getCurrent().close(s)}};q.loadVariables=function(v){var t=function(A,C){var z="",B=A.indexOf(".");if(B!==-1){z=A.split(".");if(z.length===2){o[z[0].trim()][z[1].trim()]=C}else{if(z.length===3){o[z[0].trim()][z[1].trim()][z[2].trim()]=C}}}else{o[A]=C}};var x="",w="",s=false,v=v||"",u=-1;angular.forEach(v.split("\n"),function(A,z){u=A.indexOf("=");if((A.trim()!=="")&&(A.substr(0,1)!==";")&&(u!==-1)){x=A.substr(0,u).trim();if(x!==""){w=A.substr(u+1,A.length).trim();s=w.substr(0,1)==="|";if(!s){t(x,w)}else{t(x,w.substr(1,w.length).split("|"))}}}})};q.alertBox=function(v,t){var s=t||"info",u=window.App.Modal.insert("builder/views/alertBox.html");u.instance=f.open({size:"lg",scope:q,keyboard:true,animation:false,controller:"AppDialogsCtrl",templateUrl:"builder/views/alertBox.html",resolve:{properties:function(){return{Type:s,Content:v}}}});u.instance.result.then(null,function(){window.App.Modal.removeCurrent()})};q.inputBox=function(t,w,A,v,x,C){var s=null,u=x||"info",z=w||"Ok|Cancel",B=window.App.Modal.insert("builder/views/inputBox.html");o[A]=v;B.instance=f.open({size:"lg",scope:q,keyboard:false,animation:false,backdrop:"static",controller:"AppDialogsCtrl",templateUrl:"builder/views/inputBox.html",resolve:{properties:function(){return{Type:u,Header:t,Buttons:z.split("|"),InputVar:o.inputVar}}}});s=function(D){window.App.Modal.removeCurrent();if(angular.isFunction(C)){C(D,o[A])}};B.instance.result.then(function(D){s(D)},function(D){s(D)})};q.messageBox=function(t,u,w,x,B){var s=null,v=x||"info",z=w||"Ok",A=window.App.Modal.insert("builder/views/messageBox.html");A.instance=f.open({size:"lg",scope:q,keyboard:false,animation:false,backdrop:"static",controller:"AppDialogsCtrl",templateUrl:"builder/views/messageBox.html",resolve:{properties:function(){return{Type:v,Header:t,Content:u,Buttons:z.split("|")}}}});s=function(C){window.App.Modal.removeCurrent();if(angular.isFunction(B)){B(C)}};A.instance.result.then(function(C){s(C)},function(C){s(C)})};q.alert=function(t,s){if(window.App.Cordova||!("notification" in navigator)){window.alert(s)}else{navigator.notification.alert(s,null,t,null)}};q.confirm=function(t,s,u){if(window.App.Cordova||!("notification" in navigator)){u(window.confirm(s))}else{navigator.notification.confirm(s,function(v){u(v===1)},t,null)}};q.prompt=function(u,t,w,v){if(window.App.Cordova||!("notification" in navigator)){var s=window.prompt(t,w);v(s!==null,s)}else{navigator.notification.prompt(t,function(x){v(x.buttonIndex===1,x.input1)},u,null,w)}};q.beep=function(s){if(window.App.Cordova||!("notification" in navigator)){window.App.Utils.playSound("builder/sounds/beep/beep.mp3","builder/sounds/beep/beep.ogg")}else{navigator.notification.beep(s)}};q.vibrate=function(t){if(window.App.Cordova||!("notification" in navigator)){var s=angular.element(document.body);s.addClass("animated shake");setTimeout(function(){s.removeClass("animated shake")},t)}else{navigator.vibrate(t)}};q.setLocalOption=function(s,t){window.localStorage.setItem(s,t)};q.getLocalOption=function(s){return window.localStorage.getItem(s)||""};q.removeLocalOption=function(s){window.localStorage.removeItem(s)};q.clearLocalOptions=function(){window.localStorage.clear()};q.log=function(t,s){window.App.Debugger.log(t,s)};b.TriggerAppOrientationEvent=function(){o.OnAppOrientation();o.$apply()};q.idleStart=function(s){q.idleStop();o.App.IdleIsIdling=false;if(o.App._IdleSeconds!==s){o.App._IdleSeconds=s}g.on("mousemove mousedown mousewheel keydown scroll touchstart touchmove DOMMouseScroll",q._resetIdle);o.App.IdleIsRunning=true;o.App._IdleTimer=setTimeout(function(){o.App.IdleIsIdling=true;o.OnAppIdleStart();q.$apply()},o.App._IdleSeconds*1000)};q._resetIdle=function(){if(o.App.IdleIsIdling){o.OnAppIdleEnd();o.App.IdleIsIdling=false;q.$apply()}q.idleStart(o.App._IdleSeconds)};q.idleStop=function(){g.off("mousemove mousedown mousewheel keydown scroll touchstart touchmove DOMMouseScroll",q._resetIdle);clearTimeout(o.App._IdleTimer);o.App.IdleIsRunning=false};q.trustSrc=function(s){return l.trustAsResourceUrl(s)};q.openWindow=function(t,u,v){var s="location=";if(u){s+="yes"}else{s+="no"}if(window.App.Cordova){s+=", width=500, height=500, resizable=yes, scrollbars=yes"}return window.open(t,v,s)};q.closeWindow=function(s){if(angular.isObject(s)&&angular.isFunction(s.close)){s.close()}};q.fileDownload=function(s,B,v,z,u,x,t){if(window.App.Cordova){if(angular.isFunction(x)){x("-1")}return}var w=new FileTransfer(),A=z.toString()==="true"?cordova.file.dataDirectory:(device.platform.toLowerCase()==="ios")?cordova.file.documentsDirectory:cordova.file.externalRootDirectory;window.resolveLocalFileSystemURL(A,function(C){C.getDirectory(B,{create:true,exclusive:false},function(D){D.getFile(v,{create:true,exclusive:false},function(E){w.download(s,E.toURL(),function(F){if(angular.isFunction(t)){t(F.toURL(),F)}},function(F){if(angular.isFunction(x)){x(4,F)}},false,{headers:angular.isObject(u)?u:{}})},function(E){if(angular.isFunction(x)){x(3,E)}})},function(D){if(angular.isFunction(x)){x(2,D)}})},function(C){if(angular.isFunction(x)){x(1,C)}})};q.BackButton=function(){window.onscroll=function(){t()};function t(){document.getElementById("myBtn").style.display="block"}function s(){window.history.back()}}}]);window.App.Ctrls.controller("AppDialogsCtrl",["$scope","properties",function(a,b){a.Properties=b}]);window.App.Ctrls.controller("AppEventsCtrl",["$scope","$rootScope","$location","$uibModal","$http","$sce","$timeout","$window","$document","blockUI","$uibPosition",function(k,j,g,e,h,i,c,a,f,b,l){j.OnAppHide=function(){};j.OnAppShow=function(){};j.OnAppReady=function(){j.Music.playing=0;if((window.App.Cordova===undefined)&&(window.screen.orientation!==undefined)){window.screen.orientation.lock("portrait-primary")}j.StatusBarHide=(window.StatusBar!==undefined)&&window.StatusBar.isVisible?"true":"false";j.FirstRun=k.getLocalOption("FirstRunStorage");if(j.FirstRun!="false"){j.FirstRun="false";k.setLocalOption("FirstRunStorage",j.FirstRun);j.FirstRun="true";j.Variable1="false";k.setLocalOption("Variable1Storage",j.Variable1)}if(j.FirstRun=="false"){j.Variable1=k.getLocalOption("Variable1Storage")}var o=new UAParser();j.UserAgent=o.getResult();if((j.UserAgent.os.name=="iOS")&&(j.UserAgent.os.version<10)){b.reset();b.start();b.message("iOS "+j.UserAgent.os.version+" is not supported. Please update to a newer version of iOS.")}};j.OnAppPause=function(){};j.OnAppKeyUp=function(){};j.OnAppKeyDown=function(){};j.OnAppMouseUp=function(){};j.OnAppMouseDown=function(){};j.OnAppError=function(){};j.OnAppResize=function(){};j.OnAppResume=function(){};j.OnAppOnline=function(){};j.OnAppOffline=function(){};j.OnAppIdleEnd=function(){};j.OnAppIdleStart=function(){};j.OnAppBackButton=function(){};j.OnAppMenuButton=function(){};j.OnAppViewChange=function(){};j.OnAppOrientation=function(){};j.OnAppVolumeUpButton=function(){};j.OnAppVolumeDownButton=function(){};j.OnAppWebExtensionMsg=function(){}}]);angular.element(window.document).ready(function(){angular.bootstrap(window.document,["AppModule"])});window.App.Ctrls.controller("MainCtrl",["$scope","$rootScope","$sce","$timeout","$interval","$http","$uibPosition","blockUI",function(c,a,b,e,h,i,g,f){a.Main={};a.Main.ABView=true;window.App.Main={};window.App.Main.Scope=c;a.App.CurrentView="Main";angular.element(window.document).ready(function(j){angular.element(document.querySelector("body")).addClass(a.App.Theme.toLowerCase())});angular.element(window.document).ready(function(j){a.Main.Event=j;n=new Date();y=n.getFullYear();m=n.getMonth()+1;d=n.getDate();document.getElementById("date").innerHTML=d;a.$apply()});c.Image8Click=function(j){a.Image8.Event=j;c.showModalView("DialogCalendar")};c.Image4Click=function(j){a.Image4.Event=j;c.openWindow("https://www.iecc.edu/e4/","","_system")};c.FAQImageClick=function(j){a.FAQImage.Event=j;c.openWindow("app/files/FAQ/index.html","","_self")};c.MapClick=function(j){a.Map.Event=j;c.replaceView("CampusMap")};c.Image14Click=function(j){a.Image14.Event=j;c.openWindow("app/files/SocialMedia/index.html","","_self")};c.Image13Click=function(j){a.Image13.Event=j;c.openWindow("https://docs.google.com/forms/d/e/1FAIpQLSdahG3-rJTnijYd_7OGyX8r-fu7yH4Hg3JruvV7sqbbILLpRw/viewform?usp=sf_link","","_system")};c.Image15Click=function(j){a.Image15.Event=j;if(a.Music.playing==0){a.Music.playing=1;setTimeout(function(){a.Music.API.play()},1);a.MusicCover.Hidden="";c.alert("","This is meant to play a live stream of the music on 89.1 The Bash but it isn\x27t fully functional yet. (The displayed album art my be wrong)")}else{a.Music.playing=0;a.Music.API.stop();a.MusicCover.Hidden="true"}};a.Music.onCanPlay=function(){};a.Music.onReady=function(j){a.Music.API=j};a.Music.onError=function(){};a.Music.onComplete=function(){};a.Music.onUpdate=function(){};c.Image6Click=function(j){a.Image6.Event=j;c.fileDownload("http://myweb.iecc.edu/wvjc/content/ALBUM.JPG","","hi.jpg","","",(("".length>0)&&angular.isFunction(c[""]))?c[""]:null,(("".length>0)&&angular.isFunction(c[""]))?c[""]:null)};c.Image12Click=function(j){a.Image12.Event=j;c.showModalView("DialogWVC")};c.Image2Click=function(j){a.Image2.Event=j};c.HtmlContent2Click=function(j){a.HtmlContent2.Event=j;c.openWindow("app/files/CalendarList/index.html","","_self")};c.MusicCoverClick=function(j){a.MusicCover.Event=j;if(a.Music.playing==0){a.Music.playing=1;setTimeout(function(){a.Music.API.play()},1);a.MusicCover.Hidden=""}else{a.Music.playing=0;a.Music.API.stop();a.MusicCover.Hidden="true"}};c.Button2Click=function(j){a.Button2.Event=j}}]);window.App.Ctrls.controller("InfoViewerCtrl",["$scope","$rootScope","$sce","$timeout","$interval","$http","$uibPosition","blockUI",function(c,a,b,e,h,i,g,f){a.InfoViewer={};a.InfoViewer.ABView=true;window.App.InfoViewer={};window.App.InfoViewer.Scope=c;c.BackButtonzClick=function(j){a.BackButtonz.Event=j;c.replaceView("Main")}}]);window.App.Ctrls.controller("DialogCalendarCtrl",["$scope","$rootScope","$sce","$timeout","$interval","$http","$uibPosition","blockUI",function(c,a,b,e,h,i,g,f){a.DialogCalendar={};a.DialogCalendar.ABView=true;window.App.DialogCalendar={};window.App.DialogCalendar.Scope=c;a.Menu2.ItemClick=function(j){a.Menu2.ItemIndex=j;if(""+a.Menu2.ItemIndex+""==0){c.openWindow("app/files/CalendarList/sections/section1/index.html","","_self")}else{if(""+a.Menu2.ItemIndex+""==1){c.openWindow("app/files/CalendarList/sections/section2/index.html","","_self")}else{if(""+a.Menu2.ItemIndex+""==2){c.openWindow("app/files/CalendarList/sections/section3/index.html","","_self")}else{if(""+a.Menu2.ItemIndex+""==3){c.openWindow("app/files/CalendarList/sections/section4/index.html","","_self")}else{if(""+a.Menu2.ItemIndex+""==4){c.openWindow("app/files/CalendarList/sections/section5/index.html","","_self")}else{if(""+a.Menu2.ItemIndex+""==5){c.alert("(Inactive)","When this feature is active you will be able to report any errors or issues you have with a specific calendar directly with that calendar\x27s maintainer")}}}}}}};c.Button1Click=function(j){a.Button1.Event=j;c.replaceView("Main")}}]);window.App.Ctrls.controller("DialogWVCCtrl",["$scope","$rootScope","$sce","$timeout","$interval","$http","$uibPosition","blockUI",function(c,a,b,e,h,i,g,f){a.DialogWVC={};a.DialogWVC.ABView=true;window.App.DialogWVC={};window.App.DialogWVC.Scope=c;a.MenuDialogWVC.ItemClick=function(j){a.MenuDialogWVC.ItemIndex=j;if(""+a.MenuDialogWVC.ItemIndex+""==0){c.showModalView("DialogFAQ")}else{if(""+a.MenuDialogWVC.ItemIndex+""==1){c.openWindow("app/files/ContactInfo/index.html","","_self")}else{if(""+a.MenuDialogWVC.ItemIndex+""==2){c.openWindow("app/files/Calendars/index.html","","_self")}else{if(""+a.MenuDialogWVC.ItemIndex+""==3){c.openWindow("https://www.iecc.edu/page.php?page=WVCH_PRGM&acad=list&acadc=wvc","","_system")}else{if(""+a.MenuDialogWVC.ItemIndex+""==4){c.openWindow("https://www.iecc.edu/e4/","","_system")}else{if("MenuDialogWVC.ItemIndex]"==5){c.openWindow("https://docs.google.com/forms/d/e/1FAIpQLSdahG3-rJTnijYd_7OGyX8r-fu7yH4Hg3JruvV7sqbbILLpRw/viewform?usp=sf_link","","_system")}}}}}}};c.BackbuttonClick=function(j){a.Backbutton.Event=j;c.closeModalView()}}]);window.App.Ctrls.controller("DialogFAQCtrl",["$scope","$rootScope","$sce","$timeout","$interval","$http","$uibPosition","blockUI",function(c,a,b,e,h,i,g,f){a.DialogFAQ={};a.DialogFAQ.ABView=true;window.App.DialogFAQ={};window.App.DialogFAQ.Scope=c;a.MenuFAQ.ItemClick=function(j){a.MenuFAQ.ItemIndex=j;if(""+a.MenuFAQ.ItemIndex+""==0){a.iFrameInfoViewer.Url="app/files/FAQ/sections/financialaid/index.html"}else{if(""+a.MenuFAQ.ItemIndex+""==1){a.iFrameInfoViewer.Url="app/files/FAQ/sections/books/index.html"}else{if(""+a.MenuFAQ.ItemIndex+""==2){a.iFrameInfoViewer.Url="app/files/FAQ/sections/courses/index.html"}else{if(""+a.MenuFAQ.ItemIndex+""==3){a.iFrameInfoViewer.Url="app/files/FAQ/sections/otherstuff/index.html"}}}}c.replaceView("InfoViewer")};c.Button10Click=function(j){a.Button10.Event=j;c.closeModalView()}}]);window.App.Ctrls.controller("SettingsCtrl",["$scope","$rootScope","$sce","$timeout","$interval","$http","$uibPosition","blockUI",function(c,a,b,e,h,i,g,f){a.Settings={};a.Settings.ABView=true;window.App.Settings={};window.App.Settings.Scope=c;angular.element(window.document).ready(function(j){a.Settings.Event=j;if(a.Variable1=="false"){document.getElementById("Variable1Switch").setAttribute("src","app/files/images/vectors/offswitch.svg");return null}if(a.Variable1=="true"){document.getElementById("Variable1Switch").setAttribute("src","app/files/images/vectors/onswitch.svg")}if(!angular.isUndefined(a.Watcher2.WatchStop)){a.Watcher2.WatchStop()}a.Watcher2.WatchStart();if(!angular.isUndefined(a.Watcher2.WatchStop)){a.Watcher2.WatchStop()}a.Watcher2.Variable="Variable1";a.Watcher2.WatchStart();a.$apply()});c.Variable1SwitchClick=function(j){a.Variable1Switch.Event=j;if(a.Variable1=="false"){a.Variable1="true";document.getElementById("Variable1Switch").setAttribute("src","app/files/images/vectors/onswitch.svg");return null}if(a.Variable1=="true"){a.Variable1="false";document.getElementById("Variable1Switch").setAttribute("src","app/files/images/vectors/offswitch.svg")}};c.ResetAllClick=function(j){a.ResetAll.Event=j;c.clearLocalOptions();f.reset();f.start();c.alert("Close","App Reset. Please Close and reopen the app.")};c.Button13Click=function(j){a.Button13.Event=j;if(a.Variable1=="false"){a.Variable1="true";return null}if(a.Variable1=="true"){a.Variable1="false"}};a.Watcher2.WatchStart=function(){a.Watcher2.WatchStop=a.$watch(a.Watcher2.Variable,function(k,j){a.Watcher2.NewValue=k;a.Watcher2.OldValue=j;if(a.Variable1=="false"){document.getElementById("Variable1Switch").setAttribute("src","app/files/images/vectors/offswitch.svg");return null}if(a.Variable1=="true"){document.getElementById("Variable1Switch").setAttribute("src","app/files/images/vectors/onswitch.svg")}})}}]);window.App.Ctrls.controller("CampusMapCtrl",["$scope","$rootScope","$sce","$timeout","$interval","$http","$uibPosition","blockUI",function(c,a,b,e,h,i,g,f){a.CampusMap={};a.CampusMap.ABView=true;window.App.CampusMap={};window.App.CampusMap.Scope=c;angular.element(window.document).ready(function(j){a.CampusMap.Event=j;if((window.App.Cordova===undefined)&&(window.screen.orientation!==undefined)){window.screen.orientation.lock("portrait-primary")}a.$apply()});c.MainPinClick=function(j){a.MainPin.Event=j;c.openWindow("https://www.youtube.com/watch?v=J43D27kabgM","","_system")};c.FieldPinClick=function(j){a.FieldPin.Event=j;c.openWindow("https://www.youtube.com/watch?v=8eUd4Ktf0Jo","","_system")};c.PoolPinClick=function(j){a.PoolPin.Event=j;c.openWindow("https://www.youtube.com/watch?v=xN3q6LOovuc","","_system")};c.SciencePinClick=function(j){a.SciencePin.Event=j;c.openWindow("https://youtu.be/QHZJVDzFRks","","_system")};c.CafePinClick=function(j){a.CafePin.Event=j;c.openWindow("https://www.youtube.com/watch?v=zv30oNZoUIw","","_system")};c.BackArrowClick=function(j){a.BackArrow.Event=j;c.replaceView("Main")};c.MapToggleClick=function(j){a.MapToggle.Event=j;if(a.TourMap.Hidden!="true"){a.BackFrame.Hidden="";a.TourMap.Hidden="true";a.MainPin.Hidden="true";a.FieldPin.Hidden="true";a.PoolPin.Hidden="true";a.SciencePin.Hidden="true";a.CafePin.Hidden="true";a.BackArrow.Hidden="true";angular.element(document.getElementById("MapToggle")).css("opacity",0.5)}else{a.BackFrame.Hidden="true";a.TourMap.Hidden="";a.MainPin.Hidden="";a.FieldPin.Hidden="";a.PoolPin.Hidden="";a.SciencePin.Hidden="";a.CafePin.Hidden="";a.BackArrow.Hidden="";angular.element(document.getElementById("MapToggle")).css("opacity",1)}}}]);window.App.Ctrls.controller("CampusMapZoomableCtrl",["$scope","$rootScope","$sce","$timeout","$interval","$http","$uibPosition","blockUI",function(c,a,b,e,h,i,g,f){a.CampusMapZoomable={};a.CampusMapZoomable.ABView=true;window.App.CampusMapZoomable={};window.App.CampusMapZoomable.Scope=c}]);window.App.Ctrls.controller("FeedbackPageCtrl",["$scope","$rootScope","$sce","$timeout","$interval","$http","$uibPosition","blockUI",function(c,a,b,e,h,i,g,f){a.FeedbackPage={};a.FeedbackPage.ABView=true;window.App.FeedbackPage={};window.App.FeedbackPage.Scope=c;c.HomeClick=function(j){a.Home.Event=j;c.showView("Main")}}]);window.App.Ctrls.controller("SocialMediaCtrl",["$scope","$rootScope","$sce","$timeout","$interval","$http","$uibPosition","blockUI",function(c,a,b,e,h,i,g,f){a.SocialMedia={};a.SocialMedia.ABView=true;window.App.SocialMedia={};window.App.SocialMedia.Scope=c;c.Image17Click=function(j){a.Image17.Event=j};c.Image18Click=function(j){a.Image18.Event=j};c.Image19Click=function(j){a.Image19.Event=j}}]);window.App.Ctrls.controller("CalendarCtrl",["$scope","$rootScope","$sce","$timeout","$interval","$http","$uibPosition","blockUI",function(c,a,b,e,h,i,g,f){a.Calendar={};a.Calendar.ABView=true;window.App.Calendar={};window.App.Calendar.Scope=c;c.Image1Click=function(j){a.Image1.Event=j;c.openWindow("app/files/Calendars/index.html","","_system")};c.Image3Click=function(j){a.Image3.Event=j;c.replaceView("Calendar")};c.Image5Click=function(j){a.Image5.Event=j;c.replaceView("Calendar")};c.Image7Click=function(j){a.Image7.Event=j;c.replaceView("Calendar")};c.Image9Click=function(j){a.Image9.Event=j;c.replaceView("Calendar")};c.Image10Click=function(j){a.Image10.Event=j;c.replaceView("Calendar")}}]);window.App.Ctrls.controller("FAQViewCtrl",["$scope","$rootScope","$sce","$timeout","$interval","$http","$uibPosition","blockUI",function(c,a,b,e,h,i,g,f){a.FAQView={};a.FAQView.ABView=true;window.App.FAQView={};window.App.FAQView.Scope=c;c.Button8Click=function(j){a.Button8.Event=j;c.showView("Main")};c.Button7Click=function(j){a.Button7.Event=j;window.history.back()};c.Button9Click=function(j){a.Button9.Event=j;window.history.forward()}}]);window.App.Ctrls.controller("WVCSiteViewCtrl",["$scope","$rootScope","$sce","$timeout","$interval","$http","$uibPosition","blockUI",function(c,a,b,e,h,i,g,f){a.WVCSiteView={};a.WVCSiteView.ABView=true;window.App.WVCSiteView={};window.App.WVCSiteView.Scope=c;c.Button5Click=function(j){a.Button5.Event=j;c.showView("Main")};c.Button4Click=function(j){a.Button4.Event=j;window.history.back()};c.Button6Click=function(j){a.Button6.Event=j;window.history.forward()}}]);window.App.Ctrls.controller("FeedbackCtrl",["$scope","$rootScope","$sce","$timeout","$interval","$http","$uibPosition","blockUI",function(c,a,b,e,h,i,g,f){a.Feedback={};a.Feedback.ABView=true;window.App.Feedback={};window.App.Feedback.Scope=c}]);
+
+window.App = {};
+
+window.App.Utils = (function () {
+
+  var
+    lastSound = 0;
+
+  return {
+
+    strLen: function (text) {
+      return text.length;
+    },
+
+    trimStr: function (text) {
+      return text.trim();
+    },
+
+    strSearch: function (text, query) {
+      return text.search(query);
+    },
+
+    splitStr: function (text, separator) {
+      return text.split(separator);
+    },
+
+    subStr: function (text, start, count) {
+      return text.substr(start, count);
+    },
+
+    strReplace: function (text, from, to) {
+      return text.replace(from, to);
+    },
+
+    strReplaceAll: function (text, from, to) {
+      return text.split(from).join(to);
+    },
+
+    playSound: function (mp3Url, oggUrl) {
+      if (lastSound === 0) {
+        lastSound = new Audio();
+      }
+      if (lastSound.canPlayType('audio/mpeg')) {
+        lastSound.src = mp3Url;
+        lastSound.type = 'audio/mpeg';
+      } else {
+        lastSound.src = oggUrl;
+        lastSound.type = 'audio/ogg';
+      }
+      lastSound.play();
+    },
+
+    stopSound: function () {
+      lastSound.pause();
+      lastSound.currentTime = 0.0;
+    },
+
+    sleep: function (ms) {
+      var
+        start = new Date().getTime();
+      for (var i = 0; i < 1e7; i++) {
+        if ((new Date().getTime() - start) > ms){
+          break;
+        }
+      }
+    }
+  };
+})();
+
+window.App.Modal = (function () {
+
+  var
+    stack = [],
+    current = 0;
+
+  return {
+
+    insert: function (name) {
+      current = stack.length;
+      stack[current] = {};
+      stack[current].name = name;
+      stack[current].instance = null;
+      return stack[current];
+    },
+
+    getCurrent: function () {
+      if (stack[current]) {
+        return stack[current].instance;
+      } else {
+        return null;
+      }
+    },
+    
+    removeCurrent: function () {
+      stack.splice(current, 1);
+      current = current - 1;
+      current = (current < 0) ? 0 : current;
+    },
+
+    closeAll: function () {
+      for (var i = stack.length-1; i >= 0; i--) {
+        stack[i].instance.dismiss();
+      }
+      stack = [];
+      current = 0;
+    }
+  };
+})();
+
+window.App.Debugger = (function () {
+
+  return {
+
+    exists: function () {
+      return (typeof window.external === 'object')
+       && ('hello' in window.external);
+    },
+
+    log: function (text, aType, lineNum) {
+      if (window.App.Debugger.exists()) {
+        window.external.log('' + text, aType || 'info', lineNum || 0);
+      } else {
+        console.log(text);
+      }
+    },
+
+    watch: function (varName, newValue, oldValue) {
+      if (window.App.Debugger.exists()) {
+        if (angular.isArray(newValue)) {
+          window.external.watch('', varName, newValue.toString(), 'array');
+        } else if (angular.isObject(newValue)) {
+          angular.forEach(newValue, function (value, key) {
+            if (!angular.isFunction (value)) {
+              try {
+                window.external.watch(varName, key, value.toString(), typeof value);
+              } 
+              catch(exception) {}
+            }
+          });
+        } else if (angular.isString(newValue) || angular.isNumber(newValue)) {
+          window.external.watch('', varName, newValue.toString(), typeof newValue);
+        }
+      }
+    }
+  };
+})();
+
+window.App.Module = angular.module
+(
+  'AppModule',
+  [
+    'ngRoute',
+    'ngTouch',
+    'ngAnimate',
+    'ngSanitize',
+    'blockUI',
+    'chart.js',
+    'ngOnload',
+    'ui.bootstrap',
+    'angular-canvas-gauge',
+    'com.2fdevs.videogular',
+    'com.2fdevs.videogular.plugins.controls',
+    'AppCtrls'
+  ]
+);
+
+window.App.Module.run(function () {
+  window.FastClick.attach(document.body);
+});
+
+window.App.Module.directive('ngImageLoad',
+[
+  '$parse',
+
+  function ($parse) {
+    return {
+      restrict: 'A',
+      link: function ($scope, el, attrs) {
+        el.bind('load', function (event) {
+          var 
+            fn = $parse(attrs.ngImageLoad);
+          fn($scope, {$event: event});
+        });
+      }
+    };
+  }
+]);
+
+window.App.Module.directive('ngImageError',
+[
+  '$parse',
+
+  function ($parse) {
+    return {
+      restrict: 'A',
+      link: function ($scope, el, attrs) {
+        el.bind('error', function (event) {
+          var 
+            fn = $parse(attrs.ngImageError);
+          fn($scope, {$event: event});
+        });
+      }
+    };
+  }
+]);
+
+window.App.Module.directive('ngContextMenu',
+[
+  '$parse',
+
+  function ($parse) {
+    return {
+      restrict: 'A',
+      link: function ($scope, el, attrs) {
+        el.bind('contextmenu', function (event) {
+          var
+            fn = $parse(attrs.ngContextMenu);
+          fn($scope, {$event: event});
+        });
+      }
+    };
+  }
+]);
+
+window.App.Module.directive('bindFile',
+[
+  function () {
+    return {
+      restrict: 'A',
+      require: 'ngModel',
+      link: function ($scope, el, attrs, ngModel) {
+        el.bind('change', function (event) {
+          ngModel.$setViewValue(event.target.files[0]);
+          $scope.$apply();
+        });
+
+        $scope.$watch(function () {
+          return ngModel.$viewValue;
+        }, function (value) {
+          if (!value) {
+            el.val('');
+          }
+        });
+      }
+    };
+  }
+]);
+
+window.App.Module.config
+([
+  '$compileProvider',
+
+  function ($compileProvider) {
+    $compileProvider.debugInfoEnabled(window.App.Debugger.exists());
+    $compileProvider.imgSrcSanitizationWhitelist
+     (/^\s*(https?|blob|ftp|mailto|file|tel|app|data:image|moz-extension|chrome-extension|ms-appdata|ms-appx-web):/);
+  }
+]);
+
+window.App.Module.config
+([
+  '$httpProvider',
+
+  function ($httpProvider) {
+    if (!$httpProvider.defaults.headers.get) {
+      $httpProvider.defaults.headers.get = {};
+    }
+    if (!$httpProvider.defaults.headers.post) {
+      $httpProvider.defaults.headers.post = {};
+    }
+    $httpProvider.defaults.headers.get['Pragma'] = 'no-cache';
+    $httpProvider.defaults.headers.get['Cache-Control'] = 'no-cache';
+    $httpProvider.defaults.headers.get['If-Modified-Since'] = 'Mon, 26 Jul 1997 05:00:00 GMT';
+    $httpProvider.defaults.headers.post['Content-Type'] = undefined;
+    $httpProvider.defaults.transformRequest.unshift(function (data) {
+      var
+        frmData = new FormData();
+      angular.forEach(data, function (value, key) {
+        frmData.append(key, value);
+      });
+      return frmData;
+    });
+}]);
+
+window.App.Module.config
+([
+  '$provide',
+
+  function ($provide) {
+    $provide.decorator('$exceptionHandler',
+    ['$injector',
+      function ($injector) {
+        return function (exception, cause) {
+          var
+            $rs = $injector.get('$rootScope');
+
+          if (!angular.isUndefined(cause)) {
+            exception.message += ' (caused by "'+cause+'")';
+          }
+
+          $rs.App.LastError = exception.message;
+          $rs.OnAppError();
+          $rs.App.LastError = '';
+
+          if (window.App.Debugger.exists()) {
+            throw exception;
+          } else {
+            if (window.console) {
+              window.console.error(exception);
+            }
+          }
+        };
+      }
+    ]);
+  }
+]);
+
+window.App.Module.config
+([
+  'blockUIConfig',
+
+  function (blockUIConfig) {
+    blockUIConfig.delay = 0;
+    blockUIConfig.autoBlock = false;
+    blockUIConfig.resetOnException = true;
+    blockUIConfig.message = 'Please wait';
+    blockUIConfig.autoInjectBodyBlock = false;
+    blockUIConfig.blockBrowserNavigation = true;
+  }
+]);
+
+window.App.Module.config
+([
+  '$routeProvider',
+
+  function ($routeProvider) {
+    $routeProvider.otherwise({redirectTo: "/Main"})
+    .when("/Main", {controller: "MainCtrl", templateUrl: "app/views/Main.html"})
+    .when("/InfoViewer", {controller: "InfoViewerCtrl", templateUrl: "app/views/InfoViewer.html"})
+    .when("/DialogCalendar", {controller: "DialogCalendarCtrl", templateUrl: "app/views/DialogCalendar.html"})
+    .when("/DialogWVC", {controller: "DialogWVCCtrl", templateUrl: "app/views/DialogWVC.html"})
+    .when("/DialogFAQ", {controller: "DialogFAQCtrl", templateUrl: "app/views/DialogFAQ.html"})
+    .when("/Settings", {controller: "SettingsCtrl", templateUrl: "app/views/Settings.html"})
+    .when("/CampusMap", {controller: "CampusMapCtrl", templateUrl: "app/views/CampusMap.html"})
+    .when("/CampusMapZoomable", {controller: "CampusMapZoomableCtrl", templateUrl: "app/views/CampusMapZoomable.html"})
+    .when("/FeedbackPage", {controller: "FeedbackPageCtrl", templateUrl: "app/views/FeedbackPage.html"})
+    .when("/SocialMedia", {controller: "SocialMediaCtrl", templateUrl: "app/views/SocialMedia.html"})
+    .when("/Calendar", {controller: "CalendarCtrl", templateUrl: "app/views/Calendar.html"})
+    .when("/FAQView", {controller: "FAQViewCtrl", templateUrl: "app/views/FAQView.html"})
+    .when("/WVCSiteView", {controller: "WVCSiteViewCtrl", templateUrl: "app/views/WVCSiteView.html"})
+    .when("/Feedback", {controller: "FeedbackCtrl", templateUrl: "app/views/Feedback.html"});
+  }
+]);
+
+window.App.Module.service
+(
+  'AppEventsService',
+
+  ['$rootScope',
+
+  function ($rootScope) {
+
+    function setAppHideEvent() {
+      window.document.addEventListener('visibilitychange', function (event) {
+        if (window.document.hidden) {
+          window.App.Event = event;
+          $rootScope.OnAppHide();
+          $rootScope.$apply();
+        }
+      }, false);
+    }
+    
+    function setAppShowEvent() {
+      window.document.addEventListener('visibilitychange', function (event) {
+        if (!window.document.hidden) {
+          window.App.Event = event;
+          $rootScope.OnAppShow();
+          $rootScope.$apply();
+        }
+      }, false);
+    }    
+
+    function setAppOnlineEvent() {
+      window.addEventListener('online', function (event) {
+        window.App.Event = event;
+        $rootScope.OnAppOnline();
+      }, false);
+    }
+
+    function setAppOfflineEvent() {
+      window.addEventListener('offline', function (event) {
+        window.App.Event = event;
+        $rootScope.OnAppOffline();
+      }, false);
+    }
+
+    function setAppResizeEvent() {
+      window.addEventListener('resize', function (event) {
+        window.App.Event = event;
+        $rootScope.OnAppResize();
+      }, false);
+    }
+
+    function setAppPauseEvent() {
+      if (!window.App.Cordova) {
+        document.addEventListener('pause', function (event) {
+          window.App.Event = event;
+          $rootScope.OnAppPause();
+          $rootScope.$apply();
+        }, false);
+      }
+    }
+
+    function setAppReadyEvent() {
+      if (window.App.Cordova) {
+        angular.element(window.document).ready(function (event) {
+          window.App.Event = event;
+          $rootScope.OnAppReady();
+        });
+      } else {
+        document.addEventListener('deviceready', function (event) {
+          window.App.Event = event;
+          $rootScope.OnAppReady();
+        }, false);
+      }
+    }
+
+    function setAppResumeEvent() {
+      if (!window.App.Cordova) {
+        document.addEventListener('resume', function (event) {
+          window.App.Event = event;
+          $rootScope.OnAppResume();
+          $rootScope.$apply();
+        }, false);
+      }
+    }
+
+    function setAppBackButtonEvent() {
+      if (!window.App.Cordova) {
+        document.addEventListener('backbutton', function (event) {
+          window.App.Event = event;
+          $rootScope.OnAppBackButton();
+        }, false);
+      }
+    }
+
+    function setAppMenuButtonEvent() {
+      if (!window.App.Cordova) {
+        document.addEventListener('deviceready', function (event) {
+          // http://stackoverflow.com/q/30309354
+          navigator.app.overrideButton('menubutton', true);
+          document.addEventListener('menubutton', function (event) {
+            window.App.Event = event;
+            $rootScope.OnAppMenuButton();
+          }, false);
+        }, false);
+      }
+    }
+
+    function setAppOrientationEvent() {
+      window.addEventListener('orientationchange', function (event) {
+        window.App.Event = event;
+        $rootScope.OnAppOrientation();
+      }, false);
+    }
+
+    function setAppVolumeUpEvent() {
+      if (!window.App.Cordova) {
+        document.addEventListener('volumeupbutton', function (event) {
+          window.App.Event = event;
+          $rootScope.OnAppVolumeUpButton();
+        }, false);
+      }
+    }
+
+    function setAppVolumeDownEvent() {
+      if (!window.App.Cordova) {
+        document.addEventListener('volumedownbutton', function (event) {
+          window.App.Event = event;
+          $rootScope.OnAppVolumeDownButton();
+        }, false);
+      }
+    }
+
+    function setAppKeyUpEvent() {
+      document.addEventListener('keyup', function (event) {
+        window.App.Event = event;
+        $rootScope.OnAppKeyUp();
+      }, false);
+    }
+
+    function setAppKeyDownEvent() {
+      document.addEventListener('keydown', function (event) {
+        window.App.Event = event;
+        $rootScope.OnAppKeyDown();
+      }, false);
+    }
+
+    function setAppMouseUpEvent() {
+      document.addEventListener('mouseup', function (event) {
+        window.App.Event = event;
+        $rootScope.OnAppMouseUp();
+      }, false);
+    }
+
+    function setAppMouseDownEvent() {
+      document.addEventListener('mousedown', function (event) {
+        window.App.Event = event;
+        $rootScope.OnAppMouseDown();
+      }, false);
+    }
+
+    function setAppViewChangeEvent() {
+      angular.element(window.document).ready(function (event) {
+        $rootScope.$on('$locationChangeStart', function (event, next, current) {
+          window.App.Event = event;
+          $rootScope.App.NextView = next.substring(next.lastIndexOf('/') + 1);
+          $rootScope.App.PrevView = current.substring(current.lastIndexOf('/') + 1);
+          $rootScope.OnAppViewChange();
+        });
+      });
+    }
+    
+    function setAppWebExtMsgEvent() {
+      if (window.chrome) {
+        window.chrome.runtime.onMessage.addListener(function (message, sender, responseFunc) {
+          $rootScope.App.WebExtMessage = message;
+          $rootScope.OnAppWebExtensionMsg();
+        });
+      }    
+    }    
+
+    return {
+      init : function () {
+        //setAppHideEvent();
+        //setAppShowEvent();
+        setAppReadyEvent();
+        //setAppPauseEvent();
+        //setAppKeyUpEvent();
+        //setAppResumeEvent();
+        //setAppResizeEvent();
+        //setAppOnlineEvent();
+        //setAppKeyDownEvent();
+        //setAppMouseUpEvent();
+        //setAppOfflineEvent();
+        //setAppVolumeUpEvent();
+        //setAppMouseDownEvent();
+        //setAppVolumeDownEvent();
+        //setAppBackButtonEvent();
+        //setAppMenuButtonEvent();
+        //setAppViewChangeEvent();
+        //setAppOrientationEvent();
+        //setAppWebExtMsgEvent();
+      }
+    };
+  }
+]);
+
+window.App.Module.service
+(
+  'AppGlobalsService',
+
+  ['$rootScope', '$filter',
+
+  function ($rootScope, $filter) {
+
+    var setGlobals = function () {    
+      $rootScope.App = {};
+      var s = function (name, method) {
+        Object.defineProperty($rootScope.App, name, { get: method });
+      };      
+      s('Online', function () { return navigator.onLine; });
+      s('WeekDay', function () { return new Date().getDay(); });
+      s('Event', function () { return window.App.Event || ''; });
+      s('OuterWidth', function () { return window.outerWidth; });
+      s('InnerWidth', function () { return window.innerWidth; });
+      s('InnerHeight', function () { return window.innerHeight; });
+      s('OuterHeight', function () { return window.outerHeight; });
+      s('Timestamp', function () { return new Date().getTime(); });
+      s('Day', function () { return $filter('date')(new Date(), 'dd'); });
+      s('Hour', function () { return $filter('date')(new Date(), 'hh'); });
+      s('Week', function () { return $filter('date')(new Date(), 'ww'); });
+      s('Month', function () { return $filter('date')(new Date(), 'MM'); });
+      s('Year', function () { return $filter('date')(new Date(), 'yyyy'); });
+      s('Hour24', function () { return $filter('date')(new Date(), 'HH'); });
+      s('Minutes', function () { return $filter('date')(new Date(), 'mm'); });
+      s('Seconds', function () { return $filter('date')(new Date(), 'ss'); });
+      s('DayShort', function () { return $filter('date')(new Date(), 'd'); });
+      s('WeekShort', function () { return $filter('date')(new Date(), 'w'); });
+      s('HourShort', function () { return $filter('date')(new Date(), 'h'); });
+      s('YearShort', function () { return $filter('date')(new Date(), 'yy'); });
+      s('MonthShort', function () { return $filter('date')(new Date(), 'M'); });
+      s('Hour24Short', function () { return $filter('date')(new Date(), 'H'); });
+      s('Fullscreen', function () { return window.BigScreen.element !== null; });
+      s('MinutesShort', function () { return $filter('date')(new Date(), 'm'); });
+      s('SecondsShort', function () { return $filter('date')(new Date(), 's'); });
+      s('Milliseconds', function () { return $filter('date')(new Date(), 'sss'); });
+      s('Cordova', function () {  return angular.isUndefined(window.App.Cordova) ? 'true' : 'false'; });
+      s('Orientation', function () { return window.innerWidth >= window.innerHeight ? 'landscape' : 'portrait'; });
+      s('ActiveControl', function () { return (window.document.activeElement !== null) ? window.document.activeElement.id : ''; });
+
+      
+$rootScope.App.DialogView = "";
+$rootScope.App.IdleIsIdling = "false";
+$rootScope.App.IdleIsRunning = "false";
+$rootScope.App.ID = "com.WVCtribe";
+$rootScope.App.Name = "WVC App";
+$rootScope.App.ShortName = "WVCtribeApp";
+$rootScope.App.Version = "1.0.0";
+$rootScope.App.Description = "WVC App for WVC services";
+$rootScope.App.AuthorName = "Cameron";
+$rootScope.App.AuthorEmail = "";
+$rootScope.App.AuthorUrl = "";
+$rootScope.App.LanguageCode = "en";
+$rootScope.App.TextDirection = "ltr";
+$rootScope.App.BuildNumber = 0;
+$rootScope.App.Scaled = "scaled";
+$rootScope.App.Theme = "Default";
+$rootScope.App.Themes = ["Default"];
+if ($rootScope.App.Themes.indexOf("Default") == -1) { $rootScope.App.Themes.push("Default"); }
+    };
+
+    return {
+      init : function () {
+        setGlobals();
+      }
+    };
+  }
+]);
+
+window.App.Module.service
+(
+  'AppControlsService',
+
+  ['$rootScope', '$http', '$sce',
+
+  function ($rootScope, $http, $sce) {
+
+    var setControlVars = function () {
+      
+
+$rootScope.Image11 = {};
+$rootScope.Image11.ABRole = 8001;
+$rootScope.Image11.Hidden = "";
+$rootScope.Image11.Image = "app/images/stars.jpg";
+$rootScope.Image11.Class = "";
+$rootScope.Image11.Title = "";
+$rootScope.Image11.TooltipText = "";
+$rootScope.Image11.TooltipPos = "top";
+$rootScope.Image11.PopoverText = "";
+$rootScope.Image11.PopoverEvent = "mouseenter";
+$rootScope.Image11.PopoverTitle = "";
+$rootScope.Image11.PopoverPos = "top";
+
+$rootScope.Image8 = {};
+$rootScope.Image8.ABRole = 8001;
+$rootScope.Image8.Hidden = "";
+$rootScope.Image8.Image = "app/images/blank-yourcalendar.png";
+$rootScope.Image8.Class = "";
+$rootScope.Image8.Title = "Calendars";
+$rootScope.Image8.TooltipText = "";
+$rootScope.Image8.TooltipPos = "top";
+$rootScope.Image8.PopoverText = "";
+$rootScope.Image8.PopoverEvent = "mouseenter";
+$rootScope.Image8.PopoverTitle = "";
+$rootScope.Image8.PopoverPos = "top";
+
+$rootScope.Image4 = {};
+$rootScope.Image4.ABRole = 8001;
+$rootScope.Image4.Hidden = "";
+$rootScope.Image4.Image = "app/images/entrata.png";
+$rootScope.Image4.Class = "";
+$rootScope.Image4.Title = "Entrata";
+$rootScope.Image4.TooltipText = "";
+$rootScope.Image4.TooltipPos = "top";
+$rootScope.Image4.PopoverText = "";
+$rootScope.Image4.PopoverEvent = "mouseenter";
+$rootScope.Image4.PopoverTitle = "";
+$rootScope.Image4.PopoverPos = "top";
+
+$rootScope.FAQImage = {};
+$rootScope.FAQImage.ABRole = 8001;
+$rootScope.FAQImage.Hidden = "true";
+$rootScope.FAQImage.Image = "app/images/FAQback.png";
+$rootScope.FAQImage.Class = "";
+$rootScope.FAQImage.Title = "Frequently Asked Questons";
+$rootScope.FAQImage.TooltipText = "";
+$rootScope.FAQImage.TooltipPos = "top";
+$rootScope.FAQImage.PopoverText = "";
+$rootScope.FAQImage.PopoverEvent = "mouseenter";
+$rootScope.FAQImage.PopoverTitle = "";
+$rootScope.FAQImage.PopoverPos = "top";
+
+$rootScope.Map = {};
+$rootScope.Map.ABRole = 8001;
+$rootScope.Map.Hidden = "";
+$rootScope.Map.Image = "app/images/map-icon1.png";
+$rootScope.Map.Class = "";
+$rootScope.Map.Title = "Campus Map";
+$rootScope.Map.TooltipText = "";
+$rootScope.Map.TooltipPos = "top";
+$rootScope.Map.PopoverText = "";
+$rootScope.Map.PopoverEvent = "mouseenter";
+$rootScope.Map.PopoverTitle = "";
+$rootScope.Map.PopoverPos = "top";
+
+$rootScope.Image14 = {};
+$rootScope.Image14.ABRole = 8001;
+$rootScope.Image14.Hidden = "";
+$rootScope.Image14.Image = "app/images/peopleback.png";
+$rootScope.Image14.Class = "";
+$rootScope.Image14.Title = "Social Media";
+$rootScope.Image14.TooltipText = "";
+$rootScope.Image14.TooltipPos = "top";
+$rootScope.Image14.PopoverText = "";
+$rootScope.Image14.PopoverEvent = "mouseenter";
+$rootScope.Image14.PopoverTitle = "";
+$rootScope.Image14.PopoverPos = "top";
+
+$rootScope.Image13 = {};
+$rootScope.Image13.ABRole = 8001;
+$rootScope.Image13.Hidden = "true";
+$rootScope.Image13.Image = "app/images/bugback.png";
+$rootScope.Image13.Class = "";
+$rootScope.Image13.Title = "Submit Feedback";
+$rootScope.Image13.TooltipText = "";
+$rootScope.Image13.TooltipPos = "top";
+$rootScope.Image13.PopoverText = "";
+$rootScope.Image13.PopoverEvent = "mouseenter";
+$rootScope.Image13.PopoverTitle = "";
+$rootScope.Image13.PopoverPos = "top";
+
+$rootScope.Image15 = {};
+$rootScope.Image15.ABRole = 8001;
+$rootScope.Image15.Hidden = "";
+$rootScope.Image15.Image = "app/images/bashback2.png";
+$rootScope.Image15.Class = "";
+$rootScope.Image15.Title = "89.1 The Bash";
+$rootScope.Image15.TooltipText = "";
+$rootScope.Image15.TooltipPos = "top";
+$rootScope.Image15.PopoverText = "";
+$rootScope.Image15.PopoverEvent = "mouseenter";
+$rootScope.Image15.PopoverTitle = "";
+$rootScope.Image15.PopoverPos = "top";
+
+$rootScope.Music = {};
+$rootScope.Music.ABRole = 10001;
+$rootScope.Music.Hidden = "true";
+$rootScope.Music.Class = "videogular-container ";
+$rootScope.Music.Loop = false;
+$rootScope.Music.Autoplay = false;
+$rootScope.Music.Sources = [];
+$rootScope.Music.Sources.push({src: $sce.trustAsResourceUrl("http://ice7.securenetsystems.net/WVJC?"), type: "video/ogg"});
+$rootScope.Music.Tracks = [];
+
+$rootScope.Image6 = {};
+$rootScope.Image6.ABRole = 8001;
+$rootScope.Image6.Hidden = "true";
+$rootScope.Image6.Image = "app/images/WVC-RED-CAFE-BACKUP.png";
+$rootScope.Image6.Class = "";
+$rootScope.Image6.Title = "Red Cafe Menu";
+$rootScope.Image6.TooltipText = "";
+$rootScope.Image6.TooltipPos = "top";
+$rootScope.Image6.PopoverText = "";
+$rootScope.Image6.PopoverEvent = "mouseenter";
+$rootScope.Image6.PopoverTitle = "";
+$rootScope.Image6.PopoverPos = "top";
+
+$rootScope.Image12 = {};
+$rootScope.Image12.ABRole = 8001;
+$rootScope.Image12.Hidden = "";
+$rootScope.Image12.Image = "app/images/logo_WVC.png";
+$rootScope.Image12.Class = "";
+$rootScope.Image12.Title = "WVC Website";
+$rootScope.Image12.TooltipText = "";
+$rootScope.Image12.TooltipPos = "top";
+$rootScope.Image12.PopoverText = "";
+$rootScope.Image12.PopoverEvent = "mouseenter";
+$rootScope.Image12.PopoverTitle = "";
+$rootScope.Image12.PopoverPos = "top";
+
+$rootScope.Image2 = {};
+$rootScope.Image2.ABRole = 8001;
+$rootScope.Image2.Hidden = "true";
+$rootScope.Image2.Image = "app/images/settings.png";
+$rootScope.Image2.Class = "";
+$rootScope.Image2.Title = "Social Media";
+$rootScope.Image2.TooltipText = "";
+$rootScope.Image2.TooltipPos = "top";
+$rootScope.Image2.PopoverText = "";
+$rootScope.Image2.PopoverEvent = "mouseenter";
+$rootScope.Image2.PopoverTitle = "";
+$rootScope.Image2.PopoverPos = "top";
+
+$rootScope.HtmlContent2 = {};
+$rootScope.HtmlContent2.ABRole = 6001;
+$rootScope.HtmlContent2.Hidden = "true";
+$rootScope.HtmlContent2.Class = "ios-inertial-scroll ";
+$rootScope.HtmlContent2.Title = "";
+$rootScope.HtmlContent2.TooltipText = "";
+$rootScope.HtmlContent2.TooltipPos = "top";
+$rootScope.HtmlContent2.PopoverText = "";
+$rootScope.HtmlContent2.PopoverEvent = "mouseenter";
+$rootScope.HtmlContent2.PopoverTitle = "";
+$rootScope.HtmlContent2.PopoverPos = "top";
+
+$rootScope.MusicCover = {};
+$rootScope.MusicCover.ABRole = 8001;
+$rootScope.MusicCover.Hidden = "true";
+$rootScope.MusicCover.Image = "http://myweb.iecc.edu/wvjc/content/ALBUM.JPG";
+$rootScope.MusicCover.Class = "";
+$rootScope.MusicCover.Title = "";
+$rootScope.MusicCover.TooltipText = "";
+$rootScope.MusicCover.TooltipPos = "top";
+$rootScope.MusicCover.PopoverText = "";
+$rootScope.MusicCover.PopoverEvent = "mouseenter";
+$rootScope.MusicCover.PopoverTitle = "";
+$rootScope.MusicCover.PopoverPos = "top";
+
+$rootScope.HtmlContent6 = {};
+$rootScope.HtmlContent6.ABRole = 6001;
+$rootScope.HtmlContent6.Hidden = "true";
+$rootScope.HtmlContent6.Class = "ios-inertial-scroll ";
+$rootScope.HtmlContent6.Title = "";
+$rootScope.HtmlContent6.TooltipText = "";
+$rootScope.HtmlContent6.TooltipPos = "top";
+$rootScope.HtmlContent6.PopoverText = "";
+$rootScope.HtmlContent6.PopoverEvent = "mouseenter";
+$rootScope.HtmlContent6.PopoverTitle = "";
+$rootScope.HtmlContent6.PopoverPos = "top";
+
+$rootScope.Button2 = {};
+$rootScope.Button2.ABRole = 2001;
+$rootScope.Button2.Hidden = "true";
+$rootScope.Button2.Title = "";
+$rootScope.Button2.TabIndex = -1;
+$rootScope.Button2.TooltipText = "";
+$rootScope.Button2.TooltipPos = "top";
+$rootScope.Button2.PopoverText = "";
+$rootScope.Button2.PopoverTitle = "";
+$rootScope.Button2.PopoverEvent = "mouseenter";
+$rootScope.Button2.PopoverPos = "top";
+$rootScope.Button2.Badge = "";
+$rootScope.Button2.Icon = "";
+$rootScope.Button2.Text = "Button2";
+$rootScope.Button2.Class = "btn btn-primary btn-md ";
+$rootScope.Button2.Disabled = "";
+
+$rootScope.iFrameInfoViewer = {};
+$rootScope.iFrameInfoViewer.ABRole = 4001;
+$rootScope.iFrameInfoViewer.Hidden = "";
+$rootScope.iFrameInfoViewer.Url = "";
+$rootScope.iFrameInfoViewer.Class = "ios-iframe-wrapper ";
+
+$rootScope.BackButtonz = {};
+$rootScope.BackButtonz.ABRole = 2001;
+$rootScope.BackButtonz.Hidden = "";
+$rootScope.BackButtonz.Title = "BackButton";
+$rootScope.BackButtonz.TabIndex = -1;
+$rootScope.BackButtonz.TooltipText = "";
+$rootScope.BackButtonz.TooltipPos = "top";
+$rootScope.BackButtonz.PopoverText = "";
+$rootScope.BackButtonz.PopoverTitle = "";
+$rootScope.BackButtonz.PopoverEvent = "mouseenter";
+$rootScope.BackButtonz.PopoverPos = "top";
+$rootScope.BackButtonz.Badge = "";
+$rootScope.BackButtonz.Icon = "";
+$rootScope.BackButtonz.Text = "<strong>Back</strong>";
+$rootScope.BackButtonz.Class = "btn btn-danger btn-lg ";
+$rootScope.BackButtonz.Disabled = "";
+
+$rootScope.Menu2 = {};
+$rootScope.Menu2.ABRole = 6003;
+$rootScope.Menu2.Hidden = "";
+$rootScope.Menu2.Items = [];
+$rootScope.Menu2.Items.push("<h4>Athletics<h4/>");
+$rootScope.Menu2.Items.push("<h4>Events<h4/>");
+$rootScope.Menu2.Items.push("<h4>Important Dates<h4/>");
+$rootScope.Menu2.Items.push("<h4>Learning Skills<h4/>");
+$rootScope.Menu2.Items.push("<h4>Trio SSS<h4/>");
+$rootScope.Menu2.Items.push("<h4>Error with Calendar? (Inactive)<h4/>");
+$rootScope.Menu2.Class = "list-group ";
+
+$rootScope.Button1 = {};
+$rootScope.Button1.ABRole = 2001;
+$rootScope.Button1.Hidden = "";
+$rootScope.Button1.Title = "Back Button";
+$rootScope.Button1.TabIndex = -1;
+$rootScope.Button1.TooltipText = "";
+$rootScope.Button1.TooltipPos = "top";
+$rootScope.Button1.PopoverText = "";
+$rootScope.Button1.PopoverTitle = "";
+$rootScope.Button1.PopoverEvent = "mouseenter";
+$rootScope.Button1.PopoverPos = "top";
+$rootScope.Button1.Badge = "";
+$rootScope.Button1.Icon = "";
+$rootScope.Button1.Text = "<strong>Go Back</strong>";
+$rootScope.Button1.Class = "btn btn-danger btn-md ";
+$rootScope.Button1.Disabled = "";
+
+$rootScope.MenuDialogWVC = {};
+$rootScope.MenuDialogWVC.ABRole = 6003;
+$rootScope.MenuDialogWVC.Hidden = "";
+$rootScope.MenuDialogWVC.Items = [];
+$rootScope.MenuDialogWVC.Items.push("<h4><span class=\x22fa fa-question\x22></span> FAQ<h4/>");
+$rootScope.MenuDialogWVC.Items.push("<h4><span class=\x22fa fa-address-card\x22></span> Important #’s and E-mails<h4/>");
+$rootScope.MenuDialogWVC.Items.push("<h4><span class=\x22fa fa-calendar\x22></span> Combined Calendar<h4/>");
+$rootScope.MenuDialogWVC.Items.push("<h4><span class=\x22fa fa-graduation-cap\x22></span> Degree Programs<h4/>");
+$rootScope.MenuDialogWVC.Items.push("<h4><span class=\x22fa fa-etsy\x22></span> Entrata<h4/>");
+$rootScope.MenuDialogWVC.Items.push("<h4><span class=\x22fa fa-bug\x22></span> Submit an Issue/Suggestion<h4/>");
+$rootScope.MenuDialogWVC.Class = "list-group ";
+
+$rootScope.Backbutton = {};
+$rootScope.Backbutton.ABRole = 2001;
+$rootScope.Backbutton.Hidden = "";
+$rootScope.Backbutton.Title = "Back Button";
+$rootScope.Backbutton.TabIndex = -1;
+$rootScope.Backbutton.TooltipText = "";
+$rootScope.Backbutton.TooltipPos = "top";
+$rootScope.Backbutton.PopoverText = "";
+$rootScope.Backbutton.PopoverTitle = "";
+$rootScope.Backbutton.PopoverEvent = "mouseenter";
+$rootScope.Backbutton.PopoverPos = "top";
+$rootScope.Backbutton.Badge = "";
+$rootScope.Backbutton.Icon = "";
+$rootScope.Backbutton.Text = "<strong>Go Back</strong>";
+$rootScope.Backbutton.Class = "btn btn-danger btn-md ";
+$rootScope.Backbutton.Disabled = "";
+
+$rootScope.MenuFAQ = {};
+$rootScope.MenuFAQ.ABRole = 6003;
+$rootScope.MenuFAQ.Hidden = "";
+$rootScope.MenuFAQ.Items = [];
+$rootScope.MenuFAQ.Items.push("<h4>Financial Aid</span><h4/>");
+$rootScope.MenuFAQ.Items.push("<h4>Books<h4/>");
+$rootScope.MenuFAQ.Items.push("<h4>Courses<h4/>");
+$rootScope.MenuFAQ.Items.push("<h4>Other Assistance<h4/>");
+$rootScope.MenuFAQ.Class = "list-group ";
+
+$rootScope.Button10 = {};
+$rootScope.Button10.ABRole = 2001;
+$rootScope.Button10.Hidden = "";
+$rootScope.Button10.Title = "Back Button";
+$rootScope.Button10.TabIndex = -1;
+$rootScope.Button10.TooltipText = "";
+$rootScope.Button10.TooltipPos = "top";
+$rootScope.Button10.PopoverText = "";
+$rootScope.Button10.PopoverTitle = "";
+$rootScope.Button10.PopoverEvent = "mouseenter";
+$rootScope.Button10.PopoverPos = "top";
+$rootScope.Button10.Badge = "";
+$rootScope.Button10.Icon = "";
+$rootScope.Button10.Text = "<strong>Go Back</strong>";
+$rootScope.Button10.Class = "btn btn-danger btn-md ";
+$rootScope.Button10.Disabled = "";
+
+$rootScope.Container1 = {};
+$rootScope.Container1.ABRole = 1001;
+$rootScope.Container1.Hidden = "";
+$rootScope.Container1.Title = "";
+$rootScope.Container1.TooltipText = "";
+$rootScope.Container1.TooltipPos = "top";
+$rootScope.Container1.PopoverText = "";
+$rootScope.Container1.PopoverTitle = "";
+$rootScope.Container1.PopoverEvent = "mouseenter";
+$rootScope.Container1.PopoverPos = "top";
+$rootScope.Container1.Class = "";
+
+$rootScope.HeaderHtml = {};
+$rootScope.HeaderHtml.ABRole = 6001;
+$rootScope.HeaderHtml.Hidden = "";
+$rootScope.HeaderHtml.Class = "ios-inertial-scroll ";
+$rootScope.HeaderHtml.Title = "";
+$rootScope.HeaderHtml.TooltipText = "";
+$rootScope.HeaderHtml.TooltipPos = "top";
+$rootScope.HeaderHtml.PopoverText = "";
+$rootScope.HeaderHtml.PopoverEvent = "mouseenter";
+$rootScope.HeaderHtml.PopoverTitle = "";
+$rootScope.HeaderHtml.PopoverPos = "top";
+
+$rootScope.Variable1Switch = {};
+$rootScope.Variable1Switch.ABRole = 8001;
+$rootScope.Variable1Switch.Hidden = "";
+$rootScope.Variable1Switch.Image = "";
+$rootScope.Variable1Switch.Class = "";
+$rootScope.Variable1Switch.Title = "";
+$rootScope.Variable1Switch.TooltipText = "";
+$rootScope.Variable1Switch.TooltipPos = "top";
+$rootScope.Variable1Switch.PopoverText = "";
+$rootScope.Variable1Switch.PopoverEvent = "mouseenter";
+$rootScope.Variable1Switch.PopoverTitle = "";
+$rootScope.Variable1Switch.PopoverPos = "top";
+
+$rootScope.ResetAll = {};
+$rootScope.ResetAll.ABRole = 2001;
+$rootScope.ResetAll.Hidden = "";
+$rootScope.ResetAll.Title = "";
+$rootScope.ResetAll.TabIndex = -1;
+$rootScope.ResetAll.TooltipText = "";
+$rootScope.ResetAll.TooltipPos = "top";
+$rootScope.ResetAll.PopoverText = "";
+$rootScope.ResetAll.PopoverTitle = "";
+$rootScope.ResetAll.PopoverEvent = "mouseenter";
+$rootScope.ResetAll.PopoverPos = "top";
+$rootScope.ResetAll.Badge = "";
+$rootScope.ResetAll.Icon = "";
+$rootScope.ResetAll.Text = "RESET ALL";
+$rootScope.ResetAll.Class = "btn btn-primary btn-md ";
+$rootScope.ResetAll.Disabled = "";
+
+$rootScope.Button13 = {};
+$rootScope.Button13.ABRole = 2001;
+$rootScope.Button13.Hidden = "";
+$rootScope.Button13.Title = "";
+$rootScope.Button13.TabIndex = -1;
+$rootScope.Button13.TooltipText = "";
+$rootScope.Button13.TooltipPos = "top";
+$rootScope.Button13.PopoverText = "";
+$rootScope.Button13.PopoverTitle = "";
+$rootScope.Button13.PopoverEvent = "mouseenter";
+$rootScope.Button13.PopoverPos = "top";
+$rootScope.Button13.Badge = "";
+$rootScope.Button13.Icon = "";
+$rootScope.Button13.Text = ""+$rootScope.Variable1+"";
+$rootScope.Button13.Class = "btn btn-primary btn-md ";
+$rootScope.Button13.Disabled = "";
+
+$rootScope.Watcher2 = {};
+$rootScope.Watcher2.ABRole = 30003;
+$rootScope.Watcher2.Variable = "";
+
+$rootScope.BackFrame = {};
+$rootScope.BackFrame.ABRole = 4001;
+$rootScope.BackFrame.Hidden = "true";
+$rootScope.BackFrame.Url = "app/files/Images/mapinpng.html";
+$rootScope.BackFrame.Class = "ios-iframe-wrapper ";
+
+$rootScope.HtmlContent5 = {};
+$rootScope.HtmlContent5.ABRole = 6001;
+$rootScope.HtmlContent5.Hidden = "true";
+$rootScope.HtmlContent5.Class = "ios-inertial-scroll ";
+$rootScope.HtmlContent5.Title = "";
+$rootScope.HtmlContent5.TooltipText = "";
+$rootScope.HtmlContent5.TooltipPos = "top";
+$rootScope.HtmlContent5.PopoverText = "";
+$rootScope.HtmlContent5.PopoverEvent = "mouseenter";
+$rootScope.HtmlContent5.PopoverTitle = "";
+$rootScope.HtmlContent5.PopoverPos = "top";
+
+$rootScope.FullMap = {};
+$rootScope.FullMap.ABRole = 8001;
+$rootScope.FullMap.Hidden = "true";
+$rootScope.FullMap.Image = "app/images/MapinJPG.jpg";
+$rootScope.FullMap.Class = "";
+$rootScope.FullMap.Title = "";
+$rootScope.FullMap.TooltipText = "";
+$rootScope.FullMap.TooltipPos = "top";
+$rootScope.FullMap.PopoverText = "";
+$rootScope.FullMap.PopoverEvent = "mouseenter";
+$rootScope.FullMap.PopoverTitle = "";
+$rootScope.FullMap.PopoverPos = "top";
+
+$rootScope.TourMap = {};
+$rootScope.TourMap.ABRole = 8001;
+$rootScope.TourMap.Hidden = "";
+$rootScope.TourMap.Image = "app/images/smallCMap.jpg";
+$rootScope.TourMap.Class = "";
+$rootScope.TourMap.Title = "";
+$rootScope.TourMap.TooltipText = "";
+$rootScope.TourMap.TooltipPos = "top";
+$rootScope.TourMap.PopoverText = "";
+$rootScope.TourMap.PopoverEvent = "mouseenter";
+$rootScope.TourMap.PopoverTitle = "";
+$rootScope.TourMap.PopoverPos = "top";
+
+$rootScope.MainPin = {};
+$rootScope.MainPin.ABRole = 8001;
+$rootScope.MainPin.Hidden = "";
+$rootScope.MainPin.Image = "app/images/pinright.png";
+$rootScope.MainPin.Class = "";
+$rootScope.MainPin.Title = "";
+$rootScope.MainPin.TooltipText = "";
+$rootScope.MainPin.TooltipPos = "top";
+$rootScope.MainPin.PopoverText = "";
+$rootScope.MainPin.PopoverEvent = "mouseenter";
+$rootScope.MainPin.PopoverTitle = "";
+$rootScope.MainPin.PopoverPos = "top";
+
+$rootScope.FieldPin = {};
+$rootScope.FieldPin.ABRole = 8001;
+$rootScope.FieldPin.Hidden = "";
+$rootScope.FieldPin.Image = "app/images/pinright.png";
+$rootScope.FieldPin.Class = "";
+$rootScope.FieldPin.Title = "";
+$rootScope.FieldPin.TooltipText = "";
+$rootScope.FieldPin.TooltipPos = "top";
+$rootScope.FieldPin.PopoverText = "";
+$rootScope.FieldPin.PopoverEvent = "mouseenter";
+$rootScope.FieldPin.PopoverTitle = "";
+$rootScope.FieldPin.PopoverPos = "top";
+
+$rootScope.PoolPin = {};
+$rootScope.PoolPin.ABRole = 8001;
+$rootScope.PoolPin.Hidden = "";
+$rootScope.PoolPin.Image = "app/images/pinright.png";
+$rootScope.PoolPin.Class = "";
+$rootScope.PoolPin.Title = "";
+$rootScope.PoolPin.TooltipText = "";
+$rootScope.PoolPin.TooltipPos = "top";
+$rootScope.PoolPin.PopoverText = "";
+$rootScope.PoolPin.PopoverEvent = "mouseenter";
+$rootScope.PoolPin.PopoverTitle = "";
+$rootScope.PoolPin.PopoverPos = "top";
+
+$rootScope.SciencePin = {};
+$rootScope.SciencePin.ABRole = 8001;
+$rootScope.SciencePin.Hidden = "";
+$rootScope.SciencePin.Image = "app/images/pinright.png";
+$rootScope.SciencePin.Class = "";
+$rootScope.SciencePin.Title = "";
+$rootScope.SciencePin.TooltipText = "";
+$rootScope.SciencePin.TooltipPos = "top";
+$rootScope.SciencePin.PopoverText = "";
+$rootScope.SciencePin.PopoverEvent = "mouseenter";
+$rootScope.SciencePin.PopoverTitle = "";
+$rootScope.SciencePin.PopoverPos = "top";
+
+$rootScope.CafePin = {};
+$rootScope.CafePin.ABRole = 8001;
+$rootScope.CafePin.Hidden = "";
+$rootScope.CafePin.Image = "app/images/pinright.png";
+$rootScope.CafePin.Class = "";
+$rootScope.CafePin.Title = "";
+$rootScope.CafePin.TooltipText = "";
+$rootScope.CafePin.TooltipPos = "top";
+$rootScope.CafePin.PopoverText = "";
+$rootScope.CafePin.PopoverEvent = "mouseenter";
+$rootScope.CafePin.PopoverTitle = "";
+$rootScope.CafePin.PopoverPos = "top";
+
+$rootScope.BackArrow = {};
+$rootScope.BackArrow.ABRole = 8001;
+$rootScope.BackArrow.Hidden = "";
+$rootScope.BackArrow.Image = "app/images/back-button1.png";
+$rootScope.BackArrow.Class = "";
+$rootScope.BackArrow.Title = "Back Button";
+$rootScope.BackArrow.TooltipText = "";
+$rootScope.BackArrow.TooltipPos = "top";
+$rootScope.BackArrow.PopoverText = "";
+$rootScope.BackArrow.PopoverEvent = "mouseenter";
+$rootScope.BackArrow.PopoverTitle = "";
+$rootScope.BackArrow.PopoverPos = "top";
+
+$rootScope.MapToggle = {};
+$rootScope.MapToggle.ABRole = 8001;
+$rootScope.MapToggle.Hidden = "";
+$rootScope.MapToggle.Image = "app/images/gear.png";
+$rootScope.MapToggle.Class = "";
+$rootScope.MapToggle.Title = "";
+$rootScope.MapToggle.TooltipText = "";
+$rootScope.MapToggle.TooltipPos = "top";
+$rootScope.MapToggle.PopoverText = "";
+$rootScope.MapToggle.PopoverEvent = "mouseenter";
+$rootScope.MapToggle.PopoverTitle = "";
+$rootScope.MapToggle.PopoverPos = "top";
+
+$rootScope.HtmlContent3 = {};
+$rootScope.HtmlContent3.ABRole = 6001;
+$rootScope.HtmlContent3.Hidden = "";
+$rootScope.HtmlContent3.Class = "ios-inertial-scroll ";
+$rootScope.HtmlContent3.Title = "";
+$rootScope.HtmlContent3.TooltipText = "";
+$rootScope.HtmlContent3.TooltipPos = "top";
+$rootScope.HtmlContent3.PopoverText = "";
+$rootScope.HtmlContent3.PopoverEvent = "mouseenter";
+$rootScope.HtmlContent3.PopoverTitle = "";
+$rootScope.HtmlContent3.PopoverPos = "top";
+
+$rootScope.Button3 = {};
+$rootScope.Button3.ABRole = 2001;
+$rootScope.Button3.Hidden = "";
+$rootScope.Button3.Title = "";
+$rootScope.Button3.TabIndex = -1;
+$rootScope.Button3.TooltipText = "";
+$rootScope.Button3.TooltipPos = "top";
+$rootScope.Button3.PopoverText = "";
+$rootScope.Button3.PopoverTitle = "";
+$rootScope.Button3.PopoverEvent = "mouseenter";
+$rootScope.Button3.PopoverPos = "top";
+$rootScope.Button3.Badge = "";
+$rootScope.Button3.Icon = "";
+$rootScope.Button3.Text = "Button3";
+$rootScope.Button3.Class = "btn btn-primary btn-md ";
+$rootScope.Button3.Disabled = "";
+
+$rootScope.HtmlContent4 = {};
+$rootScope.HtmlContent4.ABRole = 6001;
+$rootScope.HtmlContent4.Hidden = "";
+$rootScope.HtmlContent4.Class = "ios-inertial-scroll ";
+$rootScope.HtmlContent4.Title = "";
+$rootScope.HtmlContent4.TooltipText = "";
+$rootScope.HtmlContent4.TooltipPos = "top";
+$rootScope.HtmlContent4.PopoverText = "";
+$rootScope.HtmlContent4.PopoverEvent = "mouseenter";
+$rootScope.HtmlContent4.PopoverTitle = "";
+$rootScope.HtmlContent4.PopoverPos = "top";
+
+$rootScope.FeedbackiFrame = {};
+$rootScope.FeedbackiFrame.ABRole = 4001;
+$rootScope.FeedbackiFrame.Hidden = "";
+$rootScope.FeedbackiFrame.Url = "https://docs.google.com/forms/d/e/1FAIpQLSdahG3-rJTnijYd_7OGyX8r-fu7yH4Hg3JruvV7sqbbILLpRw/viewform?usp=sf_link?device=mobile";
+$rootScope.FeedbackiFrame.Class = "ios-iframe-wrapper ";
+
+$rootScope.Home = {};
+$rootScope.Home.ABRole = 2001;
+$rootScope.Home.Hidden = "";
+$rootScope.Home.Title = "";
+$rootScope.Home.TabIndex = -1;
+$rootScope.Home.TooltipText = "";
+$rootScope.Home.TooltipPos = "top";
+$rootScope.Home.PopoverText = "";
+$rootScope.Home.PopoverTitle = "";
+$rootScope.Home.PopoverEvent = "mouseenter";
+$rootScope.Home.PopoverPos = "top";
+$rootScope.Home.Badge = "";
+$rootScope.Home.Icon = "";
+$rootScope.Home.Text = "Home";
+$rootScope.Home.Class = "btn btn-primary btn-md ";
+$rootScope.Home.Disabled = "";
+
+$rootScope.Image16 = {};
+$rootScope.Image16.ABRole = 8001;
+$rootScope.Image16.Hidden = "";
+$rootScope.Image16.Image = "app/images/stars.jpg";
+$rootScope.Image16.Class = "";
+$rootScope.Image16.Title = "";
+$rootScope.Image16.TooltipText = "";
+$rootScope.Image16.TooltipPos = "top";
+$rootScope.Image16.PopoverText = "";
+$rootScope.Image16.PopoverEvent = "mouseenter";
+$rootScope.Image16.PopoverTitle = "";
+$rootScope.Image16.PopoverPos = "top";
+
+$rootScope.Image17 = {};
+$rootScope.Image17.ABRole = 8001;
+$rootScope.Image17.Hidden = "";
+$rootScope.Image17.Image = "Images\social\Facebook.png";
+$rootScope.Image17.Class = "";
+$rootScope.Image17.Title = "";
+$rootScope.Image17.TooltipText = "";
+$rootScope.Image17.TooltipPos = "top";
+$rootScope.Image17.PopoverText = "";
+$rootScope.Image17.PopoverEvent = "mouseenter";
+$rootScope.Image17.PopoverTitle = "";
+$rootScope.Image17.PopoverPos = "top";
+
+$rootScope.Image18 = {};
+$rootScope.Image18.ABRole = 8001;
+$rootScope.Image18.Hidden = "";
+$rootScope.Image18.Image = "Images\social\Instagram.png";
+$rootScope.Image18.Class = "";
+$rootScope.Image18.Title = "";
+$rootScope.Image18.TooltipText = "";
+$rootScope.Image18.TooltipPos = "top";
+$rootScope.Image18.PopoverText = "";
+$rootScope.Image18.PopoverEvent = "mouseenter";
+$rootScope.Image18.PopoverTitle = "";
+$rootScope.Image18.PopoverPos = "top";
+
+$rootScope.Image19 = {};
+$rootScope.Image19.ABRole = 8001;
+$rootScope.Image19.Hidden = "";
+$rootScope.Image19.Image = "Images\social\Twitter.png";
+$rootScope.Image19.Class = "";
+$rootScope.Image19.Title = "";
+$rootScope.Image19.TooltipText = "";
+$rootScope.Image19.TooltipPos = "top";
+$rootScope.Image19.PopoverText = "";
+$rootScope.Image19.PopoverEvent = "mouseenter";
+$rootScope.Image19.PopoverTitle = "";
+$rootScope.Image19.PopoverPos = "top";
+
+$rootScope.Image1 = {};
+$rootScope.Image1.ABRole = 8001;
+$rootScope.Image1.Hidden = "";
+$rootScope.Image1.Image = "Images\yourcalendar.png";
+$rootScope.Image1.Class = "";
+$rootScope.Image1.Title = "";
+$rootScope.Image1.TooltipText = "";
+$rootScope.Image1.TooltipPos = "top";
+$rootScope.Image1.PopoverText = "";
+$rootScope.Image1.PopoverEvent = "mouseenter";
+$rootScope.Image1.PopoverTitle = "";
+$rootScope.Image1.PopoverPos = "top";
+
+$rootScope.Image3 = {};
+$rootScope.Image3.ABRole = 8001;
+$rootScope.Image3.Hidden = "";
+$rootScope.Image3.Image = "Images\yourcalendar.png";
+$rootScope.Image3.Class = "";
+$rootScope.Image3.Title = "";
+$rootScope.Image3.TooltipText = "";
+$rootScope.Image3.TooltipPos = "top";
+$rootScope.Image3.PopoverText = "";
+$rootScope.Image3.PopoverEvent = "mouseenter";
+$rootScope.Image3.PopoverTitle = "";
+$rootScope.Image3.PopoverPos = "top";
+
+$rootScope.Image5 = {};
+$rootScope.Image5.ABRole = 8001;
+$rootScope.Image5.Hidden = "";
+$rootScope.Image5.Image = "Images\yourcalendar.png";
+$rootScope.Image5.Class = "";
+$rootScope.Image5.Title = "";
+$rootScope.Image5.TooltipText = "";
+$rootScope.Image5.TooltipPos = "top";
+$rootScope.Image5.PopoverText = "";
+$rootScope.Image5.PopoverEvent = "mouseenter";
+$rootScope.Image5.PopoverTitle = "";
+$rootScope.Image5.PopoverPos = "top";
+
+$rootScope.Image7 = {};
+$rootScope.Image7.ABRole = 8001;
+$rootScope.Image7.Hidden = "";
+$rootScope.Image7.Image = "Images\yourcalendar.png";
+$rootScope.Image7.Class = "";
+$rootScope.Image7.Title = "";
+$rootScope.Image7.TooltipText = "";
+$rootScope.Image7.TooltipPos = "top";
+$rootScope.Image7.PopoverText = "";
+$rootScope.Image7.PopoverEvent = "mouseenter";
+$rootScope.Image7.PopoverTitle = "";
+$rootScope.Image7.PopoverPos = "top";
+
+$rootScope.Image9 = {};
+$rootScope.Image9.ABRole = 8001;
+$rootScope.Image9.Hidden = "";
+$rootScope.Image9.Image = "Images\yourcalendar.png";
+$rootScope.Image9.Class = "";
+$rootScope.Image9.Title = "";
+$rootScope.Image9.TooltipText = "";
+$rootScope.Image9.TooltipPos = "top";
+$rootScope.Image9.PopoverText = "";
+$rootScope.Image9.PopoverEvent = "mouseenter";
+$rootScope.Image9.PopoverTitle = "";
+$rootScope.Image9.PopoverPos = "top";
+
+$rootScope.Image10 = {};
+$rootScope.Image10.ABRole = 8001;
+$rootScope.Image10.Hidden = "";
+$rootScope.Image10.Image = "Images\yourcalendar.png";
+$rootScope.Image10.Class = "";
+$rootScope.Image10.Title = "";
+$rootScope.Image10.TooltipText = "";
+$rootScope.Image10.TooltipPos = "top";
+$rootScope.Image10.PopoverText = "";
+$rootScope.Image10.PopoverEvent = "mouseenter";
+$rootScope.Image10.PopoverTitle = "";
+$rootScope.Image10.PopoverPos = "top";
+
+$rootScope.FAQiFrame = {};
+$rootScope.FAQiFrame.ABRole = 4001;
+$rootScope.FAQiFrame.Hidden = "";
+$rootScope.FAQiFrame.Url = "app/files/FAQ/index.html";
+$rootScope.FAQiFrame.Class = "ios-iframe-wrapper ";
+
+$rootScope.Button8 = {};
+$rootScope.Button8.ABRole = 2001;
+$rootScope.Button8.Hidden = "";
+$rootScope.Button8.Title = "";
+$rootScope.Button8.TabIndex = -1;
+$rootScope.Button8.TooltipText = "";
+$rootScope.Button8.TooltipPos = "top";
+$rootScope.Button8.PopoverText = "";
+$rootScope.Button8.PopoverTitle = "";
+$rootScope.Button8.PopoverEvent = "mouseenter";
+$rootScope.Button8.PopoverPos = "top";
+$rootScope.Button8.Badge = "";
+$rootScope.Button8.Icon = "";
+$rootScope.Button8.Text = "Home";
+$rootScope.Button8.Class = "btn btn-primary btn-md ";
+$rootScope.Button8.Disabled = "";
+
+$rootScope.Button7 = {};
+$rootScope.Button7.ABRole = 2001;
+$rootScope.Button7.Hidden = "";
+$rootScope.Button7.Title = "";
+$rootScope.Button7.TabIndex = -1;
+$rootScope.Button7.TooltipText = "";
+$rootScope.Button7.TooltipPos = "top";
+$rootScope.Button7.PopoverText = "";
+$rootScope.Button7.PopoverTitle = "";
+$rootScope.Button7.PopoverEvent = "mouseenter";
+$rootScope.Button7.PopoverPos = "top";
+$rootScope.Button7.Badge = "";
+$rootScope.Button7.Icon = "";
+$rootScope.Button7.Text = "Back";
+$rootScope.Button7.Class = "btn btn-primary btn-md ";
+$rootScope.Button7.Disabled = "";
+
+$rootScope.Button9 = {};
+$rootScope.Button9.ABRole = 2001;
+$rootScope.Button9.Hidden = "";
+$rootScope.Button9.Title = "";
+$rootScope.Button9.TabIndex = -1;
+$rootScope.Button9.TooltipText = "";
+$rootScope.Button9.TooltipPos = "top";
+$rootScope.Button9.PopoverText = "";
+$rootScope.Button9.PopoverTitle = "";
+$rootScope.Button9.PopoverEvent = "mouseenter";
+$rootScope.Button9.PopoverPos = "top";
+$rootScope.Button9.Badge = "";
+$rootScope.Button9.Icon = "";
+$rootScope.Button9.Text = "Forward";
+$rootScope.Button9.Class = "btn btn-primary btn-md ";
+$rootScope.Button9.Disabled = "";
+
+$rootScope.WVCSiteiFrame = {};
+$rootScope.WVCSiteiFrame.ABRole = 4001;
+$rootScope.WVCSiteiFrame.Hidden = "";
+$rootScope.WVCSiteiFrame.Url = "https://www.iecc.edu/page.php?page=WVCH";
+$rootScope.WVCSiteiFrame.Class = "ios-iframe-wrapper ";
+
+$rootScope.Button5 = {};
+$rootScope.Button5.ABRole = 2001;
+$rootScope.Button5.Hidden = "";
+$rootScope.Button5.Title = "";
+$rootScope.Button5.TabIndex = -1;
+$rootScope.Button5.TooltipText = "";
+$rootScope.Button5.TooltipPos = "top";
+$rootScope.Button5.PopoverText = "";
+$rootScope.Button5.PopoverTitle = "";
+$rootScope.Button5.PopoverEvent = "mouseenter";
+$rootScope.Button5.PopoverPos = "top";
+$rootScope.Button5.Badge = "";
+$rootScope.Button5.Icon = "";
+$rootScope.Button5.Text = "Home";
+$rootScope.Button5.Class = "btn btn-primary btn-md ";
+$rootScope.Button5.Disabled = "";
+
+$rootScope.Button4 = {};
+$rootScope.Button4.ABRole = 2001;
+$rootScope.Button4.Hidden = "";
+$rootScope.Button4.Title = "";
+$rootScope.Button4.TabIndex = -1;
+$rootScope.Button4.TooltipText = "";
+$rootScope.Button4.TooltipPos = "top";
+$rootScope.Button4.PopoverText = "";
+$rootScope.Button4.PopoverTitle = "";
+$rootScope.Button4.PopoverEvent = "mouseenter";
+$rootScope.Button4.PopoverPos = "top";
+$rootScope.Button4.Badge = "";
+$rootScope.Button4.Icon = "";
+$rootScope.Button4.Text = "Back";
+$rootScope.Button4.Class = "btn btn-primary btn-md ";
+$rootScope.Button4.Disabled = "";
+
+$rootScope.Button6 = {};
+$rootScope.Button6.ABRole = 2001;
+$rootScope.Button6.Hidden = "";
+$rootScope.Button6.Title = "";
+$rootScope.Button6.TabIndex = -1;
+$rootScope.Button6.TooltipText = "";
+$rootScope.Button6.TooltipPos = "top";
+$rootScope.Button6.PopoverText = "";
+$rootScope.Button6.PopoverTitle = "";
+$rootScope.Button6.PopoverEvent = "mouseenter";
+$rootScope.Button6.PopoverPos = "top";
+$rootScope.Button6.Badge = "";
+$rootScope.Button6.Icon = "";
+$rootScope.Button6.Text = "Forward";
+$rootScope.Button6.Class = "btn btn-primary btn-md ";
+$rootScope.Button6.Disabled = "";
+
+$rootScope.HtmlContent1 = {};
+$rootScope.HtmlContent1.ABRole = 6001;
+$rootScope.HtmlContent1.Hidden = "";
+$rootScope.HtmlContent1.Class = "ios-inertial-scroll ";
+$rootScope.HtmlContent1.Title = "";
+$rootScope.HtmlContent1.TooltipText = "";
+$rootScope.HtmlContent1.TooltipPos = "top";
+$rootScope.HtmlContent1.PopoverText = "";
+$rootScope.HtmlContent1.PopoverEvent = "mouseenter";
+$rootScope.HtmlContent1.PopoverTitle = "";
+$rootScope.HtmlContent1.PopoverPos = "top";
+    };
+
+    return {
+      init : function () {
+        setControlVars();
+      }
+    };
+  }
+]);
+
+window.App.Plugins = {};
+
+window.App.Module.service
+(
+  'AppPluginsService',
+
+  ['$rootScope',
+
+  function ($rootScope) {
+
+    var setupPlugins = function () {
+      Object.keys(window.App.Plugins).forEach(function (plugin) {
+        if (angular.isFunction (window.App.Plugins[plugin])) {
+          plugin = window.App.Plugins[plugin].call();
+          if (angular.isFunction (plugin.PluginSetupEvent)) {
+            plugin.PluginSetupEvent();
+          }
+          if (angular.isFunction (plugin.PluginDocumentReadyEvent)) {
+            angular.element(window.document).ready(
+             plugin.PluginDocumentReadyEvent);
+          }
+          if (angular.isUndefined(window.App.Cordova) &&
+           angular.isFunction (plugin.PluginAppReadyEvent)) {
+             document.addEventListener('deviceready',
+              plugin.PluginAppReadyEvent, false);
+          }
+        }
+      });
+    };
+
+    return {
+      init : function () {
+        setupPlugins();
+      }
+    };
+  }
+]);
+
+window.App.Ctrls = angular.module('AppCtrls', []);
+
+window.App.Ctrls.controller
+(
+  'AppCtrl',
+
+  ['$scope', '$rootScope', '$location', '$uibModal', '$http', '$sce', '$timeout', '$window', '$document', 'blockUI', '$uibPosition',
+    'AppEventsService', 'AppGlobalsService', 'AppControlsService', 'AppPluginsService',
+
+  function ($scope, $rootScope, $location, $uibModal, $http, $sce, $timeout, $window, $document, blockUI, $uibPosition,
+   AppEventsService, AppGlobalsService, AppControlsService, AppPluginsService) {
+
+    window.App.Scope = $scope;
+    window.App.RootScope = $rootScope;
+
+    AppEventsService.init();
+    AppGlobalsService.init();
+    AppControlsService.init();
+    AppPluginsService.init();
+
+    $scope.showView = function (viewName) {
+      window.App.Modal.closeAll();
+      $rootScope.App.CurrentView = viewName;      
+      $rootScope.App.DialogView = '';
+      $location.path(viewName);
+    };
+
+    $scope.replaceView = function (viewName) {
+      window.App.Modal.closeAll();
+      $rootScope.App.DialogView = '';
+      $rootScope.App.CurrentView = viewName;            
+      $location.path(viewName).replace();
+    };
+
+    $scope.showModalView = function (viewName, callback) {
+      var
+        execCallback = null,
+        modal = window.App.Modal.insert(viewName);
+
+      $rootScope.App.DialogView = viewName;
+
+      modal.instance = $uibModal.open
+      ({
+        size: 'lg',
+        scope: $scope,
+        keyboard: false,
+        animation: false,
+        backdrop: 'static',
+        windowClass: 'dialogView',
+        controller: viewName + 'Ctrl',
+        templateUrl: 'app/views/' + viewName + '.html'
+      });
+      execCallback = function (modalResult) {
+        window.App.Modal.removeCurrent();
+        if (angular.isFunction (callback)) {
+          callback(modalResult);
+        }
+      };
+      modal.instance.result.then(
+        function (modalResult){execCallback(modalResult);},
+        function (modalResult){execCallback(modalResult);}
+      );
+    };
+
+    $scope.closeModalView = function (modalResult) {
+      var
+        modal = window.App.Modal.getCurrent();
+
+      $rootScope.App.DialogView = '';
+
+      if (modal !== null) {
+        window.App.Modal.getCurrent().close(modalResult);
+      }
+    };
+
+    $scope.loadVariables = function (text) {
+
+      var
+        setVar = function (name, value) {
+          var
+            newName = '',
+            dotPos = name.indexOf('.');
+
+          if (dotPos !== -1) {
+            newName = name.split('.');
+            if (newName.length === 2) {
+              $rootScope[newName[0].trim()][newName[1].trim()] = value;
+            } else if (newName.length === 3) {
+              // We support up to 3 levels here
+              $rootScope[newName[0].trim()][newName[1].trim()][newName[2].trim()] = value;
+            }
+          } else {
+            $rootScope[name] = value;
+          }
+        };
+
+      var
+        varName = '',
+        varValue = '',
+        isArray = false,
+        text = text || '',
+        separatorPos = -1;
+
+      angular.forEach(text.split('\n'), function (value, key) {
+        separatorPos = value.indexOf('=');
+        if ((value.trim() !== '') && (value.substr(0, 1) !== ';') && (separatorPos !== -1)) {
+          varName = value.substr(0, separatorPos).trim();
+          if (varName !== '') {
+            varValue = value.substr(separatorPos + 1, value.length).trim();
+            isArray = varValue.substr(0, 1) === '|';
+            if (!isArray) {
+              setVar(varName, varValue);
+            } else {
+              setVar(varName, varValue.substr(1, varValue.length).split('|'));
+            }
+          }
+        }
+      });
+    };
+
+    $scope.alertBox = function (content, type) {
+      var
+        aType = type || 'info',
+        modal = window.App.Modal.insert('builder/views/alertBox.html');
+
+      modal.instance = $uibModal.open
+      ({
+        size: 'lg',
+        scope: $scope,
+        keyboard: true,
+        animation: false,
+        controller: 'AppDialogsCtrl',
+        templateUrl: 'builder/views/alertBox.html',
+        resolve: {
+          properties: function () {
+            return {
+              Type: aType,
+              Content: content
+            };
+          }
+        }
+      });
+      modal.instance.result.then(null, function () {
+        window.App.Modal.removeCurrent();
+      });
+    };
+
+    $scope.inputBox = function (header, buttons,
+     inputVar, defaultVal, type, callback) {
+      var
+        execCallback = null,
+        aType = type || 'info',
+        aButtons = buttons || 'Ok|Cancel',
+        modal = window.App.Modal.insert('builder/views/inputBox.html');
+
+      $rootScope[inputVar] = defaultVal;
+
+      modal.instance = $uibModal.open
+      ({
+        size: 'lg',
+        scope: $scope,
+        keyboard: false,
+        animation: false,
+        backdrop: 'static',
+        controller: 'AppDialogsCtrl',
+        templateUrl: 'builder/views/inputBox.html',
+        resolve: {
+          properties: function () {
+            return {
+              Type: aType,
+              Header: header,
+              Buttons: aButtons.split('|'),
+              InputVar: $rootScope.inputVar
+            };
+          }
+        }
+      });
+      execCallback = function (modalResult) {
+        window.App.Modal.removeCurrent();
+        if (angular.isFunction (callback)) {
+          callback(modalResult, $rootScope[inputVar]);
+        }
+      };
+      modal.instance.result.then(
+        function (modalResult){execCallback(modalResult);},
+        function (modalResult){execCallback(modalResult);}
+      );
+    };
+
+    $scope.messageBox = function (header,
+     content, buttons, type, callback) {
+      var
+        execCallback = null,
+        aType = type || 'info',
+        aButtons = buttons || 'Ok',
+        modal = window.App.Modal.insert('builder/views/messageBox.html');
+
+      modal.instance = $uibModal.open
+      ({
+        size: 'lg',
+        scope: $scope,
+        keyboard: false,
+        animation: false,
+        backdrop: 'static',
+        controller: 'AppDialogsCtrl',
+        templateUrl: 'builder/views/messageBox.html',
+        resolve: {
+          properties: function () {
+            return {
+              Type: aType,
+              Header: header,
+              Content: content,
+              Buttons: aButtons.split('|')
+            };
+          }
+        }
+      });
+      execCallback = function (modalResult) {
+        window.App.Modal.removeCurrent();
+        if (angular.isFunction (callback)) {
+          callback(modalResult);
+        }
+      };
+      modal.instance.result.then(
+        function (modalResult){execCallback(modalResult);},
+        function (modalResult){execCallback(modalResult);}
+      );
+    };
+
+    $scope.alert = function (title, text) {
+      if (window.App.Cordova || !('notification' in navigator)) {
+        window.alert(text);
+      } else {
+        navigator.notification.alert(
+         text, null, title, null);
+      }
+    };
+
+    $scope.confirm = function (title, text, callback) {
+      if (window.App.Cordova || !('notification' in navigator)) {
+        callback(window.confirm(text));
+      } else {
+        navigator.notification.confirm
+        (
+          text,
+          function (btnIndex) {
+            callback(btnIndex === 1);
+          },
+          title,
+          null
+        );
+      }
+    };
+
+    $scope.prompt = function (title, text, defaultVal, callback) {
+      if (window.App.Cordova || !('notification' in navigator)) {
+        var
+          result = window.prompt(text, defaultVal);
+        callback(result !== null, result);
+      } else {
+        navigator.notification.prompt(
+          text,
+          function (result) {
+            callback(result.buttonIndex === 1, result.input1);
+          },
+          title,
+          null,
+          defaultVal
+        );
+      }
+    };
+
+    $scope.beep = function (times) {
+      if (window.App.Cordova || !('notification' in navigator)) {
+        window.App.Utils.playSound
+        (
+          'builder/sounds/beep/beep.mp3',
+          'builder/sounds/beep/beep.ogg'
+        );
+      } else {
+        navigator.notification.beep(times);
+      }
+    };
+
+    $scope.vibrate = function (milliseconds) {
+      if (window.App.Cordova || !('notification' in navigator)) {
+        var
+          body = angular.element(document.body);
+        body.addClass('animated shake');
+        setTimeout(function () {
+          body.removeClass('animated shake');
+        }, milliseconds);
+      } else {
+        navigator.vibrate(milliseconds);
+      }
+    };
+
+    $scope.setLocalOption = function (key, value) {
+      window.localStorage.setItem(key, value);
+    };
+
+    $scope.getLocalOption = function (key) {
+      return window.localStorage.getItem(key) || '';
+    };
+
+    $scope.removeLocalOption = function (key) {
+      window.localStorage.removeItem(key);
+    };
+
+    $scope.clearLocalOptions = function () {
+      window.localStorage.clear();
+    };
+
+    $scope.log = function (text, lineNum) {
+      window.App.Debugger.log(text, lineNum);
+    };
+
+    $window.TriggerAppOrientationEvent = function () {
+      $rootScope.OnAppOrientation();
+      $rootScope.$apply();
+    };
+
+    $scope.idleStart = function (seconds) {
+
+      $scope.idleStop();
+      $rootScope.App.IdleIsIdling = false;
+
+      if($rootScope.App._IdleSeconds !== seconds) {
+        $rootScope.App._IdleSeconds = seconds;
+      }
+
+      $document.on('mousemove mousedown mousewheel keydown scroll touchstart touchmove DOMMouseScroll', $scope._resetIdle);
+
+      $rootScope.App.IdleIsRunning = true;
+
+      $rootScope.App._IdleTimer = setTimeout(function () {
+        $rootScope.App.IdleIsIdling = true;
+        $rootScope.OnAppIdleStart();
+        $scope.$apply();
+      }, $rootScope.App._IdleSeconds * 1000);
+    };
+
+    $scope._resetIdle = function () {
+      if($rootScope.App.IdleIsIdling) {
+        $rootScope.OnAppIdleEnd();
+        $rootScope.App.IdleIsIdling = false;
+        $scope.$apply();
+      }
+      $scope.idleStart($rootScope.App._IdleSeconds);
+    };
+
+    $scope.idleStop = function () {
+      $document.off('mousemove mousedown mousewheel keydown scroll touchstart touchmove DOMMouseScroll', $scope._resetIdle);
+      clearTimeout($rootScope.App._IdleTimer);
+      $rootScope.App.IdleIsRunning = false;
+    };
+
+    $scope.trustSrc = function (src) {
+      return $sce.trustAsResourceUrl(src);
+    };
+
+    $scope.openWindow = function (url, showLocation, target) {
+      var
+        options = 'location=';
+
+      if (showLocation) {
+        options += 'yes';
+      } else {
+        options += 'no';
+      }
+
+      if (window.App.Cordova) {
+        options += ', width=500, height=500, resizable=yes, scrollbars=yes';
+      }
+
+      return window.open(url, target, options);
+    };
+
+    $scope.closeWindow = function (winRef) {
+      if (angular.isObject(winRef) && angular.isFunction (winRef.close)) {
+        winRef.close();
+      }
+    };    
+    
+    $scope.fileDownload = function(url, subdir, fileName,
+     privatelly, headers, errorCallback, successCallback) {
+     
+      if (window.App.Cordova) {
+        if (angular.isFunction(errorCallback)) { 
+          errorCallback('-1'); 
+        }
+        return;
+      }
+      
+      var
+        ft = new FileTransfer(),
+        root = privatelly.toString() === 'true' ? cordova.file.dataDirectory :
+         (device.platform.toLowerCase() === 'ios') ?
+          cordova.file.documentsDirectory : cordova.file.externalRootDirectory;
+
+      window.resolveLocalFileSystemURL(root, function (dir) {
+        dir.getDirectory(subdir, { create: true, exclusive: false }, function (downloadDir) {
+          downloadDir.getFile(fileName, { create: true, exclusive: false }, function (file) {
+            ft.download(url, file.toURL(), function(entry) { 
+              if (angular.isFunction(successCallback)) { successCallback(entry.toURL(), entry); } 
+            }, 
+            function(error) {
+              if (angular.isFunction(errorCallback)) { errorCallback(4, error); }               
+            }, 
+            false, 
+            { "headers": angular.isObject(headers) ? headers : {} });
+          }, 
+          function(error) {
+            if (angular.isFunction(errorCallback)) { 
+              errorCallback(3, error); 
+            }               
+          });
+        }, 
+        function(error) {
+          if (angular.isFunction(errorCallback)) { 
+            errorCallback(2, error); 
+          }               
+        });
+      }, 
+      function(error) {
+        if (angular.isFunction(errorCallback)) { 
+          errorCallback(1, error); 
+        }               
+      });
+    };        
+
+   
+$scope.BackButton = function()
+{
+window.onscroll = function() {scrollFunction()};
+function scrollFunction() {
+{    document.getElementById("myBtn").style.display = "block";
+}
+}
+function goBack() {
+window.history.back();
+}
+};
+
+}]);
+
+window.App.Ctrls.controller
+(
+  'AppDialogsCtrl',
+
+  ['$scope', 'properties',
+
+  function ($scope, properties) {
+    $scope.Properties = properties;
+  }
+]);
+
+window.App.Ctrls.controller
+(
+  'AppEventsCtrl',
+
+  ['$scope', '$rootScope', '$location', '$uibModal', '$http', '$sce', '$timeout', '$window', '$document', 'blockUI', '$uibPosition',
+
+  function ($scope, $rootScope, $location, $uibModal, $http, $sce, $timeout, $window, $document, blockUI, $uibPosition) {
+
+    $rootScope.OnAppHide = function () {
+      //__APP_HIDE_EVENT
+    };
+    
+    $rootScope.OnAppShow = function () {
+      //__APP_SHOW_EVENT
+    };    
+
+    $rootScope.OnAppReady = function () {
+      
+$rootScope.Music.playing = 0;
+
+if ((window.App.Cordova === undefined) && (window.screen.orientation !== undefined)) {
+  window.screen.orientation.lock("portrait-primary");
+}
+
+$rootScope.StatusBarHide = (window.StatusBar !== undefined) && window.StatusBar.isVisible ? "true" : "false";
+
+$rootScope.FirstRun = $scope.getLocalOption("FirstRunStorage");
+
+if ($rootScope.FirstRun !=  "false" ) {
+
+$rootScope.FirstRun = "false";
+
+$scope.setLocalOption("FirstRunStorage", $rootScope.FirstRun);
+
+$rootScope.FirstRun = "true";
+
+$rootScope.Variable1 = "false";
+
+$scope.setLocalOption("Variable1Storage", $rootScope.Variable1);
+
+}
+
+if ($rootScope.FirstRun ==  "false" ) {
+
+$rootScope.Variable1 = $scope.getLocalOption("Variable1Storage");
+
+}
+
+var ua = new UAParser(); $rootScope.UserAgent = ua.getResult();
+
+if(($rootScope.UserAgent.os.name == "iOS") && ($rootScope.UserAgent.os.version < 10)) {
+
+blockUI.reset(); blockUI.start();
+
+blockUI.message("iOS "+$rootScope.UserAgent.os.version+" is not supported. Please update to a newer version of iOS.");
+
+}
+
+    };
+
+    $rootScope.OnAppPause = function () {
+      //__APP_PAUSE_EVENT
+    };
+
+    $rootScope.OnAppKeyUp = function () {
+      //__APP_KEY_UP_EVENT
+    };
+
+    $rootScope.OnAppKeyDown = function () {
+      //__APP_KEY_DOWN_EVENT
+    };
+
+    $rootScope.OnAppMouseUp = function () {
+      //__APP_MOUSE_UP_EVENT
+    };
+
+    $rootScope.OnAppMouseDown = function () {
+      //__APP_MOUSE_DOWN_EVENT
+    };
+
+    $rootScope.OnAppError = function () {
+      //__APP_ERROR_EVENT
+    };
+
+    $rootScope.OnAppResize = function () {
+      //__APP_RESIZE_EVENT
+    };
+
+    $rootScope.OnAppResume = function () {
+      //__APP_RESUME_EVENT
+    };
+
+    $rootScope.OnAppOnline = function () {
+      //__APP_ONLINE_EVENT
+    };
+
+    $rootScope.OnAppOffline = function () {
+      //__APP_OFFLINE_EVENT
+    };
+
+    $rootScope.OnAppIdleEnd = function () {
+      //__APP_IDLE_END_EVENT
+    };
+
+    $rootScope.OnAppIdleStart = function () {
+      //__APP_IDLE_START_EVENT
+    };
+
+    $rootScope.OnAppBackButton = function () {
+      //__APP_BACK_BUTTON_EVENT
+    };
+
+    $rootScope.OnAppMenuButton = function () {
+      //__APP_MENU_BUTTON_EVENT
+    };
+
+    $rootScope.OnAppViewChange = function () {
+      //__APP_VIEW_CHANGE_EVENT
+    };
+
+    $rootScope.OnAppOrientation = function () {
+      //__APP_ORIENTATION_EVENT
+    };
+
+    $rootScope.OnAppVolumeUpButton = function () {
+      //__APP_VOLUME_UP_EVENT
+    };
+
+    $rootScope.OnAppVolumeDownButton = function () {
+      //__APP_VOLUME_DOWN_EVENT
+    };
+    
+    $rootScope.OnAppWebExtensionMsg = function () {
+      //__APP_WEBEXTENSION_MSG_EVENT
+    };    
+  }
+]);
+
+angular.element(window.document).ready(function () {
+  angular.bootstrap(window.document, ['AppModule']);
+});
+
+window.App.Ctrls.controller("MainCtrl", ["$scope", "$rootScope", "$sce", "$timeout", "$interval", "$http", "$uibPosition", "blockUI",
+
+function($scope, $rootScope, $sce, $timeout, $interval, $http, $position, blockUI) {
+
+$rootScope.Main = {};
+$rootScope.Main.ABView = true;
+
+window.App.Main = {};
+window.App.Main.Scope = $scope;
+$rootScope.App.CurrentView = "Main";
+
+angular.element(window.document).ready(function(event){
+angular.element(document.querySelector("body")).addClass($rootScope.App.Theme.toLowerCase());
+});
+
+angular.element(window.document).ready(function(event){
+$rootScope.Main.Event = event;
+
+
+n =  new Date();
+y = n.getFullYear();
+m = n.getMonth() + 1;
+d = n.getDate();
+document.getElementById("date").innerHTML = d;
+
+$rootScope.$apply();
+});
+
+$scope.Image8Click = function($event) {
+$rootScope.Image8.Event = $event;
+
+$scope.showModalView("DialogCalendar");
+
+};
+
+$scope.Image4Click = function($event) {
+$rootScope.Image4.Event = $event;
+
+$scope.openWindow("https://www.iecc.edu/e4/", "", "_system");
+
+};
+
+$scope.FAQImageClick = function($event) {
+$rootScope.FAQImage.Event = $event;
+
+$scope.openWindow("app/files/FAQ/index.html", "", "_self");
+
+};
+
+$scope.MapClick = function($event) {
+$rootScope.Map.Event = $event;
+
+$scope.replaceView("CampusMap");
+
+};
+
+$scope.Image14Click = function($event) {
+$rootScope.Image14.Event = $event;
+
+$scope.openWindow("app/files/SocialMedia/index.html", "", "_self");
+
+};
+
+$scope.Image13Click = function($event) {
+$rootScope.Image13.Event = $event;
+
+$scope.openWindow("https://docs.google.com/forms/d/e/1FAIpQLSdahG3-rJTnijYd_7OGyX8r-fu7yH4Hg3JruvV7sqbbILLpRw/viewform?usp=sf_link", "", "_system");
+
+};
+
+$scope.Image15Click = function($event) {
+$rootScope.Image15.Event = $event;
+
+if ($rootScope.Music.playing == 0) {
+
+$rootScope.Music.playing = 1;
+
+setTimeout(function(){$rootScope.Music.API.play();},1);
+
+$rootScope.MusicCover.Hidden = "";
+
+$scope.alert("", "This is meant to play a live stream of the music on 89.1 The Bash but it isn\x27t fully functional yet. (The displayed album art my be wrong)");
+
+} else {
+
+$rootScope.Music.playing = 0;
+
+$rootScope.Music.API.stop();
+
+$rootScope.MusicCover.Hidden = "true";
+
+}
+
+};
+
+$rootScope.Music.onCanPlay = function() {
+
+};
+
+$rootScope.Music.onReady = function(API) {
+$rootScope.Music.API = API;
+
+};
+
+$rootScope.Music.onError = function() {
+};
+
+$rootScope.Music.onComplete = function() {
+};
+
+$rootScope.Music.onUpdate = function() {
+};
+
+$scope.Image6Click = function($event) {
+$rootScope.Image6.Event = $event;
+
+$scope.fileDownload("http://myweb.iecc.edu/wvjc/content/ALBUM.JPG", "", "hi.jpg", "", "", (("".length > 0) && angular.isFunction($scope[""])) ? $scope[""] : null, (("".length > 0) && angular.isFunction($scope[""])) ? $scope[""] : null);
+
+};
+
+$scope.Image12Click = function($event) {
+$rootScope.Image12.Event = $event;
+
+$scope.showModalView("DialogWVC");
+
+};
+
+$scope.Image2Click = function($event) {
+$rootScope.Image2.Event = $event;
+
+};
+
+$scope.HtmlContent2Click = function($event) {
+$rootScope.HtmlContent2.Event = $event;
+
+$scope.openWindow("app/files/CalendarList/index.html", "", "_self");
+
+};
+
+$scope.MusicCoverClick = function($event) {
+$rootScope.MusicCover.Event = $event;
+
+if ($rootScope.Music.playing == 0) {
+
+$rootScope.Music.playing = 1;
+
+setTimeout(function(){$rootScope.Music.API.play();},1);
+
+$rootScope.MusicCover.Hidden = "";
+
+} else {
+
+$rootScope.Music.playing = 0;
+
+$rootScope.Music.API.stop();
+
+$rootScope.MusicCover.Hidden = "true";
+
+}
+
+};
+
+$scope.Button2Click = function($event) {
+$rootScope.Button2.Event = $event;
+
+};
+
+}]);
+
+window.App.Ctrls.controller("InfoViewerCtrl", ["$scope", "$rootScope", "$sce", "$timeout", "$interval", "$http", "$uibPosition", "blockUI",
+
+function($scope, $rootScope, $sce, $timeout, $interval, $http, $position, blockUI) {
+
+$rootScope.InfoViewer = {};
+$rootScope.InfoViewer.ABView = true;
+
+window.App.InfoViewer = {};
+window.App.InfoViewer.Scope = $scope;
+
+$scope.BackButtonzClick = function($event) {
+$rootScope.BackButtonz.Event = $event;
+
+$scope.replaceView("Main");
+
+};
+
+}]);
+
+window.App.Ctrls.controller("DialogCalendarCtrl", ["$scope", "$rootScope", "$sce", "$timeout", "$interval", "$http", "$uibPosition", "blockUI",
+
+function($scope, $rootScope, $sce, $timeout, $interval, $http, $position, blockUI) {
+
+$rootScope.DialogCalendar = {};
+$rootScope.DialogCalendar.ABView = true;
+
+window.App.DialogCalendar = {};
+window.App.DialogCalendar.Scope = $scope;
+
+$rootScope.Menu2.ItemClick = function(index) {
+  $rootScope.Menu2.ItemIndex = index;
+
+if (""+$rootScope.Menu2.ItemIndex+"" == 0) {
+
+$scope.openWindow("app/files/CalendarList/sections/section1/index.html", "", "_self");
+
+} else if (""+$rootScope.Menu2.ItemIndex+"" == 1) {
+
+$scope.openWindow("app/files/CalendarList/sections/section2/index.html", "", "_self");
+
+} else if (""+$rootScope.Menu2.ItemIndex+"" == 2) {
+
+$scope.openWindow("app/files/CalendarList/sections/section3/index.html", "", "_self");
+
+} else if (""+$rootScope.Menu2.ItemIndex+"" == 3) {
+
+$scope.openWindow("app/files/CalendarList/sections/section4/index.html", "", "_self");
+
+} else if (""+$rootScope.Menu2.ItemIndex+"" == 4) {
+
+$scope.openWindow("app/files/CalendarList/sections/section5/index.html", "", "_self");
+
+} else if (""+$rootScope.Menu2.ItemIndex+"" == 5) {
+
+$scope.alert("(Inactive)", "When this feature is active you will be able to report any errors or issues you have with a specific calendar directly with that calendar\x27s maintainer");
+
+}
+
+};
+
+$scope.Button1Click = function($event) {
+$rootScope.Button1.Event = $event;
+
+$scope.replaceView("Main");
+
+};
+
+}]);
+
+window.App.Ctrls.controller("DialogWVCCtrl", ["$scope", "$rootScope", "$sce", "$timeout", "$interval", "$http", "$uibPosition", "blockUI",
+
+function($scope, $rootScope, $sce, $timeout, $interval, $http, $position, blockUI) {
+
+$rootScope.DialogWVC = {};
+$rootScope.DialogWVC.ABView = true;
+
+window.App.DialogWVC = {};
+window.App.DialogWVC.Scope = $scope;
+
+$rootScope.MenuDialogWVC.ItemClick = function(index) {
+  $rootScope.MenuDialogWVC.ItemIndex = index;
+
+if (""+$rootScope.MenuDialogWVC.ItemIndex+"" == 0) {
+
+$scope.showModalView("DialogFAQ");
+
+} else if (""+$rootScope.MenuDialogWVC.ItemIndex+"" == 1) {
+
+$scope.openWindow("app/files/ContactInfo/index.html", "", "_self");
+
+} else if (""+$rootScope.MenuDialogWVC.ItemIndex+"" == 2) {
+
+$scope.openWindow("app/files/Calendars/index.html", "", "_self");
+
+} else if (""+$rootScope.MenuDialogWVC.ItemIndex+"" == 3) {
+
+$scope.openWindow("https://www.iecc.edu/page.php?page=WVCH_PRGM&acad=list&acadc=wvc", "", "_system");
+
+} else if (""+$rootScope.MenuDialogWVC.ItemIndex+"" == 4) {
+
+$scope.openWindow("https://www.iecc.edu/e4/", "", "_system");
+
+} else if ("MenuDialogWVC.ItemIndex]" == 5) {
+
+$scope.openWindow("https://docs.google.com/forms/d/e/1FAIpQLSdahG3-rJTnijYd_7OGyX8r-fu7yH4Hg3JruvV7sqbbILLpRw/viewform?usp=sf_link", "", "_system");
+
+}
+
+};
+
+$scope.BackbuttonClick = function($event) {
+$rootScope.Backbutton.Event = $event;
+
+$scope.closeModalView();
+
+};
+
+}]);
+
+window.App.Ctrls.controller("DialogFAQCtrl", ["$scope", "$rootScope", "$sce", "$timeout", "$interval", "$http", "$uibPosition", "blockUI",
+
+function($scope, $rootScope, $sce, $timeout, $interval, $http, $position, blockUI) {
+
+$rootScope.DialogFAQ = {};
+$rootScope.DialogFAQ.ABView = true;
+
+window.App.DialogFAQ = {};
+window.App.DialogFAQ.Scope = $scope;
+
+$rootScope.MenuFAQ.ItemClick = function(index) {
+  $rootScope.MenuFAQ.ItemIndex = index;
+
+if (""+$rootScope.MenuFAQ.ItemIndex+"" == 0) {
+
+$rootScope.iFrameInfoViewer.Url = "app/files/FAQ/sections/financialaid/index.html";
+
+} else if (""+$rootScope.MenuFAQ.ItemIndex+"" == 1) {
+
+$rootScope.iFrameInfoViewer.Url = "app/files/FAQ/sections/books/index.html";
+
+} else if (""+$rootScope.MenuFAQ.ItemIndex+"" == 2) {
+
+$rootScope.iFrameInfoViewer.Url = "app/files/FAQ/sections/courses/index.html";
+
+} else if (""+$rootScope.MenuFAQ.ItemIndex+"" == 3) {
+
+$rootScope.iFrameInfoViewer.Url = "app/files/FAQ/sections/otherstuff/index.html";
+
+}
+
+$scope.replaceView("InfoViewer");
+
+};
+
+$scope.Button10Click = function($event) {
+$rootScope.Button10.Event = $event;
+
+$scope.closeModalView();
+
+};
+
+}]);
+
+window.App.Ctrls.controller("SettingsCtrl", ["$scope", "$rootScope", "$sce", "$timeout", "$interval", "$http", "$uibPosition", "blockUI",
+
+function($scope, $rootScope, $sce, $timeout, $interval, $http, $position, blockUI) {
+
+$rootScope.Settings = {};
+$rootScope.Settings.ABView = true;
+
+window.App.Settings = {};
+window.App.Settings.Scope = $scope;
+
+angular.element(window.document).ready(function(event){
+$rootScope.Settings.Event = event;
+
+if ($rootScope.Variable1 ==  "false" ) {
+
+document.getElementById("Variable1Switch").setAttribute("src", "app/files/images/vectors/offswitch.svg");
+
+return null;
+
+}
+
+if ($rootScope.Variable1 ==  "true" ) {
+
+document.getElementById("Variable1Switch").setAttribute("src", "app/files/images/vectors/onswitch.svg");
+
+}
+
+if (!angular.isUndefined($rootScope.Watcher2.WatchStop)) { $rootScope.Watcher2.WatchStop(); } $rootScope.Watcher2.WatchStart();
+
+if (!angular.isUndefined($rootScope.Watcher2.WatchStop)) { $rootScope.Watcher2.WatchStop(); } $rootScope.Watcher2.Variable = "Variable1"; $rootScope.Watcher2.WatchStart();
+
+$rootScope.$apply();
+});
+
+$scope.Variable1SwitchClick = function($event) {
+$rootScope.Variable1Switch.Event = $event;
+
+if ($rootScope.Variable1 ==  "false" ) {
+
+$rootScope.Variable1 = "true";
+
+document.getElementById("Variable1Switch").setAttribute("src", "app/files/images/vectors/onswitch.svg");
+
+return null;
+
+}
+
+if ($rootScope.Variable1 ==  "true" ) {
+
+$rootScope.Variable1 = "false";
+
+document.getElementById("Variable1Switch").setAttribute("src", "app/files/images/vectors/offswitch.svg");
+
+}
+
+};
+
+$scope.ResetAllClick = function($event) {
+$rootScope.ResetAll.Event = $event;
+
+$scope.clearLocalOptions();
+
+blockUI.reset(); blockUI.start();
+
+$scope.alert("Close", "App Reset. Please Close and reopen the app.");
+
+};
+
+$scope.Button13Click = function($event) {
+$rootScope.Button13.Event = $event;
+
+if ($rootScope.Variable1 ==  "false" ) {
+
+$rootScope.Variable1 = "true";
+
+return null;
+
+}
+
+if ($rootScope.Variable1 ==  "true" ) {
+
+$rootScope.Variable1 = "false";
+
+}
+
+};
+
+$rootScope.Watcher2.WatchStart = function(){
+
+$rootScope.Watcher2.WatchStop = $rootScope.$watch($rootScope.Watcher2.Variable, function(newValue, oldValue){
+  $rootScope.Watcher2.NewValue = newValue;
+  $rootScope.Watcher2.OldValue = oldValue;
+
+if ($rootScope.Variable1 ==  "false" ) {
+
+document.getElementById("Variable1Switch").setAttribute("src", "app/files/images/vectors/offswitch.svg");
+
+return null;
+
+}
+
+if ($rootScope.Variable1 ==  "true" ) {
+
+document.getElementById("Variable1Switch").setAttribute("src", "app/files/images/vectors/onswitch.svg");
+
+}
+  });};
+
+}]);
+
+window.App.Ctrls.controller("CampusMapCtrl", ["$scope", "$rootScope", "$sce", "$timeout", "$interval", "$http", "$uibPosition", "blockUI",
+
+function($scope, $rootScope, $sce, $timeout, $interval, $http, $position, blockUI) {
+
+$rootScope.CampusMap = {};
+$rootScope.CampusMap.ABView = true;
+
+window.App.CampusMap = {};
+window.App.CampusMap.Scope = $scope;
+
+angular.element(window.document).ready(function(event){
+$rootScope.CampusMap.Event = event;
+
+if ((window.App.Cordova === undefined) && (window.screen.orientation !== undefined)) {
+  window.screen.orientation.lock("portrait-primary");
+}
+
+$rootScope.$apply();
+});
+
+$scope.MainPinClick = function($event) {
+$rootScope.MainPin.Event = $event;
+
+$scope.openWindow("https://www.youtube.com/watch?v=J43D27kabgM", "", "_system");
+
+};
+
+$scope.FieldPinClick = function($event) {
+$rootScope.FieldPin.Event = $event;
+
+$scope.openWindow("https://www.youtube.com/watch?v=8eUd4Ktf0Jo", "", "_system");
+
+};
+
+$scope.PoolPinClick = function($event) {
+$rootScope.PoolPin.Event = $event;
+
+$scope.openWindow("https://www.youtube.com/watch?v=xN3q6LOovuc", "", "_system");
+
+};
+
+$scope.SciencePinClick = function($event) {
+$rootScope.SciencePin.Event = $event;
+
+$scope.openWindow("https://youtu.be/QHZJVDzFRks", "", "_system");
+
+};
+
+$scope.CafePinClick = function($event) {
+$rootScope.CafePin.Event = $event;
+
+$scope.openWindow("https://www.youtube.com/watch?v=zv30oNZoUIw", "", "_system");
+
+};
+
+$scope.BackArrowClick = function($event) {
+$rootScope.BackArrow.Event = $event;
+
+$scope.replaceView("Main");
+
+};
+
+$scope.MapToggleClick = function($event) {
+$rootScope.MapToggle.Event = $event;
+
+if ($rootScope.TourMap.Hidden !=  "true" ) {
+
+$rootScope.BackFrame.Hidden = "";
+
+$rootScope.TourMap.Hidden = "true";
+
+$rootScope.MainPin.Hidden = "true";
+
+$rootScope.FieldPin.Hidden = "true";
+
+$rootScope.PoolPin.Hidden = "true";
+
+$rootScope.SciencePin.Hidden = "true";
+
+$rootScope.CafePin.Hidden = "true";
+
+$rootScope.BackArrow.Hidden = "true";
+
+angular.element(document.getElementById("MapToggle")).css("opacity", .5);
+
+} else {
+
+$rootScope.BackFrame.Hidden = "true";
+
+$rootScope.TourMap.Hidden = "";
+
+$rootScope.MainPin.Hidden = "";
+
+$rootScope.FieldPin.Hidden = "";
+
+$rootScope.PoolPin.Hidden = "";
+
+$rootScope.SciencePin.Hidden = "";
+
+$rootScope.CafePin.Hidden = "";
+
+$rootScope.BackArrow.Hidden = "";
+
+angular.element(document.getElementById("MapToggle")).css("opacity", 1);
+
+}
+
+};
+
+}]);
+
+window.App.Ctrls.controller("CampusMapZoomableCtrl", ["$scope", "$rootScope", "$sce", "$timeout", "$interval", "$http", "$uibPosition", "blockUI",
+
+function($scope, $rootScope, $sce, $timeout, $interval, $http, $position, blockUI) {
+
+$rootScope.CampusMapZoomable = {};
+$rootScope.CampusMapZoomable.ABView = true;
+
+window.App.CampusMapZoomable = {};
+window.App.CampusMapZoomable.Scope = $scope;
+
+}]);
+
+window.App.Ctrls.controller("FeedbackPageCtrl", ["$scope", "$rootScope", "$sce", "$timeout", "$interval", "$http", "$uibPosition", "blockUI",
+
+function($scope, $rootScope, $sce, $timeout, $interval, $http, $position, blockUI) {
+
+$rootScope.FeedbackPage = {};
+$rootScope.FeedbackPage.ABView = true;
+
+window.App.FeedbackPage = {};
+window.App.FeedbackPage.Scope = $scope;
+
+$scope.HomeClick = function($event) {
+$rootScope.Home.Event = $event;
+
+$scope.showView("Main");
+
+};
+
+}]);
+
+window.App.Ctrls.controller("SocialMediaCtrl", ["$scope", "$rootScope", "$sce", "$timeout", "$interval", "$http", "$uibPosition", "blockUI",
+
+function($scope, $rootScope, $sce, $timeout, $interval, $http, $position, blockUI) {
+
+$rootScope.SocialMedia = {};
+$rootScope.SocialMedia.ABView = true;
+
+window.App.SocialMedia = {};
+window.App.SocialMedia.Scope = $scope;
+
+$scope.Image17Click = function($event) {
+$rootScope.Image17.Event = $event;
+
+};
+
+$scope.Image18Click = function($event) {
+$rootScope.Image18.Event = $event;
+
+};
+
+$scope.Image19Click = function($event) {
+$rootScope.Image19.Event = $event;
+
+};
+
+}]);
+
+window.App.Ctrls.controller("CalendarCtrl", ["$scope", "$rootScope", "$sce", "$timeout", "$interval", "$http", "$uibPosition", "blockUI",
+
+function($scope, $rootScope, $sce, $timeout, $interval, $http, $position, blockUI) {
+
+$rootScope.Calendar = {};
+$rootScope.Calendar.ABView = true;
+
+window.App.Calendar = {};
+window.App.Calendar.Scope = $scope;
+
+$scope.Image1Click = function($event) {
+$rootScope.Image1.Event = $event;
+
+$scope.openWindow("app/files/Calendars/index.html", "", "_system");
+
+};
+
+$scope.Image3Click = function($event) {
+$rootScope.Image3.Event = $event;
+
+$scope.replaceView("Calendar");
+
+};
+
+$scope.Image5Click = function($event) {
+$rootScope.Image5.Event = $event;
+
+$scope.replaceView("Calendar");
+
+};
+
+$scope.Image7Click = function($event) {
+$rootScope.Image7.Event = $event;
+
+$scope.replaceView("Calendar");
+
+};
+
+$scope.Image9Click = function($event) {
+$rootScope.Image9.Event = $event;
+
+$scope.replaceView("Calendar");
+
+};
+
+$scope.Image10Click = function($event) {
+$rootScope.Image10.Event = $event;
+
+$scope.replaceView("Calendar");
+
+};
+
+}]);
+
+window.App.Ctrls.controller("FAQViewCtrl", ["$scope", "$rootScope", "$sce", "$timeout", "$interval", "$http", "$uibPosition", "blockUI",
+
+function($scope, $rootScope, $sce, $timeout, $interval, $http, $position, blockUI) {
+
+$rootScope.FAQView = {};
+$rootScope.FAQView.ABView = true;
+
+window.App.FAQView = {};
+window.App.FAQView.Scope = $scope;
+
+$scope.Button8Click = function($event) {
+$rootScope.Button8.Event = $event;
+
+$scope.showView("Main");
+
+};
+
+$scope.Button7Click = function($event) {
+$rootScope.Button7.Event = $event;
+
+window.history.back();
+
+};
+
+$scope.Button9Click = function($event) {
+$rootScope.Button9.Event = $event;
+
+window.history.forward();
+
+};
+
+}]);
+
+window.App.Ctrls.controller("WVCSiteViewCtrl", ["$scope", "$rootScope", "$sce", "$timeout", "$interval", "$http", "$uibPosition", "blockUI",
+
+function($scope, $rootScope, $sce, $timeout, $interval, $http, $position, blockUI) {
+
+$rootScope.WVCSiteView = {};
+$rootScope.WVCSiteView.ABView = true;
+
+window.App.WVCSiteView = {};
+window.App.WVCSiteView.Scope = $scope;
+
+$scope.Button5Click = function($event) {
+$rootScope.Button5.Event = $event;
+
+$scope.showView("Main");
+
+};
+
+$scope.Button4Click = function($event) {
+$rootScope.Button4.Event = $event;
+
+window.history.back();
+
+};
+
+$scope.Button6Click = function($event) {
+$rootScope.Button6.Event = $event;
+
+window.history.forward();
+
+};
+
+}]);
+
+window.App.Ctrls.controller("FeedbackCtrl", ["$scope", "$rootScope", "$sce", "$timeout", "$interval", "$http", "$uibPosition", "blockUI",
+
+function($scope, $rootScope, $sce, $timeout, $interval, $http, $position, blockUI) {
+
+$rootScope.Feedback = {};
+$rootScope.Feedback.ABView = true;
+
+window.App.Feedback = {};
+window.App.Feedback.Scope = $scope;
+
+}]);

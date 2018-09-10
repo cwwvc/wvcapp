@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8' />
+<link href='./fullcalendar.min.css' rel='stylesheet' />
+<link href='./fullcalendar.print.min.css' rel='stylesheet' media='print' />
+<script src='./lib/moment.min.js'></script>
+<script src='./lib/jquery.min.js'></script>
+<script src='./fullcalendar.min.js'></script>
+
+<script src="./lib/ical.js"></script>
+<script src="./lib/ical_events.js"></script>
+<script src="./lib/ical_fullcalendar.js"></script>
+<script src="./lib/colorize_fullcalendar.js"></script>
+
+<script type='text/javascript' src='./lib/gcal.js'></script>
+
+<!--
+<script>
+
+ics_sources = [
+    {url:'http://wvcwarriorathletics.com/sports/mbkb/2018-19/schedule?print=ical',event_properties:{color:'green'}},
+]
+
+
+function data_req (url, callback) {
+    req = new XMLHttpRequest()
+    req.addEventListener('load', callback)
+    req.open('GET', url)
+    req.send()
+}
+
+function add_recur_events() {
+    if (sources_to_load_cnt < 1) {
+        $('#calendar').fullCalendar('addEventSource', expand_recur_events)
+    } else {
+        setTimeout(add_recur_events, 30)
+    }
+}
+
+function load_ics(ics){
+    data_req(ics.url, function(){
+        $('#calendar').fullCalendar('addEventSource', fc_events(this.response, ics.event_properties))
+        sources_to_load_cnt -= 1
+    })
+}
+---->
+
+<script>
+//Other part
+
+  $(document).ready(function() {  
+  
+    $('#calendar').fullCalendar({
+	contentHeight: "auto",
+      header: {
+        left: 'listDay,listWeek,listMonth,listYear',
+        center: 'title',
+        right: 'prev,next today'
+      },
+
+      // customize the button names,
+      // otherwise they'd all just say "list"
+      views: {
+        listDay: { buttonText: 'list day' },
+        listWeek: { buttonText: 'list week' },
+		listMonth: { buttonText: 'list month' },
+		listYear: { buttonText: 'list year' },
+      },
+
+      defaultView: 'listMonth',
+      //defaultDate: '2018-03-12',
+      navLinks: true, // can click day/week names to navigate views
+      editable: false,
+      eventLimit: false, // allow "more" link when too many events
+	  displayEventTime: true, // don't show the time column in list view
+
+      // To make your own Google API key, follow the directions here:
+      // http://fullcalendar.io/docs/google_calendar/
+      googleCalendarApiKey: 'AIzaSyCgU4-x4HzMugO1vMQYo3DDvEgchnwobDE',
+
+      // Google Calendar ID
+      events: 'suvq8pkb8ctc5uhp92bnfdmrp0@group.calendar.google.com',
+
+      eventClick: function(event) {
+        // opens events in a popup window
+        //window.open(event.url, '_blank', 'width=700,height=600');
+        return false;
+      }
+    });
+//    sources_to_load_cnt = ics_sources.length
+//    for (ics of ics_sources) {
+//        load_ics(ics)
+//    }
+//    add_recur_events()	
+	
+  });
+
+</script>
+
+<style>
+
+  body {
+    margin: 20px 10px;
+    padding: 0;
+    font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+    font-size: 12px;
+  }
+
+  #calendar {
+	height: 9000
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+</style>
+
+</head>
+<body>
+
+<div id='calendar'></div>
+
+</body>
+</html>

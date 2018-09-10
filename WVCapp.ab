@@ -20,7 +20,7 @@
     <LanguageCode>en</LanguageCode>
     <TextDirection>ltr</TextDirection>
     <Created>2018-05-12T23:05:10.268</Created>
-    <Modified>2018-08-18T08:46:44.641</Modified>
+    <Modified>2018-09-09T06:23:01.055</Modified>
     <BuildNumber>0</BuildNumber>
     <AutoBuildNumber>0</AutoBuildNumber>
     <ReadyEvent>
@@ -200,7 +200,9 @@ ReplaceView "CampusMap"
           <Image>Images\peopleback.png</Image>
           <Title>Social Media</Title>
           <ClickEvent>
-            <![CDATA[OpenWindow "app/files/SocialMedia/index.html" "" "_self" ""
+            <![CDATA[SetVar "[iFrameInfoViewer.Url]" "app/files/SocialMedia/index.html" "String"
+ReplaceView "InfoViewer"
+//OpenWindow "app/files/SocialMedia/index.html" "" "_self" ""
 //Alert "Work in Progress" "The page is under construction, but you\x27re free to preview"
 //ReplaceView "SocialMedia"
 ]]>
@@ -442,7 +444,7 @@ EndIf]]>
             <![CDATA[<strong>Back</strong>]]>
           </Text>
           <Kind>danger</Kind>
-          <Size>lg</Size>
+          <Size>sm</Size>
           <Title>BackButton</Title>
           <ClickEvent>
             <![CDATA[ReplaceView "Main"
@@ -477,19 +479,25 @@ EndIf]]>
 //If "[Menu1.ItemIndex]" "==" "0"
 //ReplaceView "Main"
 If "[Menu2.ItemIndex]" "==" "0"
-OpenWindow "app/files/CalendarList/sections/section1/index.html" "" "_self" ""
+SetVar "[iFrameInfoViewer.Url]" "app/files/ListCalendars/Athletics/index.html" "String"
+//OpenWindow "app/files/ListCalendars/Athletics/index.html" "" "_self" ""
 ElseIf "[Menu2.ItemIndex]" "==" "1"
-OpenWindow "app/files/CalendarList/sections/section2/index.html" "" "_self" ""
+SetVar "[iFrameInfoViewer.Url]" "app/files/ListCalendars/Events/index.html" "String"
+//OpenWindow "app/files/ListCalendars/Events/index.html" "" "_self" ""
 ElseIf "[Menu2.ItemIndex]" "==" "2"
-OpenWindow "app/files/CalendarList/sections/section3/index.html" "" "_self" ""
+SetVar "[iFrameInfoViewer.Url]" "app/files/ListCalendars/ImDates/index.html" "String"
+//OpenWindow "app/files/ListCalendars/ImDates/index.html" "" "_self" ""
 ElseIf "[Menu2.ItemIndex]" "==" "3"
-OpenWindow "app/files/CalendarList/sections/section4/index.html" "" "_self" ""
+SetVar "[iFrameInfoViewer.Url]" "app/files/ListCalendars/LSC/index.html" "String"
+//OpenWindow "app/files/ListCalendars/LSC/index.html" "" "_self" ""
 ElseIf "[Menu2.ItemIndex]" "==" "4"
-OpenWindow "app/files/CalendarList/sections/section5/index.html" "" "_self" ""
+SetVar "[iFrameInfoViewer.Url]" "app/files/ListCalendars/Trio/index.html" "String"
+//OpenWindow "app/files/ListCalendars/Trio/index.html" "" "_self" ""
 ElseIf "[Menu2.ItemIndex]" "==" "5"
 Alert "(Inactive)" "When this feature is active you will be able to report any errors or issues you have with a specific calendar directly with that calendar\x27s maintainer"
+Exit
 EndIf
-
+ReplaceView "InfoViewer"
 ]]>
           </ItemClickEvent>
         </Control>
@@ -522,10 +530,10 @@ EndIf
           <Items>
             <![CDATA[<h4><span class="fa fa-question"></span> FAQ<h4/>
 <h4><span class="fa fa-address-card"></span> Important #’s and E-mails<h4/>
-<h4><span class="fa fa-calendar"></span> Combined Calendar<h4/>
+<!--<h4><span class="fa fa-calendar"></span> Combined Calendar<h4/>-->
 <h4><span class="fa fa-graduation-cap"></span> Degree Programs<h4/>
 <h4><span class="fa fa-etsy"></span> Entrata<h4/>
-<h4><span class="fa fa-bug"></span> Submit an Issue/Suggestion<h4/>
+<!--<<h4><span class="fa fa-bug"></span> Submit an Issue/Suggestion<h4/>-->
 ]]>
           </Items>
           <ItemClickEvent>
@@ -538,18 +546,18 @@ EndIf
 If "[MenuDialogWVC.ItemIndex]" "==" "0"
 ShowDialog "DialogFAQ"
 ElseIf "[MenuDialogWVC.ItemIndex]" "==" "1"
-OpenWindow "app/files/ContactInfo/index.html" "" "_self" ""
-ElseIf "[MenuDialogWVC.ItemIndex]" "==" "2"
-OpenWindow "app/files/Calendars/index.html" "" "_self" ""
+SetVar "[iFrameInfoViewer.Url]" "app/files/ContactInfo/index.html" "String"
+ReplaceView "InfoViewer"
+//OpenWindow "app/files/ContactInfo/index.html" "" "_self" ""
+//ElseIf "[MenuDialogWVC.ItemIndex]" "==" "2"
+//OpenWindow "app/files/Calendars/index.html" "" "_self" ""
 ElseIf "[MenuDialogWVC.ItemIndex]" "==" "3"
 OpenWindow "https://www.iecc.edu/page.php?page=WVCH_PRGM&acad=list&acadc=wvc" "" "_system" ""
 ElseIf "[MenuDialogWVC.ItemIndex]" "==" "4"
 OpenWindow "https://www.iecc.edu/e4/" "" "_system" ""
 ElseIf "MenuDialogWVC.ItemIndex]" "==" "5"
 OpenWindow "https://docs.google.com/forms/d/e/1FAIpQLSdahG3-rJTnijYd_7OGyX8r-fu7yH4Hg3JruvV7sqbbILLpRw/viewform?usp=sf_link" "" "_system" ""
-EndIf
-
-]]>
+EndIf]]>
           </ItemClickEvent>
         </Control>
         <Control Role="2001">
@@ -791,7 +799,7 @@ EndIf]]>
         <Control Role="6001">
           <Name>HtmlContent5</Name>
           <Top>504</Top>
-          <Left>312</Left>
+          <Left>320</Left>
           <Width>320</Width>
           <Height>488</Height>
           <Hidden>1</Hidden>
@@ -897,28 +905,29 @@ EndIf]]>
           <Height>64</Height>
           <Image>Images\gear.png</Image>
           <ClickEvent>
-            <![CDATA[If "[TourMap.Hidden]" "!=" "true"
-   Show "BackFrame"
-   Hide "TourMap"
-   Hide "MainPin"
-   Hide "FieldPin"
-   Hide "PoolPin"
-   Hide "SciencePin"
-   Hide "CafePin"
-   Hide "BackArrow"
-   SetStyle "MapToggle" "opacity" ".5"
-Else
-   Hide "BackFrame"
-   Show "TourMap"
-   Show "MainPin"
-   Show "FieldPin"
-   Show "PoolPin"
-   Show "SciencePin"
-   Show "CafePin"
-   Show "BackArrow"
-      SetStyle "MapToggle" "opacity" "1"
-EndIF
-]]>
+            <![CDATA[//If "[TourMap.Hidden]" "!=" "true"
+//   Show "BackFrame"
+//   Hide "TourMap"
+//   Hide "MainPin"
+//   Hide "FieldPin"
+//   Hide "PoolPin"
+//   Hide "SciencePin"
+//   Hide "CafePin"
+//   Hide "BackArrow"
+//   SetStyle "MapToggle" "opacity" ".5"
+//Else
+//   Hide "BackFrame"
+//   Show "TourMap"
+//   Show "MainPin"
+//   Show "FieldPin"
+//   Show "PoolPin"
+//  Show "SciencePin"
+//   Show "CafePin"
+//   Show "BackArrow"
+//      SetStyle "MapToggle" "opacity" "1"
+//EndIF
+
+OpenWindow "app/files/Images/MapinJPG.jpg" "" "_system" ""]]>
           </ClickEvent>
         </Control>
       </Controls>
@@ -1292,10 +1301,9 @@ function goBack() {
       <Path>FAQ</Path>
       <Path>Images</Path>
       <Path>MenuDemo</Path>
-      <Path>Calendars</Path>
       <Path>SocialMedia</Path>
-      <Path>CalendarList</Path>
       <Path>ContactInfo</Path>
+      <Path>ListCalendars</Path>
     </Folders>
     <Images />
     <Others />

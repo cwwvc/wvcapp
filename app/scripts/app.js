@@ -871,7 +871,7 @@ $rootScope.BackButtonz.PopoverPos = "top";
 $rootScope.BackButtonz.Badge = "";
 $rootScope.BackButtonz.Icon = "";
 $rootScope.BackButtonz.Text = "<strong>Back</strong>";
-$rootScope.BackButtonz.Class = "btn btn-danger btn-lg ";
+$rootScope.BackButtonz.Class = "btn btn-danger btn-sm ";
 $rootScope.BackButtonz.Disabled = "";
 
 $rootScope.Menu2 = {};
@@ -909,10 +909,10 @@ $rootScope.MenuDialogWVC.Hidden = "";
 $rootScope.MenuDialogWVC.Items = [];
 $rootScope.MenuDialogWVC.Items.push("<h4><span class=\x22fa fa-question\x22></span> FAQ<h4/>");
 $rootScope.MenuDialogWVC.Items.push("<h4><span class=\x22fa fa-address-card\x22></span> Important #’s and E-mails<h4/>");
-$rootScope.MenuDialogWVC.Items.push("<h4><span class=\x22fa fa-calendar\x22></span> Combined Calendar<h4/>");
+$rootScope.MenuDialogWVC.Items.push("<!--<h4><span class=\x22fa fa-calendar\x22></span> Combined Calendar<h4/>-->");
 $rootScope.MenuDialogWVC.Items.push("<h4><span class=\x22fa fa-graduation-cap\x22></span> Degree Programs<h4/>");
 $rootScope.MenuDialogWVC.Items.push("<h4><span class=\x22fa fa-etsy\x22></span> Entrata<h4/>");
-$rootScope.MenuDialogWVC.Items.push("<h4><span class=\x22fa fa-bug\x22></span> Submit an Issue/Suggestion<h4/>");
+$rootScope.MenuDialogWVC.Items.push("<!--<<h4><span class=\x22fa fa-bug\x22></span> Submit an Issue/Suggestion<h4/>-->");
 $rootScope.MenuDialogWVC.Class = "list-group ";
 
 $rootScope.Backbutton = {};
@@ -1970,6 +1970,8 @@ window.App.Ctrls.controller
    
 $scope.BackButton = function()
 {
+
+window.App.Debugger.log("Start of BackButton app function", "info", -1);
 window.onscroll = function() {scrollFunction()};
 function scrollFunction() {
 {    document.getElementById("myBtn").style.display = "block";
@@ -1978,6 +1980,8 @@ function scrollFunction() {
 function goBack() {
 window.history.back();
 }
+
+window.App.Debugger.log("End of BackButton app function", "info", -2);
 };
 
 }]);
@@ -2011,45 +2015,87 @@ window.App.Ctrls.controller
 
     $rootScope.OnAppReady = function () {
       
+window.App.Debugger.log("Start of App Ready event", "info", -1);
+
+window.App.Debugger.log("SetVar \x22[Music.playing]\x22 \x220\x22 \x22Number\x22", "info", 1);
+
 $rootScope.Music.playing = 0;
+
+window.App.Debugger.log("OrientationLock \x22portrait-primary\x22", "info", 2);
 
 if ((window.App.Cordova === undefined) && (window.screen.orientation !== undefined)) {
   window.screen.orientation.lock("portrait-primary");
 }
 
+window.App.Debugger.log("StatusBarIsVisible \x22StatusBarHide\x22", "info", 3);
+
 $rootScope.StatusBarHide = (window.StatusBar !== undefined) && window.StatusBar.isVisible ? "true" : "false";
+
+window.App.Debugger.log("GetOption \x22FirstRunStorage\x22 \x22[FirstRun]\x22", "info", 4);
 
 $rootScope.FirstRun = $scope.getLocalOption("FirstRunStorage");
 
+window.App.Debugger.log("If \x22[FirstRun]\x22 \x22!=\x22 \x22false\x22", "info", 5);
+
 if ($rootScope.FirstRun !=  "false" ) {
+
+window.App.Debugger.log("SetVar \x22[FirstRun]\x22 \x22false\x22 \x22String\x22", "info", 6);
 
 $rootScope.FirstRun = "false";
 
+window.App.Debugger.log("SetOption \x22FirstRunStorage\x22 \x22[FirstRun]\x22 \x22String\x22", "info", 7);
+
 $scope.setLocalOption("FirstRunStorage", $rootScope.FirstRun);
+
+window.App.Debugger.log("SetVar \x22[FirstRun]\x22 \x22true\x22 \x22String\x22", "info", 8);
 
 $rootScope.FirstRun = "true";
 
+window.App.Debugger.log("SetVar \x22[Variable1]\x22 \x22false\x22 \x22String\x22", "info", 9);
+
 $rootScope.Variable1 = "false";
+
+window.App.Debugger.log("SetOption \x22Variable1Storage\x22 \x22[Variable1]\x22 \x22String\x22", "info", 10);
 
 $scope.setLocalOption("Variable1Storage", $rootScope.Variable1);
 
+window.App.Debugger.log("EndIf", "info", 11);
+
 }
+
+window.App.Debugger.log("If \x22[FirstRun]\x22 \x22==\x22 \x22false\x22", "info", 12);
 
 if ($rootScope.FirstRun ==  "false" ) {
 
+window.App.Debugger.log("GetOption \x22Variable1Storage\x22 \x22[Variable1]\x22", "info", 13);
+
 $rootScope.Variable1 = $scope.getLocalOption("Variable1Storage");
 
+window.App.Debugger.log("EndIf", "info", 14);
+
 }
+
+window.App.Debugger.log("UserAgent \x22[UserAgent]\x22", "info", 15);
 
 var ua = new UAParser(); $rootScope.UserAgent = ua.getResult();
 
+window.App.Debugger.log("IfEx \x22([UserAgent.os.name] == \x22iOS\x22) && ([UserAgent.os.version] < 10)\x22", "info", 16);
+
 if(($rootScope.UserAgent.os.name == "iOS") && ($rootScope.UserAgent.os.version < 10)) {
+
+window.App.Debugger.log("BlockApp", "info", 17);
 
 blockUI.reset(); blockUI.start();
 
+window.App.Debugger.log("BlockedText \x22iOS [UserAgent.os.version] is not supported. Please update to a newer version of iOS.\x22", "info", 18);
+
 blockUI.message("iOS "+$rootScope.UserAgent.os.version+" is not supported. Please update to a newer version of iOS.");
 
+window.App.Debugger.log("EndIf", "info", 19);
+
 }
+
+window.App.Debugger.log("End of App Ready event", "info", -2);
 
     };
 
@@ -2153,6 +2199,10 @@ angular.element(document.querySelector("body")).addClass($rootScope.App.Theme.to
 angular.element(window.document).ready(function(event){
 $rootScope.Main.Event = event;
 
+window.App.Debugger.log("Start of Main Show event", "info", -1);
+
+window.App.Debugger.log("StartJS", "info", 1);
+
 
 n =  new Date();
 y = n.getFullYear();
@@ -2160,73 +2210,139 @@ m = n.getMonth() + 1;
 d = n.getDate();
 document.getElementById("date").innerHTML = d;
 
+window.App.Debugger.log("End of Main Show event", "info", -2);
+
 $rootScope.$apply();
 });
 
 $scope.Image8Click = function($event) {
 $rootScope.Image8.Event = $event;
 
+window.App.Debugger.log("Start of Image8 Click event", "info", -1);
+
+window.App.Debugger.log("ShowDialog \x22DialogCalendar\x22", "info", 1);
+
 $scope.showModalView("DialogCalendar");
+
+window.App.Debugger.log("End of Image8 Click event", "info", -2);
 
 };
 
 $scope.Image4Click = function($event) {
 $rootScope.Image4.Event = $event;
 
+window.App.Debugger.log("Start of Image4 Click event", "info", -1);
+
+window.App.Debugger.log("OpenWindow \x22https://www.iecc.edu/e4/\x22 \x22\x22 \x22_system\x22 \x22\x22", "info", 1);
+
 $scope.openWindow("https://www.iecc.edu/e4/", "", "_system");
+
+window.App.Debugger.log("End of Image4 Click event", "info", -2);
 
 };
 
 $scope.FAQImageClick = function($event) {
 $rootScope.FAQImage.Event = $event;
 
+window.App.Debugger.log("Start of FAQImage Click event", "info", -1);
+
+window.App.Debugger.log("OpenWindow \x22app/files/FAQ/index.html\x22 \x22\x22 \x22_self\x22 \x22\x22", "info", 1);
+
 $scope.openWindow("app/files/FAQ/index.html", "", "_self");
+
+window.App.Debugger.log("End of FAQImage Click event", "info", -2);
 
 };
 
 $scope.MapClick = function($event) {
 $rootScope.Map.Event = $event;
 
+window.App.Debugger.log("Start of Map Click event", "info", -1);
+
+window.App.Debugger.log("ReplaceView \x22CampusMap\x22", "info", 1);
+
 $scope.replaceView("CampusMap");
+
+window.App.Debugger.log("End of Map Click event", "info", -2);
 
 };
 
 $scope.Image14Click = function($event) {
 $rootScope.Image14.Event = $event;
 
-$scope.openWindow("app/files/SocialMedia/index.html", "", "_self");
+window.App.Debugger.log("Start of Image14 Click event", "info", -1);
+
+window.App.Debugger.log("SetVar \x22[iFrameInfoViewer.Url]\x22 \x22app/files/SocialMedia/index.html\x22 \x22String\x22", "info", 1);
+
+$rootScope.iFrameInfoViewer.Url = "app/files/SocialMedia/index.html";
+
+window.App.Debugger.log("ReplaceView \x22InfoViewer\x22", "info", 2);
+
+$scope.replaceView("InfoViewer");
+
+window.App.Debugger.log("End of Image14 Click event", "info", -2);
 
 };
 
 $scope.Image13Click = function($event) {
 $rootScope.Image13.Event = $event;
 
+window.App.Debugger.log("Start of Image13 Click event", "info", -1);
+
+window.App.Debugger.log("OpenWindow \x22https://docs.google.com/forms/d/e/1FAIpQLSdahG3-rJTnijYd_7OGyX8r-fu7yH4Hg3JruvV7sqbbILLpRw/viewform?usp=sf_link\x22 \x22\x22 \x22_system\x22 \x22\x22", "info", 1);
+
 $scope.openWindow("https://docs.google.com/forms/d/e/1FAIpQLSdahG3-rJTnijYd_7OGyX8r-fu7yH4Hg3JruvV7sqbbILLpRw/viewform?usp=sf_link", "", "_system");
+
+window.App.Debugger.log("End of Image13 Click event", "info", -2);
 
 };
 
 $scope.Image15Click = function($event) {
 $rootScope.Image15.Event = $event;
 
+window.App.Debugger.log("Start of Image15 Click event", "info", -1);
+
+window.App.Debugger.log("If \x22[Music.playing]\x22 \x22==\x22 \x220\x22", "info", 1);
+
 if ($rootScope.Music.playing == 0) {
+
+window.App.Debugger.log("SetVar \x22[Music.playing]\x22 \x221\x22 \x22Number\x22", "info", 2);
 
 $rootScope.Music.playing = 1;
 
+window.App.Debugger.log("MediaPlay \x22Music\x22", "info", 3);
+
 setTimeout(function(){$rootScope.Music.API.play();},1);
+
+window.App.Debugger.log("Show \x22MusicCover\x22", "info", 4);
 
 $rootScope.MusicCover.Hidden = "";
 
+window.App.Debugger.log("Alert \x22\x22 \x22This is meant to play a live stream of the music on 89.1 The Bash but it isn\x27t fully functional yet. (The displayed album art my be wrong)\x22", "info", 5);
+
 $scope.alert("", "This is meant to play a live stream of the music on 89.1 The Bash but it isn\x27t fully functional yet. (The displayed album art my be wrong)");
+
+window.App.Debugger.log("Else", "info", 6);
 
 } else {
 
+window.App.Debugger.log("SetVar \x22[Music.playing]\x22 \x220\x22 \x22Number\x22", "info", 7);
+
 $rootScope.Music.playing = 0;
+
+window.App.Debugger.log("MediaStop \x22Music\x22", "info", 8);
 
 $rootScope.Music.API.stop();
 
+window.App.Debugger.log("Hide \x22MusicCover\x22", "info", 9);
+
 $rootScope.MusicCover.Hidden = "true";
 
+window.App.Debugger.log("EndIf", "info", 10);
+
 }
+
+window.App.Debugger.log("End of Image15 Click event", "info", -2);
 
 };
 
@@ -2251,14 +2367,26 @@ $rootScope.Music.onUpdate = function() {
 $scope.Image6Click = function($event) {
 $rootScope.Image6.Event = $event;
 
+window.App.Debugger.log("Start of Image6 Click event", "info", -1);
+
+window.App.Debugger.log("FileDownload \x22http://myweb.iecc.edu/wvjc/content/ALBUM.JPG\x22 \x22\x22 \x22hi.jpg\x22 \x22\x22 \x22\x22 \x22\x22 \x22\x22", "info", 1);
+
 $scope.fileDownload("http://myweb.iecc.edu/wvjc/content/ALBUM.JPG", "", "hi.jpg", "", "", (("".length > 0) && angular.isFunction($scope[""])) ? $scope[""] : null, (("".length > 0) && angular.isFunction($scope[""])) ? $scope[""] : null);
+
+window.App.Debugger.log("End of Image6 Click event", "info", -2);
 
 };
 
 $scope.Image12Click = function($event) {
 $rootScope.Image12.Event = $event;
 
+window.App.Debugger.log("Start of Image12 Click event", "info", -1);
+
+window.App.Debugger.log("ShowDialog \x22DialogWVC\x22", "info", 1);
+
 $scope.showModalView("DialogWVC");
+
+window.App.Debugger.log("End of Image12 Click event", "info", -2);
 
 };
 
@@ -2270,30 +2398,58 @@ $rootScope.Image2.Event = $event;
 $scope.HtmlContent2Click = function($event) {
 $rootScope.HtmlContent2.Event = $event;
 
+window.App.Debugger.log("Start of HtmlContent2 Click event", "info", -1);
+
+window.App.Debugger.log("OpenWindow \x22app/files/CalendarList/index.html\x22 \x22\x22 \x22_self\x22 \x22\x22", "info", 1);
+
 $scope.openWindow("app/files/CalendarList/index.html", "", "_self");
+
+window.App.Debugger.log("End of HtmlContent2 Click event", "info", -2);
 
 };
 
 $scope.MusicCoverClick = function($event) {
 $rootScope.MusicCover.Event = $event;
 
+window.App.Debugger.log("Start of MusicCover Click event", "info", -1);
+
+window.App.Debugger.log("If \x22[Music.playing]\x22 \x22==\x22 \x220\x22", "info", 1);
+
 if ($rootScope.Music.playing == 0) {
+
+window.App.Debugger.log("SetVar \x22[Music.playing]\x22 \x221\x22 \x22Number\x22", "info", 2);
 
 $rootScope.Music.playing = 1;
 
+window.App.Debugger.log("MediaPlay \x22Music\x22", "info", 3);
+
 setTimeout(function(){$rootScope.Music.API.play();},1);
+
+window.App.Debugger.log("Show \x22MusicCover\x22", "info", 4);
 
 $rootScope.MusicCover.Hidden = "";
 
+window.App.Debugger.log("Else", "info", 5);
+
 } else {
+
+window.App.Debugger.log("SetVar \x22[Music.playing]\x22 \x220\x22 \x22Number\x22", "info", 6);
 
 $rootScope.Music.playing = 0;
 
+window.App.Debugger.log("MediaStop \x22Music\x22", "info", 7);
+
 $rootScope.Music.API.stop();
+
+window.App.Debugger.log("Hide \x22MusicCover\x22", "info", 8);
 
 $rootScope.MusicCover.Hidden = "true";
 
+window.App.Debugger.log("EndIf", "info", 9);
+
 }
+
+window.App.Debugger.log("End of MusicCover Click event", "info", -2);
 
 };
 
@@ -2317,7 +2473,13 @@ window.App.InfoViewer.Scope = $scope;
 $scope.BackButtonzClick = function($event) {
 $rootScope.BackButtonz.Event = $event;
 
+window.App.Debugger.log("Start of BackButtonz Click event", "info", -1);
+
+window.App.Debugger.log("ReplaceView \x22Main\x22", "info", 1);
+
 $scope.replaceView("Main");
+
+window.App.Debugger.log("End of BackButtonz Click event", "info", -2);
 
 };
 
@@ -2336,38 +2498,82 @@ window.App.DialogCalendar.Scope = $scope;
 $rootScope.Menu2.ItemClick = function(index) {
   $rootScope.Menu2.ItemIndex = index;
 
+window.App.Debugger.log("Start of Menu2 ItemClick event", "info", -1);
+
+window.App.Debugger.log("If \x22[Menu2.ItemIndex]\x22 \x22==\x22 \x220\x22", "info", 1);
+
 if (""+$rootScope.Menu2.ItemIndex+"" == 0) {
 
-$scope.openWindow("app/files/CalendarList/sections/section1/index.html", "", "_self");
+window.App.Debugger.log("SetVar \x22[iFrameInfoViewer.Url]\x22 \x22app/files/ListCalendars/Athletics/index.html\x22 \x22String\x22", "info", 2);
+
+$rootScope.iFrameInfoViewer.Url = "app/files/ListCalendars/Athletics/index.html";
+
+window.App.Debugger.log("ElseIf \x22[Menu2.ItemIndex]\x22 \x22==\x22 \x221\x22", "info", 3);
 
 } else if (""+$rootScope.Menu2.ItemIndex+"" == 1) {
 
-$scope.openWindow("app/files/CalendarList/sections/section2/index.html", "", "_self");
+window.App.Debugger.log("SetVar \x22[iFrameInfoViewer.Url]\x22 \x22app/files/ListCalendars/Events/index.html\x22 \x22String\x22", "info", 4);
+
+$rootScope.iFrameInfoViewer.Url = "app/files/ListCalendars/Events/index.html";
+
+window.App.Debugger.log("ElseIf \x22[Menu2.ItemIndex]\x22 \x22==\x22 \x222\x22", "info", 5);
 
 } else if (""+$rootScope.Menu2.ItemIndex+"" == 2) {
 
-$scope.openWindow("app/files/CalendarList/sections/section3/index.html", "", "_self");
+window.App.Debugger.log("SetVar \x22[iFrameInfoViewer.Url]\x22 \x22app/files/ListCalendars/ImDates/index.html\x22 \x22String\x22", "info", 6);
+
+$rootScope.iFrameInfoViewer.Url = "app/files/ListCalendars/ImDates/index.html";
+
+window.App.Debugger.log("ElseIf \x22[Menu2.ItemIndex]\x22 \x22==\x22 \x223\x22", "info", 7);
 
 } else if (""+$rootScope.Menu2.ItemIndex+"" == 3) {
 
-$scope.openWindow("app/files/CalendarList/sections/section4/index.html", "", "_self");
+window.App.Debugger.log("SetVar \x22[iFrameInfoViewer.Url]\x22 \x22app/files/ListCalendars/LSC/index.html\x22 \x22String\x22", "info", 8);
+
+$rootScope.iFrameInfoViewer.Url = "app/files/ListCalendars/LSC/index.html";
+
+window.App.Debugger.log("ElseIf \x22[Menu2.ItemIndex]\x22 \x22==\x22 \x224\x22", "info", 9);
 
 } else if (""+$rootScope.Menu2.ItemIndex+"" == 4) {
 
-$scope.openWindow("app/files/CalendarList/sections/section5/index.html", "", "_self");
+window.App.Debugger.log("SetVar \x22[iFrameInfoViewer.Url]\x22 \x22app/files/ListCalendars/Trio/index.html\x22 \x22String\x22", "info", 10);
+
+$rootScope.iFrameInfoViewer.Url = "app/files/ListCalendars/Trio/index.html";
+
+window.App.Debugger.log("ElseIf \x22[Menu2.ItemIndex]\x22 \x22==\x22 \x225\x22", "info", 11);
 
 } else if (""+$rootScope.Menu2.ItemIndex+"" == 5) {
 
+window.App.Debugger.log("Alert \x22(Inactive)\x22 \x22When this feature is active you will be able to report any errors or issues you have with a specific calendar directly with that calendar\x27s maintainer\x22", "info", 12);
+
 $scope.alert("(Inactive)", "When this feature is active you will be able to report any errors or issues you have with a specific calendar directly with that calendar\x27s maintainer");
 
+window.App.Debugger.log("Exit", "info", 13);
+
+return null;
+
+window.App.Debugger.log("EndIf", "info", 14);
+
 }
+
+window.App.Debugger.log("ReplaceView \x22InfoViewer\x22", "info", 15);
+
+$scope.replaceView("InfoViewer");
+
+window.App.Debugger.log("End of Menu2 ItemClick event", "info", -2);
 
 };
 
 $scope.Button1Click = function($event) {
 $rootScope.Button1.Event = $event;
 
+window.App.Debugger.log("Start of Button1 Click event", "info", -1);
+
+window.App.Debugger.log("ReplaceView \x22Main\x22", "info", 1);
+
 $scope.replaceView("Main");
+
+window.App.Debugger.log("End of Button1 Click event", "info", -2);
 
 };
 
@@ -2386,38 +2592,70 @@ window.App.DialogWVC.Scope = $scope;
 $rootScope.MenuDialogWVC.ItemClick = function(index) {
   $rootScope.MenuDialogWVC.ItemIndex = index;
 
+window.App.Debugger.log("Start of MenuDialogWVC ItemClick event", "info", -1);
+
+window.App.Debugger.log("If \x22[MenuDialogWVC.ItemIndex]\x22 \x22==\x22 \x220\x22", "info", 1);
+
 if (""+$rootScope.MenuDialogWVC.ItemIndex+"" == 0) {
+
+window.App.Debugger.log("ShowDialog \x22DialogFAQ\x22", "info", 2);
 
 $scope.showModalView("DialogFAQ");
 
+window.App.Debugger.log("ElseIf \x22[MenuDialogWVC.ItemIndex]\x22 \x22==\x22 \x221\x22", "info", 3);
+
 } else if (""+$rootScope.MenuDialogWVC.ItemIndex+"" == 1) {
 
-$scope.openWindow("app/files/ContactInfo/index.html", "", "_self");
+window.App.Debugger.log("SetVar \x22[iFrameInfoViewer.Url]\x22 \x22app/files/ContactInfo/index.html\x22 \x22String\x22", "info", 4);
 
-} else if (""+$rootScope.MenuDialogWVC.ItemIndex+"" == 2) {
+$rootScope.iFrameInfoViewer.Url = "app/files/ContactInfo/index.html";
 
-$scope.openWindow("app/files/Calendars/index.html", "", "_self");
+window.App.Debugger.log("ReplaceView \x22InfoViewer\x22", "info", 5);
+
+$scope.replaceView("InfoViewer");
+
+window.App.Debugger.log("ElseIf \x22[MenuDialogWVC.ItemIndex]\x22 \x22==\x22 \x223\x22", "info", 6);
 
 } else if (""+$rootScope.MenuDialogWVC.ItemIndex+"" == 3) {
 
+window.App.Debugger.log("OpenWindow \x22https://www.iecc.edu/page.php?page=WVCH_PRGM&acad=list&acadc=wvc\x22 \x22\x22 \x22_system\x22 \x22\x22", "info", 7);
+
 $scope.openWindow("https://www.iecc.edu/page.php?page=WVCH_PRGM&acad=list&acadc=wvc", "", "_system");
+
+window.App.Debugger.log("ElseIf \x22[MenuDialogWVC.ItemIndex]\x22 \x22==\x22 \x224\x22", "info", 8);
 
 } else if (""+$rootScope.MenuDialogWVC.ItemIndex+"" == 4) {
 
+window.App.Debugger.log("OpenWindow \x22https://www.iecc.edu/e4/\x22 \x22\x22 \x22_system\x22 \x22\x22", "info", 9);
+
 $scope.openWindow("https://www.iecc.edu/e4/", "", "_system");
+
+window.App.Debugger.log("ElseIf \x22MenuDialogWVC.ItemIndex]\x22 \x22==\x22 \x225\x22", "info", 10);
 
 } else if ("MenuDialogWVC.ItemIndex]" == 5) {
 
+window.App.Debugger.log("OpenWindow \x22https://docs.google.com/forms/d/e/1FAIpQLSdahG3-rJTnijYd_7OGyX8r-fu7yH4Hg3JruvV7sqbbILLpRw/viewform?usp=sf_link\x22 \x22\x22 \x22_system\x22 \x22\x22", "info", 11);
+
 $scope.openWindow("https://docs.google.com/forms/d/e/1FAIpQLSdahG3-rJTnijYd_7OGyX8r-fu7yH4Hg3JruvV7sqbbILLpRw/viewform?usp=sf_link", "", "_system");
 
+window.App.Debugger.log("EndIf", "info", 12);
+
 }
+
+window.App.Debugger.log("End of MenuDialogWVC ItemClick event", "info", -2);
 
 };
 
 $scope.BackbuttonClick = function($event) {
 $rootScope.Backbutton.Event = $event;
 
+window.App.Debugger.log("Start of Backbutton Click event", "info", -1);
+
+window.App.Debugger.log("CloseDialog", "info", 1);
+
 $scope.closeModalView();
+
+window.App.Debugger.log("End of Backbutton Click event", "info", -2);
 
 };
 
@@ -2436,32 +2674,62 @@ window.App.DialogFAQ.Scope = $scope;
 $rootScope.MenuFAQ.ItemClick = function(index) {
   $rootScope.MenuFAQ.ItemIndex = index;
 
+window.App.Debugger.log("Start of MenuFAQ ItemClick event", "info", -1);
+
+window.App.Debugger.log("If \x22[MenuFAQ.ItemIndex]\x22 \x22==\x22 \x220\x22", "info", 1);
+
 if (""+$rootScope.MenuFAQ.ItemIndex+"" == 0) {
+
+window.App.Debugger.log("SetVar \x22[iFrameInfoViewer.Url]\x22 \x22app/files/FAQ/sections/financialaid/index.html\x22 \x22String\x22", "info", 2);
 
 $rootScope.iFrameInfoViewer.Url = "app/files/FAQ/sections/financialaid/index.html";
 
+window.App.Debugger.log("ElseIf \x22[MenuFAQ.ItemIndex]\x22 \x22==\x22 \x221\x22", "info", 3);
+
 } else if (""+$rootScope.MenuFAQ.ItemIndex+"" == 1) {
+
+window.App.Debugger.log("SetVar \x22[iFrameInfoViewer.Url]\x22 \x22app/files/FAQ/sections/books/index.html\x22 \x22String\x22", "info", 4);
 
 $rootScope.iFrameInfoViewer.Url = "app/files/FAQ/sections/books/index.html";
 
+window.App.Debugger.log("ElseIf \x22[MenuFAQ.ItemIndex]\x22 \x22==\x22 \x222\x22", "info", 5);
+
 } else if (""+$rootScope.MenuFAQ.ItemIndex+"" == 2) {
+
+window.App.Debugger.log("SetVar \x22[iFrameInfoViewer.Url]\x22 \x22app/files/FAQ/sections/courses/index.html\x22 \x22String\x22", "info", 6);
 
 $rootScope.iFrameInfoViewer.Url = "app/files/FAQ/sections/courses/index.html";
 
+window.App.Debugger.log("ElseIf \x22[MenuFAQ.ItemIndex]\x22 \x22==\x22 \x223\x22", "info", 7);
+
 } else if (""+$rootScope.MenuFAQ.ItemIndex+"" == 3) {
+
+window.App.Debugger.log("SetVar \x22[iFrameInfoViewer.Url]\x22 \x22app/files/FAQ/sections/otherstuff/index.html\x22 \x22String\x22", "info", 8);
 
 $rootScope.iFrameInfoViewer.Url = "app/files/FAQ/sections/otherstuff/index.html";
 
+window.App.Debugger.log("EndIf", "info", 9);
+
 }
 
+window.App.Debugger.log("ReplaceView \x22InfoViewer\x22", "info", 10);
+
 $scope.replaceView("InfoViewer");
+
+window.App.Debugger.log("End of MenuFAQ ItemClick event", "info", -2);
 
 };
 
 $scope.Button10Click = function($event) {
 $rootScope.Button10.Event = $event;
 
+window.App.Debugger.log("Start of Button10 Click event", "info", -1);
+
+window.App.Debugger.log("CloseDialog", "info", 1);
+
 $scope.closeModalView();
+
+window.App.Debugger.log("End of Button10 Click event", "info", -2);
 
 };
 
@@ -2480,23 +2748,45 @@ window.App.Settings.Scope = $scope;
 angular.element(window.document).ready(function(event){
 $rootScope.Settings.Event = event;
 
+window.App.Debugger.log("Start of Settings Show event", "info", -1);
+
+window.App.Debugger.log("If \x22[Variable1]\x22 \x22==\x22 \x22false\x22", "info", 1);
+
 if ($rootScope.Variable1 ==  "false" ) {
+
+window.App.Debugger.log("SetAttribute \x22Variable1Switch\x22 \x22src\x22 \x22app/files/images/vectors/offswitch.svg\x22", "info", 2);
 
 document.getElementById("Variable1Switch").setAttribute("src", "app/files/images/vectors/offswitch.svg");
 
+window.App.Debugger.log("Exit", "info", 3);
+
 return null;
 
+window.App.Debugger.log("EndIf", "info", 4);
+
 }
+
+window.App.Debugger.log("If \x22[Variable1]\x22 \x22==\x22 \x22true\x22", "info", 5);
 
 if ($rootScope.Variable1 ==  "true" ) {
 
+window.App.Debugger.log("SetAttribute \x22Variable1Switch\x22 \x22src\x22 \x22app/files/images/vectors/onswitch.svg\x22", "info", 6);
+
 document.getElementById("Variable1Switch").setAttribute("src", "app/files/images/vectors/onswitch.svg");
+
+window.App.Debugger.log("EndIf", "info", 7);
 
 }
 
+window.App.Debugger.log("WatcherStart \x22Watcher2\x22", "info", 8);
+
 if (!angular.isUndefined($rootScope.Watcher2.WatchStop)) { $rootScope.Watcher2.WatchStop(); } $rootScope.Watcher2.WatchStart();
 
+window.App.Debugger.log("WatcherVariable \x22Watcher2\x22 \x22[Variable1]\x22", "info", 9);
+
 if (!angular.isUndefined($rootScope.Watcher2.WatchStop)) { $rootScope.Watcher2.WatchStop(); } $rootScope.Watcher2.Variable = "Variable1"; $rootScope.Watcher2.WatchStart();
+
+window.App.Debugger.log("End of Settings Show event", "info", -2);
 
 $rootScope.$apply();
 });
@@ -2504,53 +2794,103 @@ $rootScope.$apply();
 $scope.Variable1SwitchClick = function($event) {
 $rootScope.Variable1Switch.Event = $event;
 
+window.App.Debugger.log("Start of Variable1Switch Click event", "info", -1);
+
+window.App.Debugger.log("If \x22[Variable1]\x22 \x22==\x22 \x22false\x22", "info", 1);
+
 if ($rootScope.Variable1 ==  "false" ) {
+
+window.App.Debugger.log("SetVar \x22[Variable1]\x22 \x22true\x22 \x22String\x22", "info", 2);
 
 $rootScope.Variable1 = "true";
 
+window.App.Debugger.log("SetAttribute \x22Variable1Switch\x22 \x22src\x22 \x22app/files/images/vectors/onswitch.svg\x22", "info", 3);
+
 document.getElementById("Variable1Switch").setAttribute("src", "app/files/images/vectors/onswitch.svg");
+
+window.App.Debugger.log("Exit", "info", 4);
 
 return null;
 
+window.App.Debugger.log("EndIf", "info", 5);
+
 }
+
+window.App.Debugger.log("If \x22[Variable1]\x22 \x22==\x22 \x22true\x22", "info", 6);
 
 if ($rootScope.Variable1 ==  "true" ) {
 
+window.App.Debugger.log("SetVar \x22[Variable1]\x22 \x22false\x22 \x22String\x22", "info", 7);
+
 $rootScope.Variable1 = "false";
+
+window.App.Debugger.log("SetAttribute \x22Variable1Switch\x22 \x22src\x22 \x22app/files/images/vectors/offswitch.svg\x22", "info", 8);
 
 document.getElementById("Variable1Switch").setAttribute("src", "app/files/images/vectors/offswitch.svg");
 
+window.App.Debugger.log("EndIf", "info", 9);
+
 }
+
+window.App.Debugger.log("End of Variable1Switch Click event", "info", -2);
 
 };
 
 $scope.ResetAllClick = function($event) {
 $rootScope.ResetAll.Event = $event;
 
+window.App.Debugger.log("Start of ResetAll Click event", "info", -1);
+
+window.App.Debugger.log("ClearOptions", "info", 1);
+
 $scope.clearLocalOptions();
+
+window.App.Debugger.log("BlockApp", "info", 2);
 
 blockUI.reset(); blockUI.start();
 
+window.App.Debugger.log("Alert \x22Close\x22 \x22App Reset. Please Close and reopen the app.\x22", "info", 3);
+
 $scope.alert("Close", "App Reset. Please Close and reopen the app.");
+
+window.App.Debugger.log("End of ResetAll Click event", "info", -2);
 
 };
 
 $scope.Button13Click = function($event) {
 $rootScope.Button13.Event = $event;
 
+window.App.Debugger.log("Start of Button13 Click event", "info", -1);
+
+window.App.Debugger.log("If \x22[Variable1]\x22 \x22==\x22 \x22false\x22", "info", 1);
+
 if ($rootScope.Variable1 ==  "false" ) {
+
+window.App.Debugger.log("SetVar \x22[Variable1]\x22 \x22true\x22 \x22String\x22", "info", 2);
 
 $rootScope.Variable1 = "true";
 
+window.App.Debugger.log("Exit", "info", 3);
+
 return null;
 
+window.App.Debugger.log("EndIf", "info", 4);
+
 }
+
+window.App.Debugger.log("If \x22[Variable1]\x22 \x22==\x22 \x22true\x22", "info", 5);
 
 if ($rootScope.Variable1 ==  "true" ) {
 
+window.App.Debugger.log("SetVar \x22[Variable1]\x22 \x22false\x22 \x22String\x22", "info", 6);
+
 $rootScope.Variable1 = "false";
 
+window.App.Debugger.log("EndIf", "info", 7);
+
 }
+
+window.App.Debugger.log("End of Button13 Click event", "info", -2);
 
 };
 
@@ -2560,19 +2900,37 @@ $rootScope.Watcher2.WatchStop = $rootScope.$watch($rootScope.Watcher2.Variable, 
   $rootScope.Watcher2.NewValue = newValue;
   $rootScope.Watcher2.OldValue = oldValue;
 
+window.App.Debugger.log("Start of Watcher2 Change event", "info", -1);
+
+window.App.Debugger.log("If \x22[Variable1]\x22 \x22==\x22 \x22false\x22", "info", 1);
+
 if ($rootScope.Variable1 ==  "false" ) {
+
+window.App.Debugger.log("SetAttribute \x22Variable1Switch\x22 \x22src\x22 \x22app/files/images/vectors/offswitch.svg\x22", "info", 2);
 
 document.getElementById("Variable1Switch").setAttribute("src", "app/files/images/vectors/offswitch.svg");
 
+window.App.Debugger.log("Exit", "info", 3);
+
 return null;
 
+window.App.Debugger.log("EndIf", "info", 4);
+
 }
+
+window.App.Debugger.log("If \x22[Variable1]\x22 \x22==\x22 \x22true\x22", "info", 5);
 
 if ($rootScope.Variable1 ==  "true" ) {
 
+window.App.Debugger.log("SetAttribute \x22Variable1Switch\x22 \x22src\x22 \x22app/files/images/vectors/onswitch.svg\x22", "info", 6);
+
 document.getElementById("Variable1Switch").setAttribute("src", "app/files/images/vectors/onswitch.svg");
 
+window.App.Debugger.log("EndIf", "info", 7);
+
 }
+
+window.App.Debugger.log("End of Watcher2 Change event", "info", -2);
   });};
 
 }]);
@@ -2590,9 +2948,15 @@ window.App.CampusMap.Scope = $scope;
 angular.element(window.document).ready(function(event){
 $rootScope.CampusMap.Event = event;
 
+window.App.Debugger.log("Start of CampusMap Show event", "info", -1);
+
+window.App.Debugger.log("OrientationLock \x22portrait-primary\x22", "info", 1);
+
 if ((window.App.Cordova === undefined) && (window.screen.orientation !== undefined)) {
   window.screen.orientation.lock("portrait-primary");
 }
+
+window.App.Debugger.log("End of CampusMap Show event", "info", -2);
 
 $rootScope.$apply();
 });
@@ -2600,89 +2964,91 @@ $rootScope.$apply();
 $scope.MainPinClick = function($event) {
 $rootScope.MainPin.Event = $event;
 
+window.App.Debugger.log("Start of MainPin Click event", "info", -1);
+
+window.App.Debugger.log("OpenWindow \x22https://www.youtube.com/watch?v=J43D27kabgM\x22 \x22\x22 \x22_system\x22 \x22\x22", "info", 1);
+
 $scope.openWindow("https://www.youtube.com/watch?v=J43D27kabgM", "", "_system");
+
+window.App.Debugger.log("End of MainPin Click event", "info", -2);
 
 };
 
 $scope.FieldPinClick = function($event) {
 $rootScope.FieldPin.Event = $event;
 
+window.App.Debugger.log("Start of FieldPin Click event", "info", -1);
+
+window.App.Debugger.log("OpenWindow \x22https://www.youtube.com/watch?v=8eUd4Ktf0Jo\x22 \x22\x22 \x22_system\x22 \x22\x22", "info", 1);
+
 $scope.openWindow("https://www.youtube.com/watch?v=8eUd4Ktf0Jo", "", "_system");
+
+window.App.Debugger.log("End of FieldPin Click event", "info", -2);
 
 };
 
 $scope.PoolPinClick = function($event) {
 $rootScope.PoolPin.Event = $event;
 
+window.App.Debugger.log("Start of PoolPin Click event", "info", -1);
+
+window.App.Debugger.log("OpenWindow \x22https://www.youtube.com/watch?v=xN3q6LOovuc\x22 \x22\x22 \x22_system\x22 \x22\x22", "info", 1);
+
 $scope.openWindow("https://www.youtube.com/watch?v=xN3q6LOovuc", "", "_system");
+
+window.App.Debugger.log("End of PoolPin Click event", "info", -2);
 
 };
 
 $scope.SciencePinClick = function($event) {
 $rootScope.SciencePin.Event = $event;
 
+window.App.Debugger.log("Start of SciencePin Click event", "info", -1);
+
+window.App.Debugger.log("OpenWindow \x22https://youtu.be/QHZJVDzFRks\x22 \x22\x22 \x22_system\x22 \x22\x22", "info", 1);
+
 $scope.openWindow("https://youtu.be/QHZJVDzFRks", "", "_system");
+
+window.App.Debugger.log("End of SciencePin Click event", "info", -2);
 
 };
 
 $scope.CafePinClick = function($event) {
 $rootScope.CafePin.Event = $event;
 
+window.App.Debugger.log("Start of CafePin Click event", "info", -1);
+
+window.App.Debugger.log("OpenWindow \x22https://www.youtube.com/watch?v=zv30oNZoUIw\x22 \x22\x22 \x22_system\x22 \x22\x22", "info", 1);
+
 $scope.openWindow("https://www.youtube.com/watch?v=zv30oNZoUIw", "", "_system");
+
+window.App.Debugger.log("End of CafePin Click event", "info", -2);
 
 };
 
 $scope.BackArrowClick = function($event) {
 $rootScope.BackArrow.Event = $event;
 
+window.App.Debugger.log("Start of BackArrow Click event", "info", -1);
+
+window.App.Debugger.log("ReplaceView \x22Main\x22", "info", 1);
+
 $scope.replaceView("Main");
+
+window.App.Debugger.log("End of BackArrow Click event", "info", -2);
 
 };
 
 $scope.MapToggleClick = function($event) {
 $rootScope.MapToggle.Event = $event;
 
-if ($rootScope.TourMap.Hidden !=  "true" ) {
+window.App.Debugger.log("Start of MapToggle Click event", "info", -1);
 
-$rootScope.BackFrame.Hidden = "";
+window.App.Debugger.log("OpenWindow \x22app/files/Images/MapinJPG.jpg\x22 \x22\x22 \x22_system\x22 \x22\x22", "info", 1);
 
-$rootScope.TourMap.Hidden = "true";
+$scope.openWindow("app/files/Images/MapinJPG.jpg", "", "_system");
 
-$rootScope.MainPin.Hidden = "true";
-
-$rootScope.FieldPin.Hidden = "true";
-
-$rootScope.PoolPin.Hidden = "true";
-
-$rootScope.SciencePin.Hidden = "true";
-
-$rootScope.CafePin.Hidden = "true";
-
-$rootScope.BackArrow.Hidden = "true";
-
-angular.element(document.getElementById("MapToggle")).css("opacity", .5);
-
-} else {
-
-$rootScope.BackFrame.Hidden = "true";
-
-$rootScope.TourMap.Hidden = "";
-
-$rootScope.MainPin.Hidden = "";
-
-$rootScope.FieldPin.Hidden = "";
-
-$rootScope.PoolPin.Hidden = "";
-
-$rootScope.SciencePin.Hidden = "";
-
-$rootScope.CafePin.Hidden = "";
-
-$rootScope.BackArrow.Hidden = "";
-
-angular.element(document.getElementById("MapToggle")).css("opacity", 1);
-
-}
+window.App.Debugger.log("End of MapToggle Click event", "info", -2);
 
 };
 
@@ -2713,7 +3079,13 @@ window.App.FeedbackPage.Scope = $scope;
 $scope.HomeClick = function($event) {
 $rootScope.Home.Event = $event;
 
+window.App.Debugger.log("Start of Home Click event", "info", -1);
+
+window.App.Debugger.log("ShowView \x22Main\x22", "info", 1);
+
 $scope.showView("Main");
+
+window.App.Debugger.log("End of Home Click event", "info", -2);
 
 };
 
@@ -2759,42 +3131,78 @@ window.App.Calendar.Scope = $scope;
 $scope.Image1Click = function($event) {
 $rootScope.Image1.Event = $event;
 
+window.App.Debugger.log("Start of Image1 Click event", "info", -1);
+
+window.App.Debugger.log("OpenWindow \x22app/files/Calendars/index.html\x22 \x22\x22 \x22_system\x22 \x22\x22", "info", 1);
+
 $scope.openWindow("app/files/Calendars/index.html", "", "_system");
+
+window.App.Debugger.log("End of Image1 Click event", "info", -2);
 
 };
 
 $scope.Image3Click = function($event) {
 $rootScope.Image3.Event = $event;
 
+window.App.Debugger.log("Start of Image3 Click event", "info", -1);
+
+window.App.Debugger.log("ReplaceView \x22Calendar\x22", "info", 1);
+
 $scope.replaceView("Calendar");
+
+window.App.Debugger.log("End of Image3 Click event", "info", -2);
 
 };
 
 $scope.Image5Click = function($event) {
 $rootScope.Image5.Event = $event;
 
+window.App.Debugger.log("Start of Image5 Click event", "info", -1);
+
+window.App.Debugger.log("ReplaceView \x22Calendar\x22", "info", 1);
+
 $scope.replaceView("Calendar");
+
+window.App.Debugger.log("End of Image5 Click event", "info", -2);
 
 };
 
 $scope.Image7Click = function($event) {
 $rootScope.Image7.Event = $event;
 
+window.App.Debugger.log("Start of Image7 Click event", "info", -1);
+
+window.App.Debugger.log("ReplaceView \x22Calendar\x22", "info", 1);
+
 $scope.replaceView("Calendar");
+
+window.App.Debugger.log("End of Image7 Click event", "info", -2);
 
 };
 
 $scope.Image9Click = function($event) {
 $rootScope.Image9.Event = $event;
 
+window.App.Debugger.log("Start of Image9 Click event", "info", -1);
+
+window.App.Debugger.log("ReplaceView \x22Calendar\x22", "info", 1);
+
 $scope.replaceView("Calendar");
+
+window.App.Debugger.log("End of Image9 Click event", "info", -2);
 
 };
 
 $scope.Image10Click = function($event) {
 $rootScope.Image10.Event = $event;
 
+window.App.Debugger.log("Start of Image10 Click event", "info", -1);
+
+window.App.Debugger.log("ReplaceView \x22Calendar\x22", "info", 1);
+
 $scope.replaceView("Calendar");
+
+window.App.Debugger.log("End of Image10 Click event", "info", -2);
 
 };
 
@@ -2813,21 +3221,39 @@ window.App.FAQView.Scope = $scope;
 $scope.Button8Click = function($event) {
 $rootScope.Button8.Event = $event;
 
+window.App.Debugger.log("Start of Button8 Click event", "info", -1);
+
+window.App.Debugger.log("ShowView \x22Main\x22", "info", 1);
+
 $scope.showView("Main");
+
+window.App.Debugger.log("End of Button8 Click event", "info", -2);
 
 };
 
 $scope.Button7Click = function($event) {
 $rootScope.Button7.Event = $event;
 
+window.App.Debugger.log("Start of Button7 Click event", "info", -1);
+
+window.App.Debugger.log("HistoryBack", "info", 1);
+
 window.history.back();
+
+window.App.Debugger.log("End of Button7 Click event", "info", -2);
 
 };
 
 $scope.Button9Click = function($event) {
 $rootScope.Button9.Event = $event;
 
+window.App.Debugger.log("Start of Button9 Click event", "info", -1);
+
+window.App.Debugger.log("HistoryForward", "info", 1);
+
 window.history.forward();
+
+window.App.Debugger.log("End of Button9 Click event", "info", -2);
 
 };
 
@@ -2846,21 +3272,39 @@ window.App.WVCSiteView.Scope = $scope;
 $scope.Button5Click = function($event) {
 $rootScope.Button5.Event = $event;
 
+window.App.Debugger.log("Start of Button5 Click event", "info", -1);
+
+window.App.Debugger.log("ShowView \x22Main\x22", "info", 1);
+
 $scope.showView("Main");
+
+window.App.Debugger.log("End of Button5 Click event", "info", -2);
 
 };
 
 $scope.Button4Click = function($event) {
 $rootScope.Button4.Event = $event;
 
+window.App.Debugger.log("Start of Button4 Click event", "info", -1);
+
+window.App.Debugger.log("HistoryBack", "info", 1);
+
 window.history.back();
+
+window.App.Debugger.log("End of Button4 Click event", "info", -2);
 
 };
 
 $scope.Button6Click = function($event) {
 $rootScope.Button6.Event = $event;
 
+window.App.Debugger.log("Start of Button6 Click event", "info", -1);
+
+window.App.Debugger.log("HistoryForward", "info", 1);
+
 window.history.forward();
+
+window.App.Debugger.log("End of Button6 Click event", "info", -2);
 
 };
 
